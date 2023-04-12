@@ -1,9 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
     <div>
-      <h1 className="text-3xl">algo</h1>
+
+    <div>            
+        <h2>Welcome to</h2>
+        {/* <h1>PETBOOK</h1> */}
+
+
+        <img src='/logo.png' alt="" />
+
+    
+
+        <div>
+   
+            <Link to = '/login' >
+              <button>LOG IN</button>
+            </Link>
+
+            <Link to = '/home'>
+              <button>LATER...</button>
+            </Link>
+
+        </div>  
     </div>
+</div>
   );
 }
