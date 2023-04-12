@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./COMPONENTS/LANDING/Landing";
 import Card from "./COMPONENTS/CARD/Card";
 import Header from "./COMPONENTS/HEADER/Header";
+// import Login from './COMPONENTS/LOGIN/Login'
+
 function App() {
   return (
     <div className="app">
@@ -11,6 +13,7 @@ function App() {
         <Route path="/header" element={<Header />} />
         <Route path="/card" element={<Card />} />
         <Route path="/home" element={<Home />} />
+        {/* <Route path ='/login' element={<Login />} /> */}
       </Routes>
     </div>
   );
