@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .link {
-  @apply hover:text-white;
+  @apply hover:text-slate-300;
 }
