@@ -18,15 +18,10 @@ module.exports = (sequelize) => {
 
       name: {
         type: DataTypes.STRING,
-        allowNull: true,
-      },
-
-      breed: {
-        type: DataTypes.STRING,
         allowNull: false,
       },
 
-      height: {
+      size: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -34,11 +29,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lifeSpan: {
+      age: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      specie: {
+      gender: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -46,13 +41,9 @@ module.exports = (sequelize) => {
         type: BOOLEAN,
         defaultValue: false,
       },
-      created: {
-        type: BOOLEAN,
-        defaultValue: false,
-      },
+     
     },
     { timestamps: false }
   );
 };
 
-// Atributos (API usada en PI): id, name (puede ser null), breed, image, weight, height, lifespan, gender, adopted (por defecto es false), created (boolean)
