@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
 );
 
 
-const { Dog } = sequelize.models;
+const { Dog, Shelter } = sequelize.models;
 
 
 
