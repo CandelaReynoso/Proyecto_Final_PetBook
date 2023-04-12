@@ -38,7 +38,8 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Dog, Shelter } = sequelize.models;
+const { Shelter } = sequelize.models;
+const {Pet} = sequelize.models
 
 
 
