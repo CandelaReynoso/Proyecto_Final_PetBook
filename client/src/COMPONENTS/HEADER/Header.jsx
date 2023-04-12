@@ -1,18 +1,15 @@
 import React from "react";
+import "./Header.css";
 
 export default function Header() {
   return (
-    <div className="mx-auto bg-yellow-300 shadow-lg">
+    <div className=" contain mx-auto bg-green-200 shadow">
       <nav className="flex items-center justify-between lg:justify-start">
-        <div className="logo w-1/6 p-2">
-          <img
-            src="https://logodownload.org/wp-content/uploads/2015/02/burger-king-logo-6.png"
-            width="100"
-            alt=""
-          />
+        <div className="logo w-1/4 p-2">
+          <img src="../../public/logo.png" height="100" alt="" />
         </div>
-        <div className="links w1/6 md:w4/6 hidden lg:block">
-          <ul className="menu flex items-center justify-center gap-5">
+        <div className="links w-1/4 md:w-4/6 hidden lg:block">
+          <ul className="menu flex items-end justify-end gap-5">
             <il>
               <a href="#" className="link">
                 Home
@@ -20,7 +17,7 @@ export default function Header() {
             </il>
             <il>
               <a href="#" className="link">
-                Play{" "}
+                Play
               </a>
             </il>
             <il>
@@ -34,9 +31,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a
-                href="#"
-                className="rounded-2xl border-4 border-red-500 p-2 font-bold transition duration-500 hover:bg-white hover:text-blue-500">
+              <a href="#" className="link">
                 About
               </a>
             </il>
@@ -54,7 +49,7 @@ export default function Header() {
             </il>
             <il>
               <a href="#" className="link">
-                Play{" "}
+                Play
               </a>
             </il>
             <il>
@@ -68,9 +63,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a
-                href="#"
-                className="my-4 inline-block rounded-2xl border-4 border-red-500 p-2 font-bold transition duration-500 hover:bg-white hover:text-blue-500">
+              <a href="#" className="link">
                 About
               </a>
             </il>
