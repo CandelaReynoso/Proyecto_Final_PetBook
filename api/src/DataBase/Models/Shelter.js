@@ -27,6 +27,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     { timestamps: false }
   );
