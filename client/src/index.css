@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .link {
-  @apply hover:text-white;
+  @apply font-semibold  hover:border-green-300 rounded cursor-pointer  px-3 py-1 hover:bg-green-300/40 active:bg-green-300 transition duration-300;
 }
