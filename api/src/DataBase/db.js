@@ -41,6 +41,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Shelter } = sequelize.models;
 const { Pets } = sequelize.models
 const { Product } = sequelize.models;
+const {User} = sequelize.models
 
 
 
