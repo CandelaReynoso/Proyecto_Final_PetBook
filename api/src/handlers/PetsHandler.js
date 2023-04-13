@@ -5,6 +5,15 @@ const postPetsController = require("../controllers/postPetsController");
 const putPetsController = require("../controllers/putPetsController");
 const deletePetController = require("../controllers/deletePetController");
 
+const handlerGetAllPets = async (req, res) => {
+  try {
+    const allPets = await getAllPetsController();
+    res.status(200).json(allPets);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 const handlerPets = async (req, res) => {
   let { name } = req.query;
   try {
@@ -59,6 +68,7 @@ const handlerPetsDelete = async (req, res) => {
 };
 
 module.exports = {
+  handlerGetAllPets,
   handlerPets,
   handlerPetsDetail,
   handlerPetsPost,
