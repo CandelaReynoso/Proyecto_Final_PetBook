@@ -5,3 +5,7 @@
 .link {
   @apply font-semibold  hover:border-green-300 rounded cursor-pointer  px-3 py-1 hover:bg-green-300/40 active:bg-green-300 transition duration-300;
 }
+
+.letter-footer {
+  @apply font-semibold  transition duration-500;
+}
