@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       size: {
-        type: DataTypes.ENUM("Long", "Medium", "Large"),
+        type: DataTypes.ENUM("Small", "Medium", "Large"),
         allowNull: false,
       },
       weight: {
