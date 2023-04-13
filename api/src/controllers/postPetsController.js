@@ -1,7 +1,8 @@
-const { Dog } = require("../DataBase/db.js");
+const { Pet } = require("../DataBase/db.js");
 
-const postPetsController = async () => {
-    let response = await Dog.create({  });
+
+const postPetsController = async (image,name,size,specie,weight,age,gender) => {
+    let response = await Pet.create({ image,name,specie,size,weight,age,gender });
     return response;
 };
 
