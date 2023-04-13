@@ -1,16 +1,12 @@
 import React from "react";
 import Card from "../CARD/Card";
 import mascotas from "../DATA/Data";
+import {Link} from "react-router-dom";
 
 const Home = () => {
   return (
     <div>
-      <h1 className="text-3xl">PETS IN ADOPTION</h1>
-      <div className="card-container">
-        {mascotas.map((mascota) => (
-          <Card key={mascota.id} mascota={mascota} />
-        ))}
-      </div>
+      <Link to = "/card"><h1 className="text-3xl">PETS IN ADOPTION</h1></Link>
     </div>
   );
 };
