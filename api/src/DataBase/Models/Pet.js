@@ -6,21 +6,22 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.UUID,
-        primaryKey: true,
-        isUnique: true,
-        allowNull: false,
         defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       size: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -41,7 +42,6 @@ module.exports = (sequelize) => {
         type: BOOLEAN,
         defaultValue: false,
       },
-     
     },
     { timestamps: false }
   );

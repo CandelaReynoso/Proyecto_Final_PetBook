@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
       },
       available: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
         allowNull: false,
       },
       price: {
@@ -35,7 +36,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
       sizes: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       sku: {
         type: DataTypes.INTEGER,
@@ -46,7 +47,6 @@ module.exports = (sequelize) => {
       rating: {
         type: DataTypes.INTEGER,
       },
-
     },
     { timestamps: false }
   );
