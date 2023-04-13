@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      specie: {
+        type: DataTypes.ENUM("Cat", "Dog", "Rabbit", "Guinea Pig", "Parrot"),
+        allowNull: false,
+      },
       gender: {
         type: DataTypes.ENUM("Male", "Female"),
         allowNull: false,
