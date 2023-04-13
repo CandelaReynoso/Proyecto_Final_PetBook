@@ -39,10 +39,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 const { Shelter } = sequelize.models;
-const { Pets } = sequelize.models
+const { Pet } = sequelize.models
 const { Product } = sequelize.models;
 
+// model relations
+ // Pet / Products : 1:N
+Pet.hasMany(Product, { foreignKey: 'petId' });
+Product.belongsTo(Pet, { foreignKey: 'petId' });
 
+  // Shelter / Pet 1 : N 
+Shelter.hasMany(Pet, { foreignKey: 'shelterId' });
+Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
 
 module.exports = {
   ...sequelize.models,
