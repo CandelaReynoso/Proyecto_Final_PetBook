@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../CARD/Card";
 import mascotas from "../DATA/Data";
 
+
 const Home = () => {
   return (
     <div>
