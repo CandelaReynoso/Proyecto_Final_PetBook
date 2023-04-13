@@ -41,9 +41,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Shelter } = sequelize.models;
 const { Pet } = sequelize.models
 const { Product } = sequelize.models;
-const {User} = sequelize.models
+const { User } = sequelize.models
 
 // model relations
+// User / Pet M : N
+User.belongsToMany(Pet, { through: 'user_pet' });
+Pet.belongsToMany(User, { through: 'user_pet' });
+
  // Pet / Products : 1:N
 Pet.hasMany(Product, { foreignKey: 'petId' });
 Product.belongsTo(Pet, { foreignKey: 'petId' });
