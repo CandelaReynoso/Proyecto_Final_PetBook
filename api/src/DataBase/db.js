@@ -48,6 +48,14 @@ const { User } = sequelize.models
 User.belongsToMany(Pet, { through: 'user_pet' });
 Pet.belongsToMany(User, { through: 'user_pet' });
 
+// User / Product M:N
+User.belongsToMany(Product, { through: 'user_product' });
+Product.belongsToMany(User, { through: 'user_product' });
+
+// User / Shelter 1: N
+Shelter.hasMany(User, { foreignKey: 'userId' });
+User.belongsTo(Shelter, { foreignKey: 'userId' });
+
  // Pet / Products : 1:N
 Pet.hasMany(Product, { foreignKey: 'petId' });
 Product.belongsTo(Pet, { foreignKey: 'petId' });
