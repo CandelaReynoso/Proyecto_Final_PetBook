@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      income: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       }
     },
     { timestamps: false }
