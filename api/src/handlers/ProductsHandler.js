@@ -1,16 +1,33 @@
+
 const searchProductByNameController = require("../controllers/searchProductByNameController");
 const searchAllProductsController = require("../controllers/searchAllProductsController");
+const postProductController = require('../controllers/postProductController');
 
-const handlerProducts = async (req, res) => {
-  let { name } = req.query;
+const getHandlerProducts = async (req, res) => {
   try {
-    let response = name
-      ? await searchProductByNameController(name)
-      : await searchAllProductsController();
-    response.status(200).json(response);
+    const { name } = req.query;
+    let totalProducts = await searchAllProductsController();
+    if(name){
+      let productName = await searchProductByNameController(name);
+      productName.length ? res.status(200).send(productName) : res.status(404).send('Product not found.');
+    } else {
+      res.status(200).send(totalProducts);
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { handlerProducts };
+const postProductHandler = async (req, res) => {
+  try {
+    const productCreated = await postProductController(req.body);
+    res.status(200).send(productCreated);
+  } catch (error) {
+    res.status(404).json({error: error.message})
+  }
+}
+
+module.exports = { 
+  getHandlerProducts,
+  postProductHandler
+};

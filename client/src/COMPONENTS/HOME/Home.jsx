@@ -1,9 +1,14 @@
 import React from "react";
+import Card from "../CARD/Card";
+import mascotas from "../DATA/Data";
+import {Link} from "react-router-dom";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
-      <h1 className="text-3xl">RENDERIZANDO</h1>
+      <Link to = "/card"><h1 className="text-3xl">PETS IN ADOPTION</h1></Link>
     </div>
   );
-}
+};
+
+export default Home;

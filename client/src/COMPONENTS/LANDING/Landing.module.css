@@ -1,0 +1,52 @@
+/* .background{
+    background-image: url(Frame1.png);
+} */
+
+.buttons {
+    display: block;
+    margin: 0 auto;
+
+  height: 100px; /* altura del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+.bigButton {
+    background-color:rgb(192, 248, 209);
+    border: none;
+    color: black;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bigButton:hover {
+    background-color: rgb(178, 135, 163);
+  }
+  
+  .smallButton {
+    background-color: transparent;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .smallButton:hover {
+    color: rgb(192, 248, 209);
+  }
+  
