@@ -4,7 +4,7 @@ const getAllPetsController = async () => {
     let dbPets = [];
 
     dbPets = await Pet.findAll({
-        attributes: ['id', 'image', 'name', 'category', 'size', 'weight', 'age', 'gender', 'adopted'],
+        
     })
 
     if(dbPets.length === 0){
