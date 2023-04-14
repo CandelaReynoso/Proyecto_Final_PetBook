@@ -14,8 +14,8 @@ const userHandlerPost = async (req, res) => {
         const newUser = {nickname, email, password, role};
 
         // encrypt password
-        const salt = bcryptjs.genSaltSync(); // 10 rounds by default
-        newUser.password = bcryptjs.hashSync( password, salt );
+        const salt = bcryptjs.genSaltSync(); // 10 rounds by default - bcryptjs method
+        newUser.password = bcryptjs.hashSync( password, salt ); // bcryptjs method to encrypt
         
         //save in db
         const savedUser = await User.create(newUser)
