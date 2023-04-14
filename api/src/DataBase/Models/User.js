@@ -10,15 +10,25 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      nickName: {
+      nickname: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          notEmpty: {
+            msg: 'Nickname is required'
+          }
+        }
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          notEmpty: {
+            msg: 'Email is required'
+          }
+        }
       },
       phoneNumber: {
         type: DataTypes.STRING,
@@ -36,11 +46,32 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull:true,
       },
-      isAdmin: {
-        type: BOOLEAN,
-        defaultValue: false,
-        
+      role: {
+        type: DataTypes.ENUM('admin_role','user_role'),
+        allowNull: false,
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'The password is required'
+          }
+        }
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      google: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      }
     },
     { timestamps: false }
   );
