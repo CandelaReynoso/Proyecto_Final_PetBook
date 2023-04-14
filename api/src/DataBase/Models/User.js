@@ -1,6 +1,7 @@
 const { DataTypes, BOOLEAN } = require("sequelize");
 
-module.exports = (sequelize) => {
+
+const User = (sequelize) => {
   sequelize.define(
     "user",
     {
@@ -73,11 +74,12 @@ module.exports = (sequelize) => {
         defaultValue: false,
       }
     },
-    { timestamps: false }
+    { timestamps: false,
+    }
   );
 };
 
-// Usuarios.
-// atributos = email , telefono, pais?, cbu en pirncipio va a estar vacio y si algun usuario realiza una compra u donacion se llena ese atributo con el input que mande el usuario
-// donaciones hechas?
-// atributo es admin? true o false
+
+module.exports = User;
+
+
