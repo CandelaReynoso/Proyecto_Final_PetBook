@@ -3,24 +3,26 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 import Header from '../HEADER/Header';
-import Card from '../CARD/Card';
 import mascotas from '../DATA/Data';
 import Footer from '../FOOTER/Footer';
-import { getPets } from "../../Redux/actions";
+import { getPetsRandom } from "../../Redux/actions";
+import PreviewPetsAdoption from "../PREVIEW_PETS_ADOPTION/PreviewPetsAdoption";
 
 
 const Home = () => {
 
   //CARTAS DE ADOPCION:
 
- /* const dispatch = useDispatch();
-  const pets = useSelector((state) => state.pets);
+ const dispatch = useDispatch();
+  const state = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(getPets());
+    dispatch(getPetsRandom());
   }, [dispatch]);
+  
+  
 
-  const itemsToShow = pets.slice(0, 2);*/
+  // const itemsToShow = pets?.rows?.slice(0, 2);
   
 
   // CARRUSEL:
@@ -111,8 +113,11 @@ const Home = () => {
    
       <h1> PETS IN ADOPTION</h1>
       <div>
-       {/*<Card itemsToShow={itemsToShow} />*/}
-        <Link to ="/card">
+       {/* <Card itemsToShow={itemsToShow} /> */}
+       <PreviewPetsAdoption
+       previewPets={state.petsRandomHome && state.petsRandomHome}
+       />
+        <Link to ="/AvaliblePetsAdoption">
         <button>MORE</button> 
       </Link> 
     

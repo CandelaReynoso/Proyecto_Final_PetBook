@@ -37,7 +37,7 @@ function Detail() {
       )}
       <br>
       </br>
-      <Link to = "/card">
+      <Link to = "/AvaliblePetsAdoption">
         <button>Go Back</button>
         </Link>
     </div>

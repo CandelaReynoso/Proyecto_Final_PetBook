@@ -17,7 +17,7 @@ const handlerGetAllPets = async (req, res) => {
 }
 
 const handlerPets = async (req, res) => {
-  let { name, page = 1, size = 4 } = req.query;
+  let { name, page=0, size=4 } = req.query;
   try {
     const response = name
       ? await getPetByNameController(name)
