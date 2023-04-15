@@ -6,6 +6,7 @@ const putPetsController = require("../controllers/putPetsController");
 const deletePetController = require("../controllers/deletePetController");
 const filterPetsController = require("../controllers/filterPetsController");
 
+
 const handlerGetAllPets = async (req, res) => {
   try {
     const allPets = await getAllPetsController();
@@ -70,11 +71,11 @@ const handlerPetsDelete = async (req, res) => {
 
 const handleFilter = async (req, res) => {
 
-  const { specie, sort } = req.query;
-
+  const filters = req.query;
+  
   try {
-
-    const response = await filterPetsController(specie, sort);
+    
+    const response = await filterPetsController(filters);
     res.status(200).json(response);
 
   } catch (error) {
