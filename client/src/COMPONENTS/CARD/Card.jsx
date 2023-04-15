@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPets } from '../../Redux/actions';
 
@@ -8,6 +8,7 @@ const Card = () => {
   const [loading, setLoading] = useState(true);
   const pets = useSelector((state) => state.pets);
 
+// la data viene en un atributo rows viene asi por la paginacion hecha con sequelize tip siempre hacer console.log de lo que te traiga la action 
   useEffect(() => {
     dispatch(getPets()).then(() => {
       setLoading(false);
@@ -20,7 +21,7 @@ const Card = () => {
 
   return (
     <>
-      {pets?.map((pet) => (
+      {pets?.rows.map((pet) => (
         <Link key={pet.id} to={`/detail/${pet.id}`}>
           <h3>{pet.name}</h3>
           <div>
@@ -36,6 +37,9 @@ const Card = () => {
           </div>
         </Link>
       ))}
+      <br>
+      </br>
+      <Link to = "/home">GO HOME</Link>
     </>
   );
 };
