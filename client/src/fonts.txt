@@ -1,0 +1,2 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap'); (fuente de cuerpo (body)) === font-family: 'Roboto Mono', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap'); (fuente derechos) === font-family: 'Gilda Display', serif;

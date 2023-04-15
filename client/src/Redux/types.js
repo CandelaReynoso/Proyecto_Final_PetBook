@@ -1,1 +1,2 @@
 export const GET_PETS = "GET_PETS";
+export const FETCH_PET_DETAIL_SUCCESS = 'FETCH_PET_DETAIL_SUCCESS';
