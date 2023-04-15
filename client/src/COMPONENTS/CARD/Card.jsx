@@ -8,6 +8,7 @@ const Card = () => {
   const [loading, setLoading] = useState(true);
   const pets = useSelector((state) => state.pets);
 
+// la data viene en un atributo rows viene asi por la paginacion hecha con sequelize tip siempre hacer console.log de lo que te traiga la action 
   useEffect(() => {
     dispatch(getPets()).then(() => {
       setLoading(false);
@@ -20,7 +21,7 @@ const Card = () => {
 
   return (
     <>
-      {pets?.map((pet) => (
+      {pets?.rows.map((pet) => (
         <Link key={pet.id} to={`/detail/${pet.id}`}>
           <h3>{pet.name}</h3>
           <div>
