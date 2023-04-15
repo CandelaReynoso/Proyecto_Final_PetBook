@@ -1,7 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap");
 .footer {
   background-color: rgb(88, 123, 127);
 }
 
 .icons {
   font-size: xx-large;
+}
+
+.copy-rigth {
+  font-family: "Gilda Display", serif;
 }

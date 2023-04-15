@@ -15,11 +15,11 @@ const handlerGetAllPets = async (req, res) => {
 }
 
 const handlerPets = async (req, res) => {
-  let { name } = req.query;
+  let { name, page = 1, size = 4 } = req.query;
   try {
     const response = name
       ? await getPetByNameController(name)
-      : await getAllPetsController();
+      : await getAllPetsController(page,size);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
