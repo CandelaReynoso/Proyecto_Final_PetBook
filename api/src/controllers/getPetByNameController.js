@@ -11,8 +11,7 @@ const getPetByNameController = async (name) => {
   });
 
   if (response.length === 0) {
-    window.alert("no pets found");
-    return;
+    throw new Error("No pets found.");
   }
   return response;
 };

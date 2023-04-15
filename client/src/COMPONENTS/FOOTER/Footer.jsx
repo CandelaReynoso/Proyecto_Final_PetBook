@@ -66,7 +66,7 @@ export default function Footer() {
             </div>
             <div className="pr-9 ">
               <img src="../../../public/patita3.png" alt="patita de perro" />
-              <h2 className="text-base font-semibold mb-4">
+              <h2 className="copy-rigth text-base mb-4">
                 © Copy rigth 2023 by PetBook
               </h2>
             </div>
