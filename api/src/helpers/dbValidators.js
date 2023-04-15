@@ -15,7 +15,15 @@ const isEmailValid = async (email = '') => {
     }
 } 
 
+const userByIdExists = async (id = '') => {
+    const userExists = await User.findByPk(id);
+   if ( !userExists ) {
+       throw new Error(`The ID: ${id} does not exist.`)
+   }
+}
+
 module.exports = {
     isRoleValid,
-    isEmailValid
+    isEmailValid,
+    userByIdExists
 };    

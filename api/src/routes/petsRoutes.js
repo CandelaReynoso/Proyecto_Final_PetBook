@@ -5,12 +5,14 @@ const {
   handlerPetsPost,
   handlerPetsPut,
   handlerPetsDelete,
-  handlerGetAllPets
+  handlerGetAllPets,
+  handleFilter
 } = require("../handlers/PetsHandler");
 
 const petsRoutes = Router();
 
 petsRoutes.get('/', handlerGetAllPets);
+petsRoutes.get('/filter', handleFilter)
 
 petsRoutes.get("/name?", handlerPets);
 petsRoutes.get("/detail/:id", handlerPetsDetail);
