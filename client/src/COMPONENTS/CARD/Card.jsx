@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPets } from '../../Redux/actions';
 
@@ -36,6 +36,9 @@ const Card = () => {
           </div>
         </Link>
       ))}
+      <br>
+      </br>
+      <Link to = "/home">GO HOME</Link>
     </>
   );
 };
