@@ -3,6 +3,7 @@ const { userHandlerGet, userHandlerPost, userHandlerPut, userHandlerDelete } = r
 const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { isRoleValid, isEmailValid, userByIdExists } = require('../helpers/dbValidators');
+const { validateJWT } = require('../middlewares/validateJWT');
 
 
 const userRoutes = Router();
@@ -27,6 +28,7 @@ userRoutes.put('/:id', [
 ], userHandlerPut );
 
 userRoutes.delete('/:id', [
+    validateJWT,
     check('id', 'Not a valid ID').isUUID(),
     check('id').custom( userByIdExists ),
     validateAttributes
