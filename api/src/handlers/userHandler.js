@@ -69,17 +69,19 @@ const userHandlerPut = async (req, res) => {
 const userHandlerDelete = async (req, res) => {
     try {
         const { id } = req.params;
+        
         // code to delete permanently not recommended, we need to see who modifies db
         //const deletedUser = await User.destroy({where: {id: id}})
         
         // we better disable the user by changing the status to false and not showing it in get route
-        const disableUser = await User.update({ status: false }, {
-            where: { id: id },
+        const disableUser = await User.update({ status: false }, { where: { id: id },
             returning: true,
             plain: true
         });
 
-        res.status(200).json({disableUser})
+        const authUser = req.user; // check auth
+
+        res.status(200).json({disableUser, authUser}) // check auth delete later
     } catch (error) {
         res.status(404).json({error: error.message});
     }
