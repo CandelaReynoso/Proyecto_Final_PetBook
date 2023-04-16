@@ -6,7 +6,8 @@ import Header from "./COMPONENTS/HEADER/Header";
 import Footer from "./COMPONENTS/FOOTER/Footer";
 import Detail from "./COMPONENTS/DETAIL/Detail";
 import AvaliblePetsAdoption from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/AvaliblePetsAdoption";
-// import Login from './COMPONENTS/LOGIN/Login'
+import Login from './COMPONENTS/LOGIN/Login';
+import Registration from './COMPONENTS/REGISTRATION/Registration'
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/footer" element={<Footer />} />
         <Route path='/detail/:id' element={<Detail/>} />
-        {/* <Route path ='/login' element={<Login />} /> */}
+        <Route path ='/login' element={<Login />} />
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
+        <Route path="/register" element={<Registration />} />
       </Routes>
     </div>
   );
