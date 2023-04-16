@@ -1,8 +1,18 @@
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,} from './types';
 
 const initialState = {
   pets: [],
+  petsRandomHome :[],
   pet:{},
+  
+  profile: {           //perfil de usuario
+    nickname: '',
+    email: '',
+    password: '',
+    role: '',
+  },
+  formSubmitted: false  //enviado de formulario de registro
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +27,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         pet: action.payload
       }
+      case GET_PETS_RAMDON_HOME:
+      return{
+      ...state,
+      petsRandomHome: action.payload
+      }
+      
     default: {
       return {
         ...state,

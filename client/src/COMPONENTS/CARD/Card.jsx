@@ -3,28 +3,33 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPets } from '../../Redux/actions';
 
-const Card = () => {
+const Card = (pet) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const pets = useSelector((state) => state.pets);
+  console.log(pets);
+  // console.log(pets);
 
-  useEffect(() => {
-    dispatch(getPets()).then(() => {
-      setLoading(false);
-    });
-  }, [dispatch]);
+// la data viene en un atributo rows viene asi por la paginacion hecha con sequelize tip siempre hacer console.log de lo que te traiga la action 
+  // useEffect(() => {
+  //   dispatch(getPets()).then(() => {
+  //     setLoading(false);
+  //   });
+  // }, [dispatch]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <>
-      {pets?.map((pet) => (
-        <Link key={pet.id} to={`/detail/${pet.id}`}>
+      
+        
           <h3>{pet.name}</h3>
           <div>
+          <Link key={pet.id} to={`/detail/${pet.id}`}>
             <img src={pet.image} alt={pet.name} />
+            </Link>
           </div>
           <div>
             <p>Specie: {pet.specie}</p>
@@ -34,11 +39,11 @@ const Card = () => {
             <p>Age: {pet.age}</p>
             <p>Adopted: {pet.adopted}</p>
           </div>
-        </Link>
-      ))}
+        
+    
       <br>
       </br>
-      <Link to = "/home">GO HOME</Link>
+      
     </>
   );
 };
