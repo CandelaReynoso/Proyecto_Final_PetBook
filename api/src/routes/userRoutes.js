@@ -4,6 +4,7 @@ const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { isRoleValid, isEmailValid, userByIdExists } = require('../helpers/dbValidators');
 const { validateJWT } = require('../middlewares/validateJWT');
+const { isAdminRole, isRole } = require('../middlewares/validateRoles');
 
 
 const userRoutes = Router();
@@ -29,6 +30,8 @@ userRoutes.put('/:id', [
 
 userRoutes.delete('/:id', [
     validateJWT,
+    //isAdminRole,
+    isRole('admin_role','user_role'),
     check('id', 'Not a valid ID').isUUID(),
     check('id').custom( userByIdExists ),
     validateAttributes
