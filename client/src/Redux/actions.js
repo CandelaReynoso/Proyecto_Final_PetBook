@@ -3,7 +3,7 @@ import {GET_PETS,FETCH_PET_DETAIL_SUCCESS} from "./types"
 
     export const getPets = () => async dispatch => {
         try {
-          const res = await axios.get('http://localhost:3001/pets/name?');
+          const res = await axios.get('http://localhost:3001/pets');
           dispatch({
             type: GET_PETS,
             payload: res.data
