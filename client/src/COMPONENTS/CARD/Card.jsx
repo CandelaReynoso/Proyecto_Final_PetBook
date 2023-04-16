@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPets } from '../../Redux/actions';
+import styles from '../CARD/Card.module.css';
 
 const Card = (pet) => {
   const dispatch = useDispatch();
@@ -23,27 +24,23 @@ const Card = (pet) => {
 
   return (
     <>
-      
+          <h1 className={styles.title}>Find & Adopt</h1>
+          <div>
+              <h3 className={styles.name}>{pet.name.toUpperCase()}</h3>
+          </div>
         
-          <h3>{pet.name}</h3>
           <div>
           <Link key={pet.id} to={`/detail/${pet.id}`}>
-            <img src={pet.image} alt={pet.name} />
+            <div className={styles.imgContainer}>
+               <img className={styles.img} src={pet.image} alt={pet.name} /> 
+            </div>
+          
             </Link>
           </div>
-          <div>
-            <p>Specie: {pet.specie}</p>
+          <div className={styles.petInfo}>
             <p>Gender: {pet.gender}</p>
-            <p>Size: {pet.size}</p>
-            <p>Weight: {pet.weight}</p>
             <p>Age: {pet.age}</p>
-            <p>Adopted: {pet.adopted}</p>
-          </div>
-        
-    
-      <br>
-      </br>
-      
+          </div>          
     </>
   );
 };
