@@ -1,11 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 
 //la idea es que esta sea la pagina de inicio, 
 //al abrir: se ve el logo en pantalla completa, pero a los 3 segundos se despliega el formulario login --> HACER ESTE CAMBIOOOOOOO :) 
 
 const Login = () => {
+  function handleCredentialResponse(response){
+    console.log('id_token',  response.credential) // google token
+    const body = {id_token: response.credential}
+    fetch('http://localhost:3001/auth/google', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+    .then( resp => resp.json())
+    .then( data => {
+      console.log(data)
+      localStorage.setItem('email', data.user.email)
+    })
+    .catch(error => console.error(error))
+  }
+
+  
+  function handleSignOutButton(e){
+    console.log(google.accounts.id);
+    google.accounts.id.disableAutoSelect();
+    google.accounts.id.revoke(localStorage.getItem('email'), done =>{
+      localStorage.clear();
+      location.reload();
+    })
+  }
+
+  useEffect(()=>{
+    google.accounts.id.initialize({
+      client_id: "29807012109-in3jnv9asdchp613plc7ng3mp0oqpq8o.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+  },[])
 
   const [formState, setFormState] = useState({
     email: '',
@@ -119,7 +159,8 @@ const Login = () => {
       className='w-full my-3 py-2 bg-teal-300 shadow-lg shadow-teal-400/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
       >Login
       </button>
-
+      <div id="buttonDiv"></div>
+      <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>
       {/* <h4 className='text-center'>OR</h4> */}
 
       <Link to='/home'>
