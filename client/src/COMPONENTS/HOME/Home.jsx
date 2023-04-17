@@ -126,18 +126,20 @@ const Home = () => {
 
   
     {/*CARDS DE ANIMALES EN ADOPCION */}
-   
-      <h1> PETS IN ADOPTION</h1>
-      <div>
-       {/* <Card itemsToShow={itemsToShow} /> */}
-       <PreviewPetsAdoption
-       previewPets={state.petsRandomHome && state.petsRandomHome}
-       />
-        <Link to ="/AvaliblePetsAdoption">
-        <button>MORE</button> 
-      </Link> 
-    
-    </div>
+    <div className='flex flex-row flex-wrap items-center justify-center pt-5'>
+  <div className="w-full md:w-1/2">
+    <PreviewPetsAdoption previewPets={state.petsRandomHome && state.petsRandomHome} />
+  </div>
+  <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
+    <h2 className="text-7xl text-orange-600 italic font-bold tracking-wide mb-5">READY TO GO HOME...</h2>
+    <Link to ="/AvaliblePetsAdoption">
+      <button className="w-20 my-10 py-1 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg">MORE</button> 
+    </Link> 
+  </div>
+</div>
+
+
+
   
   {/*COMPONENTE DONACIONES */}
   <div className='flex flex-row flex-wrap items-center justify-center pt-5 bg-green-200'>
