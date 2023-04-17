@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
+
 //la idea es que esta sea la pagina de inicio, 
 //al abrir: se ve el logo en pantalla completa, pero a los 3 segundos se despliega el formulario login --> HACER ESTE CAMBIOOOOOOO :) 
 
@@ -30,8 +31,8 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const response = await fetch(`http://localhost:3001/auth/login/`, {  //  con esta ruta! 
+ 
+   const response = await fetch(`http://localhost:3001/auth/login/`, {  //  con esta ruta! 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ const Login = () => {
 
     if (response.ok) {
       localStorage.setItem('token', data.token);
-      navigate.push('/');
+      navigate('/home');
     } else {
       alert(data.msg);
     }

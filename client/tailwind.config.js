@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // rosa: 'rgb()'
+      }
+    },
   },
   plugins: [
     // require('@tailwindcss/forms')

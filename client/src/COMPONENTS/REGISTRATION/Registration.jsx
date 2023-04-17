@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const [formState, setFormState] = useState({
@@ -11,6 +12,7 @@ const Registration = () => {
   });
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormState({
@@ -38,6 +40,7 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(formState))
+    navigate('/home')
   }
 
   return (
@@ -121,9 +124,8 @@ const Registration = () => {
       {/* <select         onChange={handleChange} 
         required 
         className='w-full rounded-lg border p-2'>
-        <option value="user_role">user_role</option>
-        console.log(role);
-        <option value='admin_role'>admin_role</option>
+        <option value="user_role">user</option>
+        <option value='admin_role'>admin</option>
       </select> */}
       </div>
    

@@ -54,8 +54,10 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 };
 
 export const registerUser = (userData) => async (dispatch) => {
+  console.log(userData)
   try {
-    const res = await axios.post(`http://localhost:3001/users/`, userData);
+    const res = await axios.post(`http://localhost:3001/users`, userData);
+    
     console.log(res.data);
   } catch (err) {
     console.error('hay un error');
