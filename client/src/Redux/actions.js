@@ -3,6 +3,7 @@ import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
+  GET_PET_BY_NAME
 } from "./types";
 
 export const getPets = () => async (dispatch) => {
@@ -15,6 +16,18 @@ export const getPets = () => async (dispatch) => {
   } catch (err) {
     console.error(err);
   }
+};
+
+export const getPetsByName = (name) => {
+
+  return async function (dispatch) {
+   const response = await  axios.get(`http://localhost:3001/pets/name?name=${name}`)
+   console.log(response.data);
+   return dispatch({
+   type : GET_PET_BY_NAME,
+   payload : response.data
+   })
+  };
 };
 
 export const getPetsRandom = () => {
@@ -63,6 +76,10 @@ export const registerUser = (userData) => async (dispatch) => {
     console.error('hay un error');
   }
 };
+
+
+
+
 
 
 
