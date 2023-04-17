@@ -3,6 +3,7 @@ import { registerUser } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+
 const Registration = () => {
   const [formState, setFormState] = useState({
     nickname: '',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { FaGoogle } from 'react-icons/fa';
 
 
 //la idea es que esta sea la pagina de inicio, 
@@ -96,7 +96,7 @@ const Login = () => {
     	</div>
 
       <div>
-      <p className='flex items-center text-gray-400 text-s py-2'>forgot my password</p>
+      <p className='flex items-center text-gray-400 text-sm py-2 mt-[-1rem]'>forgot my password</p>
       {/* cambiarle la fuente */}
 
       </div>
@@ -106,7 +106,7 @@ const Login = () => {
                       <input className='mr-2 ' type="checkbox" /> Remember me
                     </p> */}
 
-                    <button className=' w-40 border shadow-lg hover:shadow-xl px-8 py-2 relative flex item-center hover:text-teal-300'> ICON.Google</button>
+                    <button className=' w-40 border shadow-lg hover:shadow-xl px-8 py-2 relative flex item-center hover:text-teal-300'> <FaGoogle className='mr-4 my-1'/> Google</button>
 
                     <Link to='/register'>
                     <button className='w-40 border shadow-lg hover:shadow-xl px-3 py-2 relative flex item-center text-teal-300 hover:text-gray-700 '> Create an account</button>
