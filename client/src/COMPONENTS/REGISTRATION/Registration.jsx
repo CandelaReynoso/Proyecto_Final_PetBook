@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const [formState, setFormState] = useState({
@@ -11,6 +12,7 @@ const Registration = () => {
   });
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormState({
@@ -38,6 +40,7 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(formState))
+    navigate('/home')
   }
 
   return (
@@ -49,15 +52,15 @@ const Registration = () => {
       
 
   <div 
-  className='bg-gray-800 flex flex-col justify-center'>  
+  className='bg-gray-100 flex flex-col justify-center'>  
     <form onSubmit={handleSubmit}
-    className='max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8'>
+    className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4'>
     <h2 
-        className='text-4xl dark:text-white font-bold text-center'>
+        className='text-4xl dark font-bold text-center m-2'>
           REGISTER
     </h2>
 
-    <div className='flex flex-col text-gray-400 py-2'>
+    <div className='flex flex-col py-2 text-gray-400'>
       <label>
         Nickname:
         <input 
@@ -66,7 +69,8 @@ const Registration = () => {
         value={formState.nickname} 
         onChange={handleChange} 
         required
-        className='w-full rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'
+        className='w-full rounded-lg border p-2'
+        
         />
       </label>
 
@@ -81,7 +85,7 @@ const Registration = () => {
         value={formState.email} 
         onChange={handleChange} 
         required
-        className='w-full p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'
+        className='w-full rounded-lg border p-2'
         />
       </label>
     </div>
@@ -95,7 +99,7 @@ const Registration = () => {
         value={formState.password} 
         onChange={handleChange} 
         required 
-        className=' w-full rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'/>
+        className='w-full rounded-lg border p-2' />
       </label>
     </div>
       {/* <label>
@@ -111,16 +115,23 @@ const Registration = () => {
         value={formState.role} 
         onChange={handleChange} 
         required 
-        className=' w-full rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'
-        />
+        className='w-full rounded-lg border p-2'
+        /> 
         {/* <select name="" id="">user_role</select>
         <select name="" id="">admin_role</select> */}
       </label>
+
+      {/* <select         onChange={handleChange} 
+        required 
+        className='w-full rounded-lg border p-2'>
+        <option value="user_role">user</option>
+        <option value='admin_role'>admin</option>
+      </select> */}
       </div>
    
       <button 
       type="submit"
-        className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
+        className='w-full my-3 py-2 bg-teal-300 shadow-lg shadow-teal-400/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
       >
           Register
       </button>

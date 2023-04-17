@@ -67,34 +67,21 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 };
 
 export const registerUser = (userData) => async (dispatch) => {
+  console.log(userData)
   try {
-    const res = await axios.post(`http://localhost:3001/users/`, userData); // Cambiar la URL de la petición POST
+    const res = await axios.post(`http://localhost:3001/users`, userData);
+    
     console.log(res.data);
   } catch (err) {
-    console.error(err);
+    console.error('hay un error');
   }
 };
 
-/*   export const getPets = () => async dispatch => {
-        try {
-          const res = await axios.get('http://localhost:3001/pets');
-          dispatch({
-            type: GET_PETS,
-            payload: res.data
-          });
-        } catch (err) {
-          console.error(err);
-        }
-      };
-   
-       export const fetchPetDetailSuccess = (id) => async (dispatch) => {
-        try {
-          const res = await axios.get(`http://localhost:3001/pets/detail/${id}`);
-          dispatch({
-            type: FETCH_PET_DETAIL_SUCCESS,
-            payload: res.data,
-          });
-        } catch (err) {
-          console.error(err);
-        }
-      }; */
+
+
+
+
+
+
+
+
