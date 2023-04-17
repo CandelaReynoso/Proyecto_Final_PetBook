@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPetDetailSuccess } from '../../Redux/actions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from '../DETAIL/Detail.module.css';
 
 function Detail() {
@@ -26,7 +26,11 @@ function Detail() {
           <div >
             <img className={styles.img} src={pet.image} alt={pet.name} />
           </div>
+          
+          <Link to='/home'>
           <img className = {styles.imgFoot}  src="../../../public/patita3.png" alt="patita de perro" />
+          </Link>
+
           <ul className={styles.list}> 
           <div className={styles.list2}>
           <li>Specie: {pet.specie}</li>

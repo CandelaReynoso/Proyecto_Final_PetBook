@@ -31,7 +31,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a href="#" className="link">
+              <a href="/AvaliblePetsAdoption" className="link">
                 Adopt
               </a>
             </il>
@@ -41,7 +41,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a href="#" className="link">
+              <a href="/register" className="link">
                 Sign In
               </a>
             </il>
