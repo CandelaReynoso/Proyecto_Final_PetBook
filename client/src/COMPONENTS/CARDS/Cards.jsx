@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../CARD/Card";
 import { Link } from 'react-router-dom';
+import styles from '../CARDS/Cards.module.css';
 
 const Cards = ({ pets }) => {
   return (
@@ -8,7 +9,7 @@ const Cards = ({ pets }) => {
       {pets &&
         pets.map((pet, index) => {
           return (
-            <Card
+            <Card 
               key={index}
               id={pet.id}
               specie={pet.specie}
@@ -22,8 +23,8 @@ const Cards = ({ pets }) => {
             />
           );
         })}
-        
-        <Link to = "/home">GO HOME</Link>
+        <div>
+        </div>
     </div>
   );
 };

@@ -1,0 +1,117 @@
+
+.title{
+position: absolute;
+top:170px;
+left:250px;
+font-family: 'Imprima';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 34px;
+letter-spacing: 0.1em;
+color: #000000;
+}
+
+.name{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 50px;
+color: #585656;
+justify-items: center;
+text-align: left;
+position:absolute;
+left:42%;
+margin-top:13%;
+}
+
+
+.imgContainer {
+    width: 250px;
+    height: 250px;
+    opacity: 0.8;
+    position: relative;
+    text-align: left;
+    left:17%;
+    top:200px;
+    margin-bottom:3%;
+  }
+  
+  .imgContainer:hover::after {
+    opacity: 1;
+    pointer-events: auto;
+}
+  
+.imgContainer::after {
+    content: "More about me...";
+    white-space: nowrap;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    font-family: 'Inter';
+    font-weight: bold;
+    position: absolute;
+    top: 40%;
+    line-height: 34px;
+    letter-spacing: 0.1em;
+    opacity:0.01;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .petInfo {
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Inter';
+    margin-left:43%;
+    text-align:left;
+    top:40px;
+
+  }
+
+.img{
+  height: 250px;
+  width: 280px;
+  border-radius: 10%;
+}
+
+.divContainer{
+  background-color:  rgba(64, 64, 64, 0.24);
+  padding: 5%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+}
+
+.text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 100px;
+  letter-spacing: 0.2em;
+  color: #F08484;
+  text-align: left;  
+  white-space: pre-wrap;
+  text-align: left;
+  margin-right: auto;
+}
+
+.list {
+  letter-spacing: 0.2em;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #585656;
+  line-height: 40px;
+  list-style-type: circle;
+  justify-items: center;
+  margin-bottom: 15px;
+  display: list-item;
+}
