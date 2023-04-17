@@ -6,6 +6,7 @@ import Cards from "../CARDS/Cards";
 import Header from "../HEADER/Header";
 import Footer from "../FOOTER/Footer";
 import styles from '../CARD/Card.module.css';
+import SearchBar from "../SEARCH/SearchBar";
 
 
 const AvaliblePetsAdoption = () => {
@@ -18,13 +19,16 @@ const AvaliblePetsAdoption = () => {
   },[dispatch,getPets])
   
   
-console.log(state.pets);
+// console.log(state.pets);
 
   return (
     <div>
+    
+    
       <h2 >{/* aca tiene que ir la paginacion osea el componente */} </h2>
       <Header></Header>
-       <Cards pets={state.pets.rows}/> 
+      <SearchBar/>
+       <Cards pets={state?.pets?.rows? state.pets.rows : state.pets}/> 
        <br></br>
        <br></br>
        <br></br>
