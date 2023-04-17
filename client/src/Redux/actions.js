@@ -55,12 +55,13 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 
 export const registerUser = (userData) => async (dispatch) => {
   try {
-    const res = await axios.post(`http://localhost:3001/users/`, userData); // Cambiar la URL de la petición POST
+    const res = await axios.post(`http://localhost:3001/users/`, userData);
     console.log(res.data);
   } catch (err) {
-    console.error(err);
+    console.error('hay un error');
   }
 };
+
 
 
 

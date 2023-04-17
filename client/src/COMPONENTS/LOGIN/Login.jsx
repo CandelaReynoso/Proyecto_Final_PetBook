@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+
+//la idea es que esta sea la pagina de inicio, 
+//al abrir: se ve el logo en pantalla completa, pero a los 3 segundos se despliega el formulario login --> HACER ESTE CAMBIOOOOOOO :) 
 
 const Login = () => {
+
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -27,7 +31,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`http://localhost:3001/users/`, {
+    const response = await fetch(`http://localhost:3001/auth/login/`, {  //  con esta ruta! 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,35 +55,34 @@ const Login = () => {
 
 {/* IMAGEN */}
 			<div className='hidden sm:block'>  
-      	<img className='w-full h-full object-cover' src="/LoginImg.png" alt="" />
+      	<img className='w-full h-full object-cover' src="/LoginImg.png" alt="" /> 
+        {/* arreglar el problemita de la imagen q se ve horrible y cambiar el color del botón q está en otro color! */}
       </div>
     
     <div 
-    className='bg-gray-800 flex flex-col justify-center'>
+    className='bg-gray-100 flex flex-col justify-center'>
     
     <form onSubmit={handleSubmit} 
-    className='max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8'> 
+    className='max-w-[360px] w-full mx-auto rounded-lg bg-white  p-4'> 
 
         <h2 
-        className='text-4xl dark:text-white font-bold text-center'>SIGN IN</h2>
+        className='text-4xl dark font-bold text-center'>PETBOOK</h2>
        
-       <div className='flex flex-col text-gray-400 py-2'>
-        <label>
-        Email:
-        </label>
+       <div className='flex flex-col py-2'>
+        <label> email: </label>
         <input
           type="email"
           name="email"
           value={formState.email}
           onChange={handleEmailChange}
           required
-          className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'
+          className='border p-2 rounded-lg'
         />
       </div>
 
-      <div className='flex flex-col text-gray-400 py-2'>
+      <div className='flex flex-col py-2'>
       <label>
-        Password:
+        password:
       </label>
         <input
           type="password"
@@ -87,21 +90,41 @@ const Login = () => {
           value={formState.password}
           onChange={handlePasswordChange}
           required
-          className='p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none'
+          className='border p-2 rounded-lg'
         />
     	</div>
 
-      <div className='flex justify-between text-gray-400 py-2'>
-                    <p className='flex items-center'><input className='mr-2' type="checkbox" /> Remember Me</p>
-                    <p>Forgot Password</p>
+      <div>
+      <p className='flex items-center text-gray-400 text-s py-2'>forgot my password</p>
+      {/* cambiarle la fuente */}
+
+      </div>
+
+      <div className='flex justify-between py-3'>
+                    {/* <p className='flex items-center text-gray-400 '>
+                      <input className='mr-2 ' type="checkbox" /> Remember me
+                    </p> */}
+
+                    <button className=' w-40 border shadow-lg hover:shadow-xl px-8 py-2 relative flex item-center hover:text-teal-300'> ICON.Google</button>
+
+                    <Link to='/register'>
+                    <button className='w-40 border shadow-lg hover:shadow-xl px-3 py-2 relative flex item-center text-teal-300 hover:text-gray-700 '> Create an account</button>
+                    </Link>
+
+                   
       </div>
       
       <button 
       type="submit"
-      className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
+      className='w-full my-3 py-2 bg-teal-300 shadow-lg shadow-teal-400/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
       >Login
-      
-    </button>
+      </button>
+
+      {/* <h4 className='text-center'>OR</h4> */}
+
+      <Link to='/home'>
+      <button className='text-gray-300 hover:text-gray-700 w-full'>Sign in later</button>
+      </Link>
 
 
     </form>
