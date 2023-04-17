@@ -1,4 +1,4 @@
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,GET_PET_BY_NAME} from './types';
 
 const initialState = {
   pets: [],
@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
       return{
       ...state,
       petsRandomHome: action.payload
+      }
+      case GET_PET_BY_NAME:
+      return{
+      ...state,
+      pets: action.payload
       }
       
     default: {

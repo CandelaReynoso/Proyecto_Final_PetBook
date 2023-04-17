@@ -8,7 +8,7 @@ const Card = (pet) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const pets = useSelector((state) => state.pets);
-  console.log(pets);
+  // console.log(pets);
   // console.log(pets);
 
 // la data viene en un atributo rows viene asi por la paginacion hecha con sequelize tip siempre hacer console.log de lo que te traiga la action 
