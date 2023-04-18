@@ -7,6 +7,9 @@ import Detail from "./COMPONENTS/DETAIL/Detail";
 import AvaliblePetsAdoption from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/AvaliblePetsAdoption";
 import Login from './COMPONENTS/LOGIN/Login';
 import Registration from './COMPONENTS/REGISTRATION/Registration'
+import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
+
+
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
         <Route path ='/login' element={<Login />} />
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/FormAdoption" element={<FormAdoption />} />
+    
       </Routes>
     </div>
   );

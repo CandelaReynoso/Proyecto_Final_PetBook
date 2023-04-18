@@ -1,5 +1,10 @@
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import FormAdoption from "../FORMS/FormAdoption";
+import {Link} from 'react-router-dom'
+
+
+
 export default function Header() {
   const Menu = e => {
     const menu = document.querySelector(".mobile-links");
@@ -31,9 +36,11 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a href="/AvaliblePetsAdoption" className="link">
+             <Link to ="/FormAdoption">
+             <a href="#" className="link">
                 Adopt
               </a>
+             </Link> 
             </il>
             <il>
               <a href="#" className="link">
