@@ -11,5 +11,6 @@ sequelize.sync({alter:true }).then( async () => {
   await Role.findOrCreate({ where: { role: "user_role" }, defaults: { role: "user_role" } });
   server.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
+    
   })
 })

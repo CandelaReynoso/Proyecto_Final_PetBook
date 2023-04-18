@@ -1,11 +1,210 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'daisyui';
+
+
+* {
+  scroll-behavior: smooth;
+}
+
+
+  /* LINKS */
 
 .link {
-  @apply font-semibold  hover:border-green-300 rounded cursor-pointer  px-3 py-1 hover:bg-green-300/40 active:bg-green-300 transition duration-300;
+  @apply font-light text-accent hover:border-green-300 rounded cursor-pointer  px-3 py-1 active:bg-green-300 transition duration-300;
 }
 
-.letter-footer {
-  @apply font-semibold  transition duration-500;
+
+  /* TITULOS */
+
+.titleCenter{
+  @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-center
 }
+.titleRight{
+ @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-right
+}
+
+.titleLeft{
+ @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-left
+}
+
+
+  /* SUBTITULOS */
+
+.subtitle{
+ @apply font-bold text-neutral text-5xl uppercase tracking-widest leading-loose text-center
+}
+
+  /* PÁRRAFOS */
+
+.text{
+ @apply font-sans font-serif font-semibold text-neutral 
+}
+
+.textColorPink{
+ @apply font-sans font-serif font-semibold text-secondary 
+}
+
+.textColorGreen{
+ @apply font-sans font-serif font-semibold text-accent 
+}
+
+.textItalic{
+ @apply font-mono font-thin
+}
+
+ /* INPUTS Y FORMULARIOS */
+
+.inputs{
+ @apply  input  w-full text-black border-b-primary border-r-transparent border-l-transparent border-t-transparent 
+}
+
+.textareas{
+ @apply textarea textarea-primary
+}
+
+  /* BOTONES */
+
+.buttonSubtmit{  
+ @apply  w-full my-3 py-2 bg-primary shadow-lg  hover:shadow-teal-500/40 text-accent font-semibold rounded-lg uppercase 
+}
+
+.buttonSubtmitOtro{  
+  @apply  w-full  p-2 bg-transparent border text-accent font-semibold rounded-lg uppercase 
+ }
+
+.buttonSmallgreen{
+ @apply btn btn-primary
+}
+  
+.buttonSmallBlack{
+ @apply btn 
+}
+
+.selecter{
+  @apply radio radio-primary
+}
+
+.seleccion{ 
+  @apply select select-ghost w-full max-w-xs
+}  
+
+
+   /* UBICACIONES */
+
+.divForminput{
+ @apply flex flex-col py-2 text-gray-400
+}
+
+  /* HEADER */
+
+.textoheader{
+  @apply btn btn-ghost normal-case 
+}
+
+.divSearch{
+  @apply flex-1
+}
+
+.divFilter{
+  @apply col-auto
+}
+
+  /* FOOTER */
+
+.letter-footer {
+ @apply font-semibold  transition duration-500;
+}
+.iconsfooter{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+}
+
+
+
+/* 
+IMPORTANTE :
+    -FORMULARIOS:  
+         titulo: 'subtitle' le ponen el titulo ej: LOGIN y un punto alfinal 'LOGIN.'
+         lo que tienen que completar es con --> placeholder
+         botón de submit: 'buttonSubtmit' (lo escribí mal subTmit, asi q copien y peguen asi :) )
+         inputs: 'inputs'
+         si hay algun input que es textarea: 'textareas'
+         
+    -TITULOS:
+         se fijan si es necesario q el titulo vaya en el centro, izq o derecha y usan la clase correspondiente. 
+
+    - hay otros botones, chico negro y de color por si necesitan para otra cosa. 
+
+    -si quieren hacer un <select /> con options, en el div del select ponene className = 'seleccion'. 
+
+    -PAGINACION: 
+    usen este estilo: seroa btn-group, btn y btn-active 
+     <div className="btn-group">
+      <button className="btn">«</button>
+      <button className="btn">1</button>
+      <button className="btn btn-active">2</button>
+      <button className="btn">3</button>
+      <button className="btn">4</button>
+      <button className="btn">»</button>
+     </div>
+
+     -CARRUSEL: 
+     elegir de esta pagina: https://daisyui.com/components/carousel/#slide2, el primero me gustó. Copiar directamente ese código. 
+
+     -SEARCHBAR: la vamos a hacer con daisy, terminen el componente si quieren le doy el estilo despues, porq hay q combinar varios estilos de daisy.  O sino la idea es que quede algo así: la searchbar y los filtros en el mismo nivel: 
+     <div className="navbar bg-primary">
+
+
+  <div className="flex-1">
+    <h2 className="normal-case text-xl text-secondary italic font-bold" > search, find & adopt </h2>
+  </div>
+
+
+  <div className="flex-none">
+    <ul className="menu menu-horizontal px-1">
+
+      <li tabIndex={0}>
+        <a>
+          Especie          
+        </a>
+        <ul className="p-2 bg-base-900">
+          <li><a>gato</a></li>
+          <li><a>perro</a></li>
+        </ul>
+      </li>
+
+      <li tabIndex={0}>
+        <a>
+          Especie          
+        </a>
+        <ul className="p-2 bg-base-900">
+          <li><a>gato</a></li>
+          <li><a>perro</a></li>
+        </ul>
+      </li>
+
+
+      <div className="form-control">
+      <input type="text" placeholder="Search" className="input input-bordered" />
+    </div>
+
+
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+*/

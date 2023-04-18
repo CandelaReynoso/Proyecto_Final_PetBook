@@ -1,78 +1,30 @@
 import React from "react";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PhoneIcon from "@mui/icons-material/Phone";
-import "./Footer.css";
+import { FaFacebookF, FaInstagram, FaWhatsapp, FaPhoneAlt} from "react-icons/fa";
+
+
 export default function Footer() {
   return (
-    <div className="footer">
-      <footer className=" py-12 ">
-        <div className="container mx-auto px-2 text-gray-300">
-          <div className="flex justify-between">
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
-              <ul className=" space-y-3 p-2">
-                <li>
-                  <a href="#">
-                    <FacebookIcon className="icons" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <InstagramIcon className="icons" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <PhoneIcon className="icons" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Explore</h2>
-              <ul className="ml-6">
-                <li>
-                  <a href="#" className="letter-footer">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="letter-footer">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="letter-footer">
-                    Adopt
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="letter-footer">
-                    Store
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="letter-footer">
-                    Sign In
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="letter-footer">
-                    Donations
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="pr-9 ">
-              <img src="../../../public/patita3.png" alt="patita de perro" />
-              <h2 className="copy-rigth text-base mb-4">
-                © Copy rigth 2023 by PetBook
-              </h2>
-            </div>
-          </div>
-        </div>
-      </footer>
+    <div>
+
+<footer className="footer items-center p-4 bg-neutral-800 text-neutral-content">
+  <div className="items-center grid-flow-col">
+    <img src="patita1.png" alt="" width="36" height="36" />
+    <p>PETBOOK - Copyright © 2023 - All right reserved</p>
+  </div> 
+  <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+   
+    <a href="https://www.facebook.com"> <FaFacebookF  className="iconsfooter"/> </a> 
+
+    <a href="https://www.instagram.com"> < FaInstagram  className="iconsfooter"/> </a>
+
+    <a href="https://www.facebook.com"> < FaWhatsapp  className="iconsfooter"/> </a> 
+    {/* la idea es q lleven al lugar correspondiente, per ono tenemos fb ni ig ni wpp de la ong creados */}
+    
+     {/* < FaPhoneAlt  className="iconsfooter" /> <a className="textColor mt-1">+54 9  11 4926596</a> */}
+
+  </div>
+</footer>
+
     </div>
   );
 }

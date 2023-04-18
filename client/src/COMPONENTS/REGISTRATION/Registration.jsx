@@ -9,7 +9,7 @@ const Registration = () => {
     nickname: '',
     email: '',
     password: '',
-    role: '',
+    role: 'user_role',
   });
 
   const dispatch = useDispatch()
@@ -40,6 +40,14 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (formState.password === 'repeatPassword') {    
+      console.log('Las contraseñas coinciden');      
+    } else {     
+      console.log('Las contraseñas no coinciden');
+    }
+
+
     dispatch(registerUser(formState))
     navigate('/home')
   }
@@ -57,58 +65,72 @@ const Registration = () => {
     <form onSubmit={handleSubmit}
     className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4'>
     <h2 
-        className='text-4xl dark font-bold text-center m-2'>
-          REGISTER
+        className='subtitle'>
+          REGISTER.
     </h2>
 
-    <div className='flex flex-col py-2 text-gray-400'>
+    <div className='divForminput'>
       <label>
-        Nickname:
+        {/* Nickname: */}
         <input 
         type="text" 
         name="nickname" 
         value={formState.nickname} 
         onChange={handleChange} 
         required
-        className='w-full rounded-lg border p-2'
+        placeholder='Nickname'
+        className='inputs'
         
         />
       </label>
 
     </div>
 
-    <div className='flex flex-col text-gray-400 py-2'>
+    <div className='divForminput'>
       <label>
-        Email:
+        {/* Email: */}
         <input 
         type="email" 
         name="email" 
         value={formState.email} 
         onChange={handleChange} 
         required
-        className='w-full rounded-lg border p-2'
+        placeholder='Email'
+        className='inputs'
         />
       </label>
     </div>
 
-    <div className='flex flex-col text-gray-400 py-2'>
+    <div className='divForminput'>
       <label>
-        Password:
+        {/* Password: */}
         <input 
         type="password" 
         name="password" 
         value={formState.password} 
         onChange={handleChange} 
         required 
-        className='w-full rounded-lg border p-2' />
+        placeholder='Password'
+        className='inputs' />        
       </label>
     </div>
-      {/* <label>
-        Repeat Password:
-        <input type="password" name="repeatPassword" value={formState.repeatPassword} onChange={handleRepeatPasswordChange} required />
-      </label> */}
-    <div className='flex flex-col text-gray-400 py-2'>
+
+
+    <div className='divForminput'>
       <label>
+        {/* Repeat Password: */}
+        <input 
+        type="password" 
+        name="repeatPassword" 
+        placeholder='Repeat Password'
+        onChange={handleChange} 
+        required 
+        className='inputs' />
+      </label>
+    </div>
+
+    <div className='divForminput'>
+      {/* <label>
         Role:
         <input 
         type="text" 
@@ -116,11 +138,11 @@ const Registration = () => {
         value={formState.role} 
         onChange={handleChange} 
         required 
-        className='w-full rounded-lg border p-2'
+        className='inputs'
         /> 
         {/* <select name="" id="">user_role</select>
         <select name="" id="">admin_role</select> */}
-      </label>
+      {/* </label>  */}
 
       {/* <select         onChange={handleChange} 
         required 
@@ -132,15 +154,14 @@ const Registration = () => {
    
       <button 
       type="submit"
-        className='w-full my-3 py-2 bg-teal-300 shadow-lg shadow-teal-400/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
+      className='buttonSubtmit'
       >
-          Register
+       Register
       </button>
     </form>
   </div>      
-    </div>
+</div>
 
-  );
-};
+  )};
 
 export default Registration;
