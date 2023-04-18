@@ -42,11 +42,16 @@ const { Shelter } = sequelize.models;
 const { Pet } = sequelize.models
 const { Product } = sequelize.models;
 const { User } = sequelize.models
+const { Category } = sequelize.models;
 
 // model relations
 // User / Pet M : N
 User.belongsToMany(Pet, { through: 'user_pet' });
 Pet.belongsToMany(User, { through: 'user_pet' });
+
+// User / Category 1:1
+Category.belongsTo(User);
+User.belongsTo(Category);
 
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });

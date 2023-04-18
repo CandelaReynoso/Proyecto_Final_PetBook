@@ -1,20 +1,35 @@
 const bcryptjs = require('bcryptjs'); // npm i bcryptjs
 const { User } = require('../DataBase/db');
+const { Op } = require('sequelize');
 
 
 const userHandlerGet = async (req, res) => {
     try {
-        const { limit = 5, from = 0 } = req.query;
+        const { limit = 20, from = 0, nickname } = req.query;
+        const { id } = req.params;
+        
+        let whereClause = {status: true};
+
+        if(id){
+            whereClause = {...whereClause, id};
+        }
+
+        if (nickname) {
+            whereClause = { 
+              ...whereClause,
+              nickname: { [Op.iLike]: `%${nickname}%` } // Use the ilike operator to match any name that contains the search string
+            };
+          }
        
         const [totalRecords, users] = await Promise.all([
-            User.count({where: {status: true}}),
+            User.count({where: whereClause}),
             User.findAll({
-                where: {status: true},
+                where: whereClause,
                 limit: Number.parseInt(limit,10),
                 offset: Number.parseInt(from,10),
             })
         ])
-
+        //console.log(users)
         res.status(200).json({totalRecords, users});
 
     } catch (error) {

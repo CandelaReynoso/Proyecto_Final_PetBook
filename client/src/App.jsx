@@ -8,6 +8,8 @@ import AvaliblePetsAdoption from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/AvaliblePe
 import Login from './COMPONENTS/LOGIN/Login';
 import Registration from './COMPONENTS/REGISTRATION/Registration';
 import About from './COMPONENTS/ABOUT/About'
+import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
+
 import './index.css'
 
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
+        <Route path="/FormAdoption" element={<FormAdoption />} />
+
       </Routes>
     </div>
   );

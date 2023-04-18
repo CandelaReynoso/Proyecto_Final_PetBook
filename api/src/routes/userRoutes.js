@@ -11,6 +11,8 @@ const userRoutes = Router();
 
 userRoutes.get('/', userHandlerGet );
 
+userRoutes.get('/:id', userHandlerGet );
+
 userRoutes.post('/', [
     check('nickname', 'nickname is required').not().isEmpty(),
     check('password', 'password >= 6 characters is required').isLength({min: 6}),

@@ -9,6 +9,8 @@ import styles from '../CARD/Card.module.css';
 import SearchBar from "../SEARCH/SearchBar";
 
 
+
+
 const AvaliblePetsAdoption = () => {
 
   const state = useSelector((state) => state);

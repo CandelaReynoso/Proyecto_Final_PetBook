@@ -1,7 +1,8 @@
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { Link } from "react-router-dom";
+import {Link} from 'react-router-dom'
+
 export default function Header() {
   const Menu = e => {
     const menu = document.querySelector(".mobile-links");
