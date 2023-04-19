@@ -52,9 +52,20 @@ Pet.belongsToMany(User, { through: 'user_pet' });
 // User / Category 1:1
 Category.belongsTo(User, {foreignKey: 'userId'});   // userId is the id of the user that creates the category
 
+
+
+
+Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategory' });
+//Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategoryId'}); // categoryId of the product
+Category.hasMany(Product, { foreignKey: 'categoryId'}); // Use "categoryId" instead of "productId"
+
+
+Product.belongsTo(User, { foreignKey: 'userId' });
+
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });
-Product.belongsToMany(User, { through: 'user_product' });
+//Product.belongsToMany(User, { through: 'user_product' });
+Product.belongsTo(User, { foreignKey: 'userId'}); // userId is the id of the user that creates the product
 
 // User / Shelter 1: N
 Shelter.hasMany(User, { foreignKey: 'userId' });
