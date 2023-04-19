@@ -1,4 +1,4 @@
-const { Role, User } = require('../DataBase/db');
+const { Role, User, Category } = require('../DataBase/db');
 
 const isRoleValid = async  (role = '') => {
         const roleExists = await Role.findOne({where: {role: role}});
@@ -22,8 +22,16 @@ const userByIdExists = async (id = '') => {
    }
 }
 
+const categoryExists = async (id= '') => {
+    const categoryExist = await Category.findByPk(id);
+    if(!categoryExist){
+        throw new Error(`The ID: ${id} does not exist.`)
+    }
+}
+
 module.exports = {
     isRoleValid,
     isEmailValid,
-    userByIdExists
+    userByIdExists,
+    categoryExists
 };    
