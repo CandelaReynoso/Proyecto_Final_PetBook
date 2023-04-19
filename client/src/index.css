@@ -99,9 +99,9 @@
 
   /* HEADER */
 
-.textoheader{
-  @apply btn btn-ghost normal-case 
-}
+  .textoheader{
+    @apply btn btn-ghost normal-case font-bold text-gray-400;
+  }
 
 .divSearch{
   @apply flex-1
