@@ -1,7 +1,7 @@
 //form con captcha. 
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
-
+import Agenda from "./Agenda";
 
 
 const FormContact = () => {
@@ -9,6 +9,9 @@ const FormContact = () => {
 
     return (
         <>
+        <div>
+          <h1 className="subtitle">CONTACT US</h1>
+        </div>
         <Formik
         initialValues={{
             name: '',
@@ -22,8 +25,14 @@ const FormContact = () => {
             //validacion para el nombre
             if(!valores.name){
               errores.name ='Please, enter your name!'
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)){ // 4 a 16 digitos y solo numeros, letras y guion _
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{2,16}$/.test(valores.name)){ // 2 a 16 digitos aceptan letras mayúsculas y minúsculas, acentos y espacios.
               errores.name = 'Name can only contain letters and spaces.'
+            }
+            //validacion nombre de la mascota
+            if(!valores.petname){
+              errores.petname ='Please, enter your name!'
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{2,16}$/.test(valores.petname)){ // 4 a 16 digitos y solo numeros, letras y guion _
+              errores.petname = 'Name can only contain letters and spaces.'
             }
             //validacion para el apellido
             if(!valores.lastname){
@@ -38,7 +47,15 @@ const FormContact = () => {
             } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){ // 4 a 16 digitos y solo numeros, letras y guion _
               errores.email = 'Email can only contain letters,spaces and piriods.'
             }
+            // validacion availability
+            //validacion mensaje
+            if(!valores.message){
+              errores.message ='Please, enter your message!'
+            } else if (!/^[a-zA-Z]{1,150}$/.test(valores.message)){ 
+              errores.message= 'Please enter a message with a maximum of 150 word, not numbers allowed!'
+            }
 
+            
             return errores;
             
         }}
@@ -53,7 +70,8 @@ const FormContact = () => {
         >
 
             {( {errors}  ) => (
-         <Form className="form">
+              
+         <Form className="textColorGreen textItalic text-center">
             {console.log(errors)}
          <div>
              <label htmlFor="name">Name:</label>
@@ -65,7 +83,7 @@ const FormContact = () => {
      
              />
             <ErrorMessage name="name" component={()=> (
-                <div className="error">{errors.name}</div>
+                <div className="text-error">{errors.name}</div>
             )}/>
          </div>
          <div>
@@ -77,7 +95,7 @@ const FormContact = () => {
              placeholder = "" 
              />
              <ErrorMessage name="lastname" component={()=> (
-              <div className="error">{errors.lastname}</div>
+              <div className="text-error">{errors.lastname}</div>
             )}/>
          </div>
          <div>
@@ -89,23 +107,24 @@ const FormContact = () => {
              placeholder = "email@email.com" 
              />
              <ErrorMessage name="email" component={()=> (
-              <div className="error">{errors.email}</div>
+              <div className="text-error">{errors.email}</div>
             )}/>
          </div>
          <div>
-             <label htmlFor="pet">Pet Name:</label>
+             <label htmlFor="petname">Pet Name:</label>
              <Field
              type ="text" 
-             id="pet" 
-             name="pet" 
+             id="petname" 
+             name="petname" 
              placeholder = "" 
              /> 
-             <ErrorMessage name="pet" component={()=> (
-                <div className="error">{errors.pet}</div>
+             <ErrorMessage name="petname" component={()=> (
+                <div className="text-error">{errors.petname}</div>
               )}/>
          </div>
          <div>
-             <label htmlFor="availability">Availability for a visit:</label>
+          <Agenda>
+             <label htmlFor="availability"></label>
              <Field
              type ="text" 
              id="availability" 
@@ -113,19 +132,26 @@ const FormContact = () => {
              placeholder = "" 
              />
              <ErrorMessage name="availability" component={()=> (
-                <div className="error">{errors.availability}</div>
+                <div className="text-error">{errors.availability}</div>
               )}/>
+              </Agenda>
          </div>
          <div>
-         <p>Message:</p>
+         <p>Tell us more about you:</p>
             <Field 
+            className="textareas"
             name="message" 
             as="textarea" 
-            pleaceholder="Leve you additional comments"
-            />        
+            />    
+            <ErrorMessage name="message" component={()=> (
+                <div className="text-error">{errors.message}</div>
+              )}/>    
          </div>
-         <button type ="submit">SEND</button>
+         <div className="buttonSubtmit text-center">
+            <button classNamtype ="submit">SEND</button>
          { formSubmit && <p className="succes">Form was successfully submitted</p>}
+         </div>
+       
      </Form>
             )}
        

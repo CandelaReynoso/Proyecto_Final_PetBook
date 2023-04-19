@@ -28,8 +28,14 @@
 .titleLeft{
  @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-left
 }
+   /* CHECKBOX*/
+ 
 
-
+   .form-checkbox:focus-visible {
+    outline: 0;
+    border-color:white;
+    box-shadow: 0 0 0 2px white;
+  }
   /* SUBTITULOS */
 
 .subtitle{
@@ -54,6 +60,10 @@
  @apply font-mono font-thin
 }
 
+/* ERRORES */
+.text-error {
+  @apply italic text-red-500;
+}
  /* INPUTS Y FORMULARIOS */
 
 .inputs{
