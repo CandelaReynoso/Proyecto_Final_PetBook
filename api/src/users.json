@@ -1,4 +1,5 @@
 {
+    "user_1":{
     "id": 1355453924,
     "nickname": "TEST_USER_835713232",
     "password": "cRaMyfhc2g",
@@ -17,4 +18,14 @@
 
         }
     }
+},
+    "user_2":{
+        "id": 1356336058,
+        "nickname": "TTEST12000",
+        "password": "FL83rFQEHJ",
+        "site_status": "active",
+        "site_id": "MLA",
+        "description": "User for my PetBook Academichal App",
+        "date_created": "2023-04-19T11:48:30-04:00",
+        "date_last_updated": "2023-04-19T11:48:30-04:00"}
 }
