@@ -50,8 +50,7 @@ User.belongsToMany(Pet, { through: 'user_pet' });
 Pet.belongsToMany(User, { through: 'user_pet' });
 
 // User / Category 1:1
-Category.belongsTo(User);
-User.belongsTo(Category);
+Category.belongsTo(User, {foreignKey: 'userId'});   // userId is the id of the user that creates the category
 
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });

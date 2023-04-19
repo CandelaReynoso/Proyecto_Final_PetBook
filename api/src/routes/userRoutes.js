@@ -32,8 +32,8 @@ userRoutes.put('/:id', [
 
 userRoutes.delete('/:id', [
     validateJWT,
-    //isAdminRole,
-    isRole('admin_role','user_role'),
+    isAdminRole,
+    //isRole('admin_role','user_role'),
     check('id', 'Not a valid ID').isUUID(),
     check('id').custom( userByIdExists ),
     validateAttributes

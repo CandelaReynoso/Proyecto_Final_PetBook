@@ -2,21 +2,21 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { validateJWT } = require('../middlewares/validateJWT');
-const { categoryHandlerPost } = require('../handlers/categoryHandler');
+const { categoryHandlerPost, categoryHandlerGet, categoryHandlerPut, categoryHandlerDelete } = require('../handlers/categoryHandler');
+const { categoryExists } = require('../helpers/dbValidators');
+const { isAdminRole, isRole } = require('../middlewares/validateRoles');
 
 const categoriesRoutes = Router();
 
 // get all categories - public
-categoriesRoutes.get('/', (req, res)=>{
-    
-    res.status(200).json({msg: 'todo ok categories route'})
-})
+categoriesRoutes.get('/', categoryHandlerGet)
 
 // get one category - public
-categoriesRoutes.get('/:id', (req, res)=>{
-    
-    res.status(200).json({msg: 'todo ok categories route id'})
-})
+categoriesRoutes.get('/:id', [
+    check('id', 'Not a valid ID').isUUID(),
+    check('id').custom(categoryExists),
+    validateAttributes
+],categoryHandlerGet)
 
 // create categories - admin
 categoriesRoutes.post('/',[ 
@@ -26,15 +26,22 @@ categoriesRoutes.post('/',[
  ], categoryHandlerPost);
 
 // update categories - admin
-categoriesRoutes.put('/:id', (req, res)=>{
-    
-    res.status(200).json({msg: 'todo ok categories route put'})
-})
+categoriesRoutes.put('/:id', [
+    validateJWT,
+    check('name', 'Name of category is required').not().isEmpty(),
+    check('id', 'Not a valid ID').isUUID(),
+    check('id').custom(categoryExists),
+    validateAttributes
+] ,categoryHandlerPut)
 
 // delete categories - admin
-categoriesRoutes.delete('/:id', (req, res)=>{
-    
-    res.status(200).json({msg: 'todo ok categories route delete'})
-})
+categoriesRoutes.delete('/:id', [
+    validateJWT,
+    isAdminRole,
+    //isRole('admin_role', 'user_role'),
+    check('id', 'Not a valid ID').isUUID(),
+    check('id').custom( categoryExists),
+    validateAttributes
+],categoryHandlerDelete);
 
 module.exports = categoriesRoutes;
