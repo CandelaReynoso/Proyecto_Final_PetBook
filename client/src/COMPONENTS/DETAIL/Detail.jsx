@@ -5,6 +5,7 @@ import { fetchPetDetailSuccess } from '../../Redux/actions';
 import { Link } from 'react-router-dom';
 import styles from '../DETAIL/Detail.module.css';
 
+
 function Detail() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams(); 
@@ -46,7 +47,7 @@ function Detail() {
       )}
       <br>
       </br>
-        <Link to = "/AvaliblePetsAdoption">
+        <Link to = "/FormAdoption">
          <button className={styles.buttonAdoptMe}>ADOPT ME!</button>  
         </Link>
         <br>
