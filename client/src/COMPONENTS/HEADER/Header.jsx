@@ -30,6 +30,7 @@ export default function Header() {
           <a href="/donate" className="textoheader">DONATE</a>
           <a href="/store" className="textoheader">STORE</a>
           <a href="/AvaliblePetsAdoption" className="textoheader">ADOPT</a>
+          <a href="/FormContact" className="textoheader">CONTACT US</a>
 
 
           {/* <a className="textoheader">LOGIN</a> 

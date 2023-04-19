@@ -9,9 +9,9 @@ import Login from './COMPONENTS/LOGIN/Login';
 import Registration from './COMPONENTS/REGISTRATION/Registration';
 import About from './COMPONENTS/ABOUT/About'
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
-import Donations from "./COMPONENTS/DONATION/Donations";
-
+import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
+import Donations from "./COMPONENTS/DONATION/Donations";
 
 
 
@@ -30,6 +30,7 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
         <Route path="/FormAdoption" element={<FormAdoption />} />
+        <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/donate" element={<Donations />} />
 
       </Routes>
