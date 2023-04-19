@@ -93,7 +93,7 @@
 }
 
 .selecter{
-  @apply radio radio-primary
+  @apply radio radio-primary w-3 h-3
 }
 
 .seleccion{ 

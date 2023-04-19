@@ -1,7 +1,7 @@
 //form con captcha. 
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
-import Agenda from "./Agenda";
+
 
 
 const FormContact = () => {
@@ -47,7 +47,6 @@ const FormContact = () => {
             } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){ // 4 a 16 digitos y solo numeros, letras y guion _
               errores.email = 'Email can only contain letters,spaces and piriods.'
             }
-            // validacion availability
             //validacion mensaje
             if(!valores.message){
               errores.message ='Please, enter your message!'
@@ -123,21 +122,10 @@ const FormContact = () => {
               )}/>
          </div>
          <div>
-          <Agenda>
-             <label htmlFor="availability"></label>
-             <Field
-             type ="text" 
-             id="availability" 
-             name="availability"
-             placeholder = "" 
-             />
-             <ErrorMessage name="availability" component={()=> (
-                <div className="text-error">{errors.availability}</div>
-              )}/>
-              </Agenda>
+      
          </div>
          <div>
-         <p>Tell us more about you:</p>
+         <p>Send us a message:</p>
             <Field 
             className="textareas"
             name="message" 
@@ -147,8 +135,8 @@ const FormContact = () => {
                 <div className="text-error">{errors.message}</div>
               )}/>    
          </div>
-         <div className="buttonSubtmit text-center">
-            <button classNamtype ="submit">SEND</button>
+         <div className="buttonSubtmit text-center ">
+            <button className=""  type ="submit ">SEND</button>
          { formSubmit && <p className="succes">Form was successfully submitted</p>}
          </div>
        

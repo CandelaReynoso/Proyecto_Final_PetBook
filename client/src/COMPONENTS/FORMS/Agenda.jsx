@@ -26,13 +26,17 @@ const Agenda = () => {
     }
   };
 
-  const selectAll = () => {
+  const selectAll = (event) => {
+    event.preventDefault();
     const todos = opciones.flatMap(opcion =>
       horas.map(hora => `${opcion.dia} ${hora}`)
     );
+    
     setSelection(todos);
   }
-  const deselectAll = () => {
+
+  const deselectAll = (event) => {
+    event.preventDefault();
     setSelection([]);
   }
 
