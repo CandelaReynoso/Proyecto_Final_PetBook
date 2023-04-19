@@ -1,4 +1,11 @@
-//form con captcha. 
+// A este form hay que modificarlo:
+// -Solo pueden enviar peticion de adopcion los usuarios registrados
+// -Hacer logica para que cuando hacen click en el boton Adopt me te
+// pide que te logees como usuario)
+// Que este form inlcuya Nombre e email del usuario que solicita la adopcion.
+// Inputs: telefono de contacto, mensaje libre, nombre de la mascota que desea adoptar.
+
+
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 
@@ -11,33 +18,21 @@ const FormAdoption = () => {
         <>
         <Formik
         initialValues={{
-            name: '',
-            lastname : '',
-            email:'',
+            telephone: '',
             petname: '',
-            availability: ''
+            availability: '',
+            message:''
         }}
         validate={(valores) => {
             let errores ={}
-            //validacion para el nombre
-            if(!valores.name){
-              errores.name ='Please, enter your name!'
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)){ // 4 a 16 digitos y solo numeros, letras y guion _
-              errores.name = 'Name can only contain letters and spaces.'
-            }
-            //validacion para el apellido
-            if(!valores.lastname){
-                errores.lastname ='Please, enter your Last name!'
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.lastname)){ // 4 a 16 digitos y solo numeros, letras y guion _
-              errores.lastname = 'Last name can only contain letters and spaces.'
-            }
-
-            //validacion para el email
-            if(!valores.email){
-                errores.email ='Please, enter your email!'
-            } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){ // 4 a 16 digitos y solo numeros, letras y guion _
-              errores.email = 'Email can only contain letters,spaces and piriods.'
-            }
+            //validacion para el telefono
+            if (!valores.telephone) {
+                errores.telephone = 'Please, enter your telephone number!'
+              } else if (!/^[0-9\s\(\)\-]{1,20}$/.test(valores.telephone)) { // solo números, paréntesis y guiones medios
+                errores.telephone = 'Telephone can only contain numbers, parentheses and hyphens.'
+              } else if (valores.telephone.replace(/[^0-9]/g, '').length > 15) { // solo hasta 15 números
+                errores.telephone = 'Telephone number must not exceed 15 digits.'
+              }
 
             return errores;
             
@@ -56,40 +51,16 @@ const FormAdoption = () => {
          <Form className="form">
             {console.log(errors)}
          <div>
-             <label htmlFor="name">Name:</label>
+             <label htmlFor="telephone">Telephone:</label>
              <Field
-             type ="text" 
-             id="name" 
-             name="name" 
-             placeholder = "" 
+             type ="number" 
+             id="tel" 
+             name="tel" 
+             placeholder = "(212) 555-1234" 
      
              />
-            <ErrorMessage name="name" component={()=> (
-                <div className="error">{errors.name}</div>
-            )}/>
-         </div>
-         <div>
-             <label htmlFor="lastname">Last name:</label>
-             <Field
-             type ="text" 
-             id="lastname" 
-             name="lastname" 
-             placeholder = "" 
-             />
-             <ErrorMessage name="lastname" component={()=> (
-              <div className="error">{errors.lastname}</div>
-            )}/>
-         </div>
-         <div>
-             <label htmlFor="email">Email:</label>
-             <Field
-             type ="email" 
-             id="email" 
-             name="email" 
-             placeholder = "email@email.com" 
-             />
-             <ErrorMessage name="email" component={()=> (
-              <div className="error">{errors.email}</div>
+            <ErrorMessage name="tel" component={()=> (
+                <div className="error">{errors.telephone}</div>
             )}/>
          </div>
          <div>
