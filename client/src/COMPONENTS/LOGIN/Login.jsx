@@ -19,11 +19,7 @@ function validateForm() {
   }
   return errors;
 }
-
-
-
-
-  function handleCredentialResponse(response){
+function handleCredentialResponse(response){
     console.log('id_token',  response.credential) // google token
     const body = {id_token: response.credential}
     fetch('http://localhost:3001/auth/google', {
@@ -118,14 +114,7 @@ function validateForm() {
 
   return (
     <div 
-    className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-
-{/* IMAGEN */}
-			<div className='hidden sm:block'>  
-      	<img className='w-full h-full object-cover' src="/LoginImg.png" alt="" /> 
-        {/* arreglar el problemita de la imagen q se ve horrible y cambiar el color del botón q está en otro color! */}
-      </div>
-    
+    className='h-fit w-fit'>
     <div 
     className='bg-gray-100 flex flex-col justify-center'>
     
