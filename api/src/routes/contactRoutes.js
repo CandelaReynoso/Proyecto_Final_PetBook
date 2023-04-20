@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { userHandlerGet, userHandlerPost, userHandlerPut, userHandlerDelete } = require('../handlers/userHandler');
+const { contactHandlerGet, contactHandlerPost, contactHandlerPut, contactHandlerDelete } = require('../handlers/contactHandler');
 const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { isRoleValid, isEmailValid, userByIdExists } = require('../helpers/dbValidators');
@@ -7,36 +7,37 @@ const { validateJWT } = require('../middlewares/validateJWT');
 const { isAdminRole, isRole } = require('../middlewares/validateRoles');
 
 
-const userRoutes = Router();
+const contactRoutes = Router();
 
-userRoutes.get('/', userHandlerGet );
+contactRoutes.get('/', contactHandlerGet );
 
-userRoutes.get('/:id', userHandlerGet );
+contactRoutes.get('/:id', contactHandlerGet );
 
-userRoutes.post('/', [
-    check('nickname', 'nickname is required').not().isEmpty(),
-    check('password', 'password >= 6 characters is required').isLength({min: 6}),
-    //check('email', 'email not valid').isEmail(),
-    check('email').custom(isEmailValid), // validate email
+contactRoutes.post('/', [
+    //validateJWT,
+    check('name','Name is required').not().isEmpty(),
+    check('lastname','Last Name is required').not().isEmpty(),
+    //check('email', 'Email not valid').isEmail(),
+    //check('email').custom(isEmailValid), // validate email
     //check('role', 'role not valid').isIn(['admin_role','user_role']),
-    check('role').custom(isRoleValid), // validate role
+    //check('role').custom(isRoleValid), // validate role
     validateAttributes  // middleware that validates attributes before passing to the handler
-],userHandlerPost );
+],contactHandlerPost );
 
-userRoutes.put('/:id', [
+contactRoutes.put('/:id', [
     check('id', 'Not a valid ID').isUUID(),
     check('id').custom( userByIdExists ),
     check('role').custom(isRoleValid), // validate role
     validateAttributes
-], userHandlerPut );
+], contactHandlerPut );
 
-userRoutes.delete('/:id', [
+contactRoutes.delete('/:id', [
     validateJWT,
     isAdminRole,
     //isRole('admin_role','user_role'),
     check('id', 'Not a valid ID').isUUID(),
     check('id').custom( userByIdExists ),
     validateAttributes
-], userHandlerDelete );
+], contactHandlerDelete );
 
-module.exports = userRoutes;
+module.exports = contactRoutes;

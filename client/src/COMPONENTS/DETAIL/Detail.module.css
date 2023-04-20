@@ -9,7 +9,7 @@
 
 .title {
   position: absolute;
-  left: 500px;
+  left: 850px;
   top: 50px;
   text-transform: uppercase;/* pasado a Mayusc*/
   font-family: 'Inter';
@@ -23,15 +23,15 @@
 
 .list {
 position: absolute;
-width: 515px;
-height: 251px;
-left: 250px;
+width: 500px;
+height: 250px;
+left: 340px;
 top: 264px;
 letter-spacing: 0.2em;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 300;
-font-size: 28px;
+font-size: 23px;
 line-height: 30px;
 color: #000000;
 line-height: 40px;
@@ -43,21 +43,45 @@ list-style-type: circle;
 
 .img {
   position: absolute;
-  width: 500px; /* mismo valor que la altura */
-  height: 500px; /* mismo valor que el ancho */
-  left: 776px;
-  top: 176px;
+  width: 280px; /* mismo valor que la altura */
+  height: 280px; /* mismo valor que el ancho */
+  left: 900px;
+  top: 250px;
   border-radius: 50%; /* valor del 50% de las dimensiones de la imagen */
   background: transparent;
   object-fit: cover; /* para que la imagen cubra completamente el círculo */
 }
 
  
-.imgFoot{
+.imgFoot {
   position: absolute;
-  left:200px;
-  top:45px;
+  left: 200px;
+  top: 45px;
+  filter: brightness(100%);
+  transition: filter 0.5s ease;
 }
+
+.imgFoot:hover {
+  filter: brightness(120%);
+}
+
+.imgFoot:hover::after {
+  content: "Home";
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+
+
 
 .buttonAdoptMe {
 position: absolute;

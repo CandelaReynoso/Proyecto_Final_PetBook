@@ -2,12 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 
-
-
-//la idea es que esta sea la pagina de inicio, 
-//al abrir: se ve el logo en pantalla completa, pero a los 3 segundos se despliega el formulario login --> HACER ESTE CAMBIOOOOOOO :) 
-
 const Login = () => {
+
+//  ERRORES Y VALIDACION
+const [errors, setErrors] = useState({});
+
+function validateForm() {
+  let errors = {};
+   if (!formState.email) {
+    errors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(formState.email)) {
+    errors.email = 'Email is invalid';
+  }
+  if (!formState.password) {
+    errors.password = 'Password is required';
+  }
+  return errors;
+}
+
+
+
+
   function handleCredentialResponse(response){
     console.log('id_token',  response.credential) // google token
     const body = {id_token: response.credential}
@@ -71,8 +86,11 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const errors = validateForm(); //validar si hay errores 
+    setErrors(errors);
  
-   const response = await fetch(`http://localhost:3001/auth/login/`, {  //  con esta ruta! 
+   const response = await fetch(`http://localhost:3001/auth/login/`, {  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -104,39 +122,39 @@ const Login = () => {
     className='bg-gray-100 flex flex-col justify-center'>
     
     <form onSubmit={handleSubmit} 
-    className='max-w-[360px] w-full mx-auto rounded-lg bg-white  p-4'> 
+    className='max-w-[30rem] w-full mx-auto rounded-lg bg-white  p-4'> 
 
         <h2 
-        className='text-4xl dark font-bold text-center'>PETBOOK</h2>
+        className='subtitle'>LOGIN.</h2>
        
        <div className='flex flex-col py-2'>
-        <label> email: </label>
+ 
         <input
           type="email"
           name="email"
+          placeholder='Email'
           value={formState.email}
           onChange={handleEmailChange}
-          required
-          className='border p-2 rounded-lg'
+          className='inputs'
         />
+        {errors.email && <p className='text-red-500 text-xs mt-1'>{errors.email}</p>}
       </div>
 
       <div className='flex flex-col py-2'>
-      <label>
-        password:
-      </label>
+
         <input
           type="password"
           name="password"
+          placeholder='Password'
           value={formState.password}
           onChange={handlePasswordChange}
-          required
-          className='border p-2 rounded-lg'
+          className='inputs'
         />
+        {errors.password && <p className='text-red-500 text-xs mt-1'>{errors.password}</p>}
     	</div>
 
       <div>
-      <p className='flex items-center text-gray-400 text-sm py-2 mt-[-1rem]'>forgot my password</p>
+      <p className='flex items-center text-gray-400 text-sm py-2 mt-[-1rem] font-extralight italic'>forgot my password</p>
       {/* cambiarle la fuente */}
 
       </div>
@@ -146,27 +164,43 @@ const Login = () => {
                       <input className='mr-2 ' type="checkbox" /> Remember me
                     </p> */}
 
-                    <button className=' w-40 border shadow-lg hover:shadow-xl px-8 py-2 relative flex item-center hover:text-teal-300'> <FaGoogle className='mr-4 my-1'/> Google</button>
 
-                    <Link to='/register'>
-                    <button className='w-40 border shadow-lg hover:shadow-xl px-3 py-2 relative flex item-center text-teal-300 hover:text-gray-700 '> Create an account</button>
-                    </Link>
 
                    
       </div>
       
       <button 
       type="submit"
-      className='w-full my-3 py-2 bg-teal-300 shadow-lg shadow-teal-400/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'
+      className='buttonSubtmit'
       >Login
       </button>
-      <div id="buttonDiv"></div>
-      <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>
-      {/* <h4 className='text-center'>OR</h4> */}
+
+
+
+      <h4 className='text-center text-secondary font-normal italic  mb-2'>Don't have an account?</h4>
+
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}> 
+      <Link to='/register'>
+     <button className='buttonSubtmitOtro'> Create an account</button>
+     </Link>
+
+     <h4 className='text-center text-black font-normal mt-2'>OR</h4>
+
+    <div id="buttonDiv"></div>
+  {/* <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>   ESTO HAY QUE AGREGARLO CUANDO HAGAMOS UN */}
+
+      </div>
+      
+
+    
+    
+
+   
 
       <Link to='/home'>
       <button className='text-gray-300 hover:text-gray-700 w-full'>Sign in later</button>
       </Link>
+
 
 
     </form>
