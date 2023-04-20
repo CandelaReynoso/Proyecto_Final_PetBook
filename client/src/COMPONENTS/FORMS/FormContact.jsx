@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 //Este fomr lo puede llenar un usario registrado o on registrado y el administrador va a recibir un email.
+//Una vez que el usuario complete el formulario y haga clic en "enviar", puedes usar la función "fetch" de JavaScript para enviar una solicitud POST al servidor.
 
 
 const FormContact = () => {
