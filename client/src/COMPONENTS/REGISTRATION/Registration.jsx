@@ -61,10 +61,11 @@ const Registration = () => {
       
 
   <div 
-  className='bg-gray-100 flex flex-col justify-center'>  
+  className='flex flex-col justify-center'>  
     <form onSubmit={handleSubmit}
     className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4'>
     <h2 
+    
         className='subtitle'>
           REGISTER.
     </h2>
