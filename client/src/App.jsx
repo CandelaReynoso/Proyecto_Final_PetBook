@@ -14,6 +14,7 @@ import './index.css'
 import Donations from "./COMPONENTS/DONATION/Donations";
 import axios from "axios";
 
+//Instancia de axios.
 axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
 
 
