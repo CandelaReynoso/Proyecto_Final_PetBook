@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       },
       user: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       }
     },
     { timestamps: false }
