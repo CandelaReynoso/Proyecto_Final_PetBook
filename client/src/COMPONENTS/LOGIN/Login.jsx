@@ -2,12 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 
-
-
-//la idea es que esta sea la pagina de inicio, 
-//al abrir: se ve el logo en pantalla completa, pero a los 3 segundos se despliega el formulario login --> HACER ESTE CAMBIOOOOOOO :) 
-
 const Login = () => {
+
+//  ERRORES Y VALIDACION
+const [errors, setErrors] = useState({});
+
+function validateForm() {
+  let errors = {};
+   if (!formState.email) {
+    errors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(formState.email)) {
+    errors.email = 'Email is invalid';
+  }
+  if (!formState.password) {
+    errors.password = 'Password is required';
+  }
+  return errors;
+}
+
+
+
+
   function handleCredentialResponse(response){
     console.log('id_token',  response.credential) // google token
     const body = {id_token: response.credential}
@@ -71,8 +86,11 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const errors = validateForm(); //validar si hay errores 
+    setErrors(errors);
  
-   const response = await fetch(`http://localhost:3001/auth/login/`, {  //  con esta ruta! 
+   const response = await fetch(`http://localhost:3001/auth/login/`, {  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,9 +135,9 @@ const Login = () => {
           placeholder='Email'
           value={formState.email}
           onChange={handleEmailChange}
-          required
           className='inputs'
         />
+        {errors.email && <p className='text-red-500 text-xs mt-1'>{errors.email}</p>}
       </div>
 
       <div className='flex flex-col py-2'>
@@ -130,9 +148,9 @@ const Login = () => {
           placeholder='Password'
           value={formState.password}
           onChange={handlePasswordChange}
-          required
           className='inputs'
         />
+        {errors.password && <p className='text-red-500 text-xs mt-1'>{errors.password}</p>}
     	</div>
 
       <div>

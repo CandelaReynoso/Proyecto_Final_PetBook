@@ -3,7 +3,9 @@ import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
-  GET_PET_BY_NAME
+  GET_PET_BY_NAME,
+  UPDATE_LOGIN_FORM,
+  
 } from "./types";
 
 export const getPets = () => async (dispatch) => {
@@ -76,6 +78,14 @@ export const registerUser = (userData) => async (dispatch) => {
     console.error(err);
   }
 };
+
+// export const updateLoginForm = (formData) => {
+//   return {
+//     type: UPDATE_LOGIN_FORM,
+//     payload: formData,
+//   };
+// };
+
 
 
 
