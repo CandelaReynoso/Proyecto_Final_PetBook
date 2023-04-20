@@ -4,8 +4,7 @@ import {
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
   GET_PET_BY_NAME,
-  
-  
+  SEND_EMAIL
 } from "./types";
 
 export const getPets = () => async (dispatch) => {
@@ -86,8 +85,39 @@ export const registerUser = (userData) => async (dispatch) => {
 //   };
 // };
 
-
-
+// Acción que maneja los emails que se envian al admin a traves del FORMCONTACT
+//con promesa
+export const sendEmail = (name, lastname, email, message) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const tokenString = localStorage.getItem('token');
+      console.log('tokenString:', tokenString); // add this line
+      //const token = JSON.parse(tokenString);
+      //if (!tokenString) {
+      //  throw new Error('No token found in localStorage');
+      //}
+      const headers = { 
+        'Content-Type': 'application/json',
+        'x-token': tokenString // add this line
+      };
+      console.log('headers:', headers); // add this line
+      axios.post('http://localhost:3001/contact', {
+        name,
+        lastname,
+        email,
+        message
+      }, { headers })
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(error => {
+          reject(error.response.data);
+        });
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
 
 
