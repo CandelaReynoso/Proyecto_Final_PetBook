@@ -45,7 +45,7 @@ const FormContact = () => {
             //validacion mensaje
             if(!valores.message){
               errores.message ='Please, enter your message!'
-            } else if (!/^[a-zA-Z]{1,150}$/.test(valores.message)){ 
+            } else if (!/^[a-zA-Z ]{1,150}$/.test(valores.message)){ 
               errores.message= 'Please enter a message with a maximum of 150 word, not numbers allowed!'
             }
 

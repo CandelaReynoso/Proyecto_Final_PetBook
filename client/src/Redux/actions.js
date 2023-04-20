@@ -77,7 +77,7 @@ export const registerUser = (userData) => async (dispatch) => {
   }
 };
 
-
+// Action que maneja los emails que se envian al admin a traves del FORMCONTACT
 
 
 
