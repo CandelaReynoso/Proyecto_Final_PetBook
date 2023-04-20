@@ -1,0 +1,114 @@
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #C0F8D1;
+}
+
+.title {
+  position: absolute;
+  left: 850px;
+  top: 50px;
+  text-transform: uppercase;/* pasado a Mayusc*/
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 60px;
+  line-height: 100px;
+  letter-spacing: 0.2em;
+  color: #F08484;
+}
+
+.list {
+position: absolute;
+width: 500px;
+height: 250px;
+left: 340px;
+top: 264px;
+letter-spacing: 0.2em;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 300;
+font-size: 23px;
+line-height: 30px;
+color: #000000;
+line-height: 40px;
+padding-top: 10px; /* espacio adicional en la parte superior */
+padding-bottom: 10px; /* espacio adicional en la parte inferior */
+list-style-type: circle;
+}
+
+
+.img {
+  position: absolute;
+  width: 280px; /* mismo valor que la altura */
+  height: 280px; /* mismo valor que el ancho */
+  left: 900px;
+  top: 250px;
+  border-radius: 50%; /* valor del 50% de las dimensiones de la imagen */
+  background: transparent;
+  object-fit: cover; /* para que la imagen cubra completamente el círculo */
+}
+
+ 
+.imgFoot {
+  position: absolute;
+  left: 200px;
+  top: 45px;
+  filter: brightness(100%);
+  transition: filter 0.5s ease;
+}
+
+.imgFoot:hover {
+  filter: brightness(120%);
+}
+
+.imgFoot:hover::after {
+  content: "Home";
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+
+
+
+.buttonAdoptMe {
+position: absolute;
+width: 191px;
+height: 24px;
+left: 154px;
+top: 614px;
+
+font-family: 'Inter';
+color: #F08484;
+line-height: 24px;
+background: #C0F8D1;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+}
+
+.buttonSponsor{
+    position: absolute;
+    width: 240px;
+    height: 24px;
+    left: 482px;
+    top: 614px;
+    color: #F08484;
+font-family: 'Inter';
+line-height: 24px;
+background: #C0F8D1;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+
+}

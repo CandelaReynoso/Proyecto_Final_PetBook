@@ -1,14 +1,77 @@
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+
+import {Link} from 'react-router-dom'
+
 export default function Header() {
   const Menu = e => {
     const menu = document.querySelector(".mobile-links");
     menu.classList.toggle("hidden");
   };
 
+
+
   return (
     <div className=" contain mx-auto bg-green-200 shadow">
-      <nav className="flex items-center justify-between lg:justify-start">
+  
+      <div className="navbar bg-primary">
+        <div className="flex-1">
+          <Link to='/home'>
+            <img src="/patanegra.png" alt="" width='200rem'/>
+           </Link>
+        </div>
+
+        <div className="flex-none gap-2">
+          {/* <div className="form-control">
+            <input type="text" placeholder="Search" className="input input-bordered" />
+          </div> */}
+          <a href="/home" className="textoheader">HOME</a>
+          <a href="/about" className="textoheader">ABOUT</a>
+          <a href="/donate" className="textoheader">DONATE</a>
+          <a href="/store" className="textoheader">STORE</a>
+          <a href="/AvaliblePetsAdoption" className="textoheader">ADOPT</a>
+          <a href="/FormContact" className="textoheader">CONTACT US</a>
+
+
+          {/* <a className="textoheader">LOGIN</a> 
+          ESTO LO AGREGO CUANDO ARREGLE QUE SE MUESTRE SOLO SI ESTÁ LOGUEADO SINO NO. */}
+
+          
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src="/perritoabout.png"/>
+              </div>
+            </label>
+          
+          <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+            <li>
+              <a className="justify-between">
+                Profile
+              </a>
+            </li>
+            <li><a>Settings <span className="badge">New</span> </a></li>
+            <li><a>Logout</a></li>
+          </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+      {/* <nav className="flex items-center justify-between lg:justify-start">
         <div className="logo w-1/4 p-2">
           <a href="/home">
             <img
@@ -31,7 +94,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a href="#" className="link">
+              <a href="/AvaliblePetsAdoption" className="link">
                 Adopt
               </a>
             </il>
@@ -41,7 +104,7 @@ export default function Header() {
               </a>
             </il>
             <il>
-              <a href="#" className="link">
+              <a href="/register" className="link">
                 Sign In
               </a>
             </il>
@@ -94,7 +157,4 @@ export default function Header() {
             </il>
           </ul>
         </div>
-      </nav>
-    </div>
-  );
-}
+      </nav> */}
