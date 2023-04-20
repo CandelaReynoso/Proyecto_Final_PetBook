@@ -6,6 +6,7 @@ import styles from '../CARDS/Cards.module.css';
 const Cards = ({ pets }) => {
   return (
     <div>
+     <h1 className={styles.title}>Find & Adopt</h1>
       {pets &&
         pets.map((pet, index) => {
           return (

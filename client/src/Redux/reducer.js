@@ -1,11 +1,18 @@
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,GET_PET_BY_NAME,SEND_EMAIL} from './types';
+
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL} from './types';
+
 
 const initialState = {
   pets: [],
   petsRandomHome :[],
   pet:{},
 
+  profile: {           //perfil de usuario
+    nickname: '',
+  },
+
   loginForm:{
+
     email: '',
     password: '',
   },
@@ -35,11 +42,8 @@ const reducer = (state = initialState, action) => {
       ...state,
       petsRandomHome: action.payload
       }
-      case GET_PET_BY_NAME:
-      return{
-      ...state,
-      pets: action.payload
-      }
+
+     
       case SEND_EMAIL:
           if (action.error) {
           return {
@@ -56,6 +60,7 @@ const reducer = (state = initialState, action) => {
           error: null
           };
           }
+
       
     default: {
       return {
