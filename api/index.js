@@ -2,7 +2,7 @@ const server = require("./src/app.js");
 const { sequelize } = require("./src/DataBase/db.js");
 const { Role } = require('./src/DataBase/db.js');
 require("dotenv").config();
-const { PORT } = process.env || 3001;
+const { PORT } = process.env || 3001; //Puerto 3001 por defecto.
 
 //Conectado a Railway.
 sequelize.sync({alter:true }).then( async () => {
