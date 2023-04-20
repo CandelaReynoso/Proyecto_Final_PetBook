@@ -3,7 +3,6 @@ const { check } = require('express-validator');
 const {authHandlerPost, googleSignIn} = require('../handlers/authHandler');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 
-
 const authRoutes = Router();
 
 authRoutes.post('/login',[
