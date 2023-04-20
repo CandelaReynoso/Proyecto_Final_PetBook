@@ -2,7 +2,8 @@
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 //Este fomr lo puede llenar un usario registrado o on registrado y el administrador va a recibir un email.
-
+//Una vez que el usuario complete el formulario y haga clic en "enviar", puedes usar la función "fetch" de JavaScript para enviar una solicitud POST al servidor.
+import { sendEmail } from "../../Redux/actions";
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
@@ -44,7 +45,7 @@ const FormContact = () => {
             //validacion mensaje
             if(!valores.message){
               errores.message ='Please, enter your message!'
-            } else if (!/^[a-zA-Z]{1,150}$/.test(valores.message)){ 
+            } else if (!/^[a-zA-Z ]{1,150}$/.test(valores.message)){ 
               errores.message= 'Please enter a message with a maximum of 150 word, not numbers allowed!'
             }
 
@@ -52,14 +53,59 @@ const FormContact = () => {
             return errores;
             
         }}
-        onSubmit={(valores, {resetForm}) => {
+       // Esta logica fue transladada a la action 
+       /*  onSubmit={(values, {resetForm}) => {
+          try {
+            const tokenString = localStorage.getItem('token');
+            console.log('tokenString:', tokenString); // add this line
+            //const token = JSON.parse(tokenString);
+            //if (!tokenString) {
+            //  throw new Error('No token found in localStorage');
+            //}
+          
             resetForm();
-            console.log('Form was send!');
+            console.log('Form was sent!');
             setFormSubmit(true);
-            setTimeout(() => setFormSubmit(false), 4000) // para q desaparezca el mensaje en un tantos segundos.
-
-            // aqui hay que conectarse a la base de datos y enviar los valores.
+            setTimeout(() => setFormSubmit(false), 4000);
+            const header = `'x-token': tokenString`;
+            const headers = { 'Content-Type': 'application/json' };
+            console.log('headers:', headers); // add this line
+            fetch('http://localhost:3001/contact', {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify(values)
+            })
+            .then(response => {
+              if (response.ok) {
+                setFormSubmit(true);
+                setTimeout(() => setFormSubmit(false), 4000);
+                resetForm();
+              } else {
+                throw new Error('Network response was not ok');
+              }
+            })
+            .catch(error => {
+              
+              console.error('There was a problem with the form submission:', error);
+            });
+          } catch (error) {
+            console.error('There was a problem retrieving the token:', error);
+          }
         }}
+         */
+        onSubmit={(values, {resetForm}) => {
+          setFormSubmit(true);
+          sendEmail(values.name, values.lastname, values.email, values.message)
+          .then(() => {
+          console.log('Form was sent!');
+          setTimeout(() => setFormSubmit(false), 4000);
+          resetForm();
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          setTimeout(() => setFormSubmit(false), 4000);
+        });
+    }}
         >
 
             {( {errors}  ) => (
