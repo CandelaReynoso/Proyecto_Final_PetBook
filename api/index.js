@@ -2,7 +2,7 @@ const server = require("./src/app.js");
 const { sequelize } = require("./src/DataBase/db.js");
 const { Role } = require('./src/DataBase/db.js');
 require("dotenv").config();
-const { PORT } = process.env;
+const { PORT } = process.env || 3001;
 
 
 sequelize.sync({alter:true }).then( async () => {
