@@ -12,8 +12,9 @@ import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import Donations from "./COMPONENTS/DONATION/Donations";
+import axios from "axios";
 
-
+axios.defaults.baseURL = ""
 
 
 function App() {
