@@ -43,17 +43,20 @@ const { Pet } = sequelize.models
 const { Product } = sequelize.models;
 const { User } = sequelize.models
 const { Category } = sequelize.models;
+const { Email } = sequelize.models;
 
 // model relations
+
+// Email / User
+Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail'});
+User.hasMany(Email, { foreignKey: 'userId'});
+
 // User / Pet M : N
 User.belongsToMany(Pet, { through: 'user_pet' });
 Pet.belongsToMany(User, { through: 'user_pet' });
 
 // User / Category 1:1
 Category.belongsTo(User, {foreignKey: 'userId'});   // userId is the id of the user that creates the category
-
-
-
 
 Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategory' });
 //Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategoryId'}); // categoryId of the product
