@@ -7,6 +7,7 @@ export const GET_PETS_RAMDON_HOME = "GET_PETS_RAMDON_HOME";
 
 
 export const REGISTER_USER = 'REGISTER_USER';
+export const SEND_EMAIL = 'SEND_EMAIL';
 
 
 
