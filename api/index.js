@@ -1,6 +1,6 @@
 const server = require("./src/app.js");
-const { sequelize } = require("./src/DataBase/db.js");
-const { Role } = require('./src/DataBase/db.js');
+const { sequelize } = require("./src/database/db.js");
+const { Role } = require('./src/database/db.js');
 require("dotenv").config();
 const { PORT } = process.env || 3001; //Puerto 3001 en caso de no estar el link a Railway.
 
