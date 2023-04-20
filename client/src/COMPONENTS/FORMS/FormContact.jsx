@@ -53,14 +53,49 @@ const FormContact = () => {
             return errores;
             
         }}
-        onSubmit={(valores, {resetForm}) => {
+       
+        onSubmit={(values, {resetForm}) => {
+          try {
+            const tokenString = localStorage.getItem('token');
+            console.log('tokenString:', tokenString); // add this line
+            //const token = JSON.parse(tokenString);
+            if (!tokenString) {
+              throw new Error('No token found in localStorage');
+            }
+            
             resetForm();
-            console.log('Form was send!');
+            console.log('Form was sent!');
             setFormSubmit(true);
-            setTimeout(() => setFormSubmit(false), 4000) // para q desaparezca el mensaje en un tantos segundos.
-
-            // aqui hay que conectarse a la base de datos y enviar los valores.
+            setTimeout(() => setFormSubmit(false), 4000);
+            
+            const headers = { 'Content-Type': 'application/json', 'x-token': tokenString };
+            console.log('headers:', headers); // add this line
+            fetch('http://localhost:3001/contact', {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify(values)
+            })
+            .then(response => {
+              if (response.ok) {
+                setFormSubmit(true);
+                setTimeout(() => setFormSubmit(false), 4000);
+                resetForm();
+              } else {
+                throw new Error('Network response was not ok');
+              }
+            })
+            .catch(error => {
+              
+              console.error('There was a problem with the form submission:', error);
+            });
+          } catch (error) {
+            console.error('There was a problem retrieving the token:', error);
+          }
         }}
+        
+        
+        
+
         >
 
             {( {errors}  ) => (
