@@ -4,7 +4,7 @@ const { Role } = require('./src/DataBase/db.js');
 require("dotenv").config();
 const { PORT } = process.env || 3001;
 
-
+//Conectado a Railway.
 sequelize.sync({alter:true }).then( async () => {
   console.log("estoy conectado a", sequelize.getDatabaseName());
   await Role.findOrCreate({ where: { role: "admin_role" }, defaults: { role: "admin_role" } });
