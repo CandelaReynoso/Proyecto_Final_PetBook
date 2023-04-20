@@ -6,6 +6,7 @@ export const GET_PET_BY_NAME = "GET_PET_BY_NAME";
 
 
 export const REGISTER_USER = 'REGISTER_USER';
+export const SEND_EMAIL = 'SEND_EMAIL';
 
 
 
