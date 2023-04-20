@@ -50,8 +50,16 @@ function validateForm() {
       location.reload();
     })
   }
+  
 
   useEffect(()=>{
+      // check if user is already logged in
+  if (localStorage.getItem('token')) {
+    navigate('/home');
+  } else if (localStorage.getItem('email')){
+    navigate('/home');
+  }
+
     google.accounts.id.initialize({
       client_id: "29807012109-in3jnv9asdchp613plc7ng3mp0oqpq8o.apps.googleusercontent.com",
       callback: handleCredentialResponse
@@ -187,7 +195,7 @@ function validateForm() {
      <h4 className='text-center text-black font-normal mt-2'>OR</h4>
 
     <div id="buttonDiv"></div>
-  {/* <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>   ESTO HAY QUE AGREGARLO CUANDO HAGAMOS UN */}
+  { <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>   }
 
       </div>
       
