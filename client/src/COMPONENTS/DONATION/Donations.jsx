@@ -21,7 +21,7 @@ export default function Donations(){
         <div className={Styles.container}>
             <h2>Puppy Size Donation</h2>
             <h5>Value: AR$ 1.000</h5>
-            <form action="http://localhost:3001/checkout" method="GET">
+            <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
                 <input type="hidden" name="title" value="Puppy Size Donation"/>
                 <input type="hidden" name="price" value="1000"/>
                 <input type="submit" value="Donar" className="btn"/>
@@ -33,7 +33,7 @@ export default function Donations(){
 
             <h2>Adventurous Hearts Donation</h2>
             <h5>Valor de AR$ 2.500</h5>
-            <form action="http://localhost:3001/checkout" method="GET">
+            <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
                 <input type="hidden" name="title" value="Adventurous Hearts Donation"/>
                 <input type="hidden" name="price" value="2500"/>
                 <input type="submit" value="Donar" className="btn"/>
@@ -45,7 +45,7 @@ export default function Donations(){
 
             <h2>Large Love Donation</h2>
             <h5>Valor de AR$ 5.000</h5>
-            <form action="http://localhost:3001/checkout" method="GET">
+            <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
                 <input type="hidden" name="title" value="Large Love Donation"/>
                 <input type="hidden" name="price" value="5000"/>
                 <input type="submit" value="Donar" className="btn"/>
@@ -56,7 +56,7 @@ export default function Donations(){
             <br />
 
             <h2>Personalized Donation</h2>
-            <form action="http://localhost:3001/checkout" method="GET" className={Styles.container}>
+            <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET" className={Styles.container}>
                 <input type="hidden" name="title" value="Personalized Donation"/>
                 <label>Enter the amount to donate</label>
                 <input type="number" min="100" max="10000" placeholder="Amount..." onChange={handleChange}/>

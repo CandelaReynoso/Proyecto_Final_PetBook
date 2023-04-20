@@ -8,7 +8,7 @@ import {
 
 export const getPets = () => async (dispatch) => {
   try {
-    const res = await axios.get("http://localhost:3001/pets/name?");
+    const res = await axios.get("/pets/name?");
     dispatch({
       type: GET_PETS,
       payload: res.data,
@@ -21,7 +21,7 @@ export const getPets = () => async (dispatch) => {
 export const getPetsByName = (name) => {
 
   return async function (dispatch) {
-   const response = await  axios.get(`http://localhost:3001/pets/name?name=${name}`)
+   const response = await  axios.get(`/pets/name?name=${name}`)
    console.log(response.data);
    return dispatch({
    type : GET_PET_BY_NAME,
@@ -32,7 +32,7 @@ export const getPetsByName = (name) => {
 
 export const getPetsRandom = () => {
   return async function (dispatch) {
-    const largePets = await axios.get("http://localhost:3001/pets/name?");
+    const largePets = await axios.get("/pets/name?");
     //peticion para poder tener la propiedad count de largePets.data
     //count es la cantidad total de objetos es como el .length de un array
     //esta propiedad viene asi por la paginacion hecha con sequelize del back
@@ -42,7 +42,7 @@ export const getPetsRandom = () => {
     //pd no entren en panico analisen las cosas siempre
 
     const response = await axios.get(
-      `http://localhost:3001/pets/name?page=${Math.floor(
+      `/pets/name?page=${Math.floor(
         (Math.random() * largePets.data.count) / 2
       )}&size=2`
     );
@@ -56,7 +56,7 @@ export const getPetsRandom = () => {
 
 export const fetchPetDetailSuccess = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:3001/pets/detail/${id}`);
+    const res = await axios.get(`/pets/detail/${id}`);
     dispatch({
       type: FETCH_PET_DETAIL_SUCCESS,
       payload: res.data,
@@ -69,7 +69,7 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 export const registerUser = (userData) => async (dispatch) => {
   console.log(userData)
   try {
-    const res = await axios.post(`http://localhost:3001/users`, userData);
+    const res = await axios.post(`/users`, userData);
     
     console.log(res.data);
   } catch (err) {
