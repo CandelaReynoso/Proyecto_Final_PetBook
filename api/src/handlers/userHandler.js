@@ -1,5 +1,5 @@
 const bcryptjs = require('bcryptjs'); // npm i bcryptjs
-const { User } = require('../DataBase/db');
+const { User } = require('../database/db');
 const { Op } = require('sequelize');
 
 
