@@ -24,22 +24,24 @@ const Card = (pet) => {
 
   return (
     <>
-          <h1 className={styles.title}>Find & Adopt</h1>
-          <div>
-              <h3 className={styles.name}>{pet.name.toUpperCase()}</h3>
-          </div>
-        
-          <div>
-          <Link key={pet.id} to={`/detail/${pet.id}`}>
-            <div className={styles.imgContainer}>
-               <img className={styles.img} src={pet.image} alt={pet.name} /> 
-            </div>
+          {/* <h1 className={styles.title}>Find & Adopt</h1> */}
+         
+              <h3 className={styles.name}>{pet?.name?.toUpperCase()}</h3>
           
-            </Link>
+        
+        
+          
+            <div className={styles.imgContainer}>
+            <Link key={pet?.id} to={`/detail/${pet?.id}`}>
+               <img className={styles.img} src={pet?.image} alt={pet?.name} /> 
+               </Link>
+            
+          
+            
           </div>
           <div className={styles.petInfo}>
-            <p>Gender: {pet.gender}</p>
-            <p>Age: {pet.age}</p>
+            <p>Gender: {pet?.gender}</p>
+            <p>Age: {pet?.age}</p>
           </div>          
     </>
   );
