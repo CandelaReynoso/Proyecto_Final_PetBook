@@ -1,4 +1,4 @@
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,GET_PET_BY_NAME} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,GET_PET_BY_NAME,SEND_EMAIL} from './types';
 
 const initialState = {
   pets: [],
@@ -11,7 +11,12 @@ const initialState = {
     password: '',
     role: '',
   },
-  formSubmitted: false  //enviado de formulario de registro
+  formSubmitted: false,  //enviado de formulario de registro
+
+  //Form de Contacto
+loading: false,
+success: null,
+error: null
 
 };
 
@@ -37,6 +42,22 @@ const reducer = (state = initialState, action) => {
       ...state,
       pets: action.payload
       }
+      case SEND_EMAIL:
+          if (action.error) {
+          return {
+          ...state,
+          loading: false,
+          success: null,
+          error: action.error
+          };
+          } else {
+          return {
+          ...state,
+          loading: false,
+          success: action.payload,
+          error: null
+          };
+          }
       
     default: {
       return {
@@ -45,6 +66,7 @@ const reducer = (state = initialState, action) => {
     }
   }
 };
+
 
 
 export default reducer

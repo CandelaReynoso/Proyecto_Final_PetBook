@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 //Este fomr lo puede llenar un usario registrado o on registrado y el administrador va a recibir un email.
 //Una vez que el usuario complete el formulario y haga clic en "enviar", puedes usar la función "fetch" de JavaScript para enviar una solicitud POST al servidor.
-
+import { sendEmail } from "../../Redux/actions";
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
@@ -53,8 +53,8 @@ const FormContact = () => {
             return errores;
             
         }}
-       
-        onSubmit={(values, {resetForm}) => {
+       // Esta logica fue transladada a la action 
+       /*  onSubmit={(values, {resetForm}) => {
           try {
             const tokenString = localStorage.getItem('token');
             console.log('tokenString:', tokenString); // add this line
@@ -62,7 +62,7 @@ const FormContact = () => {
             //if (!tokenString) {
             //  throw new Error('No token found in localStorage');
             //}
-            
+          
             resetForm();
             console.log('Form was sent!');
             setFormSubmit(true);
@@ -92,10 +92,20 @@ const FormContact = () => {
             console.error('There was a problem retrieving the token:', error);
           }
         }}
-        
-        
-        
-
+         */
+        onSubmit={(values, {resetForm}) => {
+          setFormSubmit(true);
+          sendEmail(values.name, values.lastname, values.email, values.message)
+          .then(() => {
+          console.log('Form was sent!');
+          setTimeout(() => setFormSubmit(false), 4000);
+          resetForm();
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          setTimeout(() => setFormSubmit(false), 4000);
+        });
+    }}
         >
 
             {( {errors}  ) => (
