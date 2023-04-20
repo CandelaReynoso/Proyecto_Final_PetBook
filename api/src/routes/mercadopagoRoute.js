@@ -27,7 +27,7 @@ app.get('/', (req, res) =>{
             failure: "http://www.tu-sitio/failure",
             pending: "http://www.tu-sitio/pending"
         },
-        // auto_return: "succes",
+        auto_return: "approved",
     };
     
     mercadopago.preferences
