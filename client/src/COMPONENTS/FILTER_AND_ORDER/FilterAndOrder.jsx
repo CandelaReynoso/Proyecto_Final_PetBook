@@ -9,7 +9,7 @@ const FilterAndOrder = () => {
   const [checked, setChecked] = useState();
 
   const handleClick = (e) => {
-  if(e.target.value === "default") return 
+  if(e.target.value === "Default") return 
   
     setChecked({ ...checked, [e.target.name]: e.target.value });
   

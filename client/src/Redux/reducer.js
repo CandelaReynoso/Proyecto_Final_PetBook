@@ -9,11 +9,9 @@ const initialState = {
   petsRandomHome :[],
   pet:{},
 
-  
-  
   profile: {           //perfil de usuario
     nickname: '',
-
+  },
 
   loginForm:{
 
