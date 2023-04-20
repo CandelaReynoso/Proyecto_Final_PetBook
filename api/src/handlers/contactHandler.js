@@ -20,7 +20,7 @@ const contactHandlerPost = async (req, res) => {
     try {
         // destructure the req.body
         const {name, lastname, email, message} = req.body;
-        
+        console.log(req.user)
         //save in db
         const newEmail = await Email.create({
             name,
