@@ -6,4 +6,6 @@ function HistoryAdopted() {
   )
 }
 
+// gsgsg
+
 export default HistoryAdopted
