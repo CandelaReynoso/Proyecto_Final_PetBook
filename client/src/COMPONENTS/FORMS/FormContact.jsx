@@ -59,16 +59,16 @@ const FormContact = () => {
             const tokenString = localStorage.getItem('token');
             console.log('tokenString:', tokenString); // add this line
             //const token = JSON.parse(tokenString);
-            if (!tokenString) {
-              throw new Error('No token found in localStorage');
-            }
+            //if (!tokenString) {
+            //  throw new Error('No token found in localStorage');
+            //}
             
             resetForm();
             console.log('Form was sent!');
             setFormSubmit(true);
             setTimeout(() => setFormSubmit(false), 4000);
-            
-            const headers = { 'Content-Type': 'application/json', 'x-token': tokenString };
+            const header = `'x-token': tokenString`;
+            const headers = { 'Content-Type': 'application/json' };
             console.log('headers:', headers); // add this line
             fetch('http://localhost:3001/contact', {
               method: 'POST',

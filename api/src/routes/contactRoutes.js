@@ -14,7 +14,7 @@ contactRoutes.get('/', contactHandlerGet );
 contactRoutes.get('/:id', contactHandlerGet );
 
 contactRoutes.post('/', [
-    validateJWT,
+    //validateJWT,
     check('name','Name is required').not().isEmpty(),
     check('lastname','Last Name is required').not().isEmpty(),
     //check('email', 'Email not valid').isEmail(),

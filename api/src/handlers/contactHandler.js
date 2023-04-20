@@ -27,7 +27,7 @@ const contactHandlerPost = async (req, res) => {
             lastname,
             email,
             message,
-            user: req.user.id // assumes user is logged
+            user: req.user?.id  // assumes user is logged or not
         });
         
         res.status(200).json({msg: 'Email sent succesfully!', email: newEmail});
