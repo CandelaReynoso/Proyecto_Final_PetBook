@@ -41,7 +41,7 @@ const Card = (pet) => {
           </div>
           <div className={styles.petInfo}>
             <p>Gender: {pet?.gender}</p>
-            <p>Age: {pet?.age}</p>
+            <p>Age: {pet?.age} years</p>
           </div>          
     </>
   );
