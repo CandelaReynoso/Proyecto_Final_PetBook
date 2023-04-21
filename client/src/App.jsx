@@ -7,15 +7,12 @@ import Detail from "./COMPONENTS/DETAIL/Detail";
 import AvaliblePetsAdoption from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/AvaliblePetsAdoption";
 import Loginpage from './COMPONENTS/LOGIN/Loginpage';
 import Registration from './COMPONENTS/REGISTRATION/Registration';
-import About from './COMPONENTS/ABOUT/About'
-import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
+import About from './COMPONENTS/ABOUT/About';
+import Donations from './COMPONENTS/DONATION/Donations';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
-import Donations from "./COMPONENTS/DONATION/Donations";
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
-
-
-
+import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 
 
 function App() {
@@ -35,6 +32,7 @@ function App() {
         <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
         <Route path="/donate" element={<Donations />} />
+
 
       </Routes>
     </div>
