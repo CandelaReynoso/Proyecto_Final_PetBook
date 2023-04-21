@@ -5,7 +5,7 @@ require("dotenv").config();
 const { PORT } = process.env;
 
 
-sequelize.sync({alter:true }).then( async () => {
+sequelize.sync({alter:true, force:false }).then( async () => {
   console.log("estoy conectado a", sequelize.getDatabaseName());
   await Role.findOrCreate({ where: { role: "admin_role" }, defaults: { role: "admin_role" } });
   await Role.findOrCreate({ where: { role: "user_role" }, defaults: { role: "user_role" } });

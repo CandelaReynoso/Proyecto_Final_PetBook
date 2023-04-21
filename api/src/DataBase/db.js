@@ -43,14 +43,23 @@ const { Pet } = sequelize.models
 const { Product } = sequelize.models;
 const { User } = sequelize.models
 const { Category } = sequelize.models;
+const { User_pet } = sequelize.models;
 
 // model relations
 // User / Pet M : N
-User.belongsToMany(Pet, { through: 'user_pet' });
-Pet.belongsToMany(User, { through: 'user_pet' });
+User.belongsToMany(Pet, { through: User_pet });
+Pet.belongsToMany(User, { through: User_pet });
+
+User.hasMany(User_pet, { foreignKey: 'userId' });
+User_pet.belongsTo(User, { foreignKey: 'userId' });
+
+User_pet.belongsTo(Pet);
+Pet.belongsToMany(User, { through: User_pet });
+
+
 
 // User / Category 1:1
-Category.belongsTo(User, {foreignKey: 'userId'});   // userId is the id of the user that creates the category
+Category.belongsTo(User, { foreignKey: 'userId' });   // userId is the id of the user that creates the category
 
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });
@@ -60,15 +69,15 @@ Product.belongsToMany(User, { through: 'user_product' });
 Shelter.hasMany(User, { foreignKey: 'userId' });
 User.belongsTo(Shelter, { foreignKey: 'userId' });
 
- // Pet / Products : 1:N
+// Pet / Products : 1:N
 Pet.hasMany(Product, { foreignKey: 'petId' });
 Product.belongsTo(Pet, { foreignKey: 'petId' });
 
-  // Shelter / Pet 1 : N 
+// Shelter / Pet 1 : N 
 Shelter.hasMany(Pet, { foreignKey: 'shelterId' });
 Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
 
 module.exports = {
   ...sequelize.models,
-   sequelize,
+  sequelize,
 };
