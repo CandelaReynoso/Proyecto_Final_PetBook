@@ -8,6 +8,7 @@ import Footer from '../FOOTER/Footer';
 import { getPetsRandom } from "../../Redux/actions";
 import PreviewPetsAdoption from "../PREVIEW_PETS_ADOPTION/PreviewPetsAdoption";
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
+import HeaderLogin from '../HEADER/HeaderLogin';
 
 
 const Home = () => {
@@ -59,9 +60,9 @@ useEffect(() => {
   return (
     <div>
 
-      {/* HEADER */}
-
-     <Header className="mb-4"/>
+    <div>
+      {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+    </div>
 
  {/* CARRUSEL */}
 

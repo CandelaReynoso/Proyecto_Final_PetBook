@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -19,6 +18,7 @@ function validateForm() {
   }
   return errors;
 }
+
 function handleCredentialResponse(response){
     console.log('id_token',  response.credential) // google token
     const body = {id_token: response.credential}
@@ -46,16 +46,8 @@ function handleCredentialResponse(response){
       location.reload();
     })
   }
-  
 
   useEffect(()=>{
-      // check if user is already logged in
-  if (localStorage.getItem('token')) {
-    navigate('/home');
-  } else if (localStorage.getItem('email')){
-    navigate('/home');
-  }
-
     google.accounts.id.initialize({
       client_id: "29807012109-in3jnv9asdchp613plc7ng3mp0oqpq8o.apps.googleusercontent.com",
       callback: handleCredentialResponse
@@ -90,10 +82,13 @@ function handleCredentialResponse(response){
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // cookies.set('idUser', 'id', {path: '/'})
+    console.log(formState);
 
     const errors = validateForm(); //validar si hay errores 
     setErrors(errors);
- 
+
+
    const response = await fetch(`http://localhost:3001/auth/login/`, {  
       method: 'POST',
       headers: {
@@ -161,9 +156,7 @@ function handleCredentialResponse(response){
                       <input className='mr-2 ' type="checkbox" /> Remember me
                     </p> */}
 
-
-
-                   
+   
       </div>
       
       <button 
@@ -184,20 +177,13 @@ function handleCredentialResponse(response){
      <h4 className='text-center text-black font-normal mt-2'>OR</h4>
 
     <div id="buttonDiv"></div>
-  { <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>   }
+  {/* <button id="googleSignOut" onClick={handleSignOutButton}>Sign Out</button>   ESTO HAY QUE AGREGARLO CUANDO HAGAMOS UN */}
 
       </div>
       
-
-    
-    
-
-   
-
       <Link to='/home'>
-      <button className='text-gray-300 hover:text-gray-700 w-full'>Sign in later</button>
+      <button className='text-gray-300 hover:text-gray-700 w-full'>Log in later</button>
       </Link>
-
 
 
     </form>

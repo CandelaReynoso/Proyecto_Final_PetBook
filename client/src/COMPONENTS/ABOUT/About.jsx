@@ -2,6 +2,7 @@
 import React from 'react';
 import Footer from '../FOOTER/Footer';
 import Header  from '../HEADER/Header';
+import HeaderLogin from '../HEADER/HeaderLogin';
 import { AiOutlineGithub, AiFillLinkedin } from 'react-icons/ai';
 
 
@@ -10,7 +11,9 @@ function About() {
   return (
 <div>
 
-    <Header />
+    <div>
+      {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+    </div>
 
 <div className="mx-auto mt-10 bg-white w-4/5"></div>
 

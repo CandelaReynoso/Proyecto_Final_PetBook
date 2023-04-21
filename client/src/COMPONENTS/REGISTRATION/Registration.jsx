@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { registerUser } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Header from '../HEADER/Header';
+import Footer from '../FOOTER/Footer';
 
 
 const Registration = () => {
@@ -53,12 +55,12 @@ const Registration = () => {
   }
 
   return (
+    <div>
+
+    <Header />
+
+
     <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-{/* IMAGEN */}
-      <div className='hidden sm:block'>  
-        <img className='w-full h-full object-cover' src="/RegisterImg.png" alt="" />
-      </div>
-      
 
   <div 
   className='flex flex-col justify-center'>  
@@ -160,7 +162,17 @@ const Registration = () => {
        Register
       </button>
     </form>
-  </div>      
+  </div> 
+
+  
+      {/* IMAGEN */}
+      <div className='hidden sm:block place-items-center'>  
+        <img className='w-full object-fill mt-9' src="/gatocompu.jpg" alt="" />
+      </div>     
+</div>
+<div>
+  <Footer />
+</div>
 </div>
 
   )};
