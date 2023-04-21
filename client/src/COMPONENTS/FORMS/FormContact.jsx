@@ -16,7 +16,7 @@ const FormContact = () => {
     
     useEffect(() => {
       if (localStorage.getItem('token')) {
-        fetch("http://localhost:3001/auth/login/", {
+        fetch("http://localhost:3001/users", {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
