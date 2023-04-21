@@ -1,6 +1,7 @@
 const { User, User_pet, Pet } = require("../DataBase/db.js");
 
 const getPetsUserController = async (idUser) => {
+    console.log("prueba");
     try {
         const data = await User_pet.findAll({
             where: {
