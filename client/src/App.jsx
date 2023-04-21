@@ -7,7 +7,10 @@ import Detail from "./COMPONENTS/DETAIL/Detail";
 import AvaliblePetsAdoption from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/AvaliblePetsAdoption";
 import Loginpage from './COMPONENTS/LOGIN/Loginpage';
 import Registration from './COMPONENTS/REGISTRATION/Registration';
-import About from './COMPONENTS/ABOUT/About'
+import About from './COMPONENTS/ABOUT/About';
+import Donations from './COMPONENTS/DONATION/Donations';
+import FormContact from './COMPONENTS/FORMS/FormContact';
+import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
+        <Route path='/donate' element={<Donations />}/>
+        <Route path='/FormContact' element={<FormContact />}/>
+        <Route path='/FormAdoption' element={<FormAdoption />}/>
       </Routes>
     </div>
   );

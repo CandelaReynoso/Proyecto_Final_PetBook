@@ -12,13 +12,13 @@ function About() {
 
     <Header />
 
-<div className="mx-auto mt-20 bg-white w-4/5"></div>
+<div className="mx-auto mt-10 bg-white w-4/5"></div>
 
 <div className="columns-2 gap-0 bg-green-200">
 
-    <h5 className="text-7xl text-center text-orange-600 italic font-bold tracking-wide m-40">ABOUT US...</h5>
+    <h5 className="titleCenter mt-40">ABOUT US...</h5>
 
-    <h2 className="text-2xl text-center indent-8  leading-loose mt-20 ml-5 mr-40 mb-8">We are Henry students who are passionate about animals. This Web application corresponds to the final project of the Full Stack Developer degree developed from the knowledge learned in the bootcamp. Its objective is to connect pets with people so that they can adopt them and provide them with a home. We also offer the possibility of making donations and sponsoring a pet to improve their quality of life. We also have an online store where you can buy products or redeem your points, obtained by donations.</h2>
+    <h2 className="text text-2xl indent-8 leading-loose mt-20 ml-5 mr-60 mb-40">We are Henry students who are passionate about animals. This Web application corresponds to the final project of the Full Stack Developer degree developed from the knowledge learned in the bootcamp. Its objective is to connect pets with people so that they can adopt them and provide them with a home. We also offer the possibility of making donations and sponsoring a pet to improve their quality of life. We also have an online store where you can buy products or redeem your points, obtained by donations.</h2>
 
 </div>
 
@@ -35,13 +35,13 @@ function About() {
     <img src='https://avatars.githubusercontent.com/u/113480481?s=400&u=0dca69a0e579b6b35cfc192e6b01f5058cd2aac5&v=4' alt="Sofia Costamagna"
      className='mx-24 mt-10 w-60 h-60 rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Sofia Costamagna</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl text-black font-semibold">Sofia Costamagna</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-  <a href="https://github.com/sofiacostamagna" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/sofia-costamagna" className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+  <a href="https://github.com/sofiacostamagna" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+  <a href="https://www.linkedin.com/in/sofia-costamagna" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base">
+    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -61,13 +61,13 @@ function About() {
         <img src="https://avatars.githubusercontent.com/u/103840476?v=4" alt="Maria Candela Reynoso"
          className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
          </div>
-        <h5 className="mb-4 text-xl font-semibold">Maria Candela Reynoso</h5>
-        <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+        <h5 className="mb-4 text-xl font-semibold text-black">Maria Candela Reynoso</h5>
+        <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
         <div className="flex items-center justify-center">
-  <a href="https://github.com/CandelaReynoso" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/candelareynoso/" className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+  <a href="https://github.com/CandelaReynoso" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+  <a href="https://www.linkedin.com/in/candelareynoso/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl">
+<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -88,13 +88,13 @@ function About() {
      <img src="https://avatars.githubusercontent.com/u/113627748?v=4" alt="Lucas Nahuel Salvatierra"
          className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Lucas Nahuel Salvatierra</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl font-semibold text-black">Lucas Nahuel Salvatierra</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-     <a href="https://github.com/LucasNS1759" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-     <a href="https://www.linkedin.com/in/lucas-nahuel-salvatierra-862604260/"className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+     <a href="https://github.com/LucasNS1759" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+     <a href="https://www.linkedin.com/in/lucas-nahuel-salvatierra-862604260/"className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl">
+<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -118,13 +118,13 @@ function About() {
     <img src='https://media.licdn.com/dms/image/C4D03AQFxpF0INnJ7jw/profile-displayphoto-shrink_800_800/0/1654212246852?e=1687392000&v=beta&t=i6XAyFeZk318ng5LZh5VTWwxjZumWvxOH2cesSa9DJc' alt="Nicole Burgos Vega" 
      className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Nicole Burgos Vega</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl font-semibold text-black">Nicole Burgos Vega</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-  <a href='https://github.com/nikkiburgos' className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/nburgosvega/" className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+  <a href='https://github.com/nikkiburgos' className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+  <a href="https://www.linkedin.com/in/nburgosvega/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base">
+    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -143,16 +143,16 @@ function About() {
 <div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mt-10 ml-60 mr-80 mb-25'>
  <div className="mb-12 md:mb-0">
      <div className="mb-6 flex justify-center">
-     <img src="https://media.licdn.com/dms/image/D4D03AQFDlW7QBcdROQ/profile-displayphoto-shrink_800_800/0/1670725152596?e=1687392000&v=beta&t=suXOHZPzlEVbP9TYBuXkEdNAuvK60b3jm29XtuqnL1U"  alt="Matias Eduardo Henriquez" 
+     <img src="https://media.licdn.com/dms/image/D4D03AQFfQpXV6z8a9Q/profile-displayphoto-shrink_200_200/0/1681947110510?e=1687392000&v=beta&t=sD9XdtiZhUJ69tkI3Gs96YW36iLG1bHJ5oUaX4p4gUs"  alt="Matias Eduardo Henriquez" 
          className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Matias Eduardo Henriquez</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl font-semibold text-black">Matias Eduardo Henriquez</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-     <a href="https://github.com/trechiStrix" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-     <a href="https://www.linkedin.com/in/mat%C3%ADas-henr%C3%ADquez-7a435925a/"className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+     <a href="https://github.com/trechiStrix" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+     <a href="https://www.linkedin.com/in/mat%C3%ADas-henr%C3%ADquez-7a435925a/"className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl">
+<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -177,13 +177,13 @@ function About() {
     <img src='https://avatars.githubusercontent.com/u/107262829?v=4'alt="Raul Humberto Diaz Fernandez"
      className='mx-24 mt-10 w-60 h-60  rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Raul Humberto Diaz Fernandez</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl font-semibold text-black">Raul Humberto Diaz Fernandez</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-  <a href="https://github.com/rulhdiazf" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/rauldf/" className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+  <a href="https://github.com/rulhdiazf" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+  <a href="https://www.linkedin.com/in/rauldf/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base">
+    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -203,13 +203,13 @@ function About() {
         <img src="" alt="Camilo Lopez Calvache" 
          className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
          </div>
-        <h5 className="mb-4 text-xl font-semibold">Camilo Lopez Calvache</h5>
-        <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+        <h5 className="mb-4 text-xl font-semibold text-black">Camilo Lopez Calvache</h5>
+        <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
         <div className="flex items-center justify-center">
-  <a href="" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-  <a href="" className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+  <a href="" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+  <a href="" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl">
+<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -222,6 +222,7 @@ function About() {
    </div>   
 </div>
 
+
 {/* ANDRES */}
 
 <div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 mb-10 space-x-1'>
@@ -230,13 +231,13 @@ function About() {
      <img src="" alt="Andres Aramando Benavidez Lopez" 
          className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
  </div>
-    <h5 className="mb-4 text-xl font-semibold">Andres Aramando Benavidez Lopez</h5>
-    <h6 class="mb-4 font-semibold text-primary dark:text-primary-500">Full Stack Developer</h6>
+    <h5 className="mb-4 text-xl font-semibold text-black">Andres Aramando Benavidez Lopez</h5>
+    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
 <div className="flex items-center justify-center">
-     <a href="https://github.com/Adresspy" className="text-2xl" target="_blank"><AiOutlineGithub /></a> 
-     <a href=""className="text-2xl" target="_blank"><AiFillLinkedin /></a>
+     <a href="https://github.com/Adresspy" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
+     <a href=""className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
 </div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl">
+<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -249,10 +250,9 @@ function About() {
 </div>
 </div>
 </div>
-
 </div>
 
-<div className="mx-auto mt-20 bg-white w-4/5"></div>
+<div className="mx-auto mt-10 bg-white w-4/5"></div>
 
     <Footer />
 </div>
