@@ -9,6 +9,7 @@ const filterPetsController = require("../controllers/filterPetsController");
 const allLogicPetsController = require("../controllers/allLogicPetsController");
 
 const adoptionFormController = require('../controllers/adoptionFormController');
+const uploadImage = require("../utils/cloudinary.js");
 
 
 
@@ -50,7 +51,9 @@ const handlerPetsDetail = async (req, res) => {
 };
 
 const handlerPetsPost = async (req, res) => {
-  let {image,name,specie,size,weight,age,gender} = req.body;
+  let {name,specie,size,weight,age,gender} = req.body;
+  let image = await uploadImage(req.body.image)
+  console.log(image);
   try {
     const response = await postPetsController(image,name,size,specie,weight,age,gender);
     res.status(200).json(response);

@@ -9,6 +9,7 @@ const {
   handleFilter,
   handlerAdoptionForm
 } = require("../handlers/PetsHandler");
+const upload = require("../utils/multer")
 
 const petsRoutes = Router();
 

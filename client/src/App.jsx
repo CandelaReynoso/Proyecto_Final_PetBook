@@ -10,7 +10,10 @@ import Registration from './COMPONENTS/REGISTRATION/Registration';
 import About from './COMPONENTS/ABOUT/About';
 import Donations from './COMPONENTS/DONATION/Donations';
 import FormContact from './COMPONENTS/FORMS/FormContact';
+import './index.css'
+import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
+
 
 function App() {
   return (
@@ -25,9 +28,12 @@ function App() {
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
-        <Route path='/donate' element={<Donations />}/>
-        <Route path='/FormContact' element={<FormContact />}/>
-        <Route path='/FormAdoption' element={<FormAdoption />}/>
+        <Route path="/FormAdoption" element={<FormAdoption />} />
+        <Route path="/FormContact" element={<FormContact/>} />
+        <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
+        <Route path="/donate" element={<Donations />} />
+
+
       </Routes>
     </div>
   );
