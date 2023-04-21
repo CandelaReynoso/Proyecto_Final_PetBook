@@ -12,6 +12,8 @@ import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import Donations from "./COMPONENTS/DONATION/Donations";
+import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
+
 
 
 
@@ -31,6 +33,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path="/FormAdoption" element={<FormAdoption />} />
         <Route path="/FormContact" element={<FormContact/>} />
+        <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
         <Route path="/donate" element={<Donations />} />
 
       </Routes>
