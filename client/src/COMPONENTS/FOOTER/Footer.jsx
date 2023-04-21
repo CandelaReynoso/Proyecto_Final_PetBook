@@ -6,10 +6,10 @@ export default function Footer() {
   return (
     <div>
 
-<footer className="footer items-center p-4 bg-neutral-800 text-neutral-content">
+<footer className="footer items-center p-4 bg-primary text-neutral rounded-xl">
   <div className="items-center grid-flow-col">
     <img src="patita1.png" alt="" width="36" height="36" />
-    <p>PETBOOK - Copyright © 2023 - All right reserved</p>
+    <p className="letter-footer">PETBOOK - Copyright © 2023 - All right reserved</p>
   </div> 
   <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
    

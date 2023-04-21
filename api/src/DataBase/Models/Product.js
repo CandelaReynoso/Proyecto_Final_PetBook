@@ -14,14 +14,28 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          notEmpty: {
+            msg: 'Name es required'
+          }
+        }
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.UUID,
+        allowNull: false,
       },
       image: {
         type: DataTypes.TEXT,
-        allowNull: false,
       },
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
       available: {
         type: DataTypes.BOOLEAN,
@@ -29,25 +43,18 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       price: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      weight: {
-        type: DataTypes.INTEGER,
-      },
-      sizes: {
-        type: DataTypes.INTEGER,
-      },
-      sku: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
       },
       category: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
+        allowNull: false,
       },
-      rating: {
-        type: DataTypes.INTEGER,
+      description: {
+        type: DataTypes.STRING,
       },
     },
     { timestamps: false }
   );
 };
+

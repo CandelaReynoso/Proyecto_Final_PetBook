@@ -37,8 +37,8 @@ function Detail() {
           <li>Specie: {pet.specie}</li>
           <li>Gender: {pet.gender}</li>
           <li>Size: {pet.size}</li>
-          <li>Weight: {pet.weight}</li>
-          <li>Age: {pet.age}</li>
+          <li>Weight: {pet.weight} kg</li>
+          <li>Age: {pet.age} years</li>
           <li>Adopted: {pet.adopted ? 'Yes' : 'No'}</li>
           </div>
          

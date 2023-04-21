@@ -43,9 +43,17 @@ const { Pet } = sequelize.models
 const { Product } = sequelize.models;
 const { User } = sequelize.models
 const { Category } = sequelize.models;
+
 const { User_pet } = sequelize.models;
 
+const { Email } = sequelize.models;
+
 // model relations
+
+// Email / User
+Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail'});
+User.hasMany(Email, { foreignKey: 'userId'});
+
 // User / Pet M : N
 User.belongsToMany(Pet, { through: User_pet });
 Pet.belongsToMany(User, { through: User_pet });
@@ -61,9 +69,17 @@ Pet.belongsToMany(User, { through: User_pet });
 // User / Category 1:1
 Category.belongsTo(User, { foreignKey: 'userId' });   // userId is the id of the user that creates the category
 
+Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategory' });
+//Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategoryId'}); // categoryId of the product
+Category.hasMany(Product, { foreignKey: 'categoryId'}); // Use "categoryId" instead of "productId"
+
+
+Product.belongsTo(User, { foreignKey: 'userId' });
+
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });
-Product.belongsToMany(User, { through: 'user_product' });
+//Product.belongsToMany(User, { through: 'user_product' });
+Product.belongsTo(User, { foreignKey: 'userId'}); // userId is the id of the user that creates the product
 
 // User / Shelter 1: N
 Shelter.hasMany(User, { foreignKey: 'userId' });

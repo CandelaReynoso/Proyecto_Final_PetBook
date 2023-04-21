@@ -1,0 +1,6 @@
+.divPagPadre{
+ border : 1px solid ;
+display: flex;
+justify-content: flex-start;
+
+}
