@@ -4,7 +4,10 @@ const productsRoutes = require("./productsRoutes.js")
 const userRoutes = require('./userRoutes.js');
 const authRoutes = require("./authRoutes.js");
 const categoriesRoutes = require("./categoriesRoutes.js");
+
+const userPetsRoutes = require("./userPetsRouter.js");
 const mercadopagoRoute = require('./mercadopagoRoute.js');
+const contactRoutes = require("./contactRoutes.js");
 
 const router = Router()
 
@@ -13,6 +16,10 @@ router.use("/products", productsRoutes)
 router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 router.use('/categories', categoriesRoutes);
+
+router.use('/userPets', userPetsRoutes);
+
+router.use('/contact', contactRoutes);
 
 //Ruta de donación por MercadoPago.
 router.use('/checkout', mercadopagoRoute);

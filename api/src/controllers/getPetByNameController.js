@@ -1,13 +1,21 @@
 const { Pet } = require("../database/db.js");
 const { Op } = require("sequelize");
 
-const getPetByNameController = async (name) => {
-  const response = await Pet.findAll({
+const getPetByNameController = async (name,page,size) => {
+ 
+  console.log(name,page,size);
+  const offset = +page * +size;
+  const limit = +size;
+
+  const response = await Pet.findAndCountAll({
     where: {
       name: {
         [Op.startsWith]: name,
       },
     },
+    distinct: true,
+    limit,
+    offset,
   });
 
   if (response.length === 0) {
@@ -15,5 +23,7 @@ const getPetByNameController = async (name) => {
   }
   return response;
 };
+
+
 
 module.exports = getPetByNameController;
