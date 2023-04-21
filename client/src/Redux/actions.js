@@ -10,13 +10,6 @@ import {
 export const getPets = (params, page) => async (dispatch) => {
  
   try {
-<<<<<<< HEAD
-    const res = await axios.get("/pets/name?");
-    dispatch({
-      type: GET_PETS,
-      payload: res.data,
-    });
-=======
     if (params) {
       const res = await axios.get(`http://localhost:3001/pets${params}`);
       if(res.data.data.length === 0){
@@ -36,7 +29,6 @@ export const getPets = (params, page) => async (dispatch) => {
         payload: res.data,
       });
     }
->>>>>>> 9cfe1e7b1c4ad93cf6a37ba253ca8c9509859950
   } catch (err) {
     window.alert(err.message);
   }
@@ -50,38 +42,12 @@ export const getPets = (params, page) => async (dispatch) => {
 
 
 
-<<<<<<< HEAD
-  return async function (dispatch) {
-   const response = await  axios.get(`/pets/name?name=${name}`)
-   console.log(response.data);
-   return dispatch({
-   type : GET_PET_BY_NAME,
-   payload : response.data
-   })
-  };
-};
-
-export const getPetsRandom = () => {
-  return async function (dispatch) {
-    const largePets = await axios.get("/pets/name?");
-    //peticion para poder tener la propiedad count de largePets.data
-    //count es la cantidad total de objetos es como el .length de un array
-    //esta propiedad viene asi por la paginacion hecha con sequelize del back
-    // las propiedades/objetos/pets vienen en una propiedad llamada rows
-    //tip siempre hacer console log a la response .data de cualquier actions para entender
-    //que es lo que te esta llegando
-    //pd no entren en panico analisen las cosas siempre
-
-    const response = await axios.get(
-      `/pets/name?page=${Math.floor(
-=======
 
 export const getPetsRandom = () => {
   return async function (dispatch) {
     const largePets = await axios.get("http://localhost:3001/pets");
     const response = await axios.get(
       `http://localhost:3001/pets?page=${Math.floor(
->>>>>>> 9cfe1e7b1c4ad93cf6a37ba253ca8c9509859950
         (Math.random() * largePets.data.count) / 2
       )}&pageSize=2`
     );
@@ -107,13 +73,8 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 export const registerUser = (userData) => async (dispatch) => {
   console.log(userData);
   try {
-<<<<<<< HEAD
-    const res = await axios.post(`/users`, userData);
-    
-=======
     const res = await axios.post(`http://localhost:3001/users`, userData);
 
->>>>>>> 9cfe1e7b1c4ad93cf6a37ba253ca8c9509859950
     console.log(res.data);
   } catch (err) {
     console.error(err);

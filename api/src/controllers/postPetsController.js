@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-const { Pet } = require("../database/db.js");
-=======
-const { Pet } = require("../DataBase/db.js");
+const { Pet } = require("../database/db");
 const uploadImage = require("../utils/cloudinary.js");
->>>>>>> 9cfe1e7b1c4ad93cf6a37ba253ca8c9509859950
 
 
 const postPetsController = async (image,name,size,specie,weight,age,gender) => {

@@ -11,16 +11,8 @@ import About from './COMPONENTS/ABOUT/About';
 import Donations from './COMPONENTS/DONATION/Donations';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
-<<<<<<< HEAD
-import Donations from "./COMPONENTS/DONATION/Donations";
-import axios from "axios";
-
-//Instancia de axios.
-axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
-=======
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
->>>>>>> 9cfe1e7b1c4ad93cf6a37ba253ca8c9509859950
 
 
 function App() {

@@ -37,6 +37,7 @@ const userHandlerGet = async (req, res) => {
     }
 };
 
+
 const userHandlerPost = async (req, res) => {
     try {
         
@@ -48,8 +49,8 @@ const userHandlerPost = async (req, res) => {
         newUser.password = bcryptjs.hashSync( password, salt ); // bcryptjs method to encrypt
         
         //save in db
-        const savedUser = await User.create(newUser)
-        
+                const savedUser = await User.create(newUser)
+
         res.status(200).json({savedUser})
 
     } catch (error) {
