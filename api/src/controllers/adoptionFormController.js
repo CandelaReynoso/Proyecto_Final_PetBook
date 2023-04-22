@@ -6,7 +6,7 @@ const adoptionFormController = async (request) =>{
     const message = request.message;
     const date = request.date;
 
-   const user = User.finOne(
+   const user = User.findOne(
     {
         where:{
             email: userEmail,
@@ -14,7 +14,7 @@ const adoptionFormController = async (request) =>{
     }
    );
 
-   const pet = Pet.findByPk(
+   const pet = Pet.findOne(
     { 
         where:{
             name: petName,
