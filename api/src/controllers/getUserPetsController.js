@@ -1,5 +1,5 @@
 const { User, User_pet, Pet } = require("../DataBase/db.js");
-
+console.log("aesdgf")
 const getPetsUserController = async (idUser) => {
     try {
 
