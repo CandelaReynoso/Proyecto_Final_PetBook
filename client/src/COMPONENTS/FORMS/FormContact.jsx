@@ -1,17 +1,43 @@
 //form con captcha. 
 import React, {useState} from "react";
 import {Formik,Form,Field,ErrorMessage} from 'formik';
-//Este fomr lo puede llenar un usario registrado o on registrado y el administrador va a recibir un email.
+//Este fomr lo puede llenar un usario registrado o no registrado y el administrador va a recibir un email.
 //Una vez que el usuario complete el formulario y haga clic en "enviar", puedes usar la función "fetch" de JavaScript para enviar una solicitud POST al servidor.
 import { sendEmail } from "../../Redux/actions";
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
-
+import { useEffect } from "react";
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
+    const [user, setUser] = useState({ email: "", name: "" });
 
+    
+    useEffect(() => {
+      if (localStorage.getItem('token')) {
+        fetch("http://localhost:3001/users", {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(res => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Response was not JSON");
+            }
+          })
+          .then(data => {
+            setUser({ email: data.email, name: data.name });
+          })
+          .catch(error => console.error(error));
+      }
+    }, []);
+    
+    
+    
+    
     return (
         <>
         <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> } </div>
@@ -24,10 +50,8 @@ const FormContact = () => {
             </div>
             <Formik
             initialValues={{
-                name: '',
-                lastname : '',
-                email:'',
-                message: '', 
+              lastname:"",
+              message: ""
             }}
             validate={(valores) => {
                 let errores ={}
@@ -62,46 +86,7 @@ const FormContact = () => {
                 return errores;
                 
             }}
-          // Esta logica fue transladada a la action 
-          /*  onSubmit={(values, {resetForm}) => {
-              try {
-                const tokenString = localStorage.getItem('token');
-                console.log('tokenString:', tokenString); // add this line
-                //const token = JSON.parse(tokenString);
-                //if (!tokenString) {
-                //  throw new Error('No token found in localStorage');
-                //}
-              
-                resetForm();
-                console.log('Form was sent!');
-                setFormSubmit(true);
-                setTimeout(() => setFormSubmit(false), 4000);
-                const header = `'x-token': tokenString`;
-                const headers = { 'Content-Type': 'application/json' };
-                console.log('headers:', headers); // add this line
-                fetch('http://localhost:3001/contact', {
-                  method: 'POST',
-                  headers: headers,
-                  body: JSON.stringify(values)
-                })
-                .then(response => {
-                  if (response.ok) {
-                    setFormSubmit(true);
-                    setTimeout(() => setFormSubmit(false), 4000);
-                    resetForm();
-                  } else {
-                    throw new Error('Network response was not ok');
-                  }
-                })
-                .catch(error => {
-                  
-                  console.error('There was a problem with the form submission:', error);
-                });
-              } catch (error) {
-                console.error('There was a problem retrieving the token:', error);
-              }
-            }}
-            */
+          
             onSubmit={(values, {resetForm}) => {
               setFormSubmit(true);
               sendEmail(values.name, values.lastname, values.email, values.message)
@@ -127,9 +112,8 @@ const FormContact = () => {
                 type ="text" 
                 id="name" 
                 name="name" 
-                placeholder = "name:" 
                 className= 'inputs'
-        
+                placeholder= {user.name ? user.name : "Write you name, plase"}
                 />
                 <ErrorMessage name="name" component={()=> (
                     <div className="text-error">{errors.name}</div>
@@ -142,7 +126,7 @@ const FormContact = () => {
                 type ="text" 
                 id="lastname" 
                 name="lastname" 
-                placeholder = "last name:" 
+                placeholder = "Write your last name, plase" 
                 className='inputs'
                 />
                 <ErrorMessage name="lastname" component={()=> (
@@ -157,8 +141,8 @@ const FormContact = () => {
                 type ="email" 
                 id="email" 
                 name="email" 
-                placeholder = "email@email.com" 
                 className='inputs'
+                placeholder={user.email ? user.email : "Write you e-mail, please"}
                 />
                 <ErrorMessage name="email" component={()=> (
                   <div className="text-error">{errors.email}</div>

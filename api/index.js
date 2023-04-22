@@ -3,9 +3,12 @@ const { sequelize } = require("./src/DataBase/db.js");
 const { Role } = require('./src/DataBase/db.js');
 require("dotenv").config();
 const { PORT } = process.env;
+const loadPets = require('./src/DataBase/scriptPets.js')
 
 
-sequelize.sync({alter:true }).then( async () => {
+sequelize.sync({force:true }).then( async () => {
+
+  await loadPets();
   console.log("estoy conectado a", sequelize.getDatabaseName());
   await Role.findOrCreate({ where: { role: "admin_role" }, defaults: { role: "admin_role" } });
   await Role.findOrCreate({ where: { role: "user_role" }, defaults: { role: "user_role" } });

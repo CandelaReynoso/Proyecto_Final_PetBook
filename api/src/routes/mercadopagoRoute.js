@@ -23,11 +23,11 @@ app.get('/', (req, res) =>{
         },
         ],
         back_urls: {
-            success: "http://127.0.0.1:5173/donate",
-            failure: "http://www.tu-sitio/failure",
-            pending: "http://www.tu-sitio/pending"
+            success: "http://127.0.0.1:5173/",
+            failure: "http://127.0.0.1:5173/failure",
+            pending: "http://127.0.0.1:5173/pending"
         },
-        // auto_return: "succes",
+        auto_return: "approved",
     };
     
     mercadopago.preferences
