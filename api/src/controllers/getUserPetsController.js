@@ -1,8 +1,12 @@
 const { User, User_pet, Pet } = require("../DataBase/db.js");
 
 const getPetsUserController = async (idUser) => {
-    console.log("prueba");
     try {
+
+        const user = await User.findByPk(idUser);
+
+        if(!user) throw new Error(`There is no user with id ${idUser}`)
+
         const data = await User_pet.findAll({
             where: {
                 userId: idUser
@@ -16,9 +20,11 @@ const getPetsUserController = async (idUser) => {
             attributes: []
         })
 
+        if(!data.length) throw new Error("You have no adopted pets");
+
         return data;
     } catch (error) {
-        return { error }
+        return { error: error }
     }
 }
 

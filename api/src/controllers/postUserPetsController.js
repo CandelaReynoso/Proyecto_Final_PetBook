@@ -21,18 +21,22 @@ const postUserPetsController = async (idUser, idPet, history, image) => {
         return "Updated story";
     } catch (error) {
 
-        return {error: error};
+        return { error: error };
     }
 }
 
 const postAdoptUserPetsController = async (idUser, idPet) => {
     try {
+        
         const user = await User.findByPk(idUser);
         const pet = await Pet.findByPk(idPet);
+        
+        if(!user || !pet) throw new Error("There is no user or pet");
 
         await user.addPet(pet);
 
-        return { user, pet }
+
+        return "successful adoption"
     } catch (error) {
         return { error: error }
     }

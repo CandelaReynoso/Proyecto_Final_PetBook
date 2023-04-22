@@ -6,9 +6,11 @@ const handlergetUserpets = async (req, res) => {
     const { idUser } = req.query;
     try {
         const pets = await getPetsUserController(idUser);
-        res.status(200).json(pets);
+        if(pets.error) throw new Error(pets.error);
+
+        res.status(200).send(pets);
     } catch (error) {
-        res.status(400).json({ error: error });
+        res.status(400).send(error.message);
     }
 }
 
@@ -30,8 +32,9 @@ const handlerPostAdopted = async (req, res) => {
 
     try {
         const data = await postAdoptUserPetsController(idUser, idPet);
+        if(data.error) throw new Error(data.error);
 
-        res.status(200).send("succes");
+        res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error.message);
     }
