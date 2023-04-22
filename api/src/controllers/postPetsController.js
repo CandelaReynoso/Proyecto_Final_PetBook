@@ -1,4 +1,4 @@
-const { Pet } = require("../DataBase/db.js");
+const { Pet } = require("../database/db");
 const uploadImage = require("../utils/cloudinary.js");
 
 
