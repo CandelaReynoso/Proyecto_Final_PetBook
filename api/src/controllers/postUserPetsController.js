@@ -38,5 +38,4 @@ const postAdoptUserPetsController = async (idUser, idPet) => {
 
 
 
-
 module.exports = { postUserPetsController, postAdoptUserPetsController };
