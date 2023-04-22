@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs'); // npm i bcryptjs
 const { User } = require('../database/db');
 const { Op } = require('sequelize');
-
+const nodemailer = require('nodemailer');
 
 const userHandlerGet = async (req, res) => {
     try {
@@ -49,7 +49,33 @@ const userHandlerPost = async (req, res) => {
         newUser.password = bcryptjs.hashSync( password, salt ); // bcryptjs method to encrypt
         
         //save in db
-                const savedUser = await User.create(newUser)
+        const savedUser = await User.create(newUser)
+
+        // create nodemailer transporter
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'petbook5173@gmail.com',
+                pass: process.env.PASSWORD // gmail app password
+            }
+            });
+
+        // set up email options
+        const mailOptions = {
+            from: 'petbook5173@gmail.com',
+            to: email,
+            subject: 'Welcome to Petbook!',
+            text: 'Thank you for registering with our app. We hope you enjoy using it, feel free to see all the pets!'
+            };
+
+        // send email
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
 
         res.status(200).json({savedUser})
 
