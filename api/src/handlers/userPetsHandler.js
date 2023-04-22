@@ -13,9 +13,11 @@ const handlergetUserpets = async (req, res) => {
 }
 
 const handlerPostUserPets = async (req, res) => {
-    const { idUser, idPet, history } = req.body;
+    const { idUser, idPet, history, image } = req.body;
     try {
-        const data = await postUserPetsController(idUser, idPet, history);
+        const data = await postUserPetsController(idUser, idPet, history, image);
+
+        if(data.error) throw new Error(data.error)
 
         res.status(200).send(data);
     } catch (error) {

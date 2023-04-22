@@ -1,6 +1,6 @@
 const { User_pet, User, Pet } = require("../DataBase/db.js");
 
-const postUserPetsController = async (idUser, idPet, history) => {
+const postUserPetsController = async (idUser, idPet, history, image) => {
     try {
         const userPet = await User_pet.findOne({
             where: {
@@ -10,16 +10,18 @@ const postUserPetsController = async (idUser, idPet, history) => {
             }
         });
 
-        if (!userPet) throw new Error(`no relationship was found between ${idUser} and ${idPet}`);
+        if (!userPet) throw new Error(`No relationship was found between idUser: ${idUser} and idPet: ${idPet}`);
 
         await userPet.update({
             history: history,
-            statusHistory: true
+            statusHistory: true,
+            image: image
         })
 
         return "Updated story";
     } catch (error) {
-        return { error: error };
+
+        return {error: error};
     }
 }
 
