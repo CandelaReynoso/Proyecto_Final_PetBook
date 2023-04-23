@@ -13,6 +13,7 @@ import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
+import Successfully from "./Components/DONATION/Successfully";
 
 
 function App() {
@@ -32,8 +33,8 @@ function App() {
         <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
         <Route path="/donate" element={<Donations />} />
-
-
+        <Route path="/thanks" element={<Successfully />} />
+      
       </Routes>
     </div>
   );
