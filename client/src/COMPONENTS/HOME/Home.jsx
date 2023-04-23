@@ -190,7 +190,7 @@ useEffect(() => {
 
           {/* chatbot: training in process*/}
 
-<Chatbot />
+{/* <Chatbot /> */}
 
 
     <div>

@@ -16,6 +16,7 @@ import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Successfully from "./COMPONENTS/DONATION/Successfully";
+import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/FormHistory" element={<FormHistory /> } />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
+        <Route path="/chat" element={<Chatbot />} />
 
       </Routes>
     </div>
