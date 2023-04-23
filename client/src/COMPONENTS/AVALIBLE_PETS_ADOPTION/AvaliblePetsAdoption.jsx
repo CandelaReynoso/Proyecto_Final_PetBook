@@ -9,19 +9,38 @@ import styles from "../CARD/Card.module.css";
 import SearchBar from "../SEARCH/SearchBar";
 import Pagination from "../PAGINATION/Pagination";
 import FilterAndOrder from "../FILTER_AND_ORDER/FilterAndOrder";
-
-
-
-
+import SearchResultsList from "../SEARCH/SearchResultList";
+import { createSearchParams } from "react-router-dom";
 
 const AvaliblePetsAdoption = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-  
-    dispatch(getPets());
-  }, []);
+    let query = window.localStorage.getItem("lastQuerys");
+    let parseQuery = JSON.parse(query);
+    
+    if (!query) {
+      dispatch(getPets());
+      return;
+    }
+    if (parseQuery !== undefined) {
+      dispatch(getPets(`?${createSearchParams(parseQuery)}`));
+    }
+    if (parseQuery === undefined) {
+      return;
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      let querys = state?.pets?.params;
+      
+      if (querys !== undefined) {
+        window.localStorage.setItem("lastQuerys", JSON.stringify(querys));
+      } else return;
+    };
+  }, [state.pets.params]);
 
   const onclickRefresh = () => {
     dispatch(getPets());
@@ -30,15 +49,18 @@ const AvaliblePetsAdoption = () => {
   return (
     <div>
       <Header></Header>
-      
-       <FilterAndOrder/>
-       <SearchBar />
-     
+
+      <FilterAndOrder />
+      {/* esto es de la search */}
+      <SearchBar />
+      {state?.namePets?.length > 0 && <SearchResultsList />}
+      {/* si se mueve esto a otro componente importar searchBar y searchResultList y ponerlo en este orden*/}
+
       <button onClick={onclickRefresh}>Refresh</button>
       <div className={styles.divPagination}>
-        <Pagination  />
+        <Pagination />
       </div>
-      <Cards pets={state?.pets?.data } />
+      <Cards pets={state?.pets?.data} />
       <br></br>
       <br></br>
       <br></br>

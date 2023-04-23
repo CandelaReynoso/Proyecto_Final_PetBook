@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams } from "react-router-dom";
-
-import { getPets } from "../../Redux/actions.js";
+import { getPets, getNamePets, setNamePets } from "../../Redux/actions.js";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
+  const [name, setName] = useState("");
 
-  const [name, setName] = useState(""); //representa el valor del texto en la barra de busquedad
+  const searchNamesResults = async (value) => {
+    try {
+      let response = await axios.get(
+        `http://localhost:3001/pets/name?name=${value}`
+      );
+      if (response.data.length) {
+        dispatch(getNamePets(response.data));
+      } else {
+        return;
+      }
+    } catch (error) {
+      return window.alert(error.message);
+    }
+  };
 
   function handleInputChange(e) {
-    //se ejecuta cuando escribo algo, actualiza el estado name
-    e.preventDefault();
     setName(e.target.value);
-  }
+    searchNamesResults(e.target.value);
+   }
+   
+   useEffect(()=>{
+    if(!name){
+      dispatch(setNamePets())
+      }
+   },[dispatch,name,setNamePets])
 
-  function handleSubmit(e) {
-    //se ejecuta cuando hacemos click en el boton de busquedad
-    e.preventDefault();
-    if (!name) {
-      //si no ponemos un name ->aparece el msg
-      return alert("You must enter a name");
-    } else {
-      const params = { name };
-    dispatch(getPets(`?${createSearchParams(params)}`));
-
-      setName(""); //actualiza el estado name a una cadena vacia y borra el contenido en la barra
-      document.getElementById("search").value = "";
+  function handleSubmit() {
+    try {
+      if (!name) {
+        return alert("You must enter a name");
+      } else {
+        const params = { name };
+        dispatch(getPets(`?${createSearchParams(params)}`));
+        setName("");
+      }
+    } catch (error) {
+      return window.alert(error.message);
     }
   }
 
@@ -36,12 +54,25 @@ export default function SearchBar() {
       <input
         id="search"
         type="text"
+        name="name"
+        value={name}
+        autocomplete="off"
         placeholder="  Type here..."
         onChange={(e) => handleInputChange(e)}
       />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        SEARCH🔎
-      </button>
+      <button onClick={(e) => handleSubmit(e)}>SEARCH🔎</button>
     </nav>
   );
 }
+
+// console.log(value)
+// fetch(`http://localhost:3001/pets/name?name=${value}`)
+//   .then((response) => response.json())
+//   .then((petsName) => {
+//   console.log(petsName);
+
+//   dispatch(getNamePets(petsName))
+//   })
+//   .catch(error =>{
+//   return console.log(error);
+//   })
