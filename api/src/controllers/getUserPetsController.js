@@ -42,10 +42,10 @@ const getHistoryUserPet = async () => {
                 },
                 {
                     model: Pet,
-                    attributes: ['name', 'image']
+                    attributes: ['name']
                 }
             ],
-            attributes: ['history']
+            attributes: ['history', 'image']
         });
 
 

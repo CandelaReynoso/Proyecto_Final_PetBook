@@ -1,6 +1,5 @@
 const {getPetsUserController, getHistoryUserPet} = require("../controllers/getUserPetsController");
 const { postUserPetsController, postAdoptUserPetsController } = require("../controllers/postUserPetsController");
-const uploadImage = require("../utils/cloudinary");
 
 const handlergetUserpets = async (req, res) => {
     const { idUser } = req.query;
@@ -17,9 +16,8 @@ const handlergetUserpets = async (req, res) => {
 const handlerPostUserPets = async (req, res) => {
     const { idUser, idPet, history, image } = req.body;
 
-    try {
-        const imageC = await uploadImage(image);
-        const data = await postUserPetsController(idUser, idPet, history, imageC);
+    try {        
+        const data = await postUserPetsController(idUser, idPet, history, image);
         if(data.error) throw new Error(data.error)
 
         res.status(200).send(data);

@@ -1,7 +1,10 @@
 const { User_pet, User, Pet } = require("../database/db.js");
+const uploadImage = require("../utils/cloudinary");
 
 const postUserPetsController = async (idUser, idPet, history, image) => {
     try {
+        if(!idUser || !idPet || !history || !image) throw new Error("information is missing");
+
         const userPet = await User_pet.findOne({
             where: {
                 userId: idUser,
@@ -12,10 +15,11 @@ const postUserPetsController = async (idUser, idPet, history, image) => {
 
         if (!userPet) throw new Error(`No relationship was found between idUser: ${idUser} and idPet: ${idPet}`);
 
+        const imageC = await uploadImage(image);
         await userPet.update({
             history: history,
             statusHistory: true,
-            image: image
+            image: imageC
         })
 
         return "Updated story";
