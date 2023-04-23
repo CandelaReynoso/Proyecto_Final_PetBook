@@ -132,9 +132,9 @@ useEffect(() => {
       <div>
         <h5 className="titleLeft">WE ARE</h5>
       </div>
-        <h2 className="text">  passionate about animal welfare and are committed to creating a world where all pets have a safe and loving home. We believe that every pet deserves a chance to live a happy and healthy life, and we are dedicated to making that a reality. Join us in our mission to make a difference in the lives of pets and their human companions. </h2>
+        <h2 className="text pb-6">  passionate about animal welfare and are committed to creating a world where all pets have a safe and loving home. We believe that every pet deserves a chance to live a happy and healthy life, and we are dedicated to making that a reality. Join us in our mission to make a difference in the lives of pets and their human companions. </h2>
         <Link to='/about'>
-          <button className="buttonSmallBlack">MORE ABOUT US</button>
+          <button className="btn btn-secondary ">MORE ABOUT US</button>
         </Link>
       </div>
 
@@ -147,9 +147,9 @@ useEffect(() => {
         <div className="">
           <PreviewPetsAdoption previewPets={state.petsRandomHome && state.petsRandomHome} />
         </div>
-        <div className="">
-          <h2 className="titleLeft">READY TO 
-          GO HOME...</h2>
+        <div className="p-8 mr-8 ml-8">
+          <h2 className="titleRight">READY TO GO HOME</h2>
+          <p className="text">Here you can see all of our animals who are ready and eager to go to their new home..</p>
           <Link to ="/AvaliblePetsAdoption">
             <button className="buttonSmallgreen">MORE</button> 
           </Link> 

@@ -85,7 +85,7 @@
  }
 
 .buttonSmallgreen{
- @apply btn btn-primary  h-1
+ @apply btn btn-primary
 }
   
 .buttonSmallBlack{
