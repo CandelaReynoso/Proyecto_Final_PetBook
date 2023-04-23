@@ -17,12 +17,14 @@ import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 import axios from "axios";
 
+//Instancia de axios.
+axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
 
 function App() {
   return (
     
     <div className="app">
-      <Chatbot />
+      {location.pathname !== "/" && <Chatbot />  }
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
