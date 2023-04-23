@@ -1,4 +1,4 @@
-const { User_pet, User, Pet } = require("../DataBase/db.js");
+const { User_pet, User, Pet } = require("../database/db.js");
 
 const postUserPetsController = async (idUser, idPet, history) => {
     try {
