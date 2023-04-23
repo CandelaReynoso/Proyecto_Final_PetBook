@@ -1,6 +1,5 @@
 const { Router } = require("express");
 
-
 const {
     handlergetUserpets,
     handlerPostUserPets,
@@ -11,7 +10,7 @@ const {
 const userPetsRoutes = Router();
 
 userPetsRoutes.get('/showHistory', handlerGetShowHistory);
-userPetsRoutes.get('/userAdopte', handlergetUserpets);
+userPetsRoutes.get('/Pets', handlergetUserpets);
 userPetsRoutes.post('/adopt', handlerPostAdopted);
 userPetsRoutes.post('/update', handlerPostUserPets);
 

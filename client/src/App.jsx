@@ -12,8 +12,10 @@ import Donations from './COMPONENTS/DONATION/Donations';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
-import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
-import Successfully from "./Components/DONATION/Successfully";
+
+import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
+import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
+import Successfully from "./COMPONENTS/DONATION/Successfully";
 
 
 function App() {
@@ -32,9 +34,10 @@ function App() {
         <Route path="/FormAdoption" element={<FormAdoption />} />
         <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
+        <Route path="/FormHistory" element={<FormHistory /> } />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
-      
+
       </Routes>
     </div>
   );

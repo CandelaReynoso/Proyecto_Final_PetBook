@@ -40,6 +40,7 @@ const Registration = () => {
   //   }
   // }
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
