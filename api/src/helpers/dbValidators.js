@@ -1,4 +1,4 @@
-const { Role, User, Category, Product } = require('../DataBase/db');
+const { Role, User, Category, Product } = require('../database/db');
 
 const isRoleValid = async  (role = '') => {
         const roleExists = await Role.findOne({where: {role: role}});

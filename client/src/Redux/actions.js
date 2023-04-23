@@ -63,7 +63,7 @@ export const getPetsRandom = () => {
 
 export const fetchPetDetailSuccess = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:3001/pets/detail/${id}`);
+    const res = await axios.get(`/pets/detail/${id}`);
     dispatch({
       type: FETCH_PET_DETAIL_SUCCESS,
       payload: res.data,

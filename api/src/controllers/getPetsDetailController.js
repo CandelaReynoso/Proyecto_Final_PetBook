@@ -1,4 +1,4 @@
-const { Pet } = require("../DataBase/db.js");
+const { Pet } = require("../database/db.js");
 
 const getPetsDetailController = async (id) => {
   let response = await Pet.findByPk(id);

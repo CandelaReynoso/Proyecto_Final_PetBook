@@ -1,4 +1,4 @@
-const { Product, Category, User } = require('../DataBase/db');
+const { Product, Category, User } = require('../database/db');
 const searchProductByNameController = require("../controllers/searchProductByNameController");
 const searchAllProductsController = require("../controllers/searchAllProductsController");
 const postProductController = require('../controllers/postProductController');
