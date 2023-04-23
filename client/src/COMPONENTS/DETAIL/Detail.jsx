@@ -48,12 +48,12 @@ function Detail() {
       <br>
       </br>
         <Link to = "/FormAdoption">
-         <button className={styles.buttonAdoptMe}>ADOPT ME!</button>  
+         <button className={styles.buttonAdoptMe}>ADOPT A PET!</button>  
         </Link>
         <br>
         </br>
-       <Link>
-        <button className={styles.buttonSponsor}>SPONSOR ME!</button>
+       <Link to ="/donate">
+        <button className={styles.buttonSponsor}>DONATE!</button>
        </Link>
         
     </div>
