@@ -9,12 +9,12 @@ import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
 import { useEffect } from "react";
 import Swal from 'sweetalert2';
-
+import {useHistory} from 'react-router-dom'
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
     const [user, setUser] = useState({ email: "", name: "" });
-
+    const history = useHistory();
     
     useEffect(() => {
       if (localStorage.getItem('token')) {
@@ -38,16 +38,7 @@ const FormContact = () => {
     }, []);
     
     
-    const handleClick = () =>{
-      Swal.fire({
-        title: 'HELP A PET!',
-        text: 'Donate \u2764',
-        imageUrl:'https://dam.ngenespanol.com/wp-content/uploads/2019/10/perros-personalidad-2-770x395.jpg',
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-      })
-     }
+   
     
     return (
         <>
@@ -98,6 +89,19 @@ const FormContact = () => {
             }}
           
             onSubmit={(values, {resetForm}) => {
+              event.preventDefault();
+              Swal.fire({
+                title: 'HELP A PET!',
+                text: 'Donate \u2764',
+                imageUrl:'https://dam.ngenespanol.com/wp-content/uploads/2019/10/perros-personalidad-2-770x395.jpg',
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  history.push("/donate");
+                }
+              });
               setFormSubmit(true);
               sendEmail(values.name, values.lastname, values.email, values.message)
               .then(() => {
@@ -170,7 +174,7 @@ const FormContact = () => {
                   )}/>    
             </div>
             <div className="buttonSubtmit text-center ">
-                <button onClick={handleClick} className=""  type ="submit ">SEND</button>
+                <button className=""  type ="submit ">SEND</button>
             { formSubmit && <p className="succes">Form was successfully submitted</p>}
             </div>
           
