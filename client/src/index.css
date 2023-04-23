@@ -19,14 +19,14 @@
   /* TITULOS */
 
 .titleCenter{
-  @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-center
+  @apply font-normal text-neutral text-4xl uppercase tracking-widest leading-loose text-center font-['candara']
 }
 .titleRight{
- @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-right
+ @apply font-normal text-neutral text-4xl uppercase tracking-widest leading-loose text-right font-['candara']
 }
 
 .titleLeft{
- @apply font-bold text-secondary text-7xl uppercase tracking-widest leading-loose text-left
+ @apply font-normal text-neutral text-4xl uppercase tracking-widest leading-loose text-left ml-7 font-['candara']
 }
    /* CHECKBOX*/
  
@@ -45,7 +45,7 @@
   /* PÁRRAFOS */
 
 .text{
- @apply font-sans font-serif font-semibold text-neutral 
+ @apply font-sans font-['candara'] font-normal text-neutral  
 }
 
 .textColorPink{
@@ -85,11 +85,11 @@
  }
 
 .buttonSmallgreen{
- @apply btn btn-primary
+ @apply btn btn-primary  h-1
 }
   
 .buttonSmallBlack{
- @apply btn 
+ @apply btn  h-1
 }
 
 .selecter{

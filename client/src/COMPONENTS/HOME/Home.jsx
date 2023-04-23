@@ -58,109 +58,138 @@ useEffect(() => {
 
 
   return (
-    <div>
+  <div>
 
     <div>
-      {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+
+        <div>
+        {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+        </div>
+
+
+      <div className="flex flex-col w-full lg:flex-row justify-center items-center">
+      
+          <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral"> 
+        Everybody needs a home. 
+          <br />
+          Every home needs love.</div>
+
+          <div className="grid flex-grow h-fit card  rounded-box place-items-center ">
+              <img className="mask mask-squircle bg-primary h-[85vh]" src="perritoOreja.png" />
+          </div>       
+      </div>
+
     </div>
 
- {/* CARRUSEL */}
-
- {mascotasFiltradas.length > 0 ? (
-   <div className='container my-24 px-6 mx-auto'>
     
-      <h2 className="font-bold text-secondary text-4xl uppercase tracking-widest leading-loose text-center">ADOPTION STORIES</h2>
+    
+    
+ {/* BACKGROUND */}
+    <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full">
 
           
-            <div className="carousel carousel-end rounded-box w-50 h-50 mt-10">
-          {currentMascotas.map((mascota, index) => (
-           <div key={index} className={`carousel-item${index === 0 ? " active" : ""} relative float-left md:w-1/3`}>
-           {/*  se utiliza para establecer la clase active en el primer elemento del carrusel. La clase active se utiliza para indicar cuál es la imagen actualmente visible en el carrusel*/}
-           
-           
-           <img className="carousel-item object-cover rounded-md cursor-pointer transform:rotate-180"
-             src={mascota.image}
-             alt={`Image ${currentImageIndex + 1}`}
-           />
+    {/* CARRUSEL */}
+
+    <div className="pb-7 items-center rounded-full h-[90vh] flex justify-center">
+        <h2 className="titleRight">adoption stories</h2>
+
+    {mascotasFiltradas.length > 0 ? (
+      <div className='mx-auto '>
+                <div className="carousel carousel-end rounded-box w-4/5 h-4/5 mx-auto my-auto p-3 justify-evenly">
+                      
+              {currentMascotas.map((mascota, index) => (
+                
+              <div key={index} className={`carousel-item${index === 0 ? " active" : ""} relative float-left md:w-1/3`}> 
+              {/*  se utiliza para establecer la clase active en el primer elemento del carrusel. La clase active se utiliza para indicar cuál es la imagen actualmente visible en el carrusel*/}
+              
+                    <img className="carousel-item object-cover cursor-pointer transform:rotate-180 rounded-3xl w-[20rem] h-[10rem]"
+                      src={mascota.image}
+                      alt={`Image ${currentImageIndex + 1}`}
+                    />
               </div>
-            ))}
-            </div>
+                ))}
+
+
+                </div>
+                <div className="absoulte flex transform  p-8 items-center ml-60 ">
+                          <a onClick={handlePrevClick} className="btn btn-circle btn-accent"> ❮</a> 
+                          <a onClick={handleNextClick} className="btn btn-circle btn-accent">❯</a>
+                      </div>
+            
+          </div>
+        ) : (
+          <p>No hay mascotas disponibles</p>
+        )}
+    </div>
       
-        <div className="flex justify-center mt-4 mb-30">
-          <button className="carousel-control-prev" onClick={handlePrevClick}>
-          <span className="visually-hidden text-5xl text-black hover:bg-green-200 focus:bg-green-200 left-0 transition-all duration-300 inline-block transform scale-100"><BiLeftArrow/></span>
-        </button>
-         <button className="carousel-control-next" onClick={handleNextClick}>
-     <span className="visually-hidden text-5xl text-black hover:bg-green-200 focus:bg-green-200 left-0 transition-all duration-300 inline-block transform scale-100"><BiRightArrow/></span>
-     </button>
-</div>
+    {/* COMPONENTE ABOUT */}
+
+    <div className="flex justify-center pl-10 pr-16">
+      <img src='../../public/perritoabout.png' className="h-[90vh] w-[90vh]"/>
+
+      <div>
+      <h2 className="text"> At <a className='font-bold italic'>PETBOOK</a> </h2>
+      <div>
+        <h5 className="titleLeft">WE ARE</h5>
       </div>
-    ) : (
-      <p>No hay mascotas disponibles</p>
-    )}
+        <h2 className="text">  passionate about animal welfare and are committed to creating a world where all pets have a safe and loving home. We believe that every pet deserves a chance to live a happy and healthy life, and we are dedicated to making that a reality. Join us in our mission to make a difference in the lives of pets and their human companions. </h2>
+        <Link to='/about'>
+          <button className="buttonSmallBlack">MORE ABOUT US</button>
+        </Link>
+      </div>
 
-  
-{/* COMPONENTE ABOUT */}
+    </div>
 
-<div className="grid grid-cols-2 gap-2 bg-green-200 h-70">
-  <div>
-    <h5 className="titleCenter mt-10">WE ARE...</h5>
-    <img src='../../public/perritoabout.png' className="-mb-20 -mt-10 w-80 h-85 ml-80"/>
-  </div>
-  <div>
-    <h2 className="text text-2xl indent-8  leading-loose mt-20 ml-5 mr-40 mb-20"> Welcome to <a className='font-bold italic'>PETBOOK</a>, we are dedicated to providing information about animals for adoption. Here you can adopt or sponsor a pet so that it finds a home full of love. We have a section where you can make donations and receive information about each pet. You can also buy products in our store. </h2>
-    <Link to='/about'>
-      <button className="buttonSmallBlack">MORE ABOUT US</button>
-    </Link>
-  </div>
-</div>
-
-  
     {/*CARDS DE ANIMALES EN ADOPCION */}
+   
 
-  <div className='flex flex-row flex-wrap items-center justify-center pt-5 mt-20 mb-20'>
-  <div className="w-20 md:w-1/2 h-200 items-center justify-center">
-    <PreviewPetsAdoption previewPets={state.petsRandomHome && state.petsRandomHome} />
-  </div>
-  <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
-    <h2 className="titleCenter">READY TO 
-    <br></br> 
-    GO HOME...</h2>
-    <Link to ="/AvaliblePetsAdoption">
-      <button className="buttonSmallgreen">MORE</button> 
-    </Link> 
-  </div>
+    <div className='flex items-center justify-center '>
+        <div className="">
+          <PreviewPetsAdoption previewPets={state.petsRandomHome && state.petsRandomHome} />
+        </div>
+        <div className="">
+          <h2 className="titleLeft">READY TO 
+          GO HOME...</h2>
+          <Link to ="/AvaliblePetsAdoption">
+            <button className="buttonSmallgreen">MORE</button> 
+          </Link> 
+        </div>
+    </div>
+
 </div>
 
+  
+  <br />
 
   {/*COMPONENTE DONACIONES */}
 
-  <div className="grid grid-cols-2 gap-2 bg-green-200 h-70 mt-20">
+  <div className="grid grid-cols-2 gap-2 h-70 pb-4 mt-4">
   <div>
-    <h5 className="titleCenter mt-10">HELP US...</h5>
-    <img src='../../public/helpme.png' className="-mt-10 -mb-5 w-100 h-100 ml-60 "/>
+    
+    <img src='/kittens.png' className=""/>
   </div>
   <div>
-    <h2 className="text text-2xl indent-8  leading-loose mt-20 ml-5 mr-40 mb-8">Your generous contribution can make a difference in the lives of pets in need and help them find their forever homes. 
-    By donating, you will join other animal lovers who share the same mission of providing a safe haven for all pets. 
-    You can donate one time or sponsor a pet.
-    <br></br>
-    <a className='font-bold italic'>JOIN OUR COMMUNITY!</a>
+    <h5 className="titleRight pr-20">HELP US!</h5>
+    <h2 className="text pr-20 text-justify">Your generous contribution can make a real difference in the lives of pets in need, helping them find their forever homes and providing them with a safe and loving environment. </h2>
+    <br />
+    <h2 className="text pr-20 text-justify">
+      By donating, you'll be joining other animal lovers who share the same mission of creating a world where every pet can thrive. You can choose to make a one-time donation, or sponsor a pet to support their ongoing care. <a className='font-bold italic'>JOIN OUR COMMUNITY</a>  today and be a part of this important work!
     </h2>
+    <br />
     <Link to ="/">
-      <button className="buttonSmallBlack uppercase inline-block py-2 px-4 mr-20 rounded">SPONSOR A PET</button> 
+      <button className="btn btn-primary shadow uppercase inline-block py-2 px-4 mr-20 rounded">SPONSOR A PET</button> 
     </Link> 
     <Link to='/donate'>
-     <button className="buttonSmallBlack uppercase inline-block py-2 px-4 mr-20 rounded">DONATE FOR A ONE TIME</button>
+     <button className="btn btn-primary uppercase inline-block py-2 px-4 mr-20 rounded">ONE-TIME DONATION</button>
      </Link>
   </div>
   </div>
 
-
-  <div className="mx-auto mt-20 bg-white w-4/5"></div>
-
     {/* FOOTER */}
-      <Footer className="mt-8"/>
+    <div>
+    <Footer className="mt-8"/>
+    </div>
+      
 
     
     </div>
