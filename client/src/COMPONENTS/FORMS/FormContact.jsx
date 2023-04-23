@@ -8,6 +8,8 @@ import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
 import { useEffect } from "react";
+import Swal from 'sweetalert2';
+
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
@@ -36,12 +38,21 @@ const FormContact = () => {
     }, []);
     
     
-    
+    const handleClick = () =>{
+      Swal.fire({
+        title: 'HELP A PET!',
+        text: 'Donate \u2764',
+        imageUrl: '',
+        
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      })
+     }
     
     return (
         <>
         <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> } </div>
-        
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
 
           <div  className='flex flex-col justify-center'> 
@@ -160,7 +171,7 @@ const FormContact = () => {
                   )}/>    
             </div>
             <div className="buttonSubtmit text-center ">
-                <button className=""  type ="submit ">SEND</button>
+                <button onClick={handleClick}className=""  type ="submit ">SEND</button>
             { formSubmit && <p className="succes">Form was successfully submitted</p>}
             </div>
           
@@ -175,7 +186,6 @@ const FormContact = () => {
               <img className='w-[100%] h-full  object-cover' src="perrocomputadora.jpeg" alt="perro en computadora" />
             </div>
         </div>
-
         <div>
           <Footer />
         </div>
