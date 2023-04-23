@@ -1,5 +1,5 @@
 import Home from "./COMPONENTS/HOME/Home";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Landing from "./COMPONENTS/LANDING/Landing";
 import Header from "./COMPONENTS/HEADER/Header";
 import Footer from "./COMPONENTS/FOOTER/Footer";
@@ -17,10 +17,14 @@ import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 import axios from "axios";
 
+
 //Instancia de axios.
 axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
 
 function App() {
+
+  const location = useLocation();
+
   return (
     
     <div className="app">
