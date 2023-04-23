@@ -143,7 +143,7 @@ useEffect(() => {
     {/*CARDS DE ANIMALES EN ADOPCION */}
    
 
-    <div className='flex items-center justify-center '>
+    <div className='flex items-center justify-center pr-10  pl-10'>
         <div className="">
           <PreviewPetsAdoption previewPets={state.petsRandomHome && state.petsRandomHome} />
         </div>

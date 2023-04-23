@@ -9,7 +9,7 @@ const PreviewPetsAdoption = ({ previewPets }) => {
           
           <div className="card card-side bg-base-100 shadow-xl p-3 m-3 h-[40vh]" key={index}>
 
-            <figure className=""> <img className="h-[40vh] w-" src={pet.image} alt={pet.name} /> </figure>
+            <figure> <img className="h-[40vh] w-" src={pet.image} alt={pet.name} /> </figure>
    
           <div className="card-body">
             
