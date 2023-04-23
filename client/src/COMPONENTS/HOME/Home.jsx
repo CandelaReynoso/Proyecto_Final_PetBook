@@ -188,10 +188,6 @@ useEffect(() => {
   </div>
 
 
-          {/* chatbot */}
-
-<Chatbot />
-
 
     <div>
     <Footer className="mt-8"/>

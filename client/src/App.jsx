@@ -14,12 +14,15 @@ import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 import Successfully from "./COMPONENTS/DONATION/Successfully";
-
+import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
+import axios from "axios";
 
 
 function App() {
   return (
+    
     <div className="app">
+      <Chatbot />
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
