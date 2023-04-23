@@ -102,7 +102,10 @@ function handleCredentialResponse(response){
     const data = await response.json();
 
     if (response.ok) {
+      //console.log(response)
+      console.log(data)
       localStorage.setItem('token', data.token);
+      localStorage.setItem('id', data.user.id);
       navigate('/home');
     } else {
       alert(data.msg);
@@ -111,9 +114,9 @@ function handleCredentialResponse(response){
 
   return (
     <div 
-    className='h-fit w-fit'>
+    className='w-fit max-h-fit'>
     <div 
-    className='bg-gray-100 flex flex-col justify-center'>
+    className='bg-gray-100 flex flex-col justify-center max-h-fit'>
     
     <form onSubmit={handleSubmit} 
     className='max-w-[30rem] w-full mx-auto rounded-lg bg-white  p-4'> 
