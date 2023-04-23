@@ -98,9 +98,16 @@ const FormContact = () => {
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'Custom image',
+                showCancelButton: true,
+                confirmButtonText: 'Yes!',
+                cancelButtonText: 'Not Now!',
+                background: '#9ddcab',
+               
               }).then((result) => {
                 if (result.isConfirmed) {
                   navigate("/donate");
+                }else if (result.dismiss === Swal.DismissReason.cancel) {
+                  navigate("/home");
                 }
               });
               setFormSubmit(true);
