@@ -12,9 +12,11 @@ import Donations from './COMPONENTS/DONATION/Donations';
 import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
+
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption';
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Successfully from "./COMPONENTS/DONATION/Successfully";
+
 
 function App() {
   return (
@@ -35,7 +37,7 @@ function App() {
         <Route path="/FormHistory" element={<FormHistory /> } />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
-        
+
       </Routes>
     </div>
   );

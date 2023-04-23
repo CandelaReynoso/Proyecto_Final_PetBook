@@ -56,12 +56,23 @@ const allLogicPetsController = async ({ name, specie, gender, size, weight, age,
   }
 
   if (name) {
+    let uper = name.charAt(0).toUpperCase() + name.slice(1);;
+    let lower = name.charAt(0).toLowerCase() + name.slice(1);;
     if (sort && typeOrder) {
       response = await Pet.findAndCountAll({
         where: {
-          name: {
-            [Op.startsWith]: name,
-          },
+          [Op.or]: [
+            {
+              name: {
+                [Op.startsWith]: uper,
+              },
+            },
+            {
+              name: {
+                [Op.startsWith]: lower,
+              },
+            },
+          ],
         },
         order: [[typeOrder, sort]],
         distinct: true,
@@ -71,9 +82,18 @@ const allLogicPetsController = async ({ name, specie, gender, size, weight, age,
     } if(!sort && !typeOrder){
       response = await Pet.findAndCountAll({
         where: {
-          name: {
-            [Op.startsWith]: name,
-          },
+          [Op.or]: [
+            {
+              name: {
+                [Op.startsWith]: uper,
+              },
+            },
+            {
+              name: {
+                [Op.startsWith]: lower,
+              },
+            },
+          ],
         },
         distinct: true,
         limit,
@@ -97,7 +117,8 @@ const allLogicPetsController = async ({ name, specie, gender, size, weight, age,
   prevPage : page <= 0? null : parseInt(page)- 1,
   nextPage : page >= Math.ceil(response.count / parseInt(pageSize)) -1? null : parseInt(page) +1 ,
   data : response.rows,
-  params:querys
+  params:querys,
+  pageSize: pageSize
  }
  
  return pagination;
