@@ -24,12 +24,33 @@ const Pagination = () => {
     dispatch(getPets(`?${createSearchParams(p)}`));
    
   };
+  
+  const handlerStart = () =>{
+    if (state.pets.prevPage === null) return;
+    let p = state.pets.params;
+    p.page = 0;
+    dispatch(getPets(`?${createSearchParams(p)}`));
+  }
+  
+  const handlerEnd = () =>{
+    if (state.pets.nextPage === null) return;
+    let p = state.pets.params;
+    p.page = Math.ceil(state.pets.count / state.pets.pageSize -1);
+    dispatch(getPets(`?${createSearchParams(p)}`));
+  }
+  
 
   return (
     <div>
      
       <div class="flex items-center justify-center ">
         <div class="flex justify-center items-center space-x-4">
+        <div
+            onClick={handlerStart}
+            class="border rounded-md bg-gray-100 px-2 py-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
+          >
+            inicio
+          </div>
           <div
             onClick={handlerPrev}
             class="border rounded-md bg-gray-100 px-2 py-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
@@ -45,6 +66,12 @@ const Pagination = () => {
           >
             Next
           </div>
+          <div
+            onClick={handlerEnd}
+            class="border rounded-md bg-gray-100 px-2 py-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm"
+          >
+            fin
+          </div>
         </div>
       </div>
     </div>
@@ -53,15 +80,4 @@ const Pagination = () => {
 
 export default Pagination;
 
-// const handlerNext = () => {
-//   if (state.pets.nextPage === null) return;
-//   let params = { page: state?.pets?.nextPage };
-//   if(state.pets.params.hasOwnProperty("name")){
-//   let p = {...state.pets.params}
-//   console.log(p);
-//   dispatch(getPets(state?.pets?.params))
-//   }
-//   let p = {...state.pets.params}
-//   console.log(p);
-//   dispatch(getPets(`?${createSearchParams(params)}`));
-// };
+

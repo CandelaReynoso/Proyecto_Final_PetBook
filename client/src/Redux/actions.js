@@ -3,25 +3,29 @@ import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
-  SEND_EMAIL
-
+  GET_PET_NAME,
+  SET_PET_NAME,
+  SEND_EMAIL,
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
- 
+  console.log(params);
   try {
     if (params) {
       const res = await axios.get(`http://localhost:3001/pets${params}`);
-      if(res.data.data.length === 0){
-       window.alert("ops algo salio mal")
-       return
+      if (res.data.data.length === 0) {
+        window.alert(`no search results pleace try another search/filter,
+if you try to sort in ascending or descending direction
+you need to specify that you want to 
+"sort by" and "order in away" and vice versa`);
+        return;
       }
       return dispatch({
         type: GET_PETS,
         payload: res.data,
       });
     }
-  
+
     if (!params && !page) {
       const res = await axios.get(`http://localhost:3001/pets`);
       return dispatch({
@@ -33,15 +37,19 @@ export const getPets = (params, page) => async (dispatch) => {
     window.alert(err.message);
   }
 };
- 
 
+export const getNamePets = (petsName) => {
+  return {
+    type: GET_PET_NAME,
+    payload: petsName,
+  };
+};
 
-
-
-
-
-
-
+export const setNamePets = () => {
+  return {
+    type: SET_PET_NAME,
+  };
+};
 
 export const getPetsRandom = () => {
   return async function (dispatch) {
@@ -81,7 +89,6 @@ export const registerUser = (userData) => async (dispatch) => {
   }
 };
 
-
 // export const updateLoginForm = (formData) => {
 //   return {
 //     type: UPDATE_LOGIN_FORM,
@@ -94,39 +101,36 @@ export const registerUser = (userData) => async (dispatch) => {
 export const sendEmail = (name, lastname, email, message) => {
   return new Promise((resolve, reject) => {
     try {
-      const tokenString = localStorage.getItem('token');
-      console.log('tokenString:', tokenString); // add this line
+      const tokenString = localStorage.getItem("token");
+      console.log("tokenString:", tokenString); // add this line
       //const token = JSON.parse(tokenString);
       //if (!tokenString) {
       //  throw new Error('No token found in localStorage');
       //}
-      const headers = { 
-        'Content-Type': 'application/json',
-        'x-token': tokenString // add this line
+      const headers = {
+        "Content-Type": "application/json",
+        "x-token": tokenString, // add this line
       };
-      console.log('headers:', headers); // add this line
-      axios.post('http://localhost:3001/contact', {
-        name,
-        lastname,
-        email,
-        message
-      }, { headers })
-        .then(response => {
+      console.log("headers:", headers); // add this line
+      axios
+        .post(
+          "http://localhost:3001/contact",
+          {
+            name,
+            lastname,
+            email,
+            message,
+          },
+          { headers }
+        )
+        .then((response) => {
           resolve(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response.data);
         });
     } catch (error) {
       reject(error);
     }
   });
-}
-
-
-
-
-
-
-
-
+};
