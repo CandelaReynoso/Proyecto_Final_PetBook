@@ -14,6 +14,7 @@ import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 import Successfully from "./Components/DONATION/Successfully";
+import Shop from "./COMPONENTS/SHOP/Shop";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
+        <Route path="/store" element={<Shop />} />
       
       </Routes>
     </div>
