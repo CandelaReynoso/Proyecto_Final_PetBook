@@ -22,53 +22,65 @@ function Detail() {
 
   return (
     
+    
     <div  className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv] h-[100hv]">
+        
+
+
         <div>
           {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
         </div>
-      {loading ? (
+
+
+        <div className='flex items-center justify-center'>
+
+        {loading ? (
         <p>Loading...</p>
       ) : (
-        
-        <div className="card w-72 bg-base-100 shadow-xl m-4">
-          <h3 className="card-title text-black font-['candara']">{pet.name}</h3>
-          <div>
-            <img className="card-body" src={pet.image} alt={pet.name} />
-          </div>
-          
-          <Link to='/home'>
-          <img className = {styles.imgFoot}  src="../../../public/patita3.png" alt="patita de perro" />
-          </Link>
-        </div>
-      )}
-      <br>
-      </br>
-      <div className="flex justify-center">
-  <ul className="text bg-primary w-fit rounded-full max-w-lg mx-auto">
-    <div className="text-center">
-      <li>Specie: {pet.specie}</li>
-      <li>Gender: {pet.gender}</li>
-      <li>Size: {pet.size}</li>
-      <li>Weight: {pet.weight} kg</li>
-      <li>Age: {pet.age} years</li>
-      <li>Adopted: {pet.adopted ? 'Yes' : 'No'}</li>
-    </div>
-  </ul>
-</div>
 
-        <Link to = "/FormAdoption">
-        <div className="flex justify-end w-full">
-          <button className="btn btn-primary sm:w-auto">ADOPT A PET!</button>
+            <div className="card lg:card-side bg-base-100 shadow-xl w-1/2">
+
+                      <figure><img className="card-body" src={pet.image} alt={pet.name} /></figure>
+                      <div className="card-body">
+                        <h2 className="card-title titleCenter">{pet.name}</h2>
+                        <ul className="text bg-primary w-fit rounded-full max-w-lg mx-auto">
+                          <div className="text-center">
+                            <li>Specie: {pet.specie}</li>
+                            <li>Gender: {pet.gender}</li>
+                            <li>Size: {pet.size}</li>
+                            <li>Weight: {pet.weight} kg</li>
+                            <li>Age: {pet.age} years</li>
+                            <li>Adopted: {pet.adopted ? 'Is already adopted' : 'He is still waitng for a home'}</li>
+                          </div>
+                        </ul>
+                        <Link to='/donate'>
+                          <img className = {styles.imgFoot}  src="../../../public/patita3.png" alt="patita de perro" />
+                        </Link>
+                        <br />
+                        <br />
+
+                        <div className=''>
+                        <div className="card-actions justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Adopt {pet.name}</button>
+                        </div>
+
+                        <div className="card-actions  justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Sponsor {pet.name}</button>
+                        </div>
+
+                        </div>
+
+
+                        
+                      </div>
+             </div>
+
+          )}
+  
         </div>
-        </Link>
-        <br>
-        </br>
-        <div className="flex justify-end w-full">
-       <Link to ="/donate">
-        <button className="btn btn-primary">DONATE!</button>
-       </Link>
-       </div>
-       <div><Footer/></div>
+
+
+       <div className=' mt-24'><Footer/></div>
     </div>
     
   );
