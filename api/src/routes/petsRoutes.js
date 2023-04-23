@@ -9,12 +9,13 @@ const {
   handleFilter,
   handlerAdoptionForm
 } = require("../handlers/PetsHandler");
+const upload = require("../utils/multer")
 
 const petsRoutes = Router();
 
 petsRoutes.get('/', handlerGetAllPets);
 petsRoutes.get('/filter', handleFilter);
-petsRoutes.get('/adopt', handlerAdoptionForm);
+petsRoutes.post('/adopt', handlerAdoptionForm);
 
 
 petsRoutes.get("/name?", handlerPets);

@@ -1,47 +1,78 @@
-import React from 'react';
-import {useState} from 'react';
-import {useDispatch,useSelector} from 'react-redux';
-import { getPetsByName} from '../../Redux/actions';
-
+import React, { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { createSearchParams } from "react-router-dom";
+import { getPets, getNamePets, setNamePets } from "../../Redux/actions.js";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const state = useSelector((state)=>state)
-  console.log(state.pets);
- 
-  const [name, setName] = useState("");//representa el valor del texto en la barra de busquedad
-  
-  
+  const [name, setName] = useState("");
 
-  function handleInputChange(e) {//se ejecuta cuando escribo algo, actualiza el estado name
-    e.preventDefault();
+  const searchNamesResults = async (value) => {
+    try {
+      let response = await axios.get(
+        `http://localhost:3001/pets/name?name=${value}`
+      );
+      if (response.data.length) {
+        dispatch(getNamePets(response.data));
+      } else {
+        return;
+      }
+    } catch (error) {
+      return window.alert(error.message);
+    }
+  };
+
+  function handleInputChange(e) {
     setName(e.target.value);
-  }
- 
-  
-  function handleSubmit(e) {//se ejecuta cuando hacemos click en el boton de busquedad
-    e.preventDefault();
-    if (!name) { //si no ponemos un name ->aparece el msg
-      return alert("You must enter a name");
+    searchNamesResults(e.target.value);
+   }
+   
+   useEffect(()=>{
+    if(!name){
+      dispatch(setNamePets())
+      }
+   },[dispatch,name,setNamePets])
 
-    } else {
-      dispatch(getPetsByName(name));//si name no esta vacio->despacha una action->llama a getVideogamesByName pasando name
-      setName("");//actualiza el estado name a una cadena vacia y borra el contenido en la barra
-      document.getElementById("search").value = "";
+  function handleSubmit() {
+    try {
+      if (!name) {
+        return alert("You must enter a name");
+      } else {
+        const params = { name };
+        dispatch(getPets(`?${createSearchParams(params)}`));
+        setName("");
+      }
+    } catch (error) {
+      return window.alert(error.message);
     }
   }
 
   return (
-    <div >
+    <nav>
       <input
         id="search"
         type="text"
+        name="name"
+        value={name}
+        autocomplete="off"
         placeholder="  Type here..."
         onChange={(e) => handleInputChange(e)}
       />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        SEARCH🔎
-      </button>
-    </div>
+      <button onClick={(e) => handleSubmit(e)}>SEARCH🔎</button>
+    </nav>
   );
 }
+
+// console.log(value)
+// fetch(`http://localhost:3001/pets/name?name=${value}`)
+//   .then((response) => response.json())
+//   .then((petsName) => {
+//   console.log(petsName);
+
+//   dispatch(getNamePets(petsName))
+//   })
+//   .catch(error =>{
+//   return console.log(error);
+//   })

@@ -1,17 +1,31 @@
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,GET_PET_BY_NAME} from './types';
+
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME} from './types';
+
 
 const initialState = {
+  adoptionRequest: null,
+  error: null,
+
   pets: [],
   petsRandomHome :[],
   pet:{},
-  
+  namePets : [],
+
   profile: {           //perfil de usuario
     nickname: '',
+  },
+
+  loginForm:{
+
     email: '',
     password: '',
-    role: '',
   },
-  formSubmitted: false  //enviado de formulario de registro
+  formSubmitted: false,  //enviado de formulario de registro
+
+  //Form de Contacto
+loading: false,
+success: null,
+error: null
 
 };
 
@@ -32,11 +46,42 @@ const reducer = (state = initialState, action) => {
       ...state,
       petsRandomHome: action.payload
       }
-      case GET_PET_BY_NAME:
+      
+      case GET_PET_NAME:
       return{
       ...state,
-      pets: action.payload
+      namePets: action.payload
       }
+      
+      case SET_PET_NAME:
+      return {
+      ...state,
+      namePets: []
+      }
+
+     
+      case SEND_EMAIL:
+          if (action.error) {
+          return {
+          ...state,
+          loading: false,
+          success: null,
+          error: action.error
+          };
+          } else {
+          return {
+          ...state,
+          loading: false,
+          success: action.payload,
+          error: null
+          };
+          }
+          case SEND_ADOPTION_REQUEST:
+            return {
+              ...state,
+              adoptionRequest: action.payload,
+              error: null,
+            };
       
     default: {
       return {
@@ -45,6 +90,7 @@ const reducer = (state = initialState, action) => {
     }
   }
 };
+
 
 
 export default reducer

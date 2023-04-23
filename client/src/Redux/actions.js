@@ -1,55 +1,72 @@
 import axios from "axios";
+
+
 import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
-  GET_PET_BY_NAME
+  GET_PET_NAME,
+  SET_PET_NAME,
+  
+  SEND_EMAIL,
+  SEND_ADOPTION_REQUEST
+
 } from "./types";
 
-export const getPets = () => async (dispatch) => {
+export const getPets = (params, page) => async (dispatch) => {
+  console.log(params);
   try {
-    const res = await axios.get("/pets/name?");
-    dispatch({
-      type: GET_PETS,
-      payload: res.data,
-    });
+    if (params) {
+      const res = await axios.get(`http://localhost:3001/pets${params}`);
+      if (res.data.data.length === 0) {
+        window.alert(`no search results pleace try another search/filter,
+if you try to sort in ascending or descending direction
+you need to specify that you want to 
+"sort by" and "order in away" and vice versa`);
+        return;
+      }
+      return dispatch({
+        type: GET_PETS,
+        payload: res.data,
+      });
+    }
+
+    if (!params && !page) {
+      const res = await axios.get(`http://localhost:3001/pets`);
+      return dispatch({
+        type: GET_PETS,
+        payload: res.data,
+      });
+    }
   } catch (err) {
-    console.error(err);
+    window.alert(err.message);
   }
 };
 
-export const getPetsByName = (name) => {
+export const getNamePets = (petsName) => {
+  return {
+    type: GET_PET_NAME,
+    payload: petsName,
+  };
+};
 
-  return async function (dispatch) {
-   const response = await  axios.get(`/pets/name?name=${name}`)
-   console.log(response.data);
-   return dispatch({
-   type : GET_PET_BY_NAME,
-   payload : response.data
-   })
+export const setNamePets = () => {
+  return {
+    type: SET_PET_NAME,
   };
 };
 
 export const getPetsRandom = () => {
   return async function (dispatch) {
-    const largePets = await axios.get("/pets/name?");
-    //peticion para poder tener la propiedad count de largePets.data
-    //count es la cantidad total de objetos es como el .length de un array
-    //esta propiedad viene asi por la paginacion hecha con sequelize del back
-    // las propiedades/objetos/pets vienen en una propiedad llamada rows
-    //tip siempre hacer console log a la response .data de cualquier actions para entender
-    //que es lo que te esta llegando
-    //pd no entren en panico analisen las cosas siempre
-
+    const largePets = await axios.get("http://localhost:3001/pets");
     const response = await axios.get(
-      `/pets/name?page=${Math.floor(
+      `http://localhost:3001/pets?page=${Math.floor(
         (Math.random() * largePets.data.count) / 2
-      )}&size=2`
+      )}&pageSize=2`
     );
-
     return dispatch({
       type: GET_PETS_RAMDON_HOME,
-      payload: response.data.rows,
+      payload: response.data.data,
     });
   };
 };
@@ -67,17 +84,76 @@ export const fetchPetDetailSuccess = (id) => async (dispatch) => {
 };
 
 export const registerUser = (userData) => async (dispatch) => {
-  console.log(userData)
+  console.log(userData);
   try {
-    const res = await axios.post(`/users`, userData);
-    
+    const res = await axios.post(`http://localhost:3001/users`, userData);
+
     console.log(res.data);
   } catch (err) {
     console.error(err);
   }
 };
 
+// export const updateLoginForm = (formData) => {
+//   return {
+//     type: UPDATE_LOGIN_FORM,
+//     payload: formData,
+//   };
+// };
 
+// Acción que maneja los emails que se envian al admin a traves del FORMCONTACT
+//con promesa
+export const sendEmail = (name, lastname, email, message) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const tokenString = localStorage.getItem("token");
+      console.log("tokenString:", tokenString); // add this line
+      //const token = JSON.parse(tokenString);
+      //if (!tokenString) {
+      //  throw new Error('No token found in localStorage');
+      //}
+      const headers = {
+        "Content-Type": "application/json",
+        "x-token": tokenString, // add this line
+      };
+      console.log("headers:", headers); // add this line
+      axios
+        .post(
+          "http://localhost:3001/contact",
+          {
+            name,
+            lastname,
+            email,
+            message,
+          },
+          { headers }
+        )
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export const sendAdoptionRequest = (userEmail, petName, message) => async (dispatch) => {
+  try {
+    const response = await axios.post('http://localhost:3001/pets/adopt', {
+      userEmail,
+      petName,
+      message,
+      date: new Date(),
+    });
+    dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+  } catch (error) {
+    console.error(error);
+    // handle error
+  }
+};
 
 
 
