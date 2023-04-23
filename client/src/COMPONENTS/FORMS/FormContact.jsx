@@ -42,8 +42,7 @@ const FormContact = () => {
       Swal.fire({
         title: 'HELP A PET!',
         text: 'Donate \u2764',
-        imageUrl: '',
-        
+        imageUrl:'https://dam.ngenespanol.com/wp-content/uploads/2019/10/perros-personalidad-2-770x395.jpg',
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Custom image',
@@ -171,7 +170,7 @@ const FormContact = () => {
                   )}/>    
             </div>
             <div className="buttonSubtmit text-center ">
-                <button onClick={handleClick}className=""  type ="submit ">SEND</button>
+                <button onClick={handleClick} className=""  type ="submit ">SEND</button>
             { formSubmit && <p className="succes">Form was successfully submitted</p>}
             </div>
           
