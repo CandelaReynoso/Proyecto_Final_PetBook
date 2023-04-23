@@ -42,9 +42,9 @@ const FormContact = () => {
         <>
         <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> } </div>
         
-        <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full overflow-auto'>
 
-          <div  className='flex flex-col justify-center'> 
+          <div  className='flex flex-col justify-center h-fit mb-[30rem] sm:mb-0'> 
             <div >
               <h1 className="subtitle">CONTACT US.</h1>
             </div>
@@ -104,7 +104,7 @@ const FormContact = () => {
 
                 {( {errors}  ) => (
                   
-            <Form className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4'>
+            <Form className='max-w-[400px] w-full h-fit mx-auto rounded-lg bg-white  p-4 mb-16 sm:mb-0'>
                 {console.log(errors)}
           
             <div className='divForminput'>
@@ -113,7 +113,7 @@ const FormContact = () => {
                 id="name" 
                 name="name" 
                 className= 'inputs'
-                placeholder= {user.name ? user.name : "Write you name, plase"}
+                placeholder= {user.name ? user.name : "Write you name, please"}
                 />
                 <ErrorMessage name="name" component={()=> (
                     <div className="text-error">{errors.name}</div>
@@ -126,7 +126,7 @@ const FormContact = () => {
                 type ="text" 
                 id="lastname" 
                 name="lastname" 
-                placeholder = "Write your last name, plase" 
+                placeholder = "Write your last name, please" 
                 className='inputs'
                 />
                 <ErrorMessage name="lastname" component={()=> (
@@ -176,7 +176,7 @@ const FormContact = () => {
             </div>
         </div>
 
-        <div>
+        <div >
           <Footer />
         </div>
 

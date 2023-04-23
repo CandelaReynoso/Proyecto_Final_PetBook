@@ -4,256 +4,278 @@ import Footer from '../FOOTER/Footer';
 import Header  from '../HEADER/Header';
 import HeaderLogin from '../HEADER/HeaderLogin';
 import { AiOutlineGithub, AiFillLinkedin } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 
 
 function About() {
   return (
-<div>
+<div className="bg-[url('/backabout.png')] bg-no-repeat w-screen">
 
-    <div>
+{/* HEADER */}
+  <div>
       {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+  </div>
+
+
+{/* THE ONG */}
+  <div className='flex items-center justify-center'>  
+    <div className="card w-[56rem] shadow-xl image-full ">
+      
+      <div className="card-body">
+        <h2 className="titleRight px-8">ABOUT THE ONG</h2>
+        <p className='text text-justify px-8'>
+          <b>PETBOOK</b> is a non-profit organization dedicated to the care and protection of animals. Our mission is to provide shelter, medical attention, and a loving environment for abandoned, abused, or neglected pets, and to find them safe and permanent homes through adoption.
+          We believe that every animal deserves to be treated with respect, compassion, and dignity, regardless of their species, breed, or condition. We work tirelessly to rescue animals from harm, rehabilitate them if necessary, and match them with responsible and caring owners who will give them the love and care they deserve.
+          Our team of volunteers and staff includes experienced veterinarians, animal behaviorists, and trained caregivers who are committed to ensuring the physical and emotional well-being of our animals. We provide them with nutritious food, clean living spaces, exercise, and socialization, and we strive to meet their individual needs and preferences. </p>
+          <br />        
+          <p className='text text-justify px-8'>
+          Thanks to the generous support of our donors, sponsors, and partners, we have been able to save the lives of thousands of animals and make a meaningful impact in our community. We are grateful for your support and invite you to join us in our mission to create a more compassionate and just world for all creatures great and small.
+          </p>
+        <div className="card-actions justify-end items-center">
+          <Link to='/donate'> <button className="btn btn-primary min-h-0 max-h-5 text-xs">CLICK HERE TO HELP US</button> </Link>
+          <img className='w-[10rem]' src="/perritoOreja.png" alt="" />
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br />
+
+{/* THE SITE */}
+  <img src='../../public/imagenAbout.png' className='w-1/2 h-30 block mx-auto'/>
+  <div className='flex items-center justify-center'>
+      <div className="card w-[56rem] shadow-xl image-full">
+        <div className='card-body'>
+      
+        <h2 className="titleLeft px-8">About the SITE </h2>
+        <p className='text text-justify px-8'>
+        <b>PETBOOK.COM</b> is a modern and user-friendly website that connects pets in need of a home with loving families. The platform is designed to facilitate the pet adoption process and offers a wide variety of pet profiles available for adoption. Users can create their own profile and browse detailed information about the pets, such as age, breed, size, personality, geographical location, and special requirements. </p>
+          <br />
+        <p className='text text-justify px-8'>
+        The site was created as part of the final project for the programming bootcamp <Link to='http://www.soyhenry.com'><i>SoyHENRY</i></Link>. Our team of developers used  state-of-the-art technologies such as React, Redux, Sequelize, Node, JavaScript, CSS, and Express. These tools allow us to create a fast, reliable, and responsive web application that delivers a seamless user experience. We also prioritize security and data protection, ensuring that all user information is encrypted and stored safely. </p>
+        </div>     
+      </div>
+  </div>
+
+
+{/* THE TEAM */}
+    <div className='bg-primary rounded-full mt-3 p-6 '>
+      <h2 className='titleRight mr-20'>About THE DEVELOPER TEAM </h2>
+      <p className='text ml-10 font-semibold'>Scroll over the team photos and know more about them!!!</p>
+
+
+
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 ">
+
+       {/* SOFI */}
+      <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+                    <img alt="Developer" src="/sofimorita.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                    <div className="relative p-2 sm:p-6 lg:p-6">  
+                      <div className="mt-20 sm:mt-20 lg:mt-20">
+                        <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                        <p className="text-xl font-bold text-white sm:text-2xl">Sofi & Morita</p>
+                        <br />
+                        <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Front-End team</p>
+                        
+                          <p className="text-sm text-white">
+                            Sofi is a full stack developer, always eager to learn and improve her skills, and is constantly staying up-to-date with the latest trends front-end development.
+                          </p>
+                          <br />
+                          <p className="text-sm text-white">
+                          Morita is a lovable dog who never fails to bring a smile to Sofi's face, whether they're going for a walk or snuggling up on the couch
+                          </p>
+                          <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                          <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+                      </div>
+                    </div>
+                    </div>
+                  </a>  
+                
+       </div>
+
+        {/* MATI */}
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+            <img alt="FOTO MATI" src="" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+            <div className="relative p-2 sm:p-6 lg:p-6">  
+              <div className="mt-20 sm:mt-20 lg:mt-20">
+                <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                <p className="text-xl font-bold text-white sm:text-2xl">MATI & DOG</p>
+                <br />
+                <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Front-End team</p>
+                
+                  <p className="text-sm text-white">
+                    Mati es a FullStack developer. He is a highly analytical thinker who approaches every problem with a methodical and detail-oriented mindset. 
+                  </p>
+                  <br />
+                  <p className="text-sm text-white">
+                    El dog es--.   
+                  </p>
+                  <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                  <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+              </div>
+            </div>
+            </div>
+          </a>  
+        
+        </div>
+     
+        {/* CANDE */}
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+                    <img alt="Developer" src="/candenino.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                    <div className="relative p-2 sm:p-6 lg:p-6">  
+                      <div className="mt-20 sm:mt-20 lg:mt-20">
+                        <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                        <p className="text-xl font-bold text-white sm:text-2xl">Cande & Nino</p>
+                        <br />
+                        <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Front-End team</p>
+                        
+                          <p className="text-sm text-white">
+                            Cande is a full stack developer, inclined for front-end. Always committed to delivering top-quality work.
+                          </p>
+                          <br />
+                          <p className="text-sm text-white">
+                          Nino is an energetic and adventurous pup who loves nothing more than long walks and exploring new places with his human
+                          </p>
+                          <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                          <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+                      </div>
+                    </div>
+                    </div>
+                  </a>  
+                
+        </div>
+
+        {/* NIKI */}       
+              
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+            <img alt="Developer" src="/nikimilo.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+            <div className="relative p-2 sm:p-6 lg:p-6">  
+              <div className="mt-20 sm:mt-20 lg:mt-20">
+                <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                <p className="text-xl font-bold text-white sm:text-2xl">Niki & Milo</p>
+                <br />
+                <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Front-End team</p>
+                
+                  <p className="text-sm text-white">
+                    Nikki is a full stack developer, passionate for front-end, web desing, UX and UI. With a keen eye for design and a love of creating beautiful, user-friendly web experiences.
+                  </p>
+                  <br />
+                  <p className="text-sm text-white">
+                    Milo is the most curious and loving cat, who always sleeps on top of Nikki’s  keyboard.  
+                  </p>
+                  <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                  <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+              </div>
+            </div>
+            </div>
+          </a>  
+        
+        </div>
+
+
+        {/* LUCAS */}
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+                    <img alt="Developer" src="/lucasyrandolf.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                    <div className="relative p-2 sm:p-6 lg:p-6">  
+                      <div className="mt-20 sm:mt-20 lg:mt-20">
+                        <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                        <p className="text-xl font-bold text-white sm:text-2xl">Lucas & Randolf</p>
+                        <br />
+                        <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Back-End team</p>
+                        
+                          <p className="text-sm text-white">
+                            Lucas is a full stack developer, he is a talented and experienced back-end developer with a deep passion for coding and problem-solving.
+                          </p>
+                          <br />
+                          <p className="text-sm text-white">
+                          Randolf is a lovable and energetic dog who brings joy and laughter to everyone he meets. he likes to go out for walks with Lucas, enjoying the fresh air and sunshine.
+                          </p>
+                          <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                          <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+                      </div>
+                    </div>
+                    </div>
+                  </a>  
+                
+        </div>
+
+        {/* RAUL */}
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+                    <img alt="Raul Foto" src="/.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                    <div className="relative p-2 sm:p-6 lg:p-6">  
+                      <div className="mt-20 sm:mt-20 lg:mt-20">
+                        <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                        <p className="text-xl font-bold text-white sm:text-2xl">Raúl & perro</p>
+                        <br />
+                        <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Back-End team</p>
+                        
+                          <p className="text-sm text-white">
+                            Raúl is a full stack developer, is a highly creative thinker who enjoys exploring new technologies and experimenting with different approaches to problem-solving
+                          </p>
+                          <br />
+                          <p className="text-sm text-white">
+                         lalalallalaa
+                          </p>
+                          <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                          <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+                      </div>
+                    </div>
+                    </div>
+                  </a>  
+                
+        </div>
+<div>
+  
+</div>
+        {/* CAMILO */}
+        <div class="p-4">
+        <a className="group relative bg-black h-5/6 lg:h-full flex justify-center items-center">
+                    <img alt="Camilo-foto" src="/.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                    <div className="relative p-2 sm:p-6 lg:p-6">  
+                      <div className="mt-20 sm:mt-20 lg:mt-20">
+                        <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
+                        <p className="text-xl font-bold text-white sm:text-2xl">Camilo & pet</p>
+                        <br />
+                        <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Back-End team</p>
+                        
+                          <p className="text-sm text-white">
+                            Lucas is a full stack developer, he is a hard-working back-end developer who is always striving to improve his skills and deliver high-quality work.
+                          </p>
+                          <br />
+                          <p className="text-sm text-white">
+                          lalalalalalalala.
+                          </p>
+                          <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
+                          <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>
+                      </div>
+                    </div>
+                    </div>
+                  </a>  
+                
+        </div>
+      </div>
+
+
     </div>
 
-<div className="mx-auto mt-10 bg-white w-4/5"></div>
-
-<div className="columns-2 gap-0 bg-green-200">
-
-    <h5 className="titleCenter mt-40">ABOUT US...</h5>
-
-    <h2 className="text text-2xl indent-8 leading-loose mt-20 ml-5 mr-60 mb-40">We are Henry students who are passionate about animals. This Web application corresponds to the final project of the Full Stack Developer degree developed from the knowledge learned in the bootcamp. Its objective is to connect pets with people so that they can adopt them and provide them with a home. We also offer the possibility of making donations and sponsoring a pet to improve their quality of life. We also have an online store where you can buy products or redeem your points, obtained by donations.</h2>
-
-</div>
-
-<img src='../../public/imagenAbout.png' className='w-1/2 h-30 block mx-auto'/>
-
-<div className="flex flex-wrap bg-green-200">
-
-{/* SOFIA */}
-
-<div className="grid gap-4 text-center md:grid-cols-3 lg:gap-12">
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10'>
-<div className="mb-12 md:mb-0">
-<div className="mb-6 flex justify-center">
-    <img src='https://avatars.githubusercontent.com/u/113480481?s=400&u=0dca69a0e579b6b35cfc192e6b01f5058cd2aac5&v=4' alt="Sofia Costamagna"
-     className='mx-24 mt-10 w-60 h-60 rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl text-black font-semibold">Sofia Costamagna</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-  <a href="https://github.com/sofiacostamagna" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/sofia-costamagna" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-    </svg>
-    Sofia is a full stack developer. She loves the front-end. She is detailed and you pursue her goals until you achieve them.</p>    
-</div>
- </div>
-
-    {/* CANDE */}
-    <div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 space-x-2'>
-     <div className="mb-12 md:mb-0">
-        <div className="mb-6 flex justify-center">
-        <img src="https://avatars.githubusercontent.com/u/103840476?v=4" alt="Maria Candela Reynoso"
-         className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
-         </div>
-        <h5 className="mb-4 text-xl font-semibold text-black">Maria Candela Reynoso</h5>
-        <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-        <div className="flex items-center justify-center">
-  <a href="https://github.com/CandelaReynoso" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/candelareynoso/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-      </svg>
-      Maria is a Full Stack Developer. Her passion is the front-end, she is very hard-working and studious.</p>
-   </div>   
-</div>
-
-{/* LUCAS */}
-
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 space-x-1'>
- <div className="mb-12 md:mb-0">
-     <div className="mb-6 flex justify-center">
-     <img src="https://avatars.githubusercontent.com/u/113627748?v=4" alt="Lucas Nahuel Salvatierra"
-         className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl font-semibold text-black">Lucas Nahuel Salvatierra</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-     <a href="https://github.com/LucasNS1759" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-     <a href="https://www.linkedin.com/in/lucas-nahuel-salvatierra-862604260/"className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-      </svg>
-      Lucas is a full stack developer. He works well in both front-end and back-end and is very passionate about his work.</p>
-</div>
-</div>
-</div>
-
-{/* NICOLE */}
 
 
-<div className="grid gap-4 text-center md:grid-cols-2 lg:gap-12">
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mt-10 ml-80 mr-60 mb-25'>
-<div className="mb-12 md:mb-0 ">
-<div className="mb-6 flex justify-center">
-    <img src='https://media.licdn.com/dms/image/C4D03AQFxpF0INnJ7jw/profile-displayphoto-shrink_800_800/0/1654212246852?e=1687392000&v=beta&t=i6XAyFeZk318ng5LZh5VTWwxjZumWvxOH2cesSa9DJc' alt="Nicole Burgos Vega" 
-     className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl font-semibold text-black">Nicole Burgos Vega</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-  <a href='https://github.com/nikkiburgos' className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/nburgosvega/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-    </svg>
-    Nikki is a full stack developer, passionate for front-end, web desing, UX and UI.</p>
-
-</div>
- </div>
-
-{/* MATIAS */}
-
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mt-10 ml-60 mr-80 mb-25'>
- <div className="mb-12 md:mb-0">
-     <div className="mb-6 flex justify-center">
-     <img src="https://media.licdn.com/dms/image/D4D03AQFfQpXV6z8a9Q/profile-displayphoto-shrink_200_200/0/1681947110510?e=1687392000&v=beta&t=sD9XdtiZhUJ69tkI3Gs96YW36iLG1bHJ5oUaX4p4gUs"  alt="Matias Eduardo Henriquez" 
-         className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl font-semibold text-black">Matias Eduardo Henriquez</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-     <a href="https://github.com/trechiStrix" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-     <a href="https://www.linkedin.com/in/mat%C3%ADas-henr%C3%ADquez-7a435925a/"className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-      </svg>
-      Matias is a Full Stack Developer. He performs very well in front-end and in back-end. He lover of new challenges and projects.</p>
-</div>
-</div>
-</div>
-
-
-
-{/* RAUL */}
-
-<div className="grid gap-4 text-center md:grid-cols-3 lg:gap-12">
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 mb-10'>
-<div className="mb-12 md:mb-0">
-<div className="mb-6 flex justify-center">
-    <img src='https://avatars.githubusercontent.com/u/107262829?v=4'alt="Raul Humberto Diaz Fernandez"
-     className='mx-24 mt-10 w-60 h-60  rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl font-semibold text-black">Raul Humberto Diaz Fernandez</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-  <a href="https://github.com/rulhdiazf" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-  <a href="https://www.linkedin.com/in/rauldf/" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-    <p className="mx-10 mt-5 mb-5 text-center text-base text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-    </svg>
-    Raul is a Full Stack Developer. Passionate about the back-end, he is very detailed and never gives up until he reaches his goal.</p>
-</div>
- </div>
-
-    {/* CAMILO */}
-    <div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 mb-10 space-x-2'>
-     <div className="mb-12 md:mb-0">
-        <div className="mb-6 flex justify-center">
-        <img src="" alt="Camilo Lopez Calvache" 
-         className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
-         </div>
-        <h5 className="mb-4 text-xl font-semibold text-black">Camilo Lopez Calvache</h5>
-        <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-        <div className="flex items-center justify-center">
-  <a href="" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-  <a href="" className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-      </svg>
-      Camilo is a Full Stack Developer. He is passionate about the back-end, but he has no problem working on the front-end. Hardworking and dedicated.</p>
-   </div>   
-</div>
-
-
-{/* ANDRES */}
-
-<div className='bg-white rounded-lg border-2 border-black box-content h-100 w-100 mx-24 mt-10 mb-10 space-x-1'>
- <div className="mb-12 md:mb-0">
-     <div className="mb-6 flex justify-center">
-     <img src="" alt="Andres Aramando Benavidez Lopez" 
-         className='mx-24 mt-10 w-60 rounded-full shadow-lg dark:shadow-black/30' />
- </div>
-    <h5 className="mb-4 text-xl font-semibold text-black">Andres Aramando Benavidez Lopez</h5>
-    <h6 class="mb-4 font-semibold text-black dark:text-primary-500">Full Stack Developer</h6>
-<div className="flex items-center justify-center">
-     <a href="https://github.com/Adresspy" className="text-2xl text-black" target="_blank"><AiOutlineGithub /></a> 
-     <a href=""className="text-2xl text-black" target="_blank"><AiFillLinkedin /></a>
-</div>
-<p className="mx-10 mt-5 mb-5 text-center text-1xl text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        className="inline-block h-7 w-7 pr-2"
-        viewBox="0 0 24 24">
-        <path
-          d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-      </svg>
-      Andres is a Full Stack Developer. His passion is the front-end, design, very detailed.</p>
-</div>
-</div>
-</div>
-</div>
 
 <div className="mx-auto mt-10 bg-white w-4/5"></div>
 
