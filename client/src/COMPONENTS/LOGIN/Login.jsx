@@ -48,6 +48,8 @@ function handleCredentialResponse(response){
   }
 
   useEffect(()=>{
+
+    
     google.accounts.id.initialize({
       client_id: "29807012109-in3jnv9asdchp613plc7ng3mp0oqpq8o.apps.googleusercontent.com",
       callback: handleCredentialResponse
@@ -100,7 +102,10 @@ function handleCredentialResponse(response){
     const data = await response.json();
 
     if (response.ok) {
+      //console.log(response)
+      console.log(data)
       localStorage.setItem('token', data.token);
+      localStorage.setItem('id', data.user.id);
       navigate('/home');
     } else {
       alert(data.msg);
