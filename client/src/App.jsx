@@ -1,5 +1,5 @@
 import Home from "./COMPONENTS/HOME/Home";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Landing from "./COMPONENTS/LANDING/Landing";
 import Header from "./COMPONENTS/HEADER/Header";
 import Footer from "./COMPONENTS/FOOTER/Footer";
@@ -20,11 +20,14 @@ import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 
 
 function App() {
+
+  const location = useLocation();
+
   return (
 
     
     <div className="app">
-      <Chatbot />
+      {location.pathname !== "/" && <Chatbot /> }
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
