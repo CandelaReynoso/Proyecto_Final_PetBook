@@ -1,11 +1,15 @@
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME} from './types';
 
 
 const initialState = {
+  adoptionRequest: null,
+  error: null,
+
   pets: [],
   petsRandomHome :[],
   pet:{},
+  namePets : [],
 
   profile: {           //perfil de usuario
     nickname: '',
@@ -42,6 +46,18 @@ const reducer = (state = initialState, action) => {
       ...state,
       petsRandomHome: action.payload
       }
+      
+      case GET_PET_NAME:
+      return{
+      ...state,
+      namePets: action.payload
+      }
+      
+      case SET_PET_NAME:
+      return {
+      ...state,
+      namePets: []
+      }
 
      
       case SEND_EMAIL:
@@ -60,7 +76,12 @@ const reducer = (state = initialState, action) => {
           error: null
           };
           }
-
+          case SEND_ADOPTION_REQUEST:
+            return {
+              ...state,
+              adoptionRequest: action.payload,
+              error: null,
+            };
       
     default: {
       return {

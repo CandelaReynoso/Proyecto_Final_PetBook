@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
             primary: '#C0F8D1', //tea green
-            secondary:'#FBACBE', //cherry blossom pink 
+            secondary:'#1B2021', //cherry blossom pink 
             base: '#BDCFB5', // ash gray
             accent:'#587B7F', // myrtle green
             neutral:'#1B2021' //eerie black
@@ -30,7 +30,7 @@ export default {
     themes: [{
         mytheme: {
         'primary': "#C0F8D1",
-        'secondary': "#FBACBE",
+        'secondary': "#1B2021",
         'base': "#BDCFB5",
         'accent': "#587B7F",
         'negro': "#1B2021",

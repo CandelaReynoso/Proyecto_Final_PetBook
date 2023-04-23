@@ -23,7 +23,7 @@ app.get('/', (req, res) =>{
         },
         ],
         back_urls: {
-            success: "http://127.0.0.1:5173/",
+            success: "http://127.0.0.1:5173/thanks",
             failure: "http://127.0.0.1:5173/failure",
             pending: "http://127.0.0.1:5173/pending"
         },

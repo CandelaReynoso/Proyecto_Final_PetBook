@@ -1,26 +1,26 @@
-const { Pet, User } = require("../DataBase/db.js");
+const { Pet, User } = require("../database/db.js");
 
 const adoptionFormController = async (request) =>{
-    console.log(request);
-
     const userEmail = request.userEmail;
     const petName = request.petName;
     const message = request.message;
     const date = request.date;
 
-   const user = User.finOne(
+   const user = User.findOne(
     {
         where:{
-            email: userEmail
+            email: userEmail,
         }
     }
    );
 
-   const pet = Pet.findOne({
+   const pet = Pet.findOne(
+    { 
         where:{
-            name: petName
+            name: petName,
         }
-    });
+    }
+   );
 
    const response = {
     user,
