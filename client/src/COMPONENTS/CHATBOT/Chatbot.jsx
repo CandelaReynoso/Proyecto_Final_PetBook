@@ -14,7 +14,7 @@ export default function Chatbot(){
 
       return (
         <div>
-            <h1>Aló</h1>
+            
         </div>
       )
 }
