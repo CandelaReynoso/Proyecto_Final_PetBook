@@ -21,7 +21,10 @@ import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 
 function App() {
   return (
+
+    
     <div className="app">
+      <Chatbot />
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
@@ -38,6 +41,7 @@ function App() {
         <Route path="/FormHistory" element={<FormHistory /> } />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
+        
         <Route path="/store" element={<Shop />} />      
         <Route path="/chat" element={<Chatbot />} />
 
