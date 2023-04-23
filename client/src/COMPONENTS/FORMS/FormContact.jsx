@@ -9,12 +9,14 @@ import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
 import { useEffect } from "react";
 import Swal from 'sweetalert2';
-import {useHistory} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+
+
 
 const FormContact = () => {
     const[formSubmit, setFormSubmit] = useState(false);
     const [user, setUser] = useState({ email: "", name: "" });
-    const history = useHistory();
+    const navigate = useNavigate();
     
     useEffect(() => {
       if (localStorage.getItem('token')) {
@@ -89,7 +91,6 @@ const FormContact = () => {
             }}
           
             onSubmit={(values, {resetForm}) => {
-              event.preventDefault();
               Swal.fire({
                 title: 'HELP A PET!',
                 text: 'Donate \u2764',
@@ -99,7 +100,7 @@ const FormContact = () => {
                 imageAlt: 'Custom image',
               }).then((result) => {
                 if (result.isConfirmed) {
-                  history.push("/donate");
+                  navigate("/donate");
                 }
               });
               setFormSubmit(true);
