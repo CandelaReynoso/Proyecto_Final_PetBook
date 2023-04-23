@@ -1,8 +1,11 @@
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST} from './types';
 
 
 const initialState = {
+  adoptionRequest: null,
+  error: null,
+
   pets: [],
   petsRandomHome :[],
   pet:{},
@@ -60,7 +63,12 @@ const reducer = (state = initialState, action) => {
           error: null
           };
           }
-
+          case SEND_ADOPTION_REQUEST:
+            return {
+              ...state,
+              adoptionRequest: action.payload,
+              error: null,
+            };
       
     default: {
       return {

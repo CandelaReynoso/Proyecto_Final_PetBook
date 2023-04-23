@@ -1,9 +1,12 @@
 import axios from "axios";
+
+
 import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
-  SEND_EMAIL
+  SEND_EMAIL,
+  SEND_ADOPTION_REQUEST
 
 } from "./types";
 
@@ -123,6 +126,20 @@ export const sendEmail = (name, lastname, email, message) => {
   });
 }
 
+export const sendAdoptionRequest = (userEmail, petName, message) => async (dispatch) => {
+  try {
+    const response = await axios.post('http://localhost:3001/pets/adopt', {
+      userEmail,
+      petName,
+      message,
+      date: new Date(),
+    });
+    dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+  } catch (error) {
+    console.error(error);
+    // handle error
+  }
+};
 
 
 
