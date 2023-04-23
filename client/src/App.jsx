@@ -38,6 +38,7 @@ function App() {
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
 
+      
       </Routes>
     </div>
   );

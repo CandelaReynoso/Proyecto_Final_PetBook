@@ -9,6 +9,8 @@ import { getPetsRandom } from "../../Redux/actions";
 import PreviewPetsAdoption from "../PREVIEW_PETS_ADOPTION/PreviewPetsAdoption";
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import HeaderLogin from '../HEADER/HeaderLogin';
+import Chatbot from '../CHATBOT/Chatbot'
+
 
 
 const Home = () => {
@@ -185,11 +187,17 @@ useEffect(() => {
   </div>
   </div>
 
-    {/* FOOTER */}
+
+          {/* chatbot */}
+
+<Chatbot />
+
+
     <div>
     <Footer className="mt-8"/>
     </div>
       
+
 
     
     </div>
