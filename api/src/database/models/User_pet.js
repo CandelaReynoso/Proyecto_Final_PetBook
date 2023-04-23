@@ -23,6 +23,10 @@ const User_pet = (sequelize) => {
             show: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
+            },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         },
         {

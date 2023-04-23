@@ -45,7 +45,7 @@
   /* PÁRRAFOS */
 
 .text{
- @apply font-sans font-['candara'] font-normal text-neutral  
+ @apply font-['candara'] font-normal text-neutral  
 }
 
 .textColorPink{
