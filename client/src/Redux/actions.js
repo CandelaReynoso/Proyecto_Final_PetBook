@@ -73,7 +73,7 @@ export const getPetsRandom = () => {
 
 export const fetchPetDetailSuccess = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/pets/detail/${id}`);
+    const res = await axios.get(`http://localhost:3001/pets/detail/${id}`);
     dispatch({
       type: FETCH_PET_DETAIL_SUCCESS,
       payload: res.data,
@@ -88,6 +88,7 @@ export const registerUser = (userData) => async (dispatch) => {
   try {
     const res = await axios.post(`/users`, userData);
 
+    localStorage.setItem('id', res.data.savedUser.id);
     console.log(res.data);
   } catch (err) {
     console.error(err);
