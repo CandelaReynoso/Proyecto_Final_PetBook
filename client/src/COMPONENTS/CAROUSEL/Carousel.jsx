@@ -9,7 +9,7 @@ const Carousel = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/userPets/showHistory")
+      .get("/userPets/showHistory")
       .then((response) => {
         setPetData(response.data);
       })

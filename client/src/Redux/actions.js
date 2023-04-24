@@ -60,7 +60,7 @@ export const getPetsRandom = () => {
   return async function (dispatch) {
     const largePets = await axios.get("/pets");
     const response = await axios.get(
-      `http://localhost:3001/pets?page=${Math.floor(
+      `/pets?page=${Math.floor(
         (Math.random() * largePets.data.count) / 2
       )}&pageSize=2`
     );
@@ -73,7 +73,7 @@ export const getPetsRandom = () => {
 
 export const fetchPetDetailSuccess = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:3001/pets/detail/${id}`);
+    const res = await axios.get(`/pets/detail/${id}`);
     dispatch({
       type: FETCH_PET_DETAIL_SUCCESS,
       payload: res.data,

@@ -60,7 +60,7 @@ function FormHistory() {
     e.preventDefault();
     setStatus("Loading");
     try {
-      const response = (await axios.post("http://localhost:3001/userPets/update", {
+      const response = (await axios.post("/userPets/update", {
         idUser: history.idUser,
         idPet: history.idPet,
         history: history.hist,

@@ -15,7 +15,7 @@ import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 import axios from "axios";
-import Successfully from "./Components/DONATION/Successfully";
+import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 

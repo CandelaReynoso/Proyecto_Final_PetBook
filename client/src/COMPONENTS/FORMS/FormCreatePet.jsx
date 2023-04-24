@@ -44,7 +44,7 @@ const FormCreatePet = () => {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("http://localhost:3001/pets", {
+      .post("/pets", {
         image: url,
         name: data?.name,
         specie: data?.specie,
