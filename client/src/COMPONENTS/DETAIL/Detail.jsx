@@ -67,6 +67,12 @@ function Detail() {
                         <div className="card-actions  justify-center m-1">
                           <button className="btn btn-xs btn-accent">Sponsor {pet.name}</button>
                         </div>
+                        
+                        <Link to={"/avaliblePetsAdoption"}>
+                        <div className="card-actions justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Back</button>
+                        </div>
+                        </Link>
 
                         </div>
 
