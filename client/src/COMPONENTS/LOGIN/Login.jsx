@@ -106,6 +106,8 @@ function handleCredentialResponse(response){
       console.log(data)
       localStorage.setItem('token', data.token);
       localStorage.setItem('id', data.user.id);
+      localStorage.setItem('email', data.user.email);
+      localStorage.setItem('nickname', data.user.nickname);
       navigate('/home');
     } else {
       alert(data.msg);

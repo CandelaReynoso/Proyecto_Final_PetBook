@@ -33,7 +33,7 @@ function App() {
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
-        <Route path="/FormAdoption" element={<FormAdoption />} />
+        <Route path="/FormAdoption/:id" element={<FormAdoption />} />
         <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
         <Route path="/donate" element={<Donations />} />
