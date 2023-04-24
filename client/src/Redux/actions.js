@@ -88,6 +88,7 @@ export const registerUser = (userData) => async (dispatch) => {
   try {
     const res = await axios.post(`http://localhost:3001/users`, userData);
 
+    localStorage.setItem('id', res.data.savedUser.id);
     console.log(res.data);
   } catch (err) {
     console.error(err);
