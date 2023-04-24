@@ -67,7 +67,7 @@ export default function Donations(){
                 </div>
 
 
-                <div className="flex justify-end"><img src="./perritoabout.png" alt=""  width='220px'/></div>
+                <div className=""><img src="/perrogatootro.png" alt=""  width=''/></div>
 
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body">
@@ -91,6 +91,12 @@ export default function Donations(){
                     </form>
 
                     </div>
+                </div>
+
+                <div className="flex justify-center items-center">
+                    <h5 className="font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
+
+                    
                 </div>
                         
         </div>      
