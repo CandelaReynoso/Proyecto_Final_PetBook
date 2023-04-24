@@ -17,31 +17,35 @@ const AvaliblePetsAdoption = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    let query = window.localStorage.getItem("lastQuerys");
-    let parseQuery = JSON.parse(query);
-    
-    if (!query) {
-      dispatch(getPets());
-      return;
-    }
-    if (parseQuery !== undefined) {
-      dispatch(getPets(`?${createSearchParams(parseQuery)}`));
-    }
-    if (parseQuery === undefined) {
-      return;
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   let query;
+  //   let parseQuery;
+  //   if (state.pets.params) {
+  //     query = window.localStorage.getItem("lastQuerys");
+  //     if (query === undefined) return;
+  //      parseQuery = JSON.parse(query);
+  //   }
+  //   if (!query) {
+  //     dispatch(getPets());
+  //     return;
+  //   }
+  //   if (parseQuery !== undefined) {
+  //     dispatch(getPets(`?${createSearchParams(parseQuery)}`));
+  //   }
+  //   if (parseQuery === undefined) {
+  //     return;
+  //   }
+  // }, [dispatch, getPets]);
 
-  useEffect(() => {
-    return () => {
-      let querys = state?.pets?.params;
-      
-      if (querys !== undefined) {
-        window.localStorage.setItem("lastQuerys", JSON.stringify(querys));
-      } else return;
-    };
-  }, [state.pets.params]);
+  // useEffect(() => {
+  //   return () => {
+  //     let querys = state?.pets?.params;
+
+  //     if (querys !== undefined) {
+  //       window.localStorage.setItem("lastQuerys", JSON.stringify(querys));
+  //     } else return;
+  //   };
+  // }, [state.pets.params]);
 
   const onclickRefresh = () => {
     dispatch(getPets());
@@ -49,70 +53,76 @@ const AvaliblePetsAdoption = () => {
 
   return (
     <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full">
-      
-{/* HEADER */}
-  <div>
-      {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
-  </div>
+      {/* HEADER */}
+      <div>
+        {localStorage.getItem("token") ? (
+          <HeaderLogin className="mb-4" />
+        ) : (
+          <Header className="mb-4" />
+        )}
+      </div>
 
-{/* FILTRADO Y SEARCH  */}
+      {/* FILTRADO Y SEARCH  */}
 
-<div className="navbar border-black">
-  <div className="">
-    <FilterAndOrder />
-    <button className="btn btn-xs mt-1" onClick={onclickRefresh}>Refresh</button>
-  </div>
-
-
-  <div className="ml-24">
-  <SearchBar />
+      <div className="navbar border-black">
         <div className="">
-        {state?.namePets?.length > 0 && <SearchResultsList />}
-        {/* si se mueve esto a otro componente importar searchBar y searchResultList y ponerlo en este orden*/}
+          <FilterAndOrder />
+          <button className="btn btn-xs mt-1" onClick={onclickRefresh}>
+            Refresh
+          </button>
         </div>
 
-  </div>
-     
-</div>
+        <div className="ml-24">
+          <SearchBar />
+          <div className="">
+            {state?.namePets?.length > 0 && <SearchResultsList />}
+            {/* si se mueve esto a otro componente importar searchBar y searchResultList y ponerlo en este orden*/}
+          </div>
+        </div>
+      </div>
 
- <Cards pets={state?.pets?.data} />
-      
- {/* PAGINADO */}
+      <Cards pets={state?.pets?.data} />
+
+      {/* PAGINADO */}
       <div>
         <Pagination />
       </div>
 
-  {/* ADOPT AND SAVE A LIFE...  */}
+      {/* ADOPT AND SAVE A LIFE...  */}
 
-      <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1 '>
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1 ">
         <div className="flex items-center justify-end ">
-          <p className="titleRight w-72 pr-6 "> Adopt today and change a life</p>
+          <p className="titleRight w-72 pr-6 ">
+            {" "}
+            Adopt today and change a life
+          </p>
           <br />
           <p className="titleRight"> </p>
         </div>
         <div>
           <ul className="steps steps-vertical">
             <li className="step step-primary text text-neutral">Register</li>
-            <li className="step step-primary text text-neutral">Find a friend you wish to take home</li>
-            <li className="step text text-neutral">Go through our adoption requirements </li>
-            <li className="step text text-neutral">Schedule a visit to the shelter</li>
-            <li className="step text text-neutral">Meet your new furry friend and go home</li>
+            <li className="step step-primary text text-neutral">
+              Find a friend you wish to take home
+            </li>
+            <li className="step text text-neutral">
+              Go through our adoption requirements{" "}
+            </li>
+            <li className="step text text-neutral">
+              Schedule a visit to the shelter
+            </li>
+            <li className="step text text-neutral">
+              Meet your new furry friend and go home
+            </li>
           </ul>
         </div>
- 
-
-
-
       </div>
 
+      {/* FOOTER */}
 
-
- {/* FOOTER */}
-      
-      <div> 
-        <Footer /> 
+      <div>
+        <Footer />
       </div>
-        
     </div>
   );
 };

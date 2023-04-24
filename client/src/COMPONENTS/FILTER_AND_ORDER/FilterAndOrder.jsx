@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPets } from "../../Redux/actions";
 import { createSearchParams } from "react-router-dom";
@@ -12,13 +12,48 @@ const FilterAndOrder = () => {
   if(e.target.value === "Default") return 
   
     setChecked({ ...checked, [e.target.name]: e.target.value });
-  
-    
-    
-    
   };
+  
+  
+  useEffect(() => {
+    let query = query = window.localStorage.getItem("lastQuerys");
+    console.log(query);
+    let parseQuery;
+    
+      
+      
+       parseQuery = JSON.parse(query);
+    
+    if (!query) {
+      dispatch(getPets());
+      return;
+    }
+    if (parseQuery !== undefined) {
+      dispatch(getPets(`?${createSearchParams(parseQuery)}`));
+    }
+    if (parseQuery === undefined) {
+      return;
+    }
+  }, [dispatch, getPets]);
+  
+  
+  
+  
+  
+ useEffect(()=>{
+  let params = state?.pets?.params
+  console.log(params);
+  window.localStorage.setItem("lastQuerys", JSON.stringify(params))
+  return(()=>{
+    if (params !== undefined) {
+      window.localStorage.setItem("lastQuerys", JSON.stringify(params));
+    } else return;
+  })
+  
+ },[state.pets.params])
 
 const handlerFilter = ()=>{
+
     dispatch(getPets(`?${createSearchParams(checked)}`))
     
 }
