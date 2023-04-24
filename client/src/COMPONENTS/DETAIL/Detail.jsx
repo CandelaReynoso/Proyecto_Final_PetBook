@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPetDetailSuccess } from '../../Redux/actions';
 import { Link } from 'react-router-dom';
 import styles from '../DETAIL/Detail.module.css';
+
 import AdoptionForm from '../FORMS/FormAdoption';
+
+import Header from '../HEADER/Header';
+import HeaderLogin from "../HEADER/HeaderLogin";
+import Footer from "../FOOTER/Footer";
+
 
 
 function Detail() {
@@ -32,32 +38,72 @@ function Detail() {
   
 
   return (
-    <div className={styles.background}>
-      {loading ? (
+    
+    
+    <div  className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv] h-[100hv]">
+        
+
+
+        <div>
+          {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+        </div>
+
+
+        <div className='flex items-center justify-center'>
+
+        {loading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <h3 className={styles.title}>{pet.name}</h3>
-          <div >
-            <img className={styles.img} src={pet.image} alt={pet.name} />
-          </div>
-          
-          <Link to='/home'>
-          <img className = {styles.imgFoot}  src="../../../public/patita3.png" alt="patita de perro" />
-          </Link>
 
-          <ul className={styles.list}> 
-          <div className={styles.list2}>
-          <li>Specie: {pet.specie}</li>
-          <li>Gender: {pet.gender}</li>
-          <li>Size: {pet.size}</li>
-          <li>Weight: {pet.weight} kg</li>
-          <li>Age: {pet.age} years</li>
-          <li>Adopted: {pet.adopted ? 'Yes' : 'No'}</li>
-          </div>
-         
-        </ul>
+            <div className="card lg:card-side bg-base-100 shadow-xl w-1/2">
+
+                      <figure><img className="card-body" src={pet.image} alt={pet.name} /></figure>
+                      <div className="card-body">
+                        <h2 className="card-title titleCenter">{pet.name}</h2>
+                        <ul className="text bg-primary w-fit rounded-full max-w-lg mx-auto">
+                          <div className="text-center">
+                            <li>Specie: {pet.specie}</li>
+                            <li>Gender: {pet.gender}</li>
+                            <li>Size: {pet.size}</li>
+                            <li>Weight: {pet.weight} kg</li>
+                            <li>Age: {pet.age} years</li>
+                            <li>Adopted: {pet.adopted ? 'Is already adopted' : 'He is still waitng for a home'}</li>
+                          </div>
+                        </ul>
+                        <Link to='/donate'>
+                          <img className = {styles.imgFoot}  src="../../../public/patita3.png" alt="patita de perro" />
+                        </Link>
+                        <br />
+                        <br />
+
+                        <div className=''>
+                        <Link to={"/FormAdoption"}>
+                        <div className="card-actions justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Adopt {pet.name}</button>
+                        </div>
+                        </Link>
+                        
+                        <div className="card-actions  justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Sponsor {pet.name}</button>
+                        </div>
+                        
+                        <Link to={"/avaliblePetsAdoption"}>
+                        <div className="card-actions justify-center m-1">
+                          <button className="btn btn-xs btn-accent">Back</button>
+                        </div>
+                        </Link>
+
+                        </div>
+
+
+                        
+                      </div>
+             </div>
+
+          )}
+  
         </div>
+
       )}
       <br>
       </br>
@@ -72,7 +118,13 @@ function Detail() {
         <button className={styles.buttonSponsor}>SPONSOR ME!</button>
        </Link>
         
+
+
+
+       <div className=' mt-24'><Footer/></div>
+
     </div>
+    
   );
 }
 
