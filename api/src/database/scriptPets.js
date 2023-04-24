@@ -1,4 +1,4 @@
-const { Pet } = require('./db');
+const { Pet } = require('../database/db');
 
 async function loadPets(){
     try {
