@@ -17,6 +17,7 @@ import Successfully from "./Components/DONATION/Successfully";
 import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
+import Admin from "./COMPONENTS/ADMIN/Admin";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         
         <Route path="/store" element={<Shop />} />      
         <Route path="/chat" element={<Chatbot />} />
+        <Route path="/admin" element={<Admin/>} />
 
       </Routes>
     </div>
