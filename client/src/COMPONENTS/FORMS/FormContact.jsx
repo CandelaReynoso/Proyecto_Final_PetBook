@@ -20,7 +20,7 @@ const FormContact = () => {
     
     useEffect(() => {
       if (localStorage.getItem('token')) {
-        fetch("http://localhost:3001/users", {
+        fetch("/users", {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }

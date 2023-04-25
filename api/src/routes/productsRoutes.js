@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getHandlerProducts, postProductHandler, putProductHandler, deleteProductHander } = require("../handlers/ProductsHandler")
+const { getHandlerProducts, postProductHandler, putProductHandler, deleteProductHander, filterProductsHandler } = require("../handlers/ProductsHandler")
 const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { validateJWT } = require('../middlewares/validateJWT');
@@ -43,5 +43,8 @@ productsRoutes.delete('/:id', [
     check('id').custom(productExists),
     validateAttributes
 ],deleteProductHander);
+
+// get filtered products - public
+productsRoutes.get("/filter", filterProductsHandler);
 
 module.exports = productsRoutes;

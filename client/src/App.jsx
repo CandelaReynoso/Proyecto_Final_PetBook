@@ -15,12 +15,15 @@ import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 import axios from "axios";
-import Successfully from "./Components/DONATION/Successfully";
+import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 
 import Admin from "./COMPONENTS/ADMIN/Admin";
 
+
+//Instancia de axios.
+axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
 
 function App() {
 
@@ -30,12 +33,9 @@ function App() {
 
     
     <div className="app">
-      
 
-
-    
-    
       {location.pathname !== "/" && <Chatbot /> }
+
 
       <Routes>
         <Route index element={<Landing />} />

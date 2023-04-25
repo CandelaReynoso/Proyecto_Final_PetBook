@@ -2,8 +2,6 @@ const { Pet } = require("../database/db.js");
 
 const filterPetsController = async ({sorts, ...resto}) => {
 
-  console.log(sorts, resto)
-
   const filter = resto;
 
   console.log(resto)
