@@ -149,28 +149,15 @@ const Home = () => {
 
   </div>
 
-
-
-
-
-  </div>
+ </div>
           
 </div>
 
-  
   <br />
-
-
-
-
-
     <div>
     <Footer className="mt-8"/>
     </div>
-      
-
-
-    
+          
     </div>
   );
 };
