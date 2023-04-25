@@ -14,7 +14,10 @@ import {
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
+  
   console.log(params);
+    
+  
   try {
     if (params) {
       const res = await axios.get(`http://localhost:3001/pets${params}`);

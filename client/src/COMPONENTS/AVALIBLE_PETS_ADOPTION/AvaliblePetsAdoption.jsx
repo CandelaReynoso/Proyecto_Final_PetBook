@@ -17,36 +17,6 @@ const AvaliblePetsAdoption = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   let query;
-  //   let parseQuery;
-  //   if (state.pets.params) {
-  //     query = window.localStorage.getItem("lastQuerys");
-  //     if (query === undefined) return;
-  //      parseQuery = JSON.parse(query);
-  //   }
-  //   if (!query) {
-  //     dispatch(getPets());
-  //     return;
-  //   }
-  //   if (parseQuery !== undefined) {
-  //     dispatch(getPets(`?${createSearchParams(parseQuery)}`));
-  //   }
-  //   if (parseQuery === undefined) {
-  //     return;
-  //   }
-  // }, [dispatch, getPets]);
-
-  // useEffect(() => {
-  //   return () => {
-  //     let querys = state?.pets?.params;
-
-  //     if (querys !== undefined) {
-  //       window.localStorage.setItem("lastQuerys", JSON.stringify(querys));
-  //     } else return;
-  //   };
-  // }, [state.pets.params]);
-
   const onclickRefresh = () => {
     dispatch(getPets());
   };
