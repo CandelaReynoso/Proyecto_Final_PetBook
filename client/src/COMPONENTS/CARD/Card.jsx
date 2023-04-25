@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPets } from '../../Redux/actions';
-import styles from '../CARD/Card.module.css';
+
 
 const Card = (pet) => {
   const dispatch = useDispatch();

@@ -7,9 +7,9 @@ import {
   GET_PETS_RAMDON_HOME,
   GET_PET_NAME,
   SET_PET_NAME,
-  
   SEND_EMAIL,
-  SEND_ADOPTION_REQUEST
+  SEND_ADOPTION_REQUEST,
+  GET_PRODUCTS
 
 } from "./types";
 
@@ -156,6 +156,31 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
   }
 };
 
+//PRODUCTOS
+
+export const getAllProducts = (id,name,status, userId, image, quantity, available,price, category, description) => async (dispatch) => {
+  try { 
+    const res = await axios.get('/products', {
+   id,
+   name,
+   status, 
+   userId, 
+   image, 
+   quantity, 
+   available,
+   price, 
+   category, 
+   description
+  });
+    
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 
 

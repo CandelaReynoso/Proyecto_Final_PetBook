@@ -1,11 +1,18 @@
-import React from "react";
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts} from '../../Redux/actions';
 
-export default function Shop () {
 
 
+export default function Shop (props) {
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+    const products = useSelector((state) => state.products);
+    console.log(products);
+    
     return (
         <div>
             
@@ -16,8 +23,10 @@ export default function Shop () {
                 </div>
 
                 <div className="h-screen w-screen">
-
                 <h1 className="titleLeft"> We are working for you...</h1>
+
+
+                
                 <div className="flex justify-end"> <img src="./perrotrabaja.png" alt="" width='500px'/> </div>
 
                 </div>
