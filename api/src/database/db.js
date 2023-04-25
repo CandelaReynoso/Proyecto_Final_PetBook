@@ -5,18 +5,18 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 
-//  const sequelize = new Sequelize(
-//    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-//    {
-//      logging: false,
-//      native: false,
-//    }
-//  );
+  // const sequelize = new Sequelize(
+  //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  //   {
+  //     logging: false,
+  //     native: false,
+  //   }
+  // );
 
 const sequelize = new Sequelize(
  DB_DEPLOY,
  {
-   logging: false,
+  logging: false,
    native: false,
     // dialectOptions: {
     //   ssl:{
@@ -61,7 +61,13 @@ const { User_pet } = sequelize.models;
 
 const { Email } = sequelize.models;
 
+const { Adopt } = sequelize.models;
+
 // model relations
+
+// Adopt user pet
+Adopt.belongsTo(User);
+Adopt.belongsTo(Pet);
 
 // Email / User
 Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail'});

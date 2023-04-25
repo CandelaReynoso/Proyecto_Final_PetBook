@@ -13,9 +13,13 @@ import FormContact from './COMPONENTS/FORMS/FormContact';
 import './index.css'
 import FormCreatePet from "./COMPONENTS/FORMS/FormCreatePet";
 import FormAdoption from './COMPONENTS/FORMS/FormAdoption'
-import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Chatbot from "./COMPONENTS/CHATBOT/Chatbot";
 import axios from "axios";
+import Successfully from "./COMPONENTS/DONATION/Successfully";
+import Shop from "./COMPONENTS/SHOP/Shop";
+import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
+
+import Admin from "./COMPONENTS/ADMIN/Admin";
 
 
 //Instancia de axios.
@@ -26,9 +30,13 @@ function App() {
   const location = useLocation();
 
   return (
+
     
     <div className="app">
-      {location.pathname !== "/" && <Chatbot />  }
+
+      {location.pathname !== "/" && <Chatbot /> }
+
+
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
@@ -39,13 +47,17 @@ function App() {
         <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
-        <Route path="/FormAdoption" element={<FormAdoption />} />
+        <Route path="/FormAdoption/:id" element={<FormAdoption />} />
         <Route path="/FormContact" element={<FormContact/>} />
         <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
+        <Route path="/FormHistory" element={<FormHistory /> } />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
+        
+        <Route path="/store" element={<Shop />} />      
+        <Route path="/chat" element={<Chatbot />} />
+        <Route path="/admin" element={<Admin/>} />
 
-      
       </Routes>
     </div>
   );

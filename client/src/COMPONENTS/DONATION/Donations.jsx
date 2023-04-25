@@ -22,12 +22,13 @@ export default function Donations(){
 
     return (
         <div>
+            <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv]">
 
-            <div>
-              {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
-            </div>
+                <div>
+                {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+                </div>
 
-    <div className="m-8 align-middle items-center">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
 
             <div className="card w-96 bg-base-100 shadow-xl m-4">
                 <div className="card-body"> 
@@ -86,13 +87,23 @@ export default function Donations(){
                     <br />
                  </form>
 
+                    </div>
                 </div>
-            </div>
+
+                <div className="flex justify-center items-center">
+                    <h5 className="font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
+
                     
-    </div>      
+                </div>
+                        
+        </div>      
+            </div>
 
-
-            <div> <Footer /></div>
+<div >
+    {/* ARREGLAR QUE CUANDO SE PASA A UNA PANTALLA MAS GRANDE EL FOOTER NO QUEDA AL FINAL  */}
+<Footer />
+</div>
+             
         </div>
     )
 }

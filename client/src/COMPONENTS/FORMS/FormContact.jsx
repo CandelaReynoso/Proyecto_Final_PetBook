@@ -20,7 +20,7 @@ const FormContact = () => {
     
     useEffect(() => {
       if (localStorage.getItem('token')) {
-        fetch("http://localhost:3001/users", {
+        fetch("/users", {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
@@ -45,10 +45,9 @@ const FormContact = () => {
     return (
         <>
         <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> } </div>
-        
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
 
-          <div  className='flex flex-col justify-center h-fit mb-[30rem] sm:mb-0'> 
+          <div  className='flex flex-col justify-center'> 
             <div >
               <h1 className="subtitle">CONTACT US.</h1>
             </div>
@@ -94,15 +93,20 @@ const FormContact = () => {
             onSubmit={(values, {resetForm}) => {
               Swal.fire({
                 title: 'HELP A PET!',
-                text: 'Donate \u2764',
-                imageUrl:'https://dam.ngenespanol.com/wp-content/uploads/2019/10/perros-personalidad-2-770x395.jpg',
-                imageWidth: 400,
-                imageHeight: 200,
+                text: 'Donate \u2764 ',
+                imageUrl:'https://media.tenor.com/O7tk8A-EoIgAAAAj/puppy.gif',
+                imageWidth: 300,
+                imageHeight: 300,
                 imageAlt: 'Custom image',
                 showCancelButton: true,
                 confirmButtonText: 'Yes!',
                 cancelButtonText: 'Not Now!',
-                background: '#9ddcab',
+                confirmButtonColor: '#1B2021',
+                ccancelButtonColor: 'transparent',
+                cancelButtonBorder: 'none',
+                cancelButtonColor:'#C0F8D1',
+                background: '#C0F8D1',
+                color: '#1B2021',
                
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -127,7 +131,7 @@ const FormContact = () => {
 
                 {( {errors}  ) => (
                   
-            <Form className='max-w-[400px] w-full h-fit mx-auto rounded-lg bg-white  p-4 mb-16 sm:mb-0'>
+            <Form className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4'>
                 {console.log(errors)}
           
             <div className='divForminput'>
@@ -136,7 +140,7 @@ const FormContact = () => {
                 id="name" 
                 name="name" 
                 className= 'inputs'
-                placeholder= {user.name ? user.name : "Write you name, please"}
+                placeholder= {user.name ? user.name : "Write you name, plase"}
                 />
                 <ErrorMessage name="name" component={()=> (
                     <div className="text-error">{errors.name}</div>
@@ -149,7 +153,7 @@ const FormContact = () => {
                 type ="text" 
                 id="lastname" 
                 name="lastname" 
-                placeholder = "Write your last name, please" 
+                placeholder = "Write your last name, plase" 
                 className='inputs'
                 />
                 <ErrorMessage name="lastname" component={()=> (
@@ -198,7 +202,6 @@ const FormContact = () => {
               <img className='w-[100%] h-full  object-cover' src="perrocomputadora.jpeg" alt="perro en computadora" />
             </div>
         </div>
-
         <div>
           <Footer />
         </div>

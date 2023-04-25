@@ -33,6 +33,7 @@ function handleCredentialResponse(response){
     .then( data => {
       console.log(data)
       localStorage.setItem('email', data.user.email)
+      navigate('/home');
     })
     .catch(error => console.error(error))
   }
@@ -106,6 +107,8 @@ function handleCredentialResponse(response){
       console.log(data)
       localStorage.setItem('token', data.token);
       localStorage.setItem('id', data.user.id);
+      localStorage.setItem('email', data.user.email);
+      localStorage.setItem('nickname', data.user.nickname);
       navigate('/home');
     } else {
       alert(data.msg);
@@ -121,10 +124,9 @@ function handleCredentialResponse(response){
     <form onSubmit={handleSubmit} 
     className='max-w-[30rem] w-full mx-auto rounded-lg bg-white  p-4'> 
 
-        <h2 
-        className='subtitle'>LOGIN.</h2>
+
        
-       <div className='flex flex-col py-2'>
+       <div className='flex flex-col'>
  
         <input
           type="email"

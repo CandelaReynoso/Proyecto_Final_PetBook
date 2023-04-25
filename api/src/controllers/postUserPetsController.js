@@ -1,7 +1,12 @@
 const { User_pet, User, Pet } = require("../database/db.js");
 
-const postUserPetsController = async (idUser, idPet, history) => {
+const uploadImage = require("../utils/cloudinary");
+
+
+const postUserPetsController = async (idUser, idPet, history, image) => {
     try {
+        if(!idUser || !idPet || !history || !image) throw new Error("information is missing");
+
         const userPet = await User_pet.findOne({
             where: {
                 userId: idUser,
@@ -10,32 +15,38 @@ const postUserPetsController = async (idUser, idPet, history) => {
             }
         });
 
-        if (!userPet) throw new Error(`no relationship was found between ${idUser} and ${idPet}`);
+        if (!userPet) throw new Error(`No relationship was found between idUser: ${idUser} and idPet: ${idPet}`);
 
+        const imageC = await uploadImage(image);
         await userPet.update({
             history: history,
-            statusHistory: true
+            statusHistory: true,
+            image: imageC
         })
 
         return "Updated story";
     } catch (error) {
+
         return { error: error };
     }
 }
 
 const postAdoptUserPetsController = async (idUser, idPet) => {
     try {
+        
         const user = await User.findByPk(idUser);
         const pet = await Pet.findByPk(idPet);
+        
+        if(!user || !pet) throw new Error("There is no user or pet");
 
         await user.addPet(pet);
 
-        return { user, pet }
+
+        return "successful adoption"
     } catch (error) {
         return { error: error }
     }
 }
-
 
 
 

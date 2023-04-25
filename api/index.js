@@ -6,6 +6,7 @@ const { PORT } = process.env;
 const loadPets = require('./src/database/scriptPets.js')
 
 
+
 sequelize.sync({alter:true }).then( async () => {
 
   await loadPets();

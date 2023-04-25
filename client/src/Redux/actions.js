@@ -60,7 +60,7 @@ export const getPetsRandom = () => {
   return async function (dispatch) {
     const largePets = await axios.get("/pets");
     const response = await axios.get(
-      `http://localhost:3001/pets?page=${Math.floor(
+      `/pets?page=${Math.floor(
         (Math.random() * largePets.data.count) / 2
       )}&pageSize=2`
     );
@@ -88,6 +88,7 @@ export const registerUser = (userData) => async (dispatch) => {
   try {
     const res = await axios.post(`/users`, userData);
 
+    localStorage.setItem('id', res.data.savedUser.id);
     console.log(res.data);
   } catch (err) {
     console.error(err);

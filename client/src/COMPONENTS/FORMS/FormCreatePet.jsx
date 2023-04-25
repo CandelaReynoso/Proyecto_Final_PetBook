@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import validator from "validator"
 
 const FormCreatePet = () => {
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ const FormCreatePet = () => {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("http://localhost:3001/pets", {
+      .post("/pets", {
         image: url,
         name: data?.name,
         specie: data?.specie,
