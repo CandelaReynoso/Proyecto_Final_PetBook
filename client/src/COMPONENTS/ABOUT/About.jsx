@@ -68,8 +68,8 @@ function About() {
 
   </div>
 
-<div className='h-screen'>
-
+<div className='h-screen flex justify-center mt-3'>
+<img src="/perrogatootro.png" alt="" className='h-[90vh] items-center justify-center'/>
 </div>
     <div className='bottom-0 w-full'>
     < Footer /> 
