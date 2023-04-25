@@ -22,7 +22,8 @@ const AvaliblePetsAdoption = () => {
   };
 
   return (
-    <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full">
+    <div className="w-screen">
+    <div className="bg-[url('/backadopt.png')] bg-no-repeat w-screen">
       {/* HEADER */}
       <div>
         {localStorage.getItem("token") ? (
@@ -51,7 +52,10 @@ const AvaliblePetsAdoption = () => {
         </div>
       </div>
 
-      <Cards pets={state?.pets?.data} />
+<div className="flex justify-center">
+<Cards pets={state?.pets?.data} />
+</div>
+      
 
       {/* PAGINADO */}
       <div>
@@ -93,6 +97,7 @@ const AvaliblePetsAdoption = () => {
       <div>
         <Footer />
       </div>
+    </div>
     </div>
   );
 };
