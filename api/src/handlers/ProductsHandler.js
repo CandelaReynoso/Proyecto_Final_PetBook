@@ -64,7 +64,7 @@ const putProductHandler = async (req, res) => {
         plain: true
     });
 
-    res.status(200).json({updatedCategory})    ;
+    res.status(200).json({updatedProduct})    ;
 } catch (error) {
     res.status(500).json({error: error.message});
 }
