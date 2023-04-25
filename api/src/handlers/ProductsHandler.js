@@ -2,6 +2,7 @@ const { Product, Category, User } = require('../database/db');
 const searchProductByNameController = require("../controllers/searchProductByNameController");
 const searchAllProductsController = require("../controllers/searchAllProductsController");
 const postProductController = require('../controllers/postProductController');
+const filterProductsController = require('../controllers/filterProductsController');
 
 const getHandlerProducts = async (req, res) => {
   try {
@@ -112,9 +113,21 @@ const deleteProductHander = async (req, res) => {
 
 }
 
+const filterProductsHandler = async (req, res) => {
+  const filters = req.query;
+
+  try {
+    const response = await filterProductsController(filters);
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
 module.exports = { 
   getHandlerProducts,
   postProductHandler,
   putProductHandler,
-  deleteProductHander
+  deleteProductHander,
+  filterProductsHandler
 };
