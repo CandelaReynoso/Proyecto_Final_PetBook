@@ -38,19 +38,30 @@ const AvaliblePetsAdoption = () => {
       <div className="navbar border-black">
         <div className="">
           <FilterAndOrder />
-          <button className="btn btn-xs mt-1" onClick={onclickRefresh}>
+          <button className="btn btn-xs mx-6" onClick={onclickRefresh}>
             Refresh
           </button>
         </div>
 
-        <div className="ml-24">
+        <div className="hidden sm:block sm:ml-10">
           <SearchBar />
           <div className="">
             {state?.namePets?.length > 0 && <SearchResultsList />}
             {/* si se mueve esto a otro componente importar searchBar y searchResultList y ponerlo en este orden*/}
           </div>
         </div>
+        
+
+
       </div>
+      <div className="sm:hidden">
+          <SearchBar />
+          <div className="">
+            {state?.namePets?.length > 0 && <SearchResultsList />}
+            {/* si se mueve esto a otro componente importar searchBar y searchResultList y ponerlo en este orden*/}
+          </div>
+        </div>
+      
 
 <div className="flex justify-center">
 <Cards pets={state?.pets?.data} />
