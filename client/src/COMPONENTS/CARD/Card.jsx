@@ -24,7 +24,7 @@ const Card = (pet) => {
   // }
 
   const [showDetail, setShowDetail] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
+  let [selectedPet, setSelectedPet] = useState(null);
 
   const userEmail = localStorage.getItem('email');
 
@@ -43,7 +43,7 @@ const Card = (pet) => {
 
   const handleCloseDetail = () => {
     setShowDetail(false);
-    selectedPet(null)
+    selectedPet = null
   };
 
 
@@ -90,7 +90,7 @@ const Card = (pet) => {
                   <li>Size: {selectedPet?.size}</li>
                   <li>Weight: {selectedPet?.weight} kg</li>
                   <li>Age: {selectedPet?.age} years</li>
-                  <li>Adopted: {selectedPet?.adopted ? 'Is already adopted' : 'Is still waitng for a home'}</li>
+                  <li>{selectedPet?.adopted ? 'Is already adopted' : 'Is still waitng for a home'}</li>
                 </div>
               </ul>
 
