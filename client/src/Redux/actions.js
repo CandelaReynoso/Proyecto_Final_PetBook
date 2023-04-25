@@ -158,19 +158,38 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
 
 //PRODUCTOS
 
-export const getAllProducts = (id,name,status, userId, image, quantity, available,price, category, description) => async (dispatch) => {
+export const getAllProducts = (id,
+  name,
+  status,
+  userId,
+  image,
+  quantity,
+  available,
+  price,
+  category,
+  description,
+  weight,
+  size,
+  specie,
+  consumption_age,
+  discount) => async (dispatch) => {
   try { 
     const res = await axios.get('/products', {
-   id,
-   name,
-   status, 
-   userId, 
-   image, 
-   quantity, 
-   available,
-   price, 
-   category, 
-   description
+      id,
+      name,
+      status,
+      userId,
+      image,
+      quantity,
+      available,
+      price,
+      category,
+      description,
+      weight,
+      size,
+      specie,
+      consumption_age,
+      discount
   });
     
     dispatch({
@@ -181,6 +200,7 @@ export const getAllProducts = (id,name,status, userId, image, quantity, availabl
     console.error(err);
   }
 };
+
 
 
 
