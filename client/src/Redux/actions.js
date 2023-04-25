@@ -175,22 +175,24 @@ export const getAllProducts = (id,
   discount) => async (dispatch) => {
   try { 
     const res = await axios.get('/products', {
-      id,
-      name,
-      status,
-      userId,
-      image,
-      quantity,
-      available,
-      price,
-      category,
-      description,
-      weight,
-      size,
-      specie,
-      consumption_age,
-      discount
-  });
+      params: {
+        id,
+        name,
+        status,
+        userId,
+        image,
+        quantity,
+        available,
+        price,
+        category,
+        description,
+        weight,
+        size,
+        specie,
+        consumption_age,
+        discount
+      }
+    });
     
     dispatch({
       type: GET_PRODUCTS,

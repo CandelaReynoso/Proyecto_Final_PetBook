@@ -85,10 +85,10 @@ const reducer = (state = initialState, action) => {
               error: null,
             };
             case GET_PRODUCTS:
-      return {
-        ...state,
-        products: action.payload
-      };
+            return {
+              ...state,
+              products: action.payload
+            };
       
     default: {
       return {
