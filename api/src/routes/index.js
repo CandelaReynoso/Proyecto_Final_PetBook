@@ -9,6 +9,7 @@ const userPetsRoutes = require("./userPetsRouter.js");
 const mercadopagoRoute = require('./mercadopagoRoute.js');
 const contactRoutes = require("./contactRoutes.js");
 const adoptRoutes = require("./adoptRoutes.js");
+const searchRoutes = require("./searchRoutes.js");
 
 const router = Router()
 
@@ -17,6 +18,7 @@ router.use("/products", productsRoutes)
 router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 router.use('/categories', categoriesRoutes);
+router.use('/search/', searchRoutes);
 
 router.use('/userPets', userPetsRoutes);
 
