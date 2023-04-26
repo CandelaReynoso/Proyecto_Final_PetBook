@@ -1,32 +1,40 @@
-
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME} from './types';
-
+import {
+  GET_PETS,
+  FETCH_PET_DETAIL_SUCCESS,
+  GET_PETS_RAMDON_HOME,
+  SEND_EMAIL,
+  SEND_ADOPTION_REQUEST,
+  GET_PET_NAME,
+  SET_PET_NAME,
+  VERIFY_ADMIN_ROLE,
+} from "./types";
 
 const initialState = {
   adoptionRequest: null,
   error: null,
 
   pets: [],
-  petsRandomHome :[],
-  pet:{},
-  namePets : [],
+  petsRandomHome: [],
+  pet: {},
+  namePets: [],
 
-  profile: {           //perfil de usuario
-    nickname: '',
+  profile: {
+    //perfil de usuario
+    nickname: "",
   },
 
-  loginForm:{
-
-    email: '',
-    password: '',
+  loginForm: {
+    email: "",
+    password: "",
   },
-  formSubmitted: false,  //enviado de formulario de registro
+  formSubmitted: false, //enviado de formulario de registro
 
   //Form de Contacto
-loading: false,
-success: null,
-error: null
+  loading: false,
+  success: null,
+  error: null,
 
+  admin: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,55 +42,60 @@ const reducer = (state = initialState, action) => {
     case GET_PETS:
       return {
         ...state,
-        pets: action.payload
+        pets: action.payload,
       };
-      case FETCH_PET_DETAIL_SUCCESS:
+    case FETCH_PET_DETAIL_SUCCESS:
       return {
         ...state,
-        pet: action.payload
-      }
-      case GET_PETS_RAMDON_HOME:
-      return{
-      ...state,
-      petsRandomHome: action.payload
-      }
-      
-      case GET_PET_NAME:
-      return{
-      ...state,
-      namePets: action.payload
-      }
-      
-      case SET_PET_NAME:
+        pet: action.payload,
+      };
+    case GET_PETS_RAMDON_HOME:
       return {
-      ...state,
-      namePets: []
-      }
+        ...state,
+        petsRandomHome: action.payload,
+      };
 
-     
-      case SEND_EMAIL:
-          if (action.error) {
-          return {
+    case GET_PET_NAME:
+      return {
+        ...state,
+        namePets: action.payload,
+      };
+
+    case SET_PET_NAME:
+      return {
+        ...state,
+        namePets: [],
+      };
+
+    case SEND_EMAIL:
+      if (action.error) {
+        return {
           ...state,
           loading: false,
           success: null,
-          error: action.error
-          };
-          } else {
-          return {
+          error: action.error,
+        };
+      } else {
+        return {
           ...state,
           loading: false,
           success: action.payload,
-          error: null
-          };
-          }
-          case SEND_ADOPTION_REQUEST:
-            return {
-              ...state,
-              adoptionRequest: action.payload,
-              error: null,
-            };
-      
+          error: null,
+        };
+      }
+    case SEND_ADOPTION_REQUEST:
+      return {
+        ...state,
+        adoptionRequest: action.payload,
+        error: null,
+      };
+
+    case VERIFY_ADMIN_ROLE:
+      return {
+        ...state,
+        admin: action.payload,
+      };
+
     default: {
       return {
         ...state,
@@ -91,6 +104,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-
-
-export default reducer
+export default reducer;
