@@ -4,16 +4,20 @@ async function filterProductsontroller({
     name,
     available,
     price,
+    specie,
     category,
     sortCriterion
 }){
 
     const filter = {
         name,
+        specie,
         available,
         category
     };
 
+    console.log(filter);
+    
     const sort = price;
     const criterion = sortCriterion;
 
