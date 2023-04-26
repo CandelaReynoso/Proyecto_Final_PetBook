@@ -1,6 +1,6 @@
 const { Product } = require("../database/db.js");
 
-async function filterProductsontroller({
+async function filterProductsController({
     name,
     available,
     price,
@@ -9,26 +9,51 @@ async function filterProductsontroller({
     sortCriterion
 }){
 
-    const filter = {
-        name,
-        specie,
-        available,
-        category
-    };
+    console.log("estoy en filteredProducts");
 
-    console.log(filter);
+    let where = {};
+    let response;
+
+    if(name || specie || available || category){
+        if(price && sortCriterion){
+            let toDelete = [];
+            where = {
+                name: name ? name : toDelete.push("name"),
+                specie: specie ? specie : toDelete.push("specie"),
+                available: available ? available : toDelete.push("available"),
+                category: category ? category :toDelete.push("category"),
+            };
+
+            for (let i = 0; i < toDelete.length; i++) {
+                delete where[toDelete[i]];
+              }
+
+              console.log(where)
+
+              response = await Product.findAll({
+                where
+              })
+
+              
+              return response;
+        }
+
+        
+    }
+
     
-    const sort = price;
-    const criterion = sortCriterion;
+    // const sort = price;
+    // const criterion = sortCriterion;
 
-    const results = await Product.findAll({
-        where: filter,
-        order: [[criterion, sort]]
-      });
+    // const results = await Product.findAll({
+    //     where: filter,
+    //     order: [[criterion, sort]]
+    //   });
 
-      if(results) return results;
+    //   if(results) return results;
 
-      throw new Error('Error filtering your products');
+    //   throw new Error('Error filtering your products');
+    return;
 }
 
-module.export = filterProductsontroller;
+module.exports = filterProductsController;
