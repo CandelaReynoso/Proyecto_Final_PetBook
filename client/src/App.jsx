@@ -30,7 +30,7 @@ import Admin from "./COMPONENTS/ADMIN/Admin";
 
 //Instancia de axios para trabajo local:
 
-axios.defaults.baseURL = "https://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001";  
 
 
 function App() {
