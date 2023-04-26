@@ -152,6 +152,7 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
       message,
       date: new Date(),
     });
+    
     dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
   } catch (error) {
     console.error(error);
@@ -161,7 +162,20 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
 
 //PRODUCTOS
 
-export const getAllProducts = (id,
+export const getAllProducts = () => async (dispatch) => {
+  try { 
+    const res = await axios.get("/products");
+    console.log(res);
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/* export const getAllProducts = (id,
   name,
   status,
   userId,
@@ -206,7 +220,7 @@ export const getAllProducts = (id,
   }
 };
 
-
+ */
 
 
 
