@@ -11,6 +11,7 @@ const mercadopagoRoute = require('./mercadopagoRoute.js');
 const contactRoutes = require("./contactRoutes.js");
 const adoptRoutes = require("./adoptRoutes.js");
 const searchRoutes = require("./searchRoutes.js");
+const filteredProductsRoutes = require('./filteredProductsRoutes.js');
 
 const router = Router()
 
@@ -32,6 +33,9 @@ router.use('/checkout', mercadopagoRoute);
 
 //Ruta de suscripción por MercadoPago
 router.use('/sponsor', subscriptionRoute);
+
+//Ruta de filtro de productos:
+router.use("/filteredProducts", filteredProductsRoutes);
 
 
 module.exports = router;
