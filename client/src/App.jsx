@@ -23,13 +23,13 @@ import Admin from "./COMPONENTS/ADMIN/Admin";
 
 
 //Instancia de axios para Railway.
-axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
+// axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
 
 //Instancia de axios para Railway.
 // axios.defaults.baseURL = "https://petbook-server.onrender.com";
 
 //Instancia de axios para trabajo local:
-// axios.defaults.baseURL = "https://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001";
 
 
 function App() {

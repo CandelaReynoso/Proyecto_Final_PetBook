@@ -9,7 +9,6 @@ async function filterProductsController({
     sortCriterion
 }){
 
-    console.log("estoy en filteredProducts");
 
     let where = {};
     let response;
@@ -28,10 +27,10 @@ async function filterProductsController({
                 delete where[toDelete[i]];
               }
 
-              console.log(where)
 
               response = await Product.findAll({
-                where
+                where,
+                order: [[price, sortCriterion]]
               })
 
               
