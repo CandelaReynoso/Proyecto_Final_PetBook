@@ -50,7 +50,7 @@ const AdoptionForm = (props) => {
             petId: id,
           }),
         };
-        const response = await fetch('/adoptions', requestOptions);
+        const response = await fetch('http://localhost:3001/adoptions', requestOptions);
         const data = await response.json();
         console.log(data);
         resetForm();
