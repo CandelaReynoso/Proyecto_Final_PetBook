@@ -10,7 +10,7 @@ const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js"
 sequelize.sync({alter:true }).then( async () => {
 
   await loadPets();
-  await uploadProductos();
+  // await uploadProductos();
 
   console.log("estoy conectado a", sequelize.getDatabaseName());
   await Role.findOrCreate({ where: { role: "admin_role" }, defaults: { role: "admin_role" } });
