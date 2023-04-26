@@ -162,7 +162,7 @@ export const verifyAdmin = (id) => {
   return async function (dispatch) {
   
     try {
-      const response = await axios(`/users/verifyAdminRole/${id}`);
+      const response = await axios(`http://localhost:3001/users/verifyAdminRole/${id}`);
       
       return dispatch({
         type: VERIFY_ADMIN_ROLE,

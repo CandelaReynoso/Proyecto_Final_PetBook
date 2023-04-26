@@ -31,7 +31,7 @@ const Admin = () => {
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
-                <span className="group-hover:text-gray-700">Categories</span>
+                <span className="group-hover:text-gray-700">publicar productos</span>
               </a>
             </li>
             <li>
