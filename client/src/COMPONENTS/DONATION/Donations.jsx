@@ -42,6 +42,9 @@ export default function Donations(){
     </div>
 </div>
 
+
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
+
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body"> 
                         <h2 className="card-title text-black font-['candara']">Puppy Size Donation</h2>
@@ -81,6 +84,31 @@ export default function Donations(){
 
 <div className="hidden sm:block place-items-center"><img src="/perrogatootro.png" alt=""  width=''/></div>
 
+<<<<<<<<< Temporary merge branch 1
+<div className="card w-72 bg-base-100 shadow-xl m-4">
+    <div className="card-body">
+    <h2 className="card-title font-['candara'] text-neutral ">Personalized Donation</h2>
+    <form action="http://localhost:3001/checkout" method="GET" className={Styles.container}>
+        <input type="hidden" name="title" value="Donación pequeño corazón."/>
+        <label className="italic text-sm">select here the amount to donate: </label>
+        <input type="number" min="100" max="10000" placeholder=" $..." onChange={handleChange}/>
+        <input type="hidden" name="price" value={donation}/>
+        <br />
+        {
+            error
+            ? (<>
+                <span className={Styles.error}>*{error}</span>
+                <br />
+                <input type="submit" value="Donar" className="btn" disabled/>
+                </>)
+            : <input type="submit" value="DONATE NOW" className="btn btn-primary "/>
+        }
+        <br />
+    </form>
+
+    </div>
+</div>
+=========
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body">
                     <h2 className="card-title font-['candara'] text-neutral ">Personalized Donation</h2>
@@ -116,6 +144,7 @@ export default function Donations(){
                     </div>
                 </div>
                 </div>
+>>>>>>>>> Temporary merge branch 2
 
 <div className="flex justify-center items-center my-6">
     <h5 className="font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
