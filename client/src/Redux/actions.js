@@ -9,6 +9,8 @@ import {
   VERIFY_ADMIN_ROLE,
   SEND_EMAIL,
   SEND_ADOPTION_REQUEST,
+  GET_PRODUCTS
+
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -140,27 +142,27 @@ export const sendEmail = (name, lastname, email, message) => {
   });
 };
 
-export const sendAdoptionRequest =
-  (userEmail, petName, message) => async (dispatch) => {
-    try {
-      const response = await axios.post("/pets/adopt", {
-        userEmail,
-        petName,
-        message,
-        date: new Date(),
-      });
-      dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
-    } catch (error) {
-      console.error(error);
-      // handle error
-    }
-  };
+// export const sendAdoptionRequest =
+//   (userEmail, petName, message) => async (dispatch) => {
+//     try {
+//       const response = await axios.post("/pets/adopt", {
+//         userEmail,
+//         petName,
+//         message,
+//         date: new Date(),
+//       });
+//       dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+//     } catch (error) {
+//       console.error(error);
+//       // handle error
+//     }
+//   };
 
 export const verifyAdmin = (id) => {
   return async function (dispatch) {
   
     try {
-      const response = await axios(`http://localhost:3001/users/verifyAdminRole/${id}`);
+      const response = await axios(`/users/verifyAdminRole/${id}`);
       
       return dispatch({
         type: VERIFY_ADMIN_ROLE,
@@ -171,3 +173,87 @@ export const verifyAdmin = (id) => {
     }
   };
 };
+
+
+export const sendAdoptionRequest = (userEmail, petName, message) => async (dispatch) => {
+  try {
+    const response = await axios.post('/pets/adopt', {
+      userEmail,
+      petName,
+      message,
+      date: new Date(),
+    });
+    
+    dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+  } catch (error) {
+    console.error(error);
+    // handle error
+  }
+};
+
+//PRODUCTOS
+
+export const getAllProducts = () => async (dispatch) => {
+  try { 
+    const res = await axios.get("/products");
+    console.log(res);
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/* export const getAllProducts = (id,
+  name,
+  status,
+  userId,
+  image,
+  quantity,
+  available,
+  price,
+  category,
+  description,
+  weight,
+  size,
+  specie,
+  consumption_age,
+  discount) => async (dispatch) => {
+  try { 
+    const res = await axios.get('/products', {
+      params: {
+        id,
+        name,
+        status,
+        userId,
+        image,
+        quantity,
+        available,
+        price,
+        category,
+        description,
+        weight,
+        size,
+        specie,
+        consumption_age,
+        discount
+      }
+    });
+    
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+ */
+
+
+
+
+

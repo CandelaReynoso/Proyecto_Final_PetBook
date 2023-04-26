@@ -7,10 +7,9 @@ export const VERIFY_ADMIN_ROLE = "VERIFY_ADMIN_ROLE"
 
 // export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM'
 
-
-
 export const REGISTER_USER = 'REGISTER_USER';
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const SEND_ADOPTION_REQUEST ="SEND_ADOPTION_REQUEST";
 
-
+// actiones del STORE
+export const GET_PRODUCTS ='GET_PRODUCTS';

@@ -7,6 +7,7 @@ import {
   GET_PET_NAME,
   SET_PET_NAME,
   VERIFY_ADMIN_ROLE,
+  GET_PRODUCTS
 } from "./types";
 
 const initialState = {
@@ -30,9 +31,11 @@ const initialState = {
   formSubmitted: false, //enviado de formulario de registro
 
   //Form de Contacto
-  loading: false,
-  success: null,
-  error: null,
+loading: false,
+success: null,
+error: null,
+
+products: [],
 
   admin: null,
 };
@@ -80,22 +83,26 @@ const reducer = (state = initialState, action) => {
           ...state,
           loading: false,
           success: action.payload,
-          error: null,
-        };
-      }
-    case SEND_ADOPTION_REQUEST:
-      return {
-        ...state,
-        adoptionRequest: action.payload,
-        error: null,
-      };
-
-    case VERIFY_ADMIN_ROLE:
-      return {
-        ...state,
-        admin: action.payload,
-      };
-
+          error: null
+          };
+          }
+          case SEND_ADOPTION_REQUEST:
+            return {
+              ...state,
+              adoptionRequest: action.payload,
+              error: null,
+            };
+            case GET_PRODUCTS:
+            return {
+              ...state,
+              products: action.payload
+            };
+            case VERIFY_ADMIN_ROLE:
+              return {
+                ...state,
+                admin: action.payload,
+              };
+      
     default: {
       return {
         ...state,

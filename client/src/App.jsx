@@ -22,8 +22,15 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 
 
-//Instancia de axios.
-axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
+//Instancia de axios para Railway.
+// axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
+
+//Instancia de axios para Railway.
+// axios.defaults.baseURL = "https://petbook-server.onrender.com";
+
+//Instancia de axios para trabajo local:
+axios.defaults.baseURL = "https://localhost:3001";
+
 
 function App() {
 

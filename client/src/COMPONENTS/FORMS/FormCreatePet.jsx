@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import validator from "validator";
 import { validateData } from "../FORMS/validations.js"
 
 

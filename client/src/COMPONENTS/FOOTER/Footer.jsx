@@ -7,7 +7,7 @@ export default function Footer() {
 
 <footer className="footer items-center p-4 bg-primary text-neutral ">
   <div className="items-center grid-flow-col">
-    <img src="patita1.png" alt="" width="36" height="36" />
+    <img src="/patita1.png" alt="" width="36" height="36" />
     <p className="letter-footer">PETBOOK - Copyright © 2023 - All right reserved</p>
   </div> 
   <div className="grid-flow-col gap-4 place-self-center lg:justify-self-end">
