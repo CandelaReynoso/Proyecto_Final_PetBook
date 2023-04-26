@@ -1,5 +1,5 @@
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS} from './types';
 
 
 const initialState = {
@@ -25,7 +25,9 @@ const initialState = {
   //Form de Contacto
 loading: false,
 success: null,
-error: null
+error: null,
+
+products: [],
 
 };
 
@@ -81,6 +83,11 @@ const reducer = (state = initialState, action) => {
               ...state,
               adoptionRequest: action.payload,
               error: null,
+            };
+            case GET_PRODUCTS:
+            return {
+              ...state,
+              products: action.payload
             };
       
     default: {

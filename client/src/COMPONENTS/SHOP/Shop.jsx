@@ -17,7 +17,7 @@ export default function Shop () {
 
                 <div className="h-screen w-screen">
 
-                <h1 className="titleLeft"> We are working for you...</h1>
+                <h1 className="titleLeft">SHOP ONLINE</h1>
                 <div className="flex justify-end"> <img src="./perrotrabaja.png" alt="" width='500px'/> </div>
 
                 </div>
