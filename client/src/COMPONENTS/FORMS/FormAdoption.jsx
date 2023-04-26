@@ -64,10 +64,11 @@ const AdoptionForm = (props) => {
   return (
     <div>
     <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }</div>
-    <div> 
+    <div>
+       
     <p className="subtitle" >Hello <strong>{nickname}</strong>, thank you for your interest. Please enter your data.</p>
    </div>
-    <form  className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4' onSubmit={formik.handleSubmit}>
+    <form  className='max-w-[1000px] w-full mx-auto rounded-lg bg-white  p-4' onSubmit={formik.handleSubmit}>
       <div className='divForminput'>
         <label htmlFor="name">Name:</label>
         <input
@@ -186,7 +187,7 @@ const AdoptionForm = (props) => {
 </div>
 </form>
    {/* IMAGEN */}
-   <div className='hidden sm:block'>  
+   <div className='hidden sm:block '>  
               <img className='w-[100%] h-full  object-cover' src="/gatitoform.png" alt="gatito que lee" />
             </div>
 <div>
