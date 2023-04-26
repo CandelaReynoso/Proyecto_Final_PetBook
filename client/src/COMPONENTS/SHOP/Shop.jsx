@@ -13,7 +13,7 @@ export default function Shop (props) {
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
-            await dispatch(getAllProducts());
+            dispatch(getAllProducts());
             setLoading(false);
         }
         fetchData();
@@ -31,7 +31,7 @@ export default function Shop (props) {
                         <>
                             <h1 className="titleLeft">Our Products</h1>
                             <div className="flex flex-wrap justify-center">
-                                {products.map(product => (
+                                {products && products.map(product => (
                                     <div key={product.id} className="max-w-md mx-2 my-2 shadow-md rounded-lg overflow-hidden">
                                         <img className="w-full h-48 object-cover" src={product.image} alt={product.name} />
                                         <div className="p-4">
