@@ -20,6 +20,7 @@ import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 
 import Admin from "./COMPONENTS/ADMIN/Admin";
+
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
 
 
@@ -39,10 +40,10 @@ function App() {
 
   return (
 
-    
+
     <div className="app">
 
-      {location.pathname !== "/" && <Chatbot /> }
+      {location.pathname !== "/" && <Chatbot />}
 
 
       <Routes>
@@ -50,21 +51,21 @@ function App() {
         <Route path="/header" element={<Header />} />
         <Route path="/home" element={<Home />} />
         <Route path="/footer" element={<Footer />} />
-        <Route path='/detail/:id' element={<Detail/>} />
-        <Route path ='/login' element={<Loginpage />} />
-        <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
+        <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/login' element={<Loginpage />} />
+        <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption />} />
         <Route path="/register" element={<Registration />} />
         <Route path='/about' element={<About />} />
         <Route path="/FormAdoption/:id" element={<FormAdoption />} />
-        <Route path="/FormContact" element={<FormContact/>} />
-        <Route path="/FormCreatePet" element={<FormCreatePet/>}/>
-        <Route path="/FormHistory" element={<FormHistory /> } />
+        <Route path="/FormContact" element={<FormContact />} />
+        <Route path="/FormCreatePet" element={<FormCreatePet />} />
+        <Route path="/FormHistory" element={<FormHistory />} />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
-        
-        <Route path="/store" element={<Shop />} />      
+
+        <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
-        <Route path="/admin" element={<Admin/>} />
+        <Route path="/admin" element={<Admin />} />
         <Route path='/error' element={<ErrorPage />} />
 
       </Routes>
