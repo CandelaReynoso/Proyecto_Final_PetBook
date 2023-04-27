@@ -5,7 +5,7 @@ require("dotenv").config();
 const { PORT } = process.env;
 const loadPets = require('./src/database/scriptPets.js')
 const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js");
-const tuApi = "c5c2be10-c919-4ac7-aebd-b359d3487566";
+const tuApi = "0186b76b-0eff-45e7-863d-d1406b7b5b8f";
 
 
 sequelize.sync({alter:true }).then( async () => {

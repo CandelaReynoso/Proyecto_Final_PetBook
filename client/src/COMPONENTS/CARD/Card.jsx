@@ -77,14 +77,14 @@ const Card = (pet) => {
             <figure> 
               <img className='w-[7rem] rounded-3xl' src={pet?.image} alt={pet?.name} />
               <div>
-         {
-           isFav ? (
-             <button onClick={handleFavorite}>💚</button>
-        ) : (
-             <button  onClick={handleFavorite}>🤍</button>
-         )
-        }
-           </div>
+  { localStorage.getItem('token') && 
+    (isFav ? (
+      <button onClick={handleFavorite}>💚</button>
+    ) : (
+      <button onClick={handleFavorite}>🤍</button>
+    ))
+  } 
+</div>
              {/*  <div onClick={handleFavoriteClick}>
         {isLoggedIn ? (
           <p
