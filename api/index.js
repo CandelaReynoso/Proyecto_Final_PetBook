@@ -5,13 +5,16 @@ require("dotenv").config();
 const { PORT } = process.env;
 const loadPets = require('./src/database/scriptPets.js')
 const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js");
-const tuApi = "1a65f2ca-463f-4c24-ac64-cd908480618b";
+
+const tuApi = "0186b76b-0eff-45e7-863d-d1406b7b5b8f";
 
 
-sequelize.sync({force:false }).then( async () => {
+
+sequelize.sync({alter:true }).then( async () => {
 
   await loadPets();
   await uploadProductos(tuApi);
+
 
   console.log("estoy conectado a", sequelize.getDatabaseName());
   await Role.findOrCreate({ where: { role: "admin_role" }, defaults: { role: "admin_role" } });

@@ -7,7 +7,7 @@ import AdoptionForm from '../FORMS/FormAdoption';
 import {addFavorite, deleteFavorite } from '../../Redux/actions';
 
 const Card = (pet) => {
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -27,12 +27,12 @@ const Card = (pet) => {
     if (token) {
       setIsLoggedIn(true);
     }
-
-    myFavorites.forEach((fav) => {
+/*     myFavorites.forEach((fav) => {
       if (fav.id === id) {
          setIsFav(true);
       }
-   });
+   });  */
+
   }, [myFavorites]);
 
 
@@ -49,10 +49,10 @@ const Card = (pet) => {
     }
   }
   
-  console.log(myFavorites + "mis fav")
+  console.log( "Mis fav: " + myFavorites)
 
   const handleSelectMascota = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     setSelectedMascota(pet); // update state variable with pet's data
   };
 
@@ -77,14 +77,14 @@ const Card = (pet) => {
             <figure> 
               <img className='w-[7rem] rounded-3xl' src={pet?.image} alt={pet?.name} />
               <div>
-         {
-           isFav ? (
-             <button onClick={handleFavorite}>💚</button>
-        ) : (
-             <button  onClick={handleFavorite}>🤍</button>
-         )
-        }
-           </div>
+  { localStorage.getItem('token') && 
+    (isFav ? (
+      <button onClick={handleFavorite}>💚</button>
+    ) : (
+      <button onClick={handleFavorite}>🤍</button>
+    ))
+  } 
+</div>
              {/*  <div onClick={handleFavoriteClick}>
         {isLoggedIn ? (
           <p
@@ -166,5 +166,5 @@ const Card = (pet) => {
     
   );
 };
-
+ 
 export default Card;
