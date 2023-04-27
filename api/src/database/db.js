@@ -4,48 +4,33 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
-
-
-//  const sequelize = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-//     {
-//       logging: false,
-//       native: false,
-
+//DB local
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
 
-//   {
-//     logging: false,
-//     native: false,
-//   }
 
-// );
-
-
+//Render
 const sequelize = new Sequelize(
- DB_DEPLOY,
- {
-  logging: false,
-   native: false,
-     dialectOptions: {
-       ssl:{
-         require: true,
-       }
+  DB_DEPLOY,
+  {
+   logging: false,
+    native: false,
+      dialectOptions: {
+        ssl:{
+          require: true,
+        }
+      }
      }
-    }
-  ); 
+   );
 
+
+//Railway
 
 // const sequelize = new Sequelize(
 //  DB_DEPLOY,
 //  {
 //   logging: false,
 //    native: false,
-
-//  }
-// );
-
 
 
 const basename = path.basename(__filename);
@@ -72,11 +57,10 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-
 const { Shelter } = sequelize.models;
-const { Pet } = sequelize.models
+const { Pet } = sequelize.models;
 const { Product } = sequelize.models;
-const { User } = sequelize.models
+const { User } = sequelize.models;
 const { Category } = sequelize.models;
 
 const { User_pet } = sequelize.models;
@@ -101,40 +85,41 @@ User.hasMany(Email, { foreignKey: 'userId' });
 User.belongsToMany(Pet, { through: User_pet });
 Pet.belongsToMany(User, { through: User_pet });
 
-User.hasMany(User_pet, { foreignKey: 'userId' });
-User_pet.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(User_pet, { foreignKey: "userId" });
+User_pet.belongsTo(User, { foreignKey: "userId" });
 
 User_pet.belongsTo(Pet);
 Pet.belongsToMany(User, { through: User_pet });
 
-
-
 // User / Category 1:1
-Category.belongsTo(User, { foreignKey: 'userId' });   // userId is the id of the user that creates the category
+Category.belongsTo(User, { foreignKey: "userId" }); // userId is the id of the user that creates the category
 
-Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategory' });
+Product.belongsTo(Category, {
+  foreignKey: "categoryId",
+  as: "productCategory",
+});
 //Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategoryId'}); // categoryId of the product
 Category.hasMany(Product, { foreignKey: 'categoryId' }); // Use "categoryId" instead of "productId"
 
 
-Product.belongsTo(User, { foreignKey: 'userId' });
+Product.belongsTo(User, { foreignKey: "userId" });
 
 // User / Product M:N
-User.belongsToMany(Product, { through: 'user_product' });
+User.belongsToMany(Product, { through: "user_product" });
 //Product.belongsToMany(User, { through: 'user_product' });
 Product.belongsTo(User, { foreignKey: 'userId' }); // userId is the id of the user that creates the product
 
 // User / Shelter 1: N
-Shelter.hasMany(User, { foreignKey: 'userId' });
-User.belongsTo(Shelter, { foreignKey: 'userId' });
+Shelter.hasMany(User, { foreignKey: "userId" });
+User.belongsTo(Shelter, { foreignKey: "userId" });
 
 // Pet / Products : 1:N
-Pet.hasMany(Product, { foreignKey: 'petId' });
-Product.belongsTo(Pet, { foreignKey: 'petId' });
+Pet.hasMany(Product, { foreignKey: "petId" });
+Product.belongsTo(Pet, { foreignKey: "petId" });
 
-// Shelter / Pet 1 : N 
-Shelter.hasMany(Pet, { foreignKey: 'shelterId' });
-Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
+// Shelter / Pet 1 : N
+Shelter.hasMany(Pet, { foreignKey: "shelterId" });
+Pet.belongsTo(Shelter, { foreignKey: "shelterId" });
 
 //Donations - User --- 1:N
 Donations.belongsToMany(User, { through: 'user_donations' });

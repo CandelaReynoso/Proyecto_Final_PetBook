@@ -36,17 +36,16 @@ const Card = (pet) => {
   }, [myFavorites]);
 
 
-  const handleFavorite = (id) => {
-    if(!isFav) {
-      setIsFav(true);
-     /*  dispatch(addFavorite(pet.id)) */
-     myFavorites.push(pet.id)
-      
-    } else {
-      console.log("estoy en else")
-        setIsFav(false);
-       /* dispatch(deleteFavorite(pet.id)) */
-       !myFavorites.pop(pet.id)
+
+
+  const handleFavorite = () => {
+    if(isFav) {
+       setIsFav(false);
+       dispatch(deleteFavorite(pet.id))
+    }
+    else {
+       setIsFav(true);
+       dispatch(addFavorite())
     }
   }
   
@@ -78,14 +77,14 @@ const Card = (pet) => {
             <figure> 
               <img className='w-[7rem] rounded-3xl' src={pet?.image} alt={pet?.name} />
               <div>
-         {
-           isFav ? (
-             <button onClick={handleFavorite}>💚</button>
-        ) : (
-             <button  onClick={handleFavorite}>🤍</button>
-         )
-        }
-           </div>
+  { localStorage.getItem('token') && 
+    (isFav ? (
+      <button onClick={handleFavorite}>💚</button>
+    ) : (
+      <button onClick={handleFavorite}>🤍</button>
+    ))
+  } 
+</div>
              {/*  <div onClick={handleFavoriteClick}>
         {isLoggedIn ? (
           <p
@@ -167,5 +166,5 @@ const Card = (pet) => {
     
   );
 };
-
+ 
 export default Card;
