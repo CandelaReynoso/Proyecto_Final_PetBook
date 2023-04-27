@@ -113,7 +113,6 @@ const adoptHandlerPut = async (req, res) => {
 const adoptStatusHandlerApprovedPut = async (req, res) => {
     try {
         const id = req.params.id;
-        const {email} = req.body
     
         // TODO validate vs db
         const updatedAdoption = await Adopt.update(
