@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { verifyAdmin } from "../../Redux/actions";
-
 
 export default function HeaderLogin() {
   const Menu = (e) => {
@@ -12,24 +9,25 @@ export default function HeaderLogin() {
     menu.classList.toggle("hidden");
   };
 
-  const dispatch = useDispatch();
-  const state = useSelector((state)=>state)
-  console.log("userlogueado " + localStorage.getItem("token"));
-
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState("");
 
   useEffect(() => {
-    let id = window.localStorage.getItem("id");
-     dispatch(verifyAdmin(id));
-  }, [dispatch]);
+    let adminRoll = window.localStorage.getItem("Admin");
+   
+    setAdmin(JSON.parse(adminRoll));
+  }, [admin,window.localStorage.getItem("Admin")]);
+  
+
+  // console.log("userlogueado " + localStorage.getItem("token"));
 
   const userLogout = () => {
     localStorage.clear();
     window.location.reload();
     console.log(localStorage.getItem("token"));
+    if (admin === true) {
+      window.localStorage.setItem("Admin", JSON.stringify(false));
+    }
   };
-  
-  console.log(state.admin);
 
   return (
     <div>
@@ -43,8 +41,7 @@ export default function HeaderLogin() {
                   <FiMenu />
                 </a>
                 <ul className="menu dropdown-content p-2 bg-primary w-56 rounded-box text group-hover:bg-primary">
-               
-                     <li>
+                  <li>
                     <a href="/home">Home</a>
                   </li>
                   <li>
@@ -105,8 +102,6 @@ export default function HeaderLogin() {
           </div>
 
           <div className="flex-none gap-2">
-          
-          
             <a href="/home" className="textoheader">
               home
             </a>
@@ -148,8 +143,8 @@ export default function HeaderLogin() {
                 <li>
                   <button onClick={() => userLogout()}>Logout</button>
                 </li>
-                
-                {state.admin === true?  <a href="/admin">admin</a>: "" }
+
+                {admin === true ? <a href="/admin">admin</a> : ""}
               </ul>
             </div>
           </div>

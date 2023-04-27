@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getUsers } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import TablaUsers from "./TablaUsers";
+
 
 const Admin = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [getUsers]);
+
   return (
     <div>
       <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
@@ -31,7 +43,9 @@ const Admin = () => {
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
-                <span className="group-hover:text-gray-700">publicar productos</span>
+                <span className="group-hover:text-gray-700">
+                  publicar productos
+                </span>
               </a>
             </li>
             <li>
@@ -49,9 +63,11 @@ const Admin = () => {
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
+              <Link to={"/AplicationRequest"}>
                 <span className="group-hover:text-gray-700">
                   Solicitudes de Adopcion
                 </span>
+                </Link>
               </a>
             </li>
             <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
@@ -86,20 +102,7 @@ const Admin = () => {
                 aria-label="chat"
                 className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 m-auto text-gray-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                  />
-                </svg>
+                btn util
               </button>
 
               {/* CAMPANA DE NOTIFICACIONES */}
@@ -107,21 +110,14 @@ const Admin = () => {
                 aria-label="notification"
                 className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 m-auto text-gray-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                </svg>
+                otro btn
               </button>
             </div>
           </div>
         </div>
 
-        <div className="px-6 pt-6 2xl:container">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="px-6 pt-6 2xl:container ">
+          <div>
             {/* ***************************** */}
             {/* COLUMNA 1 */}
             <div className="md:col-span-2 lg:col-span-1">
@@ -130,6 +126,24 @@ const Admin = () => {
                   <h5 className="text-xl text-gray-600 text-center">
                     usuarios registrados
                   </h5>
+
+                  <table className="w-full text-gray-600">
+                    <tbody>
+                      {state.users.users &&
+                        state?.users?.users?.map((user, index) => {
+                          return (
+                            <tr key={index}>
+                              <TablaUsers
+                                user={user.nickname}
+                                email={user.email}
+                                index={index}
+                                id={user.id}
+                              />
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

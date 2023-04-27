@@ -113,21 +113,20 @@ const deleteProductHander = async (req, res) => {
 
 }
 
-const filterProductsHandler = async (req, res) => {
-  const filters = req.query;
+// const filterProductsHandler = async (req, res) => {
+//   const filters = req.query;
 
-  try {
-    const response = await filterProductsController(filters);
-    res.status(200).send(response);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-}
+//   try {
+//     const response = await filterProductsController(filters);
+//     res.status(200).send(response);
+//   } catch (error) {
+//     res.status(400).send(error.message);
+//   }
+// }
 
 module.exports = { 
   getHandlerProducts,
   postProductHandler,
   putProductHandler,
-  deleteProductHander,
-  filterProductsHandler
+  deleteProductHander
 };

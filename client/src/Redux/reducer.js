@@ -6,8 +6,8 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PET_NAME,
   SET_PET_NAME,
-  VERIFY_ADMIN_ROLE,
-  GET_PRODUCTS
+ GET_PRODUCTS,
+  GET_USERS
 } from "./types";
 
 const initialState = {
@@ -37,7 +37,7 @@ error: null,
 
 products: [],
 
-  admin: null,
+  users :[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -97,11 +97,13 @@ const reducer = (state = initialState, action) => {
               ...state,
               products: action.payload
             };
-            case VERIFY_ADMIN_ROLE:
-              return {
-                ...state,
-                admin: action.payload,
-              };
+            
+              
+              case GET_USERS:
+              return{
+              ...state,
+              users : action.payload
+              }
       
     default: {
       return {

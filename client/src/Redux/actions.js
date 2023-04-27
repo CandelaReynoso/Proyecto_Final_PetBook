@@ -6,11 +6,10 @@ import {
   GET_PETS_RAMDON_HOME,
   GET_PET_NAME,
   SET_PET_NAME,
-  VERIFY_ADMIN_ROLE,
   SEND_EMAIL,
   SEND_ADOPTION_REQUEST,
-  GET_PRODUCTS
-
+  GET_PRODUCTS,
+  GET_USERS,
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -158,43 +157,43 @@ export const sendEmail = (name, lastname, email, message) => {
 //     }
 //   };
 
-export const verifyAdmin = (id) => {
+
+
+export const getUsers = () => {
   return async function (dispatch) {
-  
     try {
-      const response = await axios(`http://localhost:3001/users/verifyAdminRole/${id}`);
-      
+      const response = await axios("http://localhost:3001/users");
       return dispatch({
-        type: VERIFY_ADMIN_ROLE,
+        type: GET_USERS,
         payload: response.data,
       });
     } catch (error) {
-    window.alert(error.message)
+     window.alert(error.message)
     }
   };
 };
 
+export const sendAdoptionRequest =
+  (userEmail, petName, message) => async (dispatch) => {
+    try {
+      const response = await axios.post("/pets/adopt", {
+        userEmail,
+        petName,
+        message,
+        date: new Date(),
+      });
 
-export const sendAdoptionRequest = (userEmail, petName, message) => async (dispatch) => {
-  try {
-    const response = await axios.post('/pets/adopt', {
-      userEmail,
-      petName,
-      message,
-      date: new Date(),
-    });
-    
-    dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
-  } catch (error) {
-    console.error(error);
-    // handle error
-  }
-};
+      dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
 
 //PRODUCTOS
 
 export const getAllProducts = () => async (dispatch) => {
-  try { 
+  try {
     const res = await axios.get("/products");
     console.log(res);
     dispatch({
@@ -252,8 +251,3 @@ export const getAllProducts = () => async (dispatch) => {
 };
 
  */
-
-
-
-
-
