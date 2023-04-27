@@ -1,13 +1,13 @@
 const { Adopt, User, Pet } = require('../database/db');
 const { Op } = require('sequelize');
-
+const nodemailer = require('nodemailer');
 
 const adoptHandlerGet = async (req, res) => {
     try {
         const { limit = 20, from = 0, name } = req.query;
         const { id } = req.params;
 
-        let whereClause = {};
+        let whereClause = { status: "pending"};
 
         if (id) {
             whereClause = { id };
@@ -110,6 +110,50 @@ const adoptHandlerPut = async (req, res) => {
     
 };
 
+const adoptStatusHandlerApprovedPut = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const {email} = req.body
+    
+        // TODO validate vs db
+        const updatedAdoption = await Adopt.update(
+          { status: "approved" },
+          { where: { id }, returning: true, plain: true }
+        );
+    
+        // get the adoption data to get the adopter's email
+        const adoption = updatedAdoption[1].dataValues;
+    console.log(adoption.email)
+        // send email to the adopter
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "petbook5173@gmail.com",
+            pass: process.env.PASSWORD // gmail app password
+          }
+        });
+    
+        const mailOptions = {
+          from: "petbook5173@gmail.com",
+          to: adoption.email,
+          subject: "Petbook Adoption Approved",
+          text: "Congratulations! Your adoption request has been approved. Please contact us for more information."
+        };
+    
+        transporter.sendMail(mailOptions, function(error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        });
+    
+        res.status(200).json({ updatedAdoption });
+      } catch (error) {
+        res.status(500).json({ msg: "internal server error" });
+      }
+  };
+
 const adoptHandlerDelete = async (req, res) => {
     try {
         const { id } = req.params;
@@ -137,6 +181,33 @@ const adoptHandlerDelete = async (req, res) => {
             }
         );
 
+        // get the adoption data to get the adopter's email
+        const adoptionData = disableAdoption[1].dataValues;
+        
+        // send email to the adopter
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "petbook5173@gmail.com",
+                pass: process.env.PASSWORD // gmail app password
+            }
+        });
+
+        const mailOptions = {
+            from: "petbook5173@gmail.com",
+            to: adoptionData.email,
+            subject: "Petbook Adoption Declined",
+            text: "We're sorry to inform you that your adoption request has been declined. Please contact us for more information."
+        };
+
+        transporter.sendMail(mailOptions, function(error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        });
+
         const authUser = req.user; // check auth
 
         res.status(200).json({ disableAdoption, authUser });
@@ -149,5 +220,6 @@ module.exports = {
     adoptHandlerGet,
     adoptHandlerPost,
     adoptHandlerPut,
-    adoptHandlerDelete
+    adoptHandlerDelete,
+    adoptStatusHandlerApprovedPut
 }
