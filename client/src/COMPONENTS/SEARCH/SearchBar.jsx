@@ -58,19 +58,20 @@ export default function SearchBar() {
 
   return (
     <nav >
-      <div className="rounded-full">
+      <div className="rounded-full input-group">
       <input      
         id="search"
         type="text"
         name="name"
         value={name}
         autoComplete="off"
-        placeholder="  Type here..."
+        placeholder=" Look for name..."
         onChange={(e) => handleInputChange(e)} onKeyDown={(e) => handleKeyDown(e)}
-        className=" rounded-full"
+        className="rounded-full input-xs"
+
         
       />
-      <button className="btn btn-secondary btn-circle btn-xs" onClick={(e) => handleSubmit(e)}>🔎</button>
+      <button className=" btn  btn-accent btn-circle btn-xs" onClick={(e) => handleSubmit(e)}>🔎</button>
 
       </div>
 
