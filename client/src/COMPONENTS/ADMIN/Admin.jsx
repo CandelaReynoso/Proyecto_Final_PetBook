@@ -134,10 +134,10 @@ const Admin = () => {
                           return (
                             <tr key={index}>
                               <TablaUsers
-                                user={user.nickname}
-                                email={user.email}
+                                user={user?.nickname}
+                                email={user?.email}
                                 index={index}
-                                id={user.id}
+                                id={user?.id}
                               />
                             </tr>
                           );

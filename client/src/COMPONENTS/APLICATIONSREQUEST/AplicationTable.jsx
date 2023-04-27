@@ -56,7 +56,7 @@ console.log(adoptionPets);
           
           <tr>
             <td className="py-2">age</td>
-            <td className="text-gray-500">{adoptionPets?.age}</td>
+            <td className="text-gray-500">{age}</td>
             
           </tr>
           
