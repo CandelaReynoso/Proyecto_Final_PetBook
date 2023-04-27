@@ -95,8 +95,10 @@ const reducer = (state = initialState, action) => {
             case ADD_FAVORITE:
               return {
                   ...state,
+
                   myFavorites:[...state.myFavorites, action.payload],
                  /*  pets: [...state.pets.data, action.payload] */
+
               }   
               
           case DELETE_FAVORITE:

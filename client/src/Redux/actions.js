@@ -161,12 +161,14 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
   }
 };
 
-export const addFavorite = (pet) => {
-  return { type:ADD_FAVORITE, payload:pet }
+export const addFavorite = (id) => {
+  return { type:ADD_FAVORITE, payload:id }
 }
+
 export const deleteFavorite = (id) =>{
   console.log("accion despachada")
-  return {type: DELETE_FAVORITE, payload:id}
+  return { type: DELETE_FAVORITE, payload:id }
+
 }
 
 //PRODUCTOS
