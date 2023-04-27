@@ -32,6 +32,7 @@ export default function Donations(){
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
 
+
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body"> 
                         <h2 className="card-title text-black font-['candara']">Puppy Size Donation</h2>
@@ -42,7 +43,11 @@ export default function Donations(){
                             <div className="card-actions justify-end"> <input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
                         </form>
                     </div>
+
+
                 </div>
+            </div>
+
 
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body">
@@ -92,7 +97,31 @@ export default function Donations(){
                             : <input type="submit" value="DONATE NOW" className="btn btn-primary "/>
                         }
                         <br />
+
                     </form>
+                </div>
+            </div>
+
+            <div className="card w-96 bg-base-100 shadow-xl m-4">
+                <div className="card-body">
+                <h2 className="card-title">Personalized Donation</h2>
+                 <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET" className={Styles.container}>
+                    <input type="hidden" name="title" value="Donación pequeño corazón."/>
+                    <label className="italic">select here the amount to donate: </label>
+                    <input type="number" min="100" max="10000" placeholder=" $..." onChange={handleChange}/>
+                    <input type="hidden" name="price" value={donation}/>
+                    <br />
+                    {
+                        error
+                        ? (<>
+                            <span className={Styles.error}>*{error}</span>
+                            <br />
+                            <input type="submit" value="Donar" className="btn" disabled/>
+                            </>)
+                        : <input type="submit" value="DONATE NOW" className="btn btn-primary "/>
+                    }
+                    <br />
+                 </form>
 
                     </div>
 
