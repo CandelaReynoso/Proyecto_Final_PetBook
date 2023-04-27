@@ -1,4 +1,5 @@
 const { Product } = require("../database/db");
+
 const productos = require("../../productosJSON.json");
 
 
@@ -10,6 +11,7 @@ const uploadProductos = async (tuApi) => {
     productos.forEach(item => item.userId = tuApi)
 
     const count = await Product.count();
+
     if (count === 0) await Product.bulkCreate(productos);
 
   } catch (error) {
@@ -23,4 +25,6 @@ const lengthProducts = async () => {
 }
 
 
+
 module.exports = { uploadProductos, lengthProducts };
+

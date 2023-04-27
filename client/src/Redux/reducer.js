@@ -1,10 +1,13 @@
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS,ADD_FAVORITE,DELETE_FAVORITE,} from './types';
+
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS,ADD_FAVORITE,DELETE_FAVORITE, GET_USERS} from './types';
+
 
 
 const initialState = {
   adoptionRequest: null,
   error: null,
+
 
   petsRandomHome :[],
   pet:{},
@@ -12,16 +15,17 @@ const initialState = {
   myFavorites: [],
   pets:[],
 
-  profile: {           //perfil de usuario
-    nickname: '',
+
+  profile: {
+    //perfil de usuario
+    nickname: "",
   },
 
-  loginForm:{
-
-    email: '',
-    password: '',
+  loginForm: {
+    email: "",
+    password: "",
   },
-  formSubmitted: false,  //enviado de formulario de registro
+  formSubmitted: false, //enviado de formulario de registro
 
   //Form de Contacto
 loading: false,
@@ -31,6 +35,8 @@ error: null,
 products: [],
 
 
+  users :[]
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,42 +44,41 @@ const reducer = (state = initialState, action) => {
     case GET_PETS:
       return {
         ...state,
-        pets: action.payload
+        pets: action.payload,
       };
-      case FETCH_PET_DETAIL_SUCCESS:
+    case FETCH_PET_DETAIL_SUCCESS:
       return {
         ...state,
-        pet: action.payload
-      }
-      case GET_PETS_RAMDON_HOME:
-      return{
-      ...state,
-      petsRandomHome: action.payload
-      }
-      
-      case GET_PET_NAME:
-      return{
-      ...state,
-      namePets: action.payload
-      }
-      
-      case SET_PET_NAME:
+        pet: action.payload,
+      };
+    case GET_PETS_RAMDON_HOME:
       return {
-      ...state,
-      namePets: []
-      }
+        ...state,
+        petsRandomHome: action.payload,
+      };
 
-     
-      case SEND_EMAIL:
-          if (action.error) {
-          return {
+    case GET_PET_NAME:
+      return {
+        ...state,
+        namePets: action.payload,
+      };
+
+    case SET_PET_NAME:
+      return {
+        ...state,
+        namePets: [],
+      };
+
+    case SEND_EMAIL:
+      if (action.error) {
+        return {
           ...state,
           loading: false,
           success: null,
-          error: action.error
-          };
-          } else {
-          return {
+          error: action.error,
+        };
+      } else {
+        return {
           ...state,
           loading: false,
           success: action.payload,
@@ -92,6 +97,14 @@ const reducer = (state = initialState, action) => {
               products: action.payload
             };
 
+              
+              case GET_USERS:
+              return{
+              ...state,
+              users : action.payload
+              }
+
+
             case ADD_FAVORITE:
               return {
                   ...state,
@@ -107,6 +120,7 @@ const reducer = (state = initialState, action) => {
                   ...state,
                   myFavorites: state.myFavorites.filter(pet => pet.id!== action.payload)
               }    
+
       
     default: {
       return {
@@ -117,4 +131,6 @@ const reducer = (state = initialState, action) => {
 };
 
 
+
 export default reducer
+
