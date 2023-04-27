@@ -119,15 +119,7 @@ const reducer = (state = initialState, action) => {
               return {
                   ...state,
                   myFavorites: state.myFavorites.filter(pet => pet.id!== action.payload)
-              }    
-              case GET_PRODUCTS:
-              return {
-                ...state,
-                products: action.payload
-              };
-          
-
-      
+              }     
     default: {
       return {
         ...state,

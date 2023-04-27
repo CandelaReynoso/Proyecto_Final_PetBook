@@ -13,8 +13,8 @@ export default function Shop() {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(products);
 
+  console.log(products)
   return (
     <div>
       <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv] h-[100hv]">
@@ -28,13 +28,8 @@ export default function Shop() {
           </div>
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold mb-4">Choose a product! </h2>
-            {products.loading ? (
-              <p>Loading products...</p>
-            ) : products.error ? (
-              <p>{products.error}</p>
-            ) : (
               <div className="grid grid-cols-4 gap-4">
-                {products.data?.map((product) => (
+                {Array.isArray(products) && products.map((product) => (
                   <div key={product.id} className="border p-4">
                     <img src={product.image} alt={product.name} className="mb-2" />
                     <h3 className="text-lg font-bold">{product.name}</h3>
@@ -42,9 +37,12 @@ export default function Shop() {
                     <p className="font-bold mt-2">${product.price}</p>
                   </div>
                 ))}
+                
               </div>
-            )}
+            )
+          
           </div>
+          
         </div>
       </div>
       <div> <Footer /></div>
