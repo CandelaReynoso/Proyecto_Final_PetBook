@@ -27,7 +27,7 @@ const uploadProductos = async () => {
 
     const count = await Product.count();
 
-    productos.forEach( item => item.userId = "dd392f29-5885-4065-8708-aa5422412d8a")
+    productos.forEach( item => item.userId = "0b3a68cd-b171-4451-aad4-dbf744fa3a19")
 
     if (count === 0) await Product.bulkCreate(productos);
 
