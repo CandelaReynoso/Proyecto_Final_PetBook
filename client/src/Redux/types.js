@@ -6,10 +6,10 @@ export const SET_PET_NAME = "SET_PET_NAME";
 
 // export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM'
 
-
-
 export const REGISTER_USER = 'REGISTER_USER';
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const SEND_ADOPTION_REQUEST ="SEND_ADOPTION_REQUEST";
-
-
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+// actiones del STORE
+export const GET_PRODUCTS ='GET_PRODUCTS';

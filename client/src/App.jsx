@@ -20,10 +20,18 @@ import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 
 import Admin from "./COMPONENTS/ADMIN/Admin";
+import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
 
 
-//Instancia de axios.
-axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app"
+//Instancia de axios para Railway.
+// axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
+
+//Instancia de axios para Railway.
+// axios.defaults.baseURL = "https://petbook-server.onrender.com";
+
+//Instancia de axios para trabajo local:
+axios.defaults.baseURL = "http://localhost:3001";
+
 
 function App() {
 
@@ -57,6 +65,7 @@ function App() {
         <Route path="/store" element={<Shop />} />      
         <Route path="/chat" element={<Chatbot />} />
         <Route path="/admin" element={<Admin/>} />
+        <Route path='/error' element={<ErrorPage />} />
 
       </Routes>
     </div>

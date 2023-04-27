@@ -3,23 +3,38 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
-/* 
 
-   const sequelize = new Sequelize(
-     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-     {
-       logging: false,
-       native: false,
-     }
-  ); */
 
-const sequelize = new Sequelize(
+ const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    {
+      logging: false,
+      native: false,
+    }
+  );
+
+
+// const sequelize = new Sequelize(
+//  DB_DEPLOY,
+//  {
+//   logging: false,
+//    native: false,
+//      dialectOptions: {
+//        ssl:{
+//          require: true,
+//        }
+//      }
+//     }
+//   ); 
+
+/* const sequelize = new Sequelize(
  DB_DEPLOY,
  {
   logging: false,
    native: false,
+
  }
-);
+); */
 
 const basename = path.basename(__filename);
 
@@ -109,5 +124,5 @@ Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
 
 module.exports = {
   ...sequelize.models,
-  sequelize,
+  sequelize,
 };

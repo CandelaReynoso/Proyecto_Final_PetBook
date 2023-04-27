@@ -42,7 +42,7 @@ const Home = () => {
       <div className="flex flex-col w-full lg:flex-row justify-center items-center">
       
           <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral"> 
-        Everybody needs a home. 
+          Everybody needs a home. 
           <br />
           Every home needs love.</div>
 
@@ -85,7 +85,7 @@ const Home = () => {
         <h5 className="titleLeft">WE ARE</h5>
       </div>
         <h2 className="text pb-6 text-justify px-6">  passionate about animal welfare and are committed to creating a world where all pets have a safe and loving home. We believe that every pet deserves a chance to live a happy and healthy life, and we are dedicated to making that a reality. Join us in our mission to make a difference in the lives of pets and their human companions. </h2>
-       <div className="flex justify-end mr-5">
+       <div className="flex justify-center sm:justify-end mr-5">
        <Link to='/about'>
           <button className="btn btn-accent btn-sm ">MORE ABOUT US</button>
         </Link>
@@ -108,7 +108,7 @@ const Home = () => {
 
           <div className="flex justify-center sm:justify-start">
            <Link to ="/AvaliblePetsAdoption">
-            <button className="btn btn-accent btn-sm ">MORE</button> 
+            <button className="btn btn-accent btn-sm mt-6">MORE</button> 
           </Link> 
 
     </div>
