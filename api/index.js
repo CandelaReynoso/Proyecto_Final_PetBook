@@ -8,7 +8,7 @@ const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js"
 const tuApi = "93ac9257-5cf4-4ec6-88c7-bd2f13e346e5";
 
 
-sequelize.sync({alter:true }).then( async () => {
+sequelize.sync({forcer:true }).then( async () => {
 
   await loadPets();
   await uploadProductos(tuApi);
