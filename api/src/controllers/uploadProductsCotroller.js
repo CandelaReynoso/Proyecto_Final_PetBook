@@ -3,11 +3,11 @@ const productos = require("../../productosJSON.json");
 
 
 
-const uploadProductos = async () => {
+const uploadProductos = async (tuApi) => {
   try {
-    if(!productos.length) throw new Error("No hay productos")
-    
-    productos.forEach(item => item.userId = "0b3a68cd-b171-4451-aad4-dbf744fa3a19")
+    if (!productos.length) throw new Error("No hay productos")
+
+    productos.forEach(item => item.userId = tuApi)
 
     const count = await Product.count();
     if (count === 0) await Product.bulkCreate(productos);
