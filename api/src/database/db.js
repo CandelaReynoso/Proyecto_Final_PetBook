@@ -5,13 +5,13 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 
-//   const sequelize = new Sequelize(
-//     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-//     {
-//       logging: false,
-//       native: false,
-//     }
-//  );
+  const sequelize = new Sequelize(
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    {
+      logging: false,
+      native: false,
+    }
+ );
 
 
 // const sequelize = new Sequelize(
@@ -27,14 +27,14 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 //     }
 //   ); 
 
-const sequelize = new Sequelize(
- DB_DEPLOY,
- {
-  logging: false,
-   native: false,
+// const sequelize = new Sequelize(
+//  DB_DEPLOY,
+//  {
+//   logging: false,
+//    native: false,
 
- }
-);
+//  }
+// );
 
 const basename = path.basename(__filename);
 
@@ -72,6 +72,8 @@ const { User_pet } = sequelize.models;
 const { Email } = sequelize.models;
 
 const { Adopt } = sequelize.models;
+
+const {Donations} = sequelize.models;
 
 // model relations
 
@@ -121,6 +123,10 @@ Product.belongsTo(Pet, { foreignKey: 'petId' });
 // Shelter / Pet 1 : N 
 Shelter.hasMany(Pet, { foreignKey: 'shelterId' });
 Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
+
+//Donations - User --- 1:N
+Donations.belongsToMany(User, {through: 'user_donations'});
+User.hasMany(Donations, {foreignKey: 'donationId'})
 
 module.exports = {
   ...sequelize.models,
