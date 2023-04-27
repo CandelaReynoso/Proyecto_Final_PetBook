@@ -27,32 +27,29 @@ const Card = (pet) => {
     if (token) {
       setIsLoggedIn(true);
     }
-
-    myFavorites.forEach((fav) => {
+/*     myFavorites.forEach((fav) => {
       if (fav.id === id) {
          setIsFav(true);
       }
-   });
+   });  */
+
   }, [myFavorites]);
 
 
-
-
-  const handleFavorite = () => {
-    if(isFav) {
-       setIsFav(false);
-       dispatch(deleteFavorite(pet.id))
-    }
-    else {
-       setIsFav(true);
-       dispatch(addFavorite())
+  const handleFavorite = (id) => {
+    if(!isFav) {setIsFav(true);
+       dispatch(addFavorite(pet.id))
+      
+    } else {
+        setIsFav(false);
+       dispatch(deleteFavorite(id))
     }
   }
   
-  console.log(myFavorites + "mis fav")
+  console.log(  " mis fav: " + myFavorites)
 
   const handleSelectMascota = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     setSelectedMascota(pet); // update state variable with pet's data
   };
 
