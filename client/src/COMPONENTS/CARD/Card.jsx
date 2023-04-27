@@ -28,12 +28,12 @@ const Card = (pet) => {
       setIsLoggedIn(true);
     }
 
-    myFavorites.forEach((fav) => {
-      if (fav.id === id) {
-         setIsFav(true);
-      }
-   });
-  }, [myFavorites]);
+  //   myFavorites.forEach((fav) => {
+  //     if (fav.id === id) {
+  //        setIsFav(true);
+  //     }
+  //  });
+  }, []);
 
 
 
@@ -45,7 +45,7 @@ const Card = (pet) => {
     }
     else {
        setIsFav(true);
-       dispatch(addFavorite())
+       dispatch(addFavorite(pet.id))
     }
   }
   
@@ -166,5 +166,5 @@ const Card = (pet) => {
     
   );
 };
-
+ 
 export default Card;
