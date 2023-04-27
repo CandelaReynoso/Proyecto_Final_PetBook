@@ -148,7 +148,7 @@ export default function Donations(){
 </div>  
 </div>
     
-            </div>
+            
 
 <div >
     {/* ARREGLAR QUE CUANDO SE PASA A UNA PANTALLA MAS GRANDE EL FOOTER NO QUEDA AL FINAL  */}
