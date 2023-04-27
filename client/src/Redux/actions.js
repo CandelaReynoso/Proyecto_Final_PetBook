@@ -9,9 +9,7 @@ import {
   SEND_EMAIL,
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
-
   GET_USERS,
-
   ADD_FAVORITE,
   DELETE_FAVORITE
 
@@ -208,8 +206,7 @@ export const deleteFavorite = (id) =>{
 
 
 //PRODUCTOS
-/* 
-export const getAllProducts = () => async (dispatch) => {
+/* export const getAllProducts = () => async (dispatch) => {
   try {
     const res = await axios.get("/products");
     console.log(res + " yo soy la respuesta");
@@ -220,9 +217,10 @@ export const getAllProducts = () => async (dispatch) => {
   } catch (err) {
     console.error(err);
   }
-}; */
+};  */
 
-export const getAllProducts = (id,
+ export const getAllProducts = (
+  id,
   name,
   status,
   userId,
@@ -236,25 +234,33 @@ export const getAllProducts = (id,
   size,
   specie,
   consumption_age,
-  discount) => async (dispatch) => {
+  discount,
+  categoryId,
+  petId,
+  user,
+  productCategory,) => async (dispatch) => {
   try { 
     const res = await axios.get('/products', {
      body: {
-        id,
-        name,
-        status,
-        userId,
-        image,
-        quantity,
-        available,
-        price,
-        category,
-        description,
-        weight,
-        size,
-        specie,
-        consumption_age,
-        discount
+      id,
+      name,
+      status,
+      userId,
+      image,
+      quantity,
+      available,
+      price,
+      category,
+      description,
+      weight,
+      size,
+      specie,
+      consumption_age,
+      discount,
+      categoryId,
+      petId,
+      user,
+      productCategory,
       }
     });
     
@@ -265,6 +271,6 @@ export const getAllProducts = (id,
   } catch (err) {
     console.error(err);
   }
-};
+}; 
 
 
