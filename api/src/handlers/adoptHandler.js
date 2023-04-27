@@ -129,7 +129,7 @@ const adoptHandlerDelete = async (req, res) => {
         
         // Disable the adoption by changing the status to false
         const disableAdoption = await Adopt.update(
-            { status: false },
+            { status: "declined" },
             {
                 where: { id },
                 returning: true,
