@@ -36,17 +36,16 @@ const Card = (pet) => {
   }, [myFavorites]);
 
 
-  const handleFavorite = (id) => {
-    if(!isFav) {
-      setIsFav(true);
-     /*  dispatch(addFavorite(pet.id)) */
-     myFavorites.push(pet.id)
-      
-    } else {
-      console.log("estoy en else")
-        setIsFav(false);
-       /* dispatch(deleteFavorite(pet.id)) */
-       !myFavorites.pop(pet.id)
+
+
+  const handleFavorite = () => {
+    if(isFav) {
+       setIsFav(false);
+       dispatch(deleteFavorite(pet.id))
+    }
+    else {
+       setIsFav(true);
+       dispatch(addFavorite())
     }
   }
   
@@ -167,5 +166,5 @@ const Card = (pet) => {
     
   );
 };
-
+ 
 export default Card;
