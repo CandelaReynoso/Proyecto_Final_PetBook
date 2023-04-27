@@ -96,10 +96,11 @@ const reducer = (state = initialState, action) => {
               return {
                   ...state,
                   myFavorites:[...state.myFavorites, action.payload],
-                  
+                 /*  pets: [...state.pets.data, action.payload] */
               }   
               
           case DELETE_FAVORITE:
+              console.log(action.payload +  "estoy en delete")
               return {
                   ...state,
                   myFavorites: state.myFavorites.filter(pet => pet.id!== action.payload)

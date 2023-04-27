@@ -165,6 +165,7 @@ export const addFavorite = (pet) => {
   return { type:ADD_FAVORITE, payload:pet }
 }
 export const deleteFavorite = (id) =>{
+  console.log("accion despachada")
   return {type: DELETE_FAVORITE, payload:id}
 }
 
