@@ -68,6 +68,7 @@ export default function SearchBar() {
         placeholder=" Look for name..."
         onChange={(e) => handleInputChange(e)} onKeyDown={(e) => handleKeyDown(e)}
         className="rounded-full input-xs"
+
         
       />
       <button className=" btn  btn-accent btn-circle btn-xs" onClick={(e) => handleSubmit(e)}>🔎</button>

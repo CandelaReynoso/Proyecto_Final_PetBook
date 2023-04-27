@@ -9,7 +9,12 @@ import {
   SEND_EMAIL,
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
+
   GET_USERS,
+
+  ADD_FAVORITE,
+  DELETE_FAVORITE
+
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -173,6 +178,7 @@ export const getUsers = () => {
   };
 };
 
+
 export const sendAdoptionRequest =
   (userEmail, petName, message) => async (dispatch) => {
     try {
@@ -189,6 +195,17 @@ export const sendAdoptionRequest =
       // handle error
     }
   };
+
+export const addFavorite = (id) => {
+  return { type:ADD_FAVORITE, payload:id }
+}
+
+export const deleteFavorite = (id) =>{
+  console.log("accion despachada")
+  return { type: DELETE_FAVORITE, payload:id }
+
+}
+
 
 //PRODUCTOS
 

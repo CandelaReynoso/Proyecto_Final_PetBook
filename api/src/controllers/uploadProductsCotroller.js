@@ -1,34 +1,16 @@
 const { Product } = require("../database/db");
-const path = require('path');
-const fs = require('fs');
+
+const productos = require("../../productosJSON.json");
 
 
-const { promisify } = require('util');
-const readFileAsync = promisify(fs.readFile);
 
-// C:\Users\Usuario\OneDrive\Escritorio\Proyecto_Final_PetBook\api\productosJSON.json
-
-const readProductos = async () => {
-  const pathProductos = path.join('C:\\', 'Users', 'Usuario', 'OneDrive', 'Escritorio', 'Proyecto_Final_PetBook',"api","productosJSON.json");
+const uploadProductos = async (tuApi) => {
   try {
-    const productosJSON = await readFileAsync(pathProductos, "utf-8");
-    const productos = JSON.parse(productosJSON);
-    // console.log(productos[5]);
-    return productos;
+    if (!productos.length) throw new Error("No hay productos")
 
-  } catch (error) {
-    return { error: error };
-  }
-}
-
-const uploadProductos = async () => {
-  try {
-    const productos = await readProductos();
-    if (productos.error) throw new Error(productos.error);
+    productos.forEach(item => item.userId = tuApi)
 
     const count = await Product.count();
-
-    productos.forEach( item => item.userId = "dd392f29-5885-4065-8708-aa5422412d8a")
 
     if (count === 0) await Product.bulkCreate(productos);
 
@@ -43,4 +25,6 @@ const lengthProducts = async () => {
 }
 
 
-module.exports = { readProductos, uploadProductos, lengthProducts };
+
+module.exports = { uploadProductos, lengthProducts };
+

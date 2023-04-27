@@ -11,6 +11,7 @@ export const GET_USERS = "GET_USERS"
 export const REGISTER_USER = 'REGISTER_USER';
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const SEND_ADOPTION_REQUEST ="SEND_ADOPTION_REQUEST";
-
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
 // actiones del STORE
 export const GET_PRODUCTS ='GET_PRODUCTS';

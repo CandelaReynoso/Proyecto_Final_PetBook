@@ -21,6 +21,8 @@ import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
+import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+
 
 //Instancia de axios para Railway.
 // axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
@@ -81,11 +83,12 @@ function App() {
         <Route path="/FormHistory" element={<FormHistory />} />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
-
         <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
         <Route path="/admin" element={<Admin />} />
         {admin === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
+        <Route path='/error' element={<ErrorPage />} />
+
       </Routes>
     </div>
   );
