@@ -21,7 +21,6 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
-import Thanks from "./COMPONENTS/THANKS/Thanks";
 
 //Instancia de axios para Railway.
 // axios.defaults.baseURL = "https://proyectofinalpetbook-production.up.railway.app";
@@ -66,7 +65,6 @@ function App() {
         <Route path="/chat" element={<Chatbot />} />
         <Route path="/admin" element={<Admin/>} />
         <Route path='/error' element={<ErrorPage />} />
-        <Route path='/error' element={<Thanks />} />
       </Routes>
     </div>
   );
