@@ -42,7 +42,7 @@ const Home = () => {
       <div className="flex flex-col w-full lg:flex-row justify-center items-center">
       
           <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral"> 
-        Everybody needs a home. 
+          Everybody needs a home. 
           <br />
           Every home needs love.</div>
 

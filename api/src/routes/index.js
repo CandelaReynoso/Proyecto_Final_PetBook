@@ -12,6 +12,7 @@ const contactRoutes = require("./contactRoutes.js");
 const adoptRoutes = require("./adoptRoutes.js");
 const searchRoutes = require("./searchRoutes.js");
 const filteredProductsRoutes = require('./filteredProductsRoutes.js');
+const donationsRoutes = require('./donationsRoutes.js');
 
 const router = Router()
 
@@ -36,6 +37,9 @@ router.use('/sponsor', subscriptionRoute);
 
 //Ruta de filtro de productos:
 router.use("/filteredProducts", filteredProductsRoutes);
+
+//Rutas para el modelo de donaciones.
+router.use('/donations', donationsRoutes)
 
 
 module.exports = router;
