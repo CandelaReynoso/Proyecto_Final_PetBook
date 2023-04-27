@@ -7,7 +7,7 @@ const loadPets = require('./src/database/scriptPets.js')
 
 
 
-sequelize.sync({alter:true }).then( async () => {
+sequelize.sync({forcer:true }).then( async () => {
 
   await loadPets();
   console.log("estoy conectado a", sequelize.getDatabaseName());
