@@ -172,11 +172,11 @@ export const deleteFavorite = (id) =>{
 }
 
 //PRODUCTOS
-
+/* 
 export const getAllProducts = () => async (dispatch) => {
   try { 
     const res = await axios.get("/products");
-    console.log(res);
+    console.log(res + " yo soy la respuesta");
     dispatch({
       type: GET_PRODUCTS,
       payload: res.data,
@@ -184,9 +184,9 @@ export const getAllProducts = () => async (dispatch) => {
   } catch (err) {
     console.error(err);
   }
-};
+}; */
 
-/* export const getAllProducts = (id,
+export const getAllProducts = (id,
   name,
   status,
   userId,
@@ -203,7 +203,7 @@ export const getAllProducts = () => async (dispatch) => {
   discount) => async (dispatch) => {
   try { 
     const res = await axios.get('/products', {
-      params: {
+     body: {
         id,
         name,
         status,
@@ -231,7 +231,7 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
- */
+
 
 
 

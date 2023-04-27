@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useEffect } from 'react';
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
+import { getAllProducts } from "../../Redux/actions";
+import { useDispatch, useSelector} from 'react-redux';
 
 export default function Shop () {
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.products); 
+    console.log(typeof products);
 
+    useEffect(() => {
+      dispatch(getAllProducts());
+    }, []);
 
     return (
         <div>
@@ -16,15 +24,25 @@ export default function Shop () {
                 </div>
 
                 <div className="h-screen w-screen">
-
-                <h1 className="titleLeft">SHOP ONLINE</h1>
-                <div className="flex justify-end"> <img src="./perrotrabaja.png" alt="" width='500px'/> </div>
-
+                  <h1 className="titleLeft">SHOP ONLINE</h1>
+                  <div className="flex justify-end">
+                    <img src="./perrotrabaja.png" alt="" width='500px'/>
+                  </div>
+                  <div className="container mx-auto">
+                    <h2 className="text-3xl font-bold mb-4">Choose a product! </h2>
+                    <div className="grid grid-cols-4 gap-4">
+                      { products.data?.map((product) => (
+                        <div key={product.data.id} className="border p-4">
+                          <img src={product.data.image} alt={product.data.name} className="mb-2" />
+                          <h3 className="text-lg font-bold">{product.data.name}</h3>
+                          <p>{product.data.description}</p>
+                          <p className="font-bold mt-2">${product.data.price}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-        
-                
             </div>
-
 
             <div> <Footer /></div>
             
