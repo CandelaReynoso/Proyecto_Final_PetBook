@@ -65,6 +65,7 @@ module.exports = (sequelize) => {
       },
       consumption_age: {
         type: DataTypes.INTEGER,
+        allowNull: false
       },
       discount: {
         type: DataTypes.BOOLEAN,

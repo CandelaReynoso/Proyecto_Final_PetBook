@@ -7,7 +7,7 @@ import AdoptionForm from '../FORMS/FormAdoption';
 import {addFavorite, deleteFavorite } from '../../Redux/actions';
 
 const Card = (pet) => {
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -27,13 +27,13 @@ const Card = (pet) => {
     if (token) {
       setIsLoggedIn(true);
     }
+/*     myFavorites.forEach((fav) => {
+      if (fav.id === id) {
+         setIsFav(true);
+      }
+   });  */
 
-  //   myFavorites.forEach((fav) => {
-  //     if (fav.id === id) {
-  //        setIsFav(true);
-  //     }
-  //  });
-  }, []);
+  }, [myFavorites]);
 
 
 
@@ -45,14 +45,14 @@ const Card = (pet) => {
     }
     else {
        setIsFav(true);
-       dispatch(addFavorite(pet.id))
+       dispatch(addFavorite())
     }
   }
   
-  console.log(myFavorites + "mis fav")
+  console.log( "Mis fav: " + myFavorites)
 
   const handleSelectMascota = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     setSelectedMascota(pet); // update state variable with pet's data
   };
 

@@ -4,37 +4,42 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
+//DB local
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
 
- const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-    {
-      logging: false,
-      native: false,
+//   {
+//     logging: false,
+//     native: false,
+//   }
+
+// );
+
+
+const sequelize = new Sequelize(
+ DB_DEPLOY,
+ {
+  logging: false,
+   native: false,
+     dialectOptions: {
+       ssl:{
+         require: true,
+       }
+     }
     }
-  );
+  ); 
 
-
+//Railway
 // const sequelize = new Sequelize(
 //  DB_DEPLOY,
 //  {
 //   logging: false,
 //    native: false,
-//      dialectOptions: {
-//        ssl:{
-//          require: true,
-//        }
-//      }
-//     }
-//   ); 
 
-/* const sequelize = new Sequelize(
- DB_DEPLOY,
- {
-  logging: false,
-   native: false,
+//  }
+// );
 
- }
-); */
+
 
 const basename = path.basename(__filename);
 
@@ -73,6 +78,8 @@ const { Email } = sequelize.models;
 
 const { Adopt } = sequelize.models;
 
+const { Donations } = sequelize.models;
+
 // model relations
 
 // Adopt user pet
@@ -80,8 +87,8 @@ Adopt.belongsTo(User);
 Adopt.belongsTo(Pet);
 
 // Email / User
-Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail'});
-User.hasMany(Email, { foreignKey: 'userId'});
+Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail' });
+User.hasMany(Email, { foreignKey: 'userId' });
 
 // User / Pet M : N
 User.belongsToMany(Pet, { through: User_pet });
@@ -100,7 +107,7 @@ Category.belongsTo(User, { foreignKey: 'userId' });   // userId is the id of the
 
 Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategory' });
 //Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'productCategoryId'}); // categoryId of the product
-Category.hasMany(Product, { foreignKey: 'categoryId'}); // Use "categoryId" instead of "productId"
+Category.hasMany(Product, { foreignKey: 'categoryId' }); // Use "categoryId" instead of "productId"
 
 
 Product.belongsTo(User, { foreignKey: 'userId' });
@@ -108,7 +115,7 @@ Product.belongsTo(User, { foreignKey: 'userId' });
 // User / Product M:N
 User.belongsToMany(Product, { through: 'user_product' });
 //Product.belongsToMany(User, { through: 'user_product' });
-Product.belongsTo(User, { foreignKey: 'userId'}); // userId is the id of the user that creates the product
+Product.belongsTo(User, { foreignKey: 'userId' }); // userId is the id of the user that creates the product
 
 // User / Shelter 1: N
 Shelter.hasMany(User, { foreignKey: 'userId' });
@@ -122,7 +129,11 @@ Product.belongsTo(Pet, { foreignKey: 'petId' });
 Shelter.hasMany(Pet, { foreignKey: 'shelterId' });
 Pet.belongsTo(Shelter, { foreignKey: 'shelterId' });
 
+//Donations - User --- 1:N
+Donations.belongsToMany(User, { through: 'user_donations' });
+User.hasMany(Donations, { foreignKey: 'donationId' })
+
 module.exports = {
   ...sequelize.models,
-  sequelize,
+  sequelize,
 };

@@ -27,7 +27,9 @@ adoptRoutes.post('/', [
 adoptRoutes.put('/:id', [
     check('id', 'Not a valid ID').isUUID(),
     //check('id').custom( userByIdExists ),
-    check('role').custom(isRoleValid), // validate role
+    check('role','role not valid, only admin').isIn(['admin_role']),
+    //check('role').custom(isRoleValid), // validate role
+    //isAdminRole,
     validateAttributes
 ], adoptHandlerPut );
 
