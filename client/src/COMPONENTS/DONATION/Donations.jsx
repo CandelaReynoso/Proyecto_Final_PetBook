@@ -46,7 +46,7 @@ export default function Donations(){
 
 
                 </div>
-            </div>
+            
 
 
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
@@ -74,11 +74,14 @@ export default function Donations(){
                 </div>
 
 
-<div className="hidden sm:block place-items-center"><img src="/perrogatootro.png" alt=""  width=''/></div>
+<div className="hidden lg:block place-items-center">
+    <img src="/perrogatootro.png" alt=""  width='200px'/>
+    <h5 className="font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
+</div>
 
 
 
-                <div className="card w-72 bg-base-100 shadow-xl m-4">
+                {/* <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body">
                     <h2 className="card-title font-['candara'] text-neutral ">Personalized Donation</h2>
                     <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET" className={Styles.container}>
@@ -100,11 +103,11 @@ export default function Donations(){
 
                     </form>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="card w-96 bg-base-100 shadow-xl m-4">
+            <div className="card  w-72 bg-base-100 shadow-xl m-4">
                 <div className="card-body">
-                <h2 className="card-title">Personalized Donation</h2>
+                <h2 className="card-title text-black font-['candara']">Personalized Donation</h2>
                  <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET" className={Styles.container}>
                     <input type="hidden" name="title" value="Donación pequeño corazón."/>
                     <label className="italic">select here the amount to donate: </label>
@@ -125,9 +128,11 @@ export default function Donations(){
 
                     </div>
 
-                        {/*---------------------- Suscripción------------------------ */}
 
-                    <div className="card w-72 bg-base-100 shadow-xl m-4" >
+                </div>
+
+                                        {/*---------------------- Suscripción------------------------ */}
+                <div className="card w-72 bg-base-100 shadow-xl m-4" >
                     <div className="card-body">
                         <h2 className="card-title text-black font-['candara']">Subscription</h2>
                         <h5 className="text bg-primary w-fit rounded-full">AR$ 12/month</h5>
@@ -136,25 +141,21 @@ export default function Donations(){
                         </div>
                     </div>
                 </div>
-                </div>
 
-<div className="flex justify-center items-center my-6">
-    <h5 className="font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
-    <img src="/perrogatootro.png" alt=""  className=" w-28 lg:hidden"/>
-
-    
-</div>
+        <div className="flex justify-center items-center my-6">
+            <h5 className="lg:hidden font-[candara] text-neutral text-center text-3xl ">Your generosity <br /> can change lives!</h5>
+            <img src="/perrogatootro.png" alt=""  className=" w-28 lg:hidden"/>   
+        </div>
         
 </div>  
 </div>
     
-            
+</div>
 
 <div >
-    {/* ARREGLAR QUE CUANDO SE PASA A UNA PANTALLA MAS GRANDE EL FOOTER NO QUEDA AL FINAL  */}
 <Footer />
 </div>
              
-        </div>
+</div>
     )
 }
