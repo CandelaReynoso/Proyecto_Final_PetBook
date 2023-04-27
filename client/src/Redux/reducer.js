@@ -1,15 +1,16 @@
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS,ADD_FAVORITE,DELETE_FAVORITE,} from './types';
 
 
 const initialState = {
   adoptionRequest: null,
   error: null,
 
-  pets: [],
   petsRandomHome :[],
   pet:{},
   namePets : [],
+  myFavorites: [],
+  pets:[],
 
   profile: {           //perfil de usuario
     nickname: '',
@@ -28,6 +29,7 @@ success: null,
 error: null,
 
 products: [],
+
 
 };
 
@@ -89,6 +91,19 @@ const reducer = (state = initialState, action) => {
               ...state,
               products: action.payload
             };
+
+            case ADD_FAVORITE:
+              return {
+                  ...state,
+                  myFavorites:[...state.myFavorites, action.payload],
+                  pets:[...state.pets, action.payload]
+              }   
+              
+          case DELETE_FAVORITE:
+              return {
+                  ...state,
+                  myFavorites: state.myFavorites.filter(pet => pet.id !== action.payload)
+              }    
       
     default: {
       return {
@@ -97,7 +112,6 @@ const reducer = (state = initialState, action) => {
     }
   }
 };
-
 
 
 export default reducer

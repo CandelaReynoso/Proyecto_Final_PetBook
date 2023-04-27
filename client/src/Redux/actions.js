@@ -9,8 +9,9 @@ import {
   SET_PET_NAME,
   SEND_EMAIL,
   SEND_ADOPTION_REQUEST,
-  GET_PRODUCTS
-
+  GET_PRODUCTS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -159,6 +160,13 @@ export const sendAdoptionRequest = (userEmail, petName, message) => async (dispa
     // handle error
   }
 };
+
+export const addFavorite = (pet) => {
+  return { type:ADD_FAVORITE, payload:pet }
+}
+export const deleteFavorite = ({id}) =>{
+  return {type: DELETE_FAVORITE, payload:id}
+}
 
 //PRODUCTOS
 

@@ -20,6 +20,7 @@ import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 
 import Admin from "./COMPONENTS/ADMIN/Admin";
+import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
 
 
 //Instancia de axios para Railway.
@@ -64,6 +65,7 @@ function App() {
         <Route path="/store" element={<Shop />} />      
         <Route path="/chat" element={<Chatbot />} />
         <Route path="/admin" element={<Admin/>} />
+        <Route path='/error' element={<ErrorPage />} />
 
       </Routes>
     </div>
