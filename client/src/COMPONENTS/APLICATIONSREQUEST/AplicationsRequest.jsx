@@ -6,12 +6,18 @@ import AplicationTable from "./AplicationTable";
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
 
+const getAdoptionsRequest =async () =>{
+    let request = await axios(`/adoptions`);
+    setAdoptions(request?.data?.adoptions);
+}
+
   useEffect(() => {
-    async function getAdoptions() {
-      let request = await axios(`/adoptions`);
-      setAdoptions(request?.data?.adoptions);
-    }
-    getAdoptions();
+    // async function getAdoptions() {
+    //   let request = await axios(`/adoptions`);
+    //   setAdoptions(request?.data?.adoptions);
+    // }
+    // getAdoptions();
+    getAdoptionsRequest()
   }, []);
 
   console.log(adoptions);
@@ -36,6 +42,8 @@ const AplicationsRequest = () => {
                 instagram={adopt.instagram}
                 petId={adopt.petId}
                 key={index}
+                getAdoptionsRequest={getAdoptionsRequest}
+                
               />
             );
           })}

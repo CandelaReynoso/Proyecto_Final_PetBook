@@ -13,6 +13,7 @@ const AplicationTable = ({
   instagram,
   petId,
   key,
+  getAdoptionsRequest
 }) => {
   const [adoptionPets, setAdoptionPets] = useState();
   console.log("id solicitud adop", id, "idUser", userId, "id PET", petId);
@@ -45,12 +46,28 @@ const AplicationTable = ({
         console.log(succes.data);
         
       }
+      if(!response.data){
+       window.alert("solicitud aprobada")
+      }
+      getAdoptionsRequest()
 
       
     } catch (error) {
      window.alert(error.message)
     }
   };
+  
+  const declinedRequest = async() =>{
+    try {
+      let response = await axios.delete(`adoptions/${id}`, {
+        role: "admin_role",
+      });
+      console.log(response.data);
+    } catch (error) {
+      window.alert(error.message)
+    }
+    
+  }
 
   return (
     <>
@@ -110,7 +127,7 @@ const AplicationTable = ({
 
       <button onClick={() => approvedRequest()}>aceptar</button>
       <br />
-      <button> rechazar</button>
+      <button onClick={()=>declinedRequest()}> rechazar</button>
     </>
   );
 };
