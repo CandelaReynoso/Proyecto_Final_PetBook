@@ -25,7 +25,7 @@ export default function HeaderLogin() {
     window.location.reload();
     console.log(localStorage.getItem("token"));
     if (admin === true) {
-      window.localStorage.setItem("Admin", JSON.stringify(false));
+      window.localStorage.removeItem("Admin");
     }
   };
 
