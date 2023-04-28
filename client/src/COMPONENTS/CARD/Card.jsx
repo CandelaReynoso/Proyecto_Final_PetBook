@@ -167,4 +167,4 @@ const Card = (pet) => {
   );
 };
  
-export default Card;
+export default Card;

@@ -9,7 +9,7 @@ export default function Shop() {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products.products);
 
-  
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
@@ -22,13 +22,11 @@ export default function Shop() {
         <div>
           {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" />}
         </div>
-        <div className="h-screen w-screen">
+
+        <div className="h-full w-screen">
           <h1 className="titleLeft">SHOP ONLINE</h1>
-          <div className="flex justify-end">
-            <img src="./perrotrabaja.png" alt="" width='500px' />
-          </div>
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Choose a product! </h2>
+            {/* <h2 className="text-3xl font-bold mb-4">Choose a product! </h2> */}
               <div className="grid grid-cols-4 gap-4">
                 {Array.isArray(products) && products.map((product) => (
                   <div key={product.id} className="border p-4">
@@ -40,14 +38,14 @@ export default function Shop() {
                 ))}
                 
               </div>
-            )
+            
           
           </div>
           
         </div>
       </div>
       <div> <Footer /></div>
-    </div>
-  )
-  
+   </div>
+)
+
 }
