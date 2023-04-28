@@ -6,16 +6,25 @@ const adoptHandlerGet = async (req, res) => {
     try {
         const { limit = 20, from = 0, name } = req.query;
         const { id } = req.params;
-
+//
         let whereClause = { status: "pending"};
 
-        if (id) {
-            whereClause = { id };
-        } else if (name) {
+        if (req.query.otherstatus) {
+            if (req.query.otherstatus === "approved" || req.query.otherstatus === "declined") {
+              whereClause = { status: req.query.otherstatus };
+            } else {
+              return res.status(400).json({ error: "Invalid otherstatus value" });
+            }
+          }
+          
+          if (id) {
+            whereClause = { ...whereClause, id };
+          } else if (name) {
             whereClause = {
-                name: { [Op.iLike]: `%${name}%` }
+              ...whereClause,
+              name: { [Op.iLike]: `%${name}%` },
             };
-        }
+          }
 
         const [totalRecords, adoptions] = await Promise.all([
             Adopt.count({ where: whereClause }),
@@ -113,7 +122,6 @@ const adoptHandlerPut = async (req, res) => {
 const adoptStatusHandlerApprovedPut = async (req, res) => {
     try {
         const id = req.params.id;
-        const {email} = req.body
     
         // TODO validate vs db
         const updatedAdoption = await Adopt.update(
