@@ -118,7 +118,7 @@ const reducer = (state = initialState, action) => {
               console.log(action.payload +  "estoy en delete")
               return {
                   ...state,
-                  myFavorites: state.myFavorites.filter(pet => pet.id!== action.payload)
+                  myFavorites: state.myFavorites.filter(pet => pet.id !== action.payload)
               }     
     default: {
       return {
