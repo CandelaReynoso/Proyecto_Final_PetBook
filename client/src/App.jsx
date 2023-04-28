@@ -22,6 +22,7 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+// import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
 
 
 //Instancia de axios para Railway.
@@ -88,6 +89,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         {admin === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
         <Route path='/error' element={<ErrorPage />} />
+
+        {/* <Route path="/myfavorites" element={<Favorites />} /> */}
 
       </Routes>
     </div>

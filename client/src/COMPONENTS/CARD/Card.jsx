@@ -12,7 +12,7 @@ const Card = (pet) => {
   const [loading, setLoading] = useState(true);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const myFavorites = useSelector(state => state.myFavorites);  
+  const myFavorites = useSelector(state => state.favorites);  
   const pets = useSelector((state) => state.pets);
   const [showDetail, setShowDetail] = useState(false);
   let [selectedPet, setSelectedPet] = useState(null);
@@ -27,29 +27,38 @@ const Card = (pet) => {
     if (token) {
       setIsLoggedIn(true);
     }
-/*     myFavorites.forEach((fav) => {
-      if (fav.id === id) {
-         setIsFav(true);
-      }
-   });  */
 
-  }, [myFavorites]);
+  }, []);
 
-
+const idUser = localStorage.getItem('id');
+const idPet = pet.id
+console.log('ID USUARIO: ' + idUser);
+console.log('ID PET :' + pet.id);
 
 
   const handleFavorite = () => {
     if(isFav) {
        setIsFav(false);
-       dispatch(deleteFavorite(pet.id))
+       dispatch(deleteFavorite(pet.id, idUser))
     }
     else {
        setIsFav(true);
-       dispatch(addFavorite())
+       dispatch(addFavorite({
+        id: pet.id,
+        image: pet.image,
+        name: pet.name,
+        specie: pet.specie,
+        gender: pet.gender,
+        size: pet.size,
+        weight: pet.weight,
+        age: pet.age,
+        idUser: idUser 
+      }));
     }
   }
   
-  console.log( "Mis fav: " + myFavorites)
+  console.log('Mis fav:'+ JSON.stringify(myFavorites));
+console.log(pet.weight)
 
   const handleSelectMascota = (e) => {
     e.preventDefault();
@@ -84,7 +93,7 @@ const Card = (pet) => {
       <button onClick={handleFavorite}>🤍</button>
     ))
   } 
-</div>
+              </div>    
              {/*  <div onClick={handleFavoriteClick}>
         {isLoggedIn ? (
           <p
