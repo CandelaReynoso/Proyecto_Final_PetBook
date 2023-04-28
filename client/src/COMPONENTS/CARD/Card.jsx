@@ -167,4 +167,4 @@ const Card = (pet,{weight}) => {
   );
 };
  
-export default Card;
+export default Card;
