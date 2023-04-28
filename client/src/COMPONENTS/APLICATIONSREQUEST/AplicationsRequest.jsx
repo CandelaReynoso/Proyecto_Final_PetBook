@@ -3,21 +3,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AplicationTable from "./AplicationTable";
 
-
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
 
   useEffect(() => {
     async function getAdoptions() {
-      let request = await axios(`/adoptions`)
-      setAdoptions(request?.data?.adoptions)
-     
-     
+      let request = await axios(`/adoptions`);
+      setAdoptions(request?.data?.adoptions);
     }
     getAdoptions();
   }, []);
 
-
+  console.log(adoptions);
 
   return (
     <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
@@ -26,8 +23,10 @@ const AplicationsRequest = () => {
         {adoptions &&
           adoptions?.map((adopt, index) => {
             return (
+            
               <AplicationTable
-                userId={adopt.id}
+                id={adopt.id}
+                userId={adopt.userId}
                 name={adopt.name}
                 email={adopt.email}
                 address={adopt.address}
