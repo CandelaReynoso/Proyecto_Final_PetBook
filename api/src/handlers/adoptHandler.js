@@ -139,7 +139,7 @@ const adoptStatusHandlerApprovedPut = async (req, res) => {
     
         // get the adoption data to get the adopter's email
         const adoption = updatedAdoption[1].dataValues;
-    console.log(adoption.email)
+         console.log(adoption)
         // send email to the adopter
         const transporter = nodemailer.createTransport({
           service: "gmail",
@@ -163,8 +163,15 @@ const adoptStatusHandlerApprovedPut = async (req, res) => {
             console.log("Email sent: " + info.response);
           }
         });
+
+            // Update Pet model adopted attribute to true
+        const petId = adoption.petId;
+        const updatedPet = await Pet.update(
+          { adopted: true },
+          { where: { id: petId }, returning: true, plain: true }
+        );
     
-        res.status(200).json({ updatedAdoption });
+        res.status(200).json({ updatedAdoption, updatedPet });
       } catch (error) {
         res.status(500).json({ msg: "internal server error" });
       }
