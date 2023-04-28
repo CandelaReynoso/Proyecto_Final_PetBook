@@ -58,10 +58,15 @@ const AplicationTable = ({
   };
   
   const declinedRequest = async() =>{
+  let token = window.localStorage.getItem("token")
+  console.log(token);
     try {
       let response = await axios.delete(`adoptions/${id}`, {
+        headers: { 'Content-Type': 'application/json',
+        "x-token": token },
         role: "admin_role",
       });
+      getAdoptionsRequest()
       console.log(response.data);
     } catch (error) {
       window.alert(error.message)
