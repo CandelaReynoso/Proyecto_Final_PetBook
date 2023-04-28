@@ -1,11 +1,19 @@
-import React from "react"
-import Header from "../HEADER/Header"
-import Footer from "../FOOTER/Footer"
-import HeaderLogin from "../HEADER/HeaderLogin"
-import { Link } from "react-router-dom"
+import React from "react";
+import Header from "../HEADER/Header";
+import Footer from "../FOOTER/Footer";
+import HeaderLogin from "../HEADER/HeaderLogin";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import queryString from 'query-string';
 
 
 export default function Successfully(){
+
+    const params = queryString.parse(location.search);
+    const id = params.id;
+    const amount = params.amount;
+
     return (
         <div>
             
