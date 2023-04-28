@@ -6,16 +6,25 @@ const adoptHandlerGet = async (req, res) => {
     try {
         const { limit = 20, from = 0, name } = req.query;
         const { id } = req.params;
-
+//
         let whereClause = { status: "pending"};
 
-        if (id) {
-            whereClause = { id };
-        } else if (name) {
+        if (req.query.otherstatus) {
+            if (req.query.otherstatus === "approved" || req.query.otherstatus === "declined") {
+              whereClause = { status: req.query.otherstatus };
+            } else {
+              return res.status(400).json({ error: "Invalid otherstatus value" });
+            }
+          }
+          
+          if (id) {
+            whereClause = { ...whereClause, id };
+          } else if (name) {
             whereClause = {
-                name: { [Op.iLike]: `%${name}%` }
+              ...whereClause,
+              name: { [Op.iLike]: `%${name}%` },
             };
-        }
+          }
 
         const [totalRecords, adoptions] = await Promise.all([
             Adopt.count({ where: whereClause }),
@@ -58,13 +67,21 @@ const adoptHandlerPost = async (req, res) => {
         petId
       } = req.body;
 
-      const adoptionDb = await Adopt.findOne({where: {name: name}})
+      //const adoptionDb = await Adopt.findOne({where: {name: name}})
 
-    if(adoptionDb){
-        return res.status(400).json({
-            msg: `Adoption ${adoptionDb.name} already exists.`
-        })
-    }
+    // if(adoptionDb){
+    //     return res.status(400).json({
+    //         msg: `Adoption ${adoptionDb.name} already exists.`
+    //     })
+    // }
+
+        // Check if adoption with given petId already exists
+        const adoptionWithPet = await Adopt.findOne({ where: { petId } });
+        if (adoptionWithPet) {
+          return res.status(400).json({
+            msg: `Pet with id ${petId} is already adopted.`
+          });
+        }
 
     console.log(req)
   
@@ -113,7 +130,6 @@ const adoptHandlerPut = async (req, res) => {
 const adoptStatusHandlerApprovedPut = async (req, res) => {
     try {
         const id = req.params.id;
-        const {email} = req.body
     
         // TODO validate vs db
         const updatedAdoption = await Adopt.update(
@@ -123,7 +139,7 @@ const adoptStatusHandlerApprovedPut = async (req, res) => {
     
         // get the adoption data to get the adopter's email
         const adoption = updatedAdoption[1].dataValues;
-    console.log(adoption.email)
+         console.log(adoption)
         // send email to the adopter
         const transporter = nodemailer.createTransport({
           service: "gmail",
@@ -147,8 +163,15 @@ const adoptStatusHandlerApprovedPut = async (req, res) => {
             console.log("Email sent: " + info.response);
           }
         });
+
+            // Update Pet model adopted attribute to true
+        const petId = adoption.petId;
+        const updatedPet = await Pet.update(
+          { adopted: true },
+          { where: { id: petId }, returning: true, plain: true }
+        );
     
-        res.status(200).json({ updatedAdoption });
+        res.status(200).json({ updatedAdoption, updatedPet });
       } catch (error) {
         res.status(500).json({ msg: "internal server error" });
       }

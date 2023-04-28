@@ -158,12 +158,12 @@ export default function Team (){
           {/* RAUL */}
           <div class="p-4">
           <a className="group relative bg-black lg:h-full flex justify-center items-center">
-                      <img alt="Raul Foto" src="/raul.png" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+                      <img alt="Raul Foto" src="/raulcoco.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
   
                       <div className="relative p-2 sm:p-6 lg:p-6">  
                         <div className="mt-20 sm:mt-20 lg:mt-20">
                           <div className="transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 translate-y-96">
-                          <p className="text-xl font-bold text-white sm:text-2xl">Raúl </p>
+                          <p className="text-xl font-bold text-white sm:text-2xl">Raúl & Coco </p>
                           <br />
                           <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Back-End team</p>
                           
@@ -172,7 +172,7 @@ export default function Team (){
                             </p>
                             <br />
                             <p className="text-sm text-white">
-                           {/* resumen de la mascota */}
+                            Coco is a beautiful, playful, and very fun dog who accompanies Raul to work every day. He loves to participate in meetings, but his favorite part of the day is going out to play in the yard.
                             </p>
                             <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
                             <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>

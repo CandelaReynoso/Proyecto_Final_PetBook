@@ -13,6 +13,7 @@ const adoptRoutes = require("./adoptRoutes.js");
 const searchRoutes = require("./searchRoutes.js");
 const filteredProductsRoutes = require('./filteredProductsRoutes.js');
 const donationsRoutes = require('./donationsRoutes.js');
+const favoriteRoutes = require("./favoriteRoutes.js")
 
 const router = Router()
 
@@ -40,6 +41,9 @@ router.use("/filteredProducts", filteredProductsRoutes);
 
 //Rutas para el modelo de donaciones.
 router.use('/donations', donationsRoutes)
+
+//Ruta para Favoritos.
+router.use("/favorite",favoriteRoutes)
 
 
 module.exports = router;
