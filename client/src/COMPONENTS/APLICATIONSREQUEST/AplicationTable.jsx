@@ -25,7 +25,10 @@ const AplicationTable = ({
     }
     getAdoptionsPets();
   }, []);
-
+  
+  //declined
+  //approved
+// decline adoptions/ id solo
   const approvedRequest = async () => {
     try {
       let response = await axios.put(`adoptions/approved/${id}`, {
