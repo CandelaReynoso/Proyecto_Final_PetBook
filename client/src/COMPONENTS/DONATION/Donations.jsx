@@ -8,6 +8,7 @@ export default function Donations(){
 
     const [error, setError] = useState('Enter your donation');
     const [donation, setDonation] = useState(0);
+    const id = localStorage.getItem('id');
 
     function handleChange(event){
         const amount = event.target.value;
@@ -33,11 +34,13 @@ export default function Donations(){
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
 
 
+
                 <div className="card w-72 bg-base-100 shadow-xl m-4">
                     <div className="card-body"> 
                         <h2 className="card-title text-black font-['candara']">Puppy Size Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full"> AR$ 1.000</h5>
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
+                        <form action="http://localhost:3001/checkout" method="GET">
+                            <input type="hidden" name="id" value={id} />
                             <input type="hidden" name="title" value="Puppy Size Donation"/>
                             <input type="hidden" name="price" value="1000"/>
                             <div className="card-actions justify-end"> <input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
@@ -53,7 +56,8 @@ export default function Donations(){
                     <div className="card-body">
                         <h2 className="card-title text-black font-['candara']">Adventurous Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full"> AR$ 2.500</h5>
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
+                        <form action="http://localhost:3001/checkout" method="GET">
+                            <input type="hidden" name="id" value={id} />
                             <input type="hidden" name="title" value="Adventurous Hearts Donation"/>
                             <input type="hidden" name="price" value="2500"/>
                             <div className="card-actions justify-end"><input type="submit" value="DONATE NOW" className="btn btn-primary"/></div>
@@ -65,7 +69,8 @@ export default function Donations(){
                     <div className="card-body">
                         <h2 className="card-title text-black font-['candara']">Large Love Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full">AR$ 5.000</h5>
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
+                        <form action="http://localhost:3001/checkout" method="GET">
+                            <input type="hidden" name="id" value={id} />
                             <input type="hidden" name="title" value="Large Love Donation"/>
                             <input type="hidden" name="price" value="5000"/>
                             <div className="card-actions justify-end"><input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
@@ -108,8 +113,9 @@ export default function Donations(){
             <div className="card  w-72 bg-base-100 shadow-xl m-4">
                 <div className="card-body">
                 <h2 className="card-title text-black font-['candara']">Personalized Donation</h2>
-                 <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET" className={Styles.container}>
-                    <input type="hidden" name="title" value="Donación pequeño corazón."/>
+                 <form action="http://localhost:3001/checkout" method="GET" className={Styles.container}>
+                    <input type="hidden" name="id" value={id} />
+                    <input type="hidden" name="title" value="Personalized Donation"/>
                     <label className="italic">select here the amount to donate: </label>
                     <input type="number" min="100" max="10000" placeholder=" $..." onChange={handleChange}/>
                     <input type="hidden" name="price" value={donation}/>
