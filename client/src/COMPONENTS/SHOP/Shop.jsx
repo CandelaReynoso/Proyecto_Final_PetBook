@@ -5,6 +5,7 @@ import Footer from "../FOOTER/Footer";
 import {getAllProducts} from '../../Redux/actions'
 import { useDispatch, useSelector } from 'react-redux';
 
+
 export default function Shop() {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products.products);
@@ -19,12 +20,19 @@ export default function Shop() {
   return (
     <div>
       <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv] h-[100hv]">
-        <div>
-          {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" />}
-        </div>
-
+      <div>
+  {localStorage.getItem('token') ? (
+    <HeaderLogin className='mb-4'> 
+    </HeaderLogin>
+  ) : (
+    <Header className='mb-4' />
+  )}
+</div>
         <div className="h-full w-screen">
+          <div>
           <h1 className="titleLeft">SHOP ONLINE</h1>
+         
+          </div>
           <div className="container mx-auto">
             {/* <h2 className="text-3xl font-bold mb-4">Choose a product! </h2> */}
               <div className="grid grid-cols-4 gap-4">
