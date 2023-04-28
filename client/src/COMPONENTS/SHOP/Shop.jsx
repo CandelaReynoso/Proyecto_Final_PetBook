@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
+import { getAllProducts } from "../../Redux/actions";
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Shop () {
 
+    const dispatch = useDispatch();
+    const allProducts = useSelector( state => state.products);
 
+    useEffect(()=>{
+        dispatch(getAllProducts());
+    },[dispatch])
+
+    console.log(allProducts)
     return (
         <div>
             
