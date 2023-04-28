@@ -44,7 +44,7 @@ console.log('ID PET :' + pet.id);
     else {
        setIsFav(true);
        dispatch(addFavorite({
-        id: pet.id,
+        id: idPet,
         image: pet.image,
         name: pet.name,
         specie: pet.specie,
@@ -52,7 +52,7 @@ console.log('ID PET :' + pet.id);
         size: pet.size,
         weight: pet.weight,
         age: pet.age,
-        idUser: idUser 
+        idUser: idUser
       }));
     }
   }
