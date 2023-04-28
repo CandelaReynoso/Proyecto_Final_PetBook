@@ -6,7 +6,7 @@ import styles from '../CARD/Card.module.css';
 import AdoptionForm from '../FORMS/FormAdoption';
 import {addFavorite, deleteFavorite } from '../../Redux/actions';
 
-const Card = (pet) => {
+const Card = (pet,{weight}) => {
   const [isFav, setIsFav] = useState();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
