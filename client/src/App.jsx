@@ -85,7 +85,8 @@ function App() {
         <Route path="/thanks" element={<Successfully />} />
         <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
-        <Route path="/admin" element={<Admin />} />
+      
+        {admin === true &&   <Route path="/admin" element={<Admin />} />}
         {admin === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
         <Route path='/error' element={<ErrorPage />} />
 
