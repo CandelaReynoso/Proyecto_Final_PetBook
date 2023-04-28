@@ -57,27 +57,11 @@ function App() {
     if (verify === false) {
       return;
      }
-    if (!verify && !id ) return 
-      // window.localStorage.setItem("Admin", JSON.stringify(false));
-      // setAdmin(false);
+    if (!verify && id ) {
       
-      
-    // async function getRoll() {
-    //   let roll = await axios(`/users/verifyAdminRole/${id}`);
-    //   window.localStorage.setItem("Admin", JSON.stringify(roll.data));
-    //   setAdmin(roll.data)
-    // }
-    
-    getRoll(id);
-    
-
-    // let id = window.localStorage.getItem("id");
-    // async function getRoll() {
-    //   let roll = await axios(`/users/verifyAdminRole/${id}`);
-    //   window.localStorage.setItem("Admin", JSON.stringify(roll.data));
-    //   setAdmin(roll.data)
-    // }
-    // getRoll();
+      getRoll(id);
+    }
+   
   }, [getRoll,admin]);
   
   let verify = window.localStorage.getItem("Admin");
@@ -111,11 +95,11 @@ function App() {
         <Route path='/error' element={<ErrorPage />} />
         
         
-        {verify === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
-        {verify === true &&   <Route path="/admin" element={<Admin />} />}
-        {verify === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
-        {verify === false && <Route path="*" element={<Navigate to={"/error"} />} />}
-        
+        {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
+        {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
+        {JSON.parse(verify) === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
+        <Route path="*" element={<Navigate to={"/error"} />} />
+       
       </Routes>
     </div>
   );
