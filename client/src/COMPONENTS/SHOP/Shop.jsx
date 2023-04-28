@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.products);
+  const products = useSelector(state => state.products.products);
 
+  
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
@@ -34,7 +35,7 @@ export default function Shop() {
                     <img src={product.image} alt={product.name} className="mb-2" />
                     <h3 className="text-lg font-bold">{product.name}</h3>
                     <p>{product.description}</p>
-                    <p className="font-bold mt-2">${product.price}</p>
+                    <p className="font-bold mt-2">${Math.ceil(product.price)}</p>
                   </div>
                 ))}
                 
