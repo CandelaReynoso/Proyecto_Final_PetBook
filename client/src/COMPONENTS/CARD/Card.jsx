@@ -54,7 +54,6 @@ const Card = (pet) => {
   const handleSelectMascota = (e) => {
     e.preventDefault();
     setSelectedMascota(pet); // update state variable with pet's data
-    
   };
 
 
@@ -125,7 +124,7 @@ const Card = (pet) => {
                   <div className="modal-box relative max-w-[18rem] sm:max-w-[32rem]">
                     <label htmlFor="my-modal-3" onClick={handleCloseDetail} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     
-                    <div className="">
+                    <div className="">pu
 
             {/* <figure className="w-2/3"><img className="card-body" src={pet.image} alt={pet.name} /></figure> */}
             <div >
@@ -143,10 +142,10 @@ const Card = (pet) => {
               </ul>
 
               <div className=''>
-                <Link to = {`/FormAdoption/${selectedPet.id}`}>
+                <Link to = {`/FormAdoption/${selectedPet?.id}`}>
                   <div className="card-actions justify-center m-1">
                     <button onClick={handleSelectMascota} className="btn btn-xs btn-accent">adopt</button>
-                  {selectedMascota && <AdoptionForm pet={pet} userEmail={userEmail} />}  
+                  {selectedMascota && <AdoptionForm pet={pet} userEmail={userEmail} />} {/* pass selected pet's data as prop */} 
                   </div>
                 </Link>
               
@@ -158,7 +157,6 @@ const Card = (pet) => {
             </div>
                     </div>
                     
-                    
                 </div>
                 </div>
               </div>
@@ -169,4 +167,4 @@ const Card = (pet) => {
   );
 };
  
-export default Card;
+export default Card;
