@@ -115,11 +115,11 @@ const reducer = (state = initialState, action) => {
                   size: action.payload.size,
                   weight: action.payload.weight,
                   age: action.payload.age,
-                  users: [{ id: action.payload.idUser }]
+                  idUser: action.payload.idUser 
                 };
                 return {
                   ...state,
-                  favorites: [...state.favorites, newFavorite]
+                  favorites: [...state.favorites, JSON.stringify(newFavorite)]
                 };
               
                 
