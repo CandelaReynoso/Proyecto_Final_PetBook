@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import CartButton from '../SHOP/CartButton';
+
 
 export default function HeaderLogin() {
   const Menu = (e) => {
@@ -25,7 +27,7 @@ export default function HeaderLogin() {
     window.location.reload();
     console.log(localStorage.getItem("token"));
     if (admin === true) {
-      window.localStorage.setItem("Admin", JSON.stringify(false));
+      window.localStorage.removeItem("Admin");
     }
   };
 
@@ -58,7 +60,7 @@ export default function HeaderLogin() {
                   </li>
                   <li>
                     <a href="/FormContact">Contact us</a>
-                  </li>
+                  </li>        
                   <li tabIndex={0} className="menu dropdown-bottom">
                     <a className="justify-between">
                       My Account

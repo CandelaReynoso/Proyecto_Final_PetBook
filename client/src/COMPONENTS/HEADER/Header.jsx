@@ -32,7 +32,7 @@ import { FiMenu } from 'react-icons/fi'
                         <li><a href="/login">Log in</a></li>
                         <li><a href="/store">Store</a></li>                        
                         <li><a href="/FormContact">Contact us</a></li>
-
+                     
                     </ul>
                 </li>
               </ul>

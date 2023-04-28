@@ -1,5 +1,5 @@
 import Home from "./COMPONENTS/HOME/Home";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Landing from "./COMPONENTS/LANDING/Landing";
 import Header from "./COMPONENTS/HEADER/Header";
@@ -21,6 +21,7 @@ import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+import { useNavigate } from "react-router-dom";
 
 
 //Instancia de axios para Railway.
@@ -34,38 +35,49 @@ axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [admin, setAdmin] = useState("");
+  
+  
+  async function getRoll(id) {
+    let roll = await axios(`/users/verifyAdminRole/${id}`);
+    window.localStorage.setItem("Admin", JSON.stringify(roll.data));
+    setAdmin(roll.data)
+  }
 
   useEffect(() => {
     let verify = window.localStorage.getItem("Admin");
+    let id = window.localStorage.getItem("id");
+    
     if (verify === true) {
      return;
     }
-    if (!verify) {
-      window.localStorage.setItem("Admin", JSON.stringify(false));
-      setAdmin(false);
+    if (verify === false) {
+      return;
+     }
+    if (!verify && id ) {
+      
+      getRoll(id);
     }
-
-    let id = window.localStorage.getItem("id");
-    async function getRoll() {
-      let roll = await axios(`/users/verifyAdminRole/${id}`);
-      window.localStorage.setItem("Admin", JSON.stringify(roll.data));
-      setAdmin(roll.data)
-    }
-    getRoll();
-  }, [window.localStorage.getItem("Admin"), window.localStorage.getItem("id")]);
+   
+  }, [getRoll,admin]);
   
-  
-  console.log(admin);
+  let verify = window.localStorage.getItem("Admin");
+  console.log(verify);
 
   return (
 
     
     <div className="app">
+<<<<<<< HEAD
 
       {location.pathname !== "/" && <Chatbot /> }
 
+=======
+      {location.pathname !== "/" && <Chatbot />}
+     
+>>>>>>> 9a1a1b41a5a85376dc5cfb9f51f0e97b420dca2a
 
       <Routes>
         <Route index element={<Landing />} />
@@ -79,16 +91,24 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/FormAdoption/:id" element={<FormAdoption />} />
         <Route path="/FormContact" element={<FormContact />} />
-        <Route path="/FormCreatePet" element={<FormCreatePet />} />
         <Route path="/FormHistory" element={<FormHistory />} />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
         
         <Route path="/store" element={<Shop />} />      
         <Route path="/chat" element={<Chatbot />} />
+<<<<<<< HEAD
         <Route path="/admin" element={<Admin/>} />
+=======
+>>>>>>> 9a1a1b41a5a85376dc5cfb9f51f0e97b420dca2a
         <Route path='/error' element={<ErrorPage />} />
-
+        
+        
+        {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
+        {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
+        {JSON.parse(verify) === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
+        <Route path="*" element={<Navigate to={"/error"} />} />
+       
       </Routes>
     </div>
   );
