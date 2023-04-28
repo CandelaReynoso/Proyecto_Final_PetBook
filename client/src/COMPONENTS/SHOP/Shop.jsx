@@ -4,17 +4,21 @@ import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
 import {getAllProducts} from '../../Redux/actions'
 import { useDispatch, useSelector } from 'react-redux';
-
+import loadingGif from "../../../public/dog.loading2.gif";
+import { useState } from 'react';
 
 export default function Shop() {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products.products);
-
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getAllProducts())
+      .then(() => setIsLoading(false));
+  }, [dispatch]);
 
+
+  
 
   console.log(products)
   return (
@@ -31,7 +35,15 @@ export default function Shop() {
         <div className="h-full w-screen">
           <div>
           <h1 className="titleLeft">SHOP ONLINE</h1>
-         
+             {/* VÍDEO DE CARGA */}
+        {isLoading && (
+  <div class="flex justify-center items-center h-screen">
+    <div className="card card-side bg-base-100 shadow-xl p-2 m-3"> 
+      <img src={loadingGif} alt="Loading..." className='w-[15rem] rounded-3xl'/>
+    </div>
+    <h1 class="text-4xl font-bold ml-4">LOADING...</h1>
+  </div>
+)}
           </div>
           <div className="container mx-auto">
             {/* <h2 className="text-3xl font-bold mb-4">Choose a product! </h2> */}

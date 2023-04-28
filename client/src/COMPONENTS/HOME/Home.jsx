@@ -11,7 +11,7 @@ import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import HeaderLogin from '../HEADER/HeaderLogin';
 import Chatbot from '../CHATBOT/Chatbot'
 import Carousel from "../CAROUSEL/Carousel";
-import loadingGif from "../../../public/dog.loading2.gif";
+
 
 
 const Home = () => {
@@ -20,20 +20,10 @@ const Home = () => {
 
  const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const [isLoading, setIsLoading] = useState(true);
-
-
-  useEffect(() => {
-    dispatch(getPetsRandom())
-      .then(() => setIsLoading(false));
-  }, [dispatch]);
-
-  const onclickRefresh = () => {
-    setIsLoading(true);
-    dispatch(getPetsRandom())
-      .then(() => setIsLoading(false));
-  };
   
+  useEffect(() => {
+    dispatch(getPetsRandom());
+  }, [dispatch]);
 
   // const itemsToShow = pets?.rows?.slice(0, 2);
   
