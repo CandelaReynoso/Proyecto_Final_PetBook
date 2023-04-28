@@ -17,7 +17,7 @@ const Cards = ({ pets }) => {
               specie={pet.specie}
               gender={pet.gender}
               size={pet.size}
-              weighth={pet.weighth}
+              weight={pet.weight}
               age={pet.age}
               adopted={pet.adopted}
               name={pet.name}
