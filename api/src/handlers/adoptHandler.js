@@ -6,7 +6,7 @@ const adoptHandlerGet = async (req, res) => {
     try {
         const { limit = 20, from = 0, name } = req.query;
         const { id } = req.params;
-
+//
         let whereClause = { status: "pending"};
 
         if (req.query.otherstatus) {
