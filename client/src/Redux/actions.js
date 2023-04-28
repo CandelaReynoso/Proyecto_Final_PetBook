@@ -1,20 +1,24 @@
 import axios from "axios";
 
-
 import {
   GET_PETS,
   FETCH_PET_DETAIL_SUCCESS,
   GET_PETS_RAMDON_HOME,
   GET_PET_NAME,
   SET_PET_NAME,
-  
   SEND_EMAIL,
-  SEND_ADOPTION_REQUEST
+  SEND_ADOPTION_REQUEST,
+  GET_PRODUCTS,
+  GET_USERS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES
 
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
   console.log(params);
+
   try {
     if (params) {
       const res = await axios.get(`/pets${params}`);
@@ -88,7 +92,7 @@ export const registerUser = (userData) => async (dispatch) => {
   try {
     const res = await axios.post(`/users`, userData);
 
-    localStorage.setItem('id', res.data.savedUser.id);
+    localStorage.setItem("id", res.data.savedUser.id);
     console.log(res.data);
   } catch (err) {
     console.error(err);
@@ -139,26 +143,145 @@ export const sendEmail = (name, lastname, email, message) => {
       reject(error);
     }
   });
-}
+};
 
-export const sendAdoptionRequest = (userEmail, petName, message) => async (dispatch) => {
-  try {
-    const response = await axios.post('/pets/adopt', {
-      userEmail,
-      petName,
-      message,
-      date: new Date(),
-    });
-    dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
-  } catch (error) {
-    console.error(error);
-    // handle error
-  }
+// export const sendAdoptionRequest =
+//   (userEmail, petName, message) => async (dispatch) => {
+//     try {
+//       const response = await axios.post("/pets/adopt", {
+//         userEmail,
+//         petName,
+//         message,
+//         date: new Date(),
+//       });
+//       dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+//     } catch (error) {
+//       console.error(error);
+//       // handle error
+//     }
+//   };
+
+
+
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios("http://localhost:3001/users");
+      return dispatch({
+        type: GET_USERS,
+        payload: response.data,
+      });
+    } catch (error) {
+     window.alert(error.message)
+    }
+  };
 };
 
 
+export const sendAdoptionRequest =
+  (userEmail, petName, message) => async (dispatch) => {
+    try {
+      const response = await axios.post("/pets/adopt", {
+        userEmail,
+        petName,
+        message,
+        date: new Date(),
+      });
+
+      dispatch({ type: SEND_ADOPTION_REQUEST, payload: response.data });
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
 
 
+  // ------------------------- FAVORITOS ----------------------------//
 
+  export const addFavorite = (petData) => async (dispatch) => {
+    try {
+      const response = await axios.post('/favorite', petData);
+      console.log('ADD FAVORITE: ' + petData.id);
+      console.log('PET DATA  ' + petData);
+      const addedFavorite = response.data;
+      dispatch({ type: ADD_FAVORITE, payload: addedFavorite });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+    
+  export const deleteFavorite = (idPet, idUser) => async (dispatch) => {
+    try {
+      const response = await axios.delete(`/favorite?idPet=${idPet}&idUser=${idUser}`);
+      dispatch({ type: DELETE_FAVORITE, payload: JSON.parse(response.data) });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  export const getFavorites = (userId) => async (dispatch) => {
+    try {
+      const response = await axios.get(`/favorite?userId=${userId}`);
+      dispatch({ type: GET_FAVORITES, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+//----------------------------------PRODUCTOS-----------------------------//
+
+
+ export const getAllProducts = (
+  id,
+  name,
+  status,
+  userId,
+  image,
+  quantity,
+  available,
+  price,
+  category,
+  description,
+  weight,
+  size,
+  specie,
+  consumption_age,
+  discount,
+  categoryId,
+  petId,
+  user,
+  productCategory,) => async (dispatch) => {
+  try { 
+    const res = await axios.get('/products', {
+      id,
+      name,
+      status,
+      userId,
+      image,
+      quantity,
+      available,
+      price,
+      category,
+      description,
+      weight,
+      size,
+      specie,
+      consumption_age,
+      discount,
+      categoryId,
+      petId,
+      user,
+      productCategory,
+      });
+    
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}; 
 
 
