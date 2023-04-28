@@ -11,7 +11,8 @@ import {
   GET_PRODUCTS,
   GET_USERS,
   ADD_FAVORITE,
-  DELETE_FAVORITE
+  DELETE_FAVORITE,
+  GET_FAVORITES
 
 } from "./types";
 
@@ -194,18 +195,41 @@ export const sendAdoptionRequest =
     }
   };
 
-export const addFavorite = (id) => {
-  return { type:ADD_FAVORITE, payload:id }
-}
 
-export const deleteFavorite = (id) =>{
-  console.log("accion despachada")
-  return { type: DELETE_FAVORITE, payload:id }
+  // ------------------------- FAVORITOS ----------------------------//
 
-}
+  export const addFavorite = (petData) => async (dispatch) => {
+    try {
+      const response = await axios.post('/favorite', petData);
+      console.log('ADD FAVORITE: ' + petData.id);
+      console.log('PET DATA  ' + petData);
+      const addedFavorite = response.data;
+      dispatch({ type: ADD_FAVORITE, payload: addedFavorite });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+    
+  export const deleteFavorite = (idPet, idUser) => async (dispatch) => {
+    try {
+      const response = await axios.delete(`/favorite?idPet=${idPet}&idUser=${idUser}`);
+      dispatch({ type: DELETE_FAVORITE, payload: JSON.parse(response.data) });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  export const getFavorites = (userId) => async (dispatch) => {
+    try {
+      const response = await axios.get(`/favorite?userId=${userId}`);
+      dispatch({ type: GET_FAVORITES, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
-//PRODUCTOS
+//----------------------------------PRODUCTOS-----------------------------//
 
 
  export const getAllProducts = (
