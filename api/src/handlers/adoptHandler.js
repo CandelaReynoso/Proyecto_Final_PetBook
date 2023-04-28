@@ -67,13 +67,21 @@ const adoptHandlerPost = async (req, res) => {
         petId
       } = req.body;
 
-      const adoptionDb = await Adopt.findOne({where: {name: name}})
+      //const adoptionDb = await Adopt.findOne({where: {name: name}})
 
-    if(adoptionDb){
-        return res.status(400).json({
-            msg: `Adoption ${adoptionDb.name} already exists.`
-        })
-    }
+    // if(adoptionDb){
+    //     return res.status(400).json({
+    //         msg: `Adoption ${adoptionDb.name} already exists.`
+    //     })
+    // }
+
+        // Check if adoption with given petId already exists
+        const adoptionWithPet = await Adopt.findOne({ where: { petId } });
+        if (adoptionWithPet) {
+          return res.status(400).json({
+            msg: `Pet with id ${petId} is already adopted.`
+          });
+        }
 
     console.log(req)
   
