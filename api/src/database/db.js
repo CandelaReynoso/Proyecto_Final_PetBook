@@ -73,9 +73,11 @@ const { Donations } = sequelize.models;
 
 // model relations
 
-// Adopt user pet
-Adopt.belongsTo(User);
-Adopt.belongsTo(Pet);
+// Adopt user pet associations
+User.hasMany(Adopt); // a user can have many adoptions
+Adopt.belongsTo(User); // an adoption record belongs to a user
+Adopt.belongsTo(Pet); // an adoption record belongs to a Pet
+Pet.hasOne(Adopt); // a pet can be adopted by one user
 
 // Email / User
 Email.belongsTo(User, { foreignKey: 'userId', as: 'userEmail' });
