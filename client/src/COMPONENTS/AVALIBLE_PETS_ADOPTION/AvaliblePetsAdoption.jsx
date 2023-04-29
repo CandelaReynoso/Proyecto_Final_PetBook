@@ -10,7 +10,7 @@ import SearchBar from "../SEARCH/SearchBar";
 import Pagination from "../PAGINATION/Pagination";
 import FilterAndOrder from "../FILTER_AND_ORDER/FilterAndOrder";
 import SearchResultsList from "../SEARCH/SearchResultList";
-import { createSearchParams } from "react-router-dom";
+import { Link, createSearchParams } from "react-router-dom";
 import loadingGif from "../../../public/dog.loading2.gif";
 
 const AvaliblePetsAdoption = () => {
@@ -63,8 +63,16 @@ const AvaliblePetsAdoption = () => {
             <div className="">
               {state?.namePets?.length > 0 && <SearchResultsList />}
             </div>
+           
           </div>
+          <Link to={"/favorites"} >
+            <button>Favorites</button>
+            </Link>
+           
+       
         </div>
+        
+       
 
         {/* VÍDEO DE CARGA */}
         {isLoading && (
@@ -72,7 +80,7 @@ const AvaliblePetsAdoption = () => {
     <div className="card card-side bg-base-100 shadow-xl p-2 m-3"> 
       <img src={loadingGif} alt="Loading..." className='w-[15rem] rounded-3xl'/>
     </div>
-    <h1 class="text-4xl font-bold ml-4">LOADING...</h1>
+    <h1 className="text-4xl font-bold ml-4">LOADING...</h1>
   </div>
 )}
         {/* CARTAS DE MASCOTAS */}
@@ -86,6 +94,8 @@ const AvaliblePetsAdoption = () => {
         <div>
           <Pagination />
         </div>
+        
+       
 
         {/* ADOPT AND SAVE A LIFE...  */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1 ">

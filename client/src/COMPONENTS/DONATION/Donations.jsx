@@ -119,7 +119,7 @@ export default function Donations(){
                     <label className="italic">select here the amount to donate: </label>
                     <input type="number" min="100" max="10000" placeholder=" $..." onChange={handleChange}/>
                     <input type="hidden" name="price" value={donation}/>
-                    <br />
+                    <br/>
                     {
                         error
                         ? (<>
