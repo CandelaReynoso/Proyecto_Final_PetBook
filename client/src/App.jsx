@@ -22,7 +22,7 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
-import { useNavigate } from "react-router-dom";
+import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
 
 
 //Instancia de axios para Railway.
@@ -36,7 +36,7 @@ axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
+ 
 
   const [admin, setAdmin] = useState("");
   
@@ -93,7 +93,8 @@ function App() {
         <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
         <Route path='/error' element={<ErrorPage />} />
-        
+        <Route path="/favorites" element={<Favorites/>} />
+         
         
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
         {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
