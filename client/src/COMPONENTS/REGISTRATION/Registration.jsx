@@ -52,7 +52,7 @@ const Registration = () => {
 
 
     const response= dispatch(registerUser(formState))
-    navigate('/home')
+    navigate('/login')
   }
 
   return (
