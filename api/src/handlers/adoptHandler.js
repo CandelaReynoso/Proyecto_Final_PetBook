@@ -39,7 +39,7 @@ const adoptHandlerGet = async (req, res) => {
                     },
                     {
                         model: Pet,
-                        attributes: ['id', 'name', 'specie'] 
+                        attributes: ['id', 'name', 'specie',"image","age"] 
                     }
                 ]
             })

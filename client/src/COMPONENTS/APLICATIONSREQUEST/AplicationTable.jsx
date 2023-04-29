@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React from "react";
 import axios from "axios";
 
 const AplicationTable = ({
@@ -12,80 +12,67 @@ const AplicationTable = ({
   facebook,
   instagram,
   petId,
+  petName,
+  petSpecie,
+  petImage,
+  petAge,
   key,
-  getAdoptionsRequest
+  getAdoptionsRequest,
 }) => {
-  const [adoptionPets, setAdoptionPets] = useState();
-  console.log("id solicitud adop", id, "idUser", userId, "id PET", petId);
-
-  useEffect(() => {
-    async function getAdoptionsPets() {
-      let request = await axios(`/pets/detail/${petId}`);
-      console.log(request);
-      setAdoptionPets(request?.data);
-    }
-    getAdoptionsPets();
-  }, []);
-  
-  //declined
-  //approved
-// decline adoptions/ id solo
   const approvedRequest = async () => {
     try {
       let response = await axios.put(`adoptions/approved/${id}`, {
         role: "admin_role",
       });
-      
-      if(response.data){
-    
-      let succes =  await axios.post(`/userPets/adopt`, {
+
+      if (response.data) {
+        let succes = await axios.post(`/userPets/adopt`, {
           idUser: userId,
           idPet: petId,
         });
-        window.alert(succes.data)
-        console.log(succes.data);
-        
+        window.alert(succes.data);
       }
-      if(!response.data){
-       window.alert("solicitud aprobada")
+      if (!response.data) {
+        window.alert("solicitud aprobada");
       }
-      getAdoptionsRequest()
-
-      
+      getAdoptionsRequest();
     } catch (error) {
-     window.alert(error.message)
+      window.alert(error.message);
     }
   };
-  
-  const declinedRequest = async() =>{
-  let token = window.localStorage.getItem("token")
-  console.log(token);
+
+  const declinedRequest = async () => {
+    let token = window.localStorage.getItem("token");
+
     try {
       let response = await axios.delete(`adoptions/${id}`, {
-        headers: { 'Content-Type': 'application/json',
-        "x-token": token },
+        headers: { "Content-Type": "application/json", "x-token": token },
         role: "admin_role",
       });
-      getAdoptionsRequest()
+      getAdoptionsRequest();
       console.log(response.data);
     } catch (error) {
-      window.alert(error.message)
+      window.alert(error.message);
     }
-    
-  }
+  };
 
   return (
     <>
+      {/* aca acomodalo como quieras niki usa tu creatividad para agregar los textos que veas necesarios
+       los h2 son de ejemplo nomas */}
+
       <h2>Postulante {name}</h2>
+      <h2>candidato {petName}</h2>
       <tbody key={key}>
         <tr>
           <td className="py-2">user name</td>
           <td className="text-gray-500">{name}</td>
+
           <td>name pet</td>
-          <td>{adoptionPets?.name}</td>
+          <td>{petName}</td>
           <img
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
-            src={adoptionPets?.image}
+            src={petImage}
             alt=""
           />
         </tr>
@@ -94,14 +81,14 @@ const AplicationTable = ({
           <td className="py-2">email</td>
           <td className="text-gray-500">{email}</td>
           <td>specie</td>
-          <td>{adoptionPets?.specie}</td>
+          <td>{petSpecie}</td>
         </tr>
 
         <tr>
           <td className="py-2">address</td>
           <td className="text-gray-500">{address}</td>
           <td>age</td>
-          <td>{adoptionPets?.age}</td>
+          <td>{petAge}</td>
         </tr>
 
         <tr>
@@ -132,7 +119,7 @@ const AplicationTable = ({
 
       <button onClick={() => approvedRequest()}>aceptar</button>
       <br />
-      <button onClick={()=>declinedRequest()}> rechazar</button>
+      <button onClick={() => declinedRequest()}> rechazar</button>
     </>
   );
 };

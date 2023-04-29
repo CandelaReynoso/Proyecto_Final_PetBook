@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AplicationTable from "./AplicationTable";
+import { Link } from "react-router-dom";
 
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
@@ -16,24 +17,25 @@ const AplicationsRequest = () => {
     getAdoptionsRequest();
   }, []);
 
-  const handleInputChange =async  (e) => {
+  const handleInputChange = async (e) => {
     setInput(e.target.value);
-   try {
-    let response = await axios.get(`/adoptions?name=${e.target.value}`)
-    setAdoptions(response.data.adoptions)
-   } catch (error) {
-    window.alert(error,message)
-   }
-    
-    
-  };
-
-  const handlerClick = async() => {
-  
+    try {
+      let response = await axios.get(`/adoptions?name=${e.target.value}`);
+      if (response.data.adoptions.length) {
+        setAdoptions(response.data.adoptions);
+      } else {
+        return;
+      }
+    } catch (error) {
+      window.alert(error, message);
+    }
   };
 
   return (
     <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
+      <Link to={"/admin"}>
+        <button>back</button>
+      </Link>
       <div>
         <h1>search</h1>
       </div>
@@ -45,10 +47,12 @@ const AplicationsRequest = () => {
         autoComplete="off"
         onChange={(e) => handleInputChange(e)}
       />
-      <button onClick={handlerClick}>🔎</button>
 
       <table className="w-full text-gray-600">
-        {adoptions &&
+      {/* gif pedorro provisorio si queres podes cambiarlo por otro q quieras */}
+        {!adoptions ? (
+          <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
+        ) : (
           adoptions?.map((adopt, index) => {
             return (
               <AplicationTable
@@ -62,11 +66,16 @@ const AplicationsRequest = () => {
                 facebook={adopt.facebook}
                 instagram={adopt.instagram}
                 petId={adopt.petId}
+                petName={adopt.pet.name}
+                petSpecie={adopt.pet.specie}
+                petImage={adopt.pet.image}
+                petAge={adopt.pet.age}
                 key={index}
                 getAdoptionsRequest={getAdoptionsRequest}
               />
             );
-          })}
+          })
+        )}
       </table>
     </div>
   );
