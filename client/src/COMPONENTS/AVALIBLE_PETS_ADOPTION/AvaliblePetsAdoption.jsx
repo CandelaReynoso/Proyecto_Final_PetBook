@@ -19,16 +19,13 @@ const AvaliblePetsAdoption = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getPets())
-      .then(() => setIsLoading(false));
+    dispatch(getPets()).then(() => setIsLoading(false));
   }, [dispatch]);
 
   const onclickRefresh = () => {
     setIsLoading(true);
-    dispatch(getPets())
-      .then(() => setIsLoading(false));
+    dispatch(getPets()).then(() => setIsLoading(false));
   };
-  
 
   return (
     <div className="w-screen">
@@ -63,26 +60,25 @@ const AvaliblePetsAdoption = () => {
             <div className="">
               {state?.namePets?.length > 0 && <SearchResultsList />}
             </div>
-           
           </div>
-          <Link to={"/favorites"} >
+          <Link to={"/favorites"}>
             <button>Favorites</button>
-            </Link>
-           
-       
+          </Link>
         </div>
-        
-       
 
         {/* VÍDEO DE CARGA */}
         {isLoading && (
-  <div class="flex justify-center items-center h-screen">
-    <div className="card card-side bg-base-100 shadow-xl p-2 m-3"> 
-      <img src={loadingGif} alt="Loading..." className='w-[15rem] rounded-3xl'/>
-    </div>
-    <h1 className="text-4xl font-bold ml-4">LOADING...</h1>
-  </div>
-)}
+          <div class="flex justify-center items-center h-screen">
+            <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
+              <img
+                src={loadingGif}
+                alt="Loading..."
+                className="w-[15rem] rounded-3xl"
+              />
+            </div>
+            <h1 className="text-4xl font-bold ml-4">LOADING...</h1>
+          </div>
+        )}
         {/* CARTAS DE MASCOTAS */}
         {!isLoading && (
           <div className="flex justify-center">
@@ -94,8 +90,6 @@ const AvaliblePetsAdoption = () => {
         <div>
           <Pagination />
         </div>
-        
-       
 
         {/* ADOPT AND SAVE A LIFE...  */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1 ">
@@ -112,25 +106,25 @@ const AvaliblePetsAdoption = () => {
               <li className="step step-primary text text-neutral">
                 Find a friend you wish to take home
               </li>
-            <li className="step text text-neutral">
-              Go through our adoption requirements{" "}
-            </li>
-            <li className="step text text-neutral">
-              Schedule a visit to the shelter
-            </li>
-            <li className="step text text-neutral">
-              Meet your new furry friend and go home
-            </li>
-          </ul>
+              <li className="step text text-neutral">
+                Go through our adoption requirements{" "}
+              </li>
+              <li className="step text text-neutral">
+                Schedule a visit to the shelter
+              </li>
+              <li className="step text text-neutral">
+                Meet your new furry friend and go home
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* FOOTER */}
+
+        <div>
+          <Footer />
         </div>
       </div>
-
-      {/* FOOTER */}
-
-      <div>
-        <Footer />
-      </div>
-    </div>
     </div>
   );
 };
