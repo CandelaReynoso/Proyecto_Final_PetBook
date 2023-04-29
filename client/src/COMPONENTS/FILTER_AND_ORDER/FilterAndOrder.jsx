@@ -16,17 +16,22 @@ const FilterAndOrder = () => {
   };
 
   useEffect(() => {
-   
+    
     if (state.pets.params !== undefined) {
       window.localStorage.setItem(
-        "LastQuerysParams",
+        "lastQuerys",
         JSON.stringify(state.pets.params)
       );
+      // window.localStorage.setItem(
+      //   "LastQuerysParams",
+      //   JSON.stringify(state.pets.params)
+      // );
     }
   }, [checked, state.pets.params]);
 
   useEffect(() => {
-    let query = window.localStorage.getItem("LastQuerysParams")
+    let query = window.localStorage.getItem("lastQuerys")
+    // let query = window.localStorage.getItem("LastQuerysParams")
     if (!state.pets.params && query) {
      let parse = JSON.parse(query)
      dispatch(getPets(`?${createSearchParams(parse)}`))

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPets } from "../../Redux/actions";
 import Cards from "../CARDS/Cards";
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
-import styles from "../CARD/Card.module.css";
 import SearchBar from "../SEARCH/SearchBar";
 import Pagination from "../PAGINATION/Pagination";
 import FilterAndOrder from "../FILTER_AND_ORDER/FilterAndOrder";
@@ -16,11 +15,34 @@ import loadingGif from "../../../public/dog.loading2.gif";
 const AvaliblePetsAdoption = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+ 
+  useEffect(() => {
+  
+    let query = window.localStorage.getItem("lastQuerys");
+    let parseQuery = JSON.parse(query);
+
+    if (!query) {
+      dispatch(getPets());
+      return;
+    }
+    if (parseQuery !== undefined) {
+      dispatch(getPets(`?${createSearchParams(parseQuery)}`));
+    }
+    if (parseQuery === undefined) {
+      return;
+    }
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getPets()).then(() => setIsLoading(false));
-  }, [dispatch]);
+    return () => {
+      let querys = state?.pets?.params;
+
+      if (querys !== undefined) {
+        window.localStorage.setItem("lastQuerys", JSON.stringify(querys));
+      } else return;
+    };
+  }, [state.pets.params]);
+  
 
   const onclickRefresh = () => {
     setIsLoading(true);
@@ -67,7 +89,7 @@ const AvaliblePetsAdoption = () => {
         </div>
 
         {/* VÍDEO DE CARGA */}
-        {isLoading && (
+        {!state.pets.data && (
           <div class="flex justify-center items-center h-screen">
             <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
               <img
@@ -80,11 +102,11 @@ const AvaliblePetsAdoption = () => {
           </div>
         )}
         {/* CARTAS DE MASCOTAS */}
-        {!isLoading && (
+        { state.pets.data &&
           <div className="flex justify-center">
             <Cards pets={state?.pets?.data} />
           </div>
-        )}
+        }
 
         {/* PAGINADO */}
         <div>

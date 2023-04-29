@@ -5,31 +5,52 @@ import AplicationTable from "./AplicationTable";
 
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
+  const [input, setInput] = useState("");
 
-const getAdoptionsRequest =async () =>{
+  const getAdoptionsRequest = async () => {
     let request = await axios(`/adoptions`);
     setAdoptions(request?.data?.adoptions);
-}
+  };
 
   useEffect(() => {
-    // async function getAdoptions() {
-    //   let request = await axios(`/adoptions`);
-    //   setAdoptions(request?.data?.adoptions);
-    // }
-    // getAdoptions();
-    getAdoptionsRequest()
+    getAdoptionsRequest();
   }, []);
 
-  console.log(adoptions);
+  const handleInputChange =async  (e) => {
+    setInput(e.target.value);
+   try {
+    let response = await axios.get(`/adoptions?name=${e.target.value}`)
+    setAdoptions(response.data.adoptions)
+   } catch (error) {
+    window.alert(error,message)
+   }
+    
+    
+  };
+
+  const handlerClick = async() => {
+  
+  };
 
   return (
     <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
-      <h1>solicitudes de adopciones</h1>
+      <div>
+        <h1>search</h1>
+      </div>
+
+      <input
+        type="text"
+        placeholder="type to search..."
+        value={input}
+        autoComplete="off"
+        onChange={(e) => handleInputChange(e)}
+      />
+      <button onClick={handlerClick}>🔎</button>
+
       <table className="w-full text-gray-600">
         {adoptions &&
           adoptions?.map((adopt, index) => {
             return (
-            
               <AplicationTable
                 id={adopt.id}
                 userId={adopt.userId}
@@ -43,7 +64,6 @@ const getAdoptionsRequest =async () =>{
                 petId={adopt.petId}
                 key={index}
                 getAdoptionsRequest={getAdoptionsRequest}
-                
               />
             );
           })}
