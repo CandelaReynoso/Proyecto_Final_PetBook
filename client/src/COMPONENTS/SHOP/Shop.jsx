@@ -54,17 +54,13 @@ export default function Shop() {
                     <h3 className="text-lg font-bold">{product.name}</h3>
                     <p>{product.description}</p>
                     <p className="font-bold mt-2">${Math.ceil(product.price)}</p>
-                    <div className="card w-72 bg-base-100 shadow-xl m-4">
-                  
-                        <h2 className="card-title text-black font-['candara']">{product.name}</h2>
-                        <h5 className="text bg-primary w-fit rounded-full">${Math.ceil(product.price)}</h5>
-                        <form action="http://localhost:3001/checkout" method="GET">
-                            <input type="hidden" name="id" value={id} />
-                            <input type="hidden" name="title" value="Puppy Size Donation"/>
-                            <input type="hidden" name="price" value="1000"/>
-                            <div className="card-actions justify-end"> <input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
-                        </form>
-                    </div>
+                    <form action="http://localhost:3001/checkout" method="GET">
+                      <input type="hidden" name="title" value={product.name}/>
+                      <input type="hidden" name="price" value={Math.ceil(product.price)}/>
+                      <div className="card-actions justify-end"> 
+                      <input type="submit" value="BUY" className="btn btn-primary"/> 
+                      </div>
+                  </form>
                   </div>
                 ))}
                 
@@ -80,3 +76,15 @@ export default function Shop() {
 )
 
 }
+
+{/* 
+<div className="card w-72 bg-base-100 shadow-xl m-4">
+<h2 className="card-title text-black font-['candara']">{product.name}</h2>
+<h5 className="text bg-primary w-fit rounded-full">${Math.ceil(product.price)}</h5>
+<form action="http://localhost:3001/checkout" method="GET">
+    <input type="hidden" name="title" value={product.name}/>
+    <input type="hidden" name="price" value={Math.ceil(product.price)}/>
+    <div className="card-actions justify-end"> <input type="submit" value="BUY" className="btn btn-primary"/> 
+</div>
+</form>
+</div> */}
