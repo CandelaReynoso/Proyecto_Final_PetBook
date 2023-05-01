@@ -6,14 +6,14 @@ const { PORT } = process.env;
 const loadPets = require('./src/database/scriptPets.js')
 const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js");
 
-const tuApi = "c8e12f84-003f-480a-a375-6cbc3edd76e9";
+const tuApi = "7326f6cf-2260-48a1-9984-a679005fb9e1";
 
 
 
 sequelize.sync({alter:true }).then( async () => {
 
   await loadPets();
-  await uploadProductos(tuApi);
+  // await uploadProductos(tuApi);
 
 
   console.log("estoy conectado a", sequelize.getDatabaseName());

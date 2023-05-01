@@ -20,7 +20,9 @@ import Successfully from "./COMPONENTS/DONATION/Successfully";
 import Shop from "./COMPONENTS/SHOP/Shop";
 import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
+import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+import Show from "./COMPONENTS/SHOW_IN_COROUSEL/Show";
 import { useNavigate } from "react-router-dom";
 
 
@@ -67,26 +69,21 @@ function App() {
   console.log(verify);
 
   return (
-
-    
     <div className="app">
-<<<<<<< HEAD
-
-      {location.pathname !== "/" && <Chatbot /> }
-
-=======
       {location.pathname !== "/" && <Chatbot />}
      
->>>>>>> 9a1a1b41a5a85376dc5cfb9f51f0e97b420dca2a
 
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/header" element={<Header />} />
         <Route path="/home" element={<Home />} />
         <Route path="/footer" element={<Footer />} />
-        <Route path='/detail/:id' element={<Detail/>} />
-        <Route path ='/login' element={<Loginpage />} />
-        <Route path="/AvaliblePetsAdoption" element={<AvaliblePetsAdoption/>} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/login" element={<Loginpage />} />
+        <Route
+          path="/AvaliblePetsAdoption"
+          element={<AvaliblePetsAdoption />}
+        />
         <Route path="/register" element={<Registration />} />
         <Route path="/about" element={<About />} />
         <Route path="/FormAdoption/:id" element={<FormAdoption />} />
@@ -94,16 +91,12 @@ function App() {
         <Route path="/FormHistory" element={<FormHistory />} />
         <Route path="/donate" element={<Donations />} />
         <Route path="/thanks" element={<Successfully />} />
-        
-        <Route path="/store" element={<Shop />} />      
+        <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
-<<<<<<< HEAD
-        <Route path="/admin" element={<Admin/>} />
-=======
->>>>>>> 9a1a1b41a5a85376dc5cfb9f51f0e97b420dca2a
         <Route path='/error' element={<ErrorPage />} />
         
         
+        {JSON.parse(verify) === true && <Route path='/acceptStories' element={<Show />} />}
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
         {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
         {JSON.parse(verify) === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
