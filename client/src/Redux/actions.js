@@ -10,9 +10,11 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
   GET_USERS,
+
   APLICATION_REQUEST,
   SEARCH_APLICATION_REQUEST,
   GET_FAVORITES,
+
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -302,4 +304,14 @@ export const loadDonation = (id, amount) => async (dispatch) =>  {
     console.log(error);
   }
 }
+
+
+
+
+
+
+
+
+
+
 

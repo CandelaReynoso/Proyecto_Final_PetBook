@@ -108,6 +108,7 @@ const reducer = (state = initialState, action) => {
 
              
 
+
          case GET_FAVORITES:
           return {
          ...state,
@@ -118,6 +119,7 @@ const reducer = (state = initialState, action) => {
             return {
               ...state,
             };
+
     }
   }
 };
