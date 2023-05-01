@@ -9,7 +9,7 @@
     max-height: 150px;
     overflow-y: auto;
    
-    position: absolute;
+    position: absolute!important;
     
     cursor: pointer;
     

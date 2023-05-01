@@ -46,8 +46,8 @@ const AvaliblePetsAdoption = () => {
   
 
   const onclickRefresh = () => {
-    setIsLoading(true);
-    dispatch(getPets()).then(() => setIsLoading(false));
+    
+    dispatch(getPets())
   };
 
   return (
