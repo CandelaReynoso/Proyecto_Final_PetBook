@@ -11,12 +11,14 @@ export default function HeaderLogin() {
 
   const [admin, setAdmin] = useState("");
 
+
+ 
+
   useEffect(() => {
     let adminRoll = window.localStorage.getItem("Admin");
-   
+
     setAdmin(JSON.parse(adminRoll));
-  }, [admin,window.localStorage.getItem("Admin")]);
-  
+  }, [admin, window.localStorage.getItem("Admin")]);
 
   // console.log("userlogueado " + localStorage.getItem("token"));
 
@@ -25,9 +27,13 @@ export default function HeaderLogin() {
     window.location.reload();
     console.log(localStorage.getItem("token"));
     if (admin === true) {
-      window.localStorage.setItem("Admin", JSON.stringify(false));
+      window.localStorage.removeItem("Admin");
     }
   };
+
+  
+
+;
 
   return (
     <div>
@@ -77,7 +83,7 @@ export default function HeaderLogin() {
                     </a>
                     <ul className="p-2">
                       <li>
-                        <a>Profile</a>
+                        <Link to='/favorites'><a>Favorites</a></Link>
                       </li>
                       <li>
                         <button onClick={() => userLogout()}>Logout</button>
@@ -102,6 +108,14 @@ export default function HeaderLogin() {
             <Link to="/home">
               <img src="/logo.png" alt="" width="200rem" />
             </Link>
+
+            {/* SALUDO MAS HS MAS IMAGEN */}
+            {/* <div>
+              <h2>welcome {hora}</h2>
+              <div className="w-10 rounded-full">
+                <img src="/buenasnoches.jpg" alt="imagenSaludo" />
+              </div>
+            </div> */}
           </div>
 
           <div className="flex-none gap-2">
@@ -143,7 +157,7 @@ export default function HeaderLogin() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">Profile</a>
+                <Link to='/favorites'><a>Favorites</a></Link>
                 </li>
                 {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
                 <li>

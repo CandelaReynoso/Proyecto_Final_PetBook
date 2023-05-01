@@ -2,14 +2,20 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 
+
   export default function Header() {
     // const Menu = e => {
     //   const menu = document.querySelector(".mobile-links");
     //   menu.classList.toggle("hidden");
     // };
-
+   
     console.log('usersinentrar ' + localStorage.getItem('token')); 
-
+    
+  
+    
+  
+      
+      
     return (
       <div>  
       
@@ -32,7 +38,7 @@ import { FiMenu } from 'react-icons/fi'
                         <li><a href="/login">Log in</a></li>
                         <li><a href="/store">Store</a></li>                        
                         <li><a href="/FormContact">Contact us</a></li>
-
+                     
                     </ul>
                 </li>
               </ul>
@@ -51,6 +57,13 @@ import { FiMenu } from 'react-icons/fi'
               <Link to='/home'>
                 <img src="/logo.png" alt="" width='200rem'/>
               </Link>
+              {/* <div >
+              <h2>welcome Stranger {hora} </h2>
+              <div className="w-10 rounded-full">
+                  <img src={imagen} alt={""}/>
+                  
+                </div>
+            </div> */}
             </div>
 
             <div className="flex-none gap-2">

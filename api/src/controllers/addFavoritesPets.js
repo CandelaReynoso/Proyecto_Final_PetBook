@@ -1,8 +1,8 @@
 const {Favorite,User} = require("../database/db.js")
 
-const addFavoritesPets = async (image,name,specie,gender,size,weight,age,idUser) =>{
+const addFavoritesPets = async (id, image,name,specie,gender,size,weight,age,idUser) =>{
 
-const newFav = await Favorite.create({image,name,specie,gender,size,weight,age})
+const newFav = await Favorite.create({id,image,name,specie,gender,size,weight,age, idUser})
 
 let findUser = await User.findByPk(idUser)
 
@@ -17,6 +17,5 @@ console.log(newFav.__proto__);
 }
 
 module.exports = addFavoritesPets
-
 
 
