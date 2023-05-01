@@ -1,6 +1,6 @@
 
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST} from './types';
 
 
 
@@ -36,7 +36,9 @@ products: [],
 loading: false,
   error: null,
 
-  users :[]
+  users :[],
+
+  requestAdoption : []
 
 };
 
@@ -92,14 +94,19 @@ const reducer = (state = initialState, action) => {
               adoptionRequest: action.payload,
               error: null,
             };
+
+            case APLICATION_REQUEST:
+           return{
+           ...state,
+           requestAdoption : action.payload
+           }
             
           case GET_PRODUCTS:
             return {
               ...state,
               products: action.payload
             };
-
-              
+  
           case GET_USERS:
               return{
               ...state,
