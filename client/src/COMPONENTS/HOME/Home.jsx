@@ -39,7 +39,7 @@ const Home = () => {
       setSaludo("Good afternoon");
       setImage("/buenastardes.jpg");
     } else {
-      setSaludo("Good night");
+      setSaludo("Good evening");
       setImage("/lunaEstrellas.jpg");
     }
   }
@@ -59,15 +59,15 @@ const Home = () => {
           )}
         </div>
 
-        <div>
-          <h2>
+        <div className="flex row-span-1">
+          <h2 className="text uppercase p-3 m-2">
             welcome{" "}
             {window.localStorage.getItem("nickname")
               ? window.localStorage.getItem("nickname")
-              : "Strange"}
+              : "Stranger"}
             ,{saludo}
           </h2>
-          <div className="w-10 rounded-full">
+          <div className=" mt-3 w-10 rounded-full">
             <img src={image} alt="logoClima" />
           </div>
         </div>

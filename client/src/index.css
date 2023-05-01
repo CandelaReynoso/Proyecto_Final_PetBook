@@ -64,7 +64,7 @@
 
 /* ERRORES */
 .text-error {
-  @apply italic text-red-500;
+  @apply italic text-red-500 text-xs;
 }
  /* INPUTS Y FORMULARIOS */
 
