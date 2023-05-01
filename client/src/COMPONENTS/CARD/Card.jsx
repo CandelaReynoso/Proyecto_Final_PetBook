@@ -7,7 +7,7 @@ import AdoptionForm from "../FORMS/FormAdoption";
 import axios from "axios";
 
 const Card = (pet) => {
-   const [isFav, setIsFav] = useState(false);
+  // const [isFav, setIsFav] = useState();
   // const dispatch = useDispatch();
   // const [loading, setLoading] = useState(true);
   
@@ -28,7 +28,7 @@ const Card = (pet) => {
     }
   }, []);
 
-  const handleFavorite = () => {  //este es el que va!!!! 
+  const handleFavorite = () => {
     try {
       const userId = window.localStorage.getItem("id");
       axios.post("/favorite", {
@@ -41,7 +41,6 @@ const Card = (pet) => {
         specie: pet.specie,
         idUser: userId,
       });
-      setIsFav(true);
     } catch (error) {
       window.alert(error.message);
     }
@@ -73,7 +72,7 @@ const Card = (pet) => {
           />
           <div>
             {localStorage.getItem("token") && (
-              <button  onClick={handleFavorite}>  {isFav ? "💚" : "🤍"}</button>
+              <button  onClick={handleFavorite}>🤍</button>
             )}
 
          
