@@ -28,7 +28,7 @@ const Card = (pet) => {
     }
   }, []);
 
-  const handleFavorite = () => {
+  const handleFavorite = () => {  //este es el que va!!!! 
     try {
       const userId = window.localStorage.getItem("id");
       axios.post("/favorite", {
