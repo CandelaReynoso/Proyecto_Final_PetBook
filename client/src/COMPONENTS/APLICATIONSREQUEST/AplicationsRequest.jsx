@@ -1,33 +1,30 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import AplicationTable from "./AplicationTable";
 import { Link } from "react-router-dom";
+import {
+  aplicationRequest,
+  searchAplicationRequest,
+} from "../../Redux/actions";
 
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
   const [input, setInput] = useState("");
-
-  const getAdoptionsRequest = async () => {
-    let request = await axios(`/adoptions`);
-    setAdoptions(request?.data?.adoptions);
-  };
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getAdoptionsRequest();
+    dispatch(aplicationRequest());
   }, []);
 
   const handleInputChange = async (e) => {
     setInput(e.target.value);
     try {
-      let response = await axios.get(`/adoptions?name=${e.target.value}`);
-      if (response.data.adoptions.length) {
-        setAdoptions(response.data.adoptions);
-      } else {
-        return;
-      }
+      dispatch(searchAplicationRequest(e.target.value));
     } catch (error) {
-      window.alert(error, message);
+      window.alert(error.message);
     }
   };
 
@@ -49,11 +46,11 @@ const AplicationsRequest = () => {
       />
 
       <table className="w-full text-gray-600">
-      {/* gif pedorro provisorio si queres podes cambiarlo por otro q quieras */}
-        {!adoptions ? (
+        {/* gif pedorro provisorio si queres podes cambiarlo por otro q quieras */}
+        {!state?.requestAdoption ? (
           <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
         ) : (
-          adoptions?.map((adopt, index) => {
+          state?.requestAdoption?.map((adopt, index) => {
             return (
               <AplicationTable
                 id={adopt.id}
@@ -71,7 +68,6 @@ const AplicationsRequest = () => {
                 petImage={adopt.pet.image}
                 petAge={adopt.pet.age}
                 key={index}
-                getAdoptionsRequest={getAdoptionsRequest}
               />
             );
           })

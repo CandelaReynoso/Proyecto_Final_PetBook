@@ -10,9 +10,9 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
   GET_USERS,
- 
-  GET_FAVORITES
-
+  APLICATION_REQUEST,
+  SEARCH_APLICATION_REQUEST,
+  GET_FAVORITES,
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -160,8 +160,6 @@ export const sendEmail = (name, lastname, email, message) => {
 //     }
 //   };
 
-
-
 export const getUsers = () => {
   return async function (dispatch) {
     try {
@@ -171,11 +169,10 @@ export const getUsers = () => {
         payload: response.data,
       });
     } catch (error) {
-     window.alert(error.message)
+      window.alert(error.message);
     }
   };
 };
-
 
 export const sendAdoptionRequest =
   (userEmail, petName, message) => async (dispatch) => {
@@ -194,73 +191,106 @@ export const sendAdoptionRequest =
     }
   };
 
+// ------------------------- FAVORITOS ----------------------------//
 
-  // ------------------------- FAVORITOS ----------------------------//
+export const getFavorites = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorite?userId=${userId}`);
+    dispatch({ type: GET_FAVORITES, payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
- export const getFavorites = (userId) => async (dispatch) => {
+//----------------------------------PRODUCTOS-----------------------------//
+
+export const getAllProducts =
+  (
+    id,
+    name,
+    status,
+    userId,
+    image,
+    quantity,
+    available,
+    price,
+    category,
+    description,
+    weight,
+    size,
+    specie,
+    consumption_age,
+    discount,
+    categoryId,
+    petId,
+    user,
+    productCategory
+  ) =>
+  async (dispatch) => {
     try {
-      const response = await axios.get(`/favorite?userId=${userId}`);
-      dispatch({ type: GET_FAVORITES, payload: response.data });
-    } catch (error) {
-      console.log(error);
+      const res = await axios.get("/products", {
+        id,
+        name,
+        status,
+        userId,
+        image,
+        quantity,
+        available,
+        price,
+        category,
+        description,
+        weight,
+        size,
+        specie,
+        consumption_age,
+        discount,
+        categoryId,
+        petId,
+        user,
+        productCategory,
+      });
+
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.error(err);
     }
   };
 
 
-//----------------------------------PRODUCTOS-----------------------------//
-
-
- export const getAllProducts = (
-  id,
-  name,
-  status,
-  userId,
-  image,
-  quantity,
-  available,
-  price,
-  category,
-  description,
-  weight,
-  size,
-  specie,
-  consumption_age,
-  discount,
-  categoryId,
-  petId,
-  user,
-  productCategory,) => async (dispatch) => {
-  try { 
-    const res = await axios.get('/products', {
-      id,
-      name,
-      status,
-      userId,
-      image,
-      quantity,
-      available,
-      price,
-      category,
-      description,
-      weight,
-      size,
-      specie,
-      consumption_age,
-      discount,
-      categoryId,
-      petId,
-      user,
-      productCategory,
+export const aplicationRequest = () => {
+  return async function (dispatch) {
+    try {
+      let request = await axios(`/adoptions`);
+      return dispatch({
+        type: APLICATION_REQUEST,
+        payload: request?.data?.adoptions,
       });
-    
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-}; 
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
+
+export const searchAplicationRequest = (name) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`/adoptions?name=${name}`);
+      if (response.data.adoptions.length) {
+        return dispatch({
+        type: SEARCH_APLICATION_REQUEST,
+        payload : response.data.adoptions
+        })
+      } else {
+        return;
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
 
 export const loadDonation = (id, amount) => async (dispatch) =>  {
   
@@ -272,3 +302,4 @@ export const loadDonation = (id, amount) => async (dispatch) =>  {
     console.log(error);
   }
 }
+
