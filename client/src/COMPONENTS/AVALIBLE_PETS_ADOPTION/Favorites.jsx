@@ -47,7 +47,6 @@ const Favorites = () => {
                   />
                 )}
               </div>
-
         </div>
      </div>
 
