@@ -10,8 +10,10 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
   GET_USERS,
- 
-  GET_FAVORITES
+  GET_FAVORITES,
+  FILTER_PRODUCTS_FAILURE,
+  FILTER_PRODUCTS_REQUEST,
+  FILTER_PRODUCTS_SUCCESS
 
 } from "./types";
 
@@ -272,3 +274,23 @@ export const loadDonation = (id, amount) => async (dispatch) =>  {
     console.log(error);
   }
 }
+
+export const filterProducts = (filters) => async (dispatch) => {
+  dispatch({ type: FILTER_PRODUCTS_REQUEST });
+
+  try {
+    const response = await axios.get('/', { params: filters });
+    const data = response.data;
+    console.log(response.data + " yo soy la data")
+
+    dispatch({
+      type: FILTER_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: FILTER_PRODUCTS_FAILURE,
+      payload: error.message,
+    });
+  }
+};

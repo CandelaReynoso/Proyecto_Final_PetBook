@@ -33,7 +33,8 @@ success: null,
 error: null,
 
 products: [],
-
+loading: false,
+  error: null,
 
   users :[]
 
@@ -112,7 +113,7 @@ const reducer = (state = initialState, action) => {
          ...state,
             favorites: action.payload,
            };
-    
+          
           default: {
             return {
               ...state,
