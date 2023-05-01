@@ -23,7 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPetsRandom());
-    mostrarSaludo();
+    
   }, [dispatch]);
 
   // const itemsToShow = pets?.rows?.slice(0, 2);

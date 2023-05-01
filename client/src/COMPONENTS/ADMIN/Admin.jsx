@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getUsers } from "../../Redux/actions";
+import { aplicationRequest, getUsers } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import TablaUsers from "./TablaUsers";
+import { FaBell, FaBellSlash } from "react-icons/fa";
 
 import axios from "axios";
 
@@ -14,6 +15,11 @@ const Admin = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, [getUsers]);
+
+  useEffect(() => {
+    dispatch(aplicationRequest());
+    console.log(state?.requestAdoption.length);
+  }, []);
 
   const deleteLogicUser = async (id) => {
     try {
@@ -117,35 +123,25 @@ const Admin = () => {
             <div className="navbar- dropdown ">
               <ul className="menu menu-horizontal px-1 ">
                 <li tabIndex={0}>
-                  <a>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 m-auto text-gray-600"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                    </svg>
-                  </a>
+                  {state.requestAdoption.length ? (
+                    <a>
+                      <FaBell />
+                    </a>
+                  ) : (
+                    <a>
+                      <FaBellSlash />
+                    </a>
+                  )}
+
                   <ul className="menu dropdown-content p-2 bg-base-100 w-56 rounded-box text group-hover:bg-primary">
-                    <li>
-                      Storys requests
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 m-auto text-gray-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                        />
-                      </svg>
+                    <li>Storys requests</li>
+                    <li className="text-1xl text-gray-600 font-medium lg:block">
+                    <Link to={"/AplicationRequest"}>
+                    adoption applications{" "}
+                      {" " + state?.requestAdoption.length}
+                    </Link>
+                    
                     </li>
-                    <li>adoption applications</li>
                   </ul>
                 </li>
               </ul>
