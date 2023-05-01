@@ -1,20 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useSelector,useDispatch} from "react-redux";
 import axios from "axios";
 import AplicationTable from "./AplicationTable";
 import { Link } from "react-router-dom";
+import { aplicationRequest } from "../../Redux/actions";
 
 const AplicationsRequest = () => {
   const [adoptions, setAdoptions] = useState();
   const [input, setInput] = useState("");
+  const state = useSelector((state)=>state)
+  const dispatch = useDispatch()
 
-  const getAdoptionsRequest = async () => {
-    let request = await axios(`/adoptions`);
-    setAdoptions(request?.data?.adoptions);
-  };
+
 
   useEffect(() => {
-    getAdoptionsRequest();
+    dispatch(aplicationRequest())
   }, []);
 
   const handleInputChange = async (e) => {
@@ -50,10 +51,10 @@ const AplicationsRequest = () => {
 
       <table className="w-full text-gray-600">
       {/* gif pedorro provisorio si queres podes cambiarlo por otro q quieras */}
-        {!adoptions ? (
+        {!state?.requestAdoption ? (
           <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
         ) : (
-          adoptions?.map((adopt, index) => {
+          state?.requestAdoption?.map((adopt, index) => {
             return (
               <AplicationTable
                 id={adopt.id}
@@ -71,7 +72,7 @@ const AplicationsRequest = () => {
                 petImage={adopt.pet.image}
                 petAge={adopt.pet.age}
                 key={index}
-                getAdoptionsRequest={getAdoptionsRequest}
+                
               />
             );
           })

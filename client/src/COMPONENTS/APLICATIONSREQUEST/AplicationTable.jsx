@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { aplicationRequest } from "../../Redux/actions";
 
 const AplicationTable = ({
   id,
@@ -17,8 +19,10 @@ const AplicationTable = ({
   petImage,
   petAge,
   key,
-  getAdoptionsRequest,
+ 
 }) => {
+  const dispatch = useDispatch()
+
   const approvedRequest = async () => {
     try {
       let response = await axios.put(`adoptions/approved/${id}`, {
@@ -35,7 +39,7 @@ const AplicationTable = ({
       if (!response.data) {
         window.alert("solicitud aprobada");
       }
-      getAdoptionsRequest();
+      dispatch(aplicationRequest())
     } catch (error) {
       window.alert(error.message);
     }
@@ -49,7 +53,7 @@ const AplicationTable = ({
         headers: { "Content-Type": "application/json", "x-token": token },
         role: "admin_role",
       });
-      getAdoptionsRequest();
+     dispatch(aplicationRequest())
       console.log(response.data);
     } catch (error) {
       window.alert(error.message);
