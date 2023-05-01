@@ -18,42 +18,35 @@ const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [hora, setHora] = useState();
-  const [imagen, setImage] = useState();
+  const [saludo, setSaludo] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     dispatch(getPetsRandom());
+    
   }, [dispatch]);
 
   // const itemsToShow = pets?.rows?.slice(0, 2);
 
   function mostrarSaludo() {
     let fecha = new Date();
-
-    let hs = fecha.getHours();
-
-    if (hs >= 6 && hs < 12) {
-      setHora("Have a god day");
+    let hora = fecha.getHours();
+    
+    if (hora >= 6 && hora < 12) {
+      setSaludo("Have a good day");
       setImage("/buendia.jpg");
-    }
-
-    if (hs >= 12 && hs < 18) {
-      setHora("Good afternoon");
+    } else if (hora >= 12 && hora < 18) {
+      setSaludo("Good afternoon");
       setImage("/buenastardes.jpg");
-      
-    }
-
-    if (hora >= 18 && hs < 6) {
-      setHora("Good Night");
-      setImage("/buenasnoches.jpg");
+    } else {
+      setSaludo("Good night");
+      setImage("/lunaEstrellas.jpg");
     }
   }
 
   useEffect(() => {
     mostrarSaludo();
   }, []);
-
-  
 
   return (
     <div>
@@ -68,10 +61,14 @@ const Home = () => {
 
         <div>
           <h2>
-            welcome {window.localStorage.getItem("nickname")?window.localStorage.getItem("nickname"):"Strange"},{hora}
+            welcome{" "}
+            {window.localStorage.getItem("nickname")
+              ? window.localStorage.getItem("nickname")
+              : "Strange"}
+            ,{saludo}
           </h2>
           <div className="w-10 rounded-full">
-            <img src={imagen} alt="logoClima" />
+            <img src={image} alt="logoClima" />
           </div>
         </div>
 
