@@ -259,6 +259,7 @@ export const getAllProducts =
     }
   };
 
+
 export const aplicationRequest = () => {
   return async function (dispatch) {
     try {
@@ -290,3 +291,15 @@ export const searchAplicationRequest = (name) => {
     }
   };
 };
+
+export const loadDonation = (id, amount) => async (dispatch) =>  {
+  
+  try {
+    const response = await axios.post(`/donations?id=${id}&amount=${amount}`);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+

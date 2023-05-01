@@ -125,8 +125,8 @@ Shelter.hasMany(Pet, { foreignKey: "shelterId" });
 Pet.belongsTo(Shelter, { foreignKey: "shelterId" });
 
 //Donations - User --- 1:N
-Donations.belongsToMany(User, { through: "user_donations" });
-User.hasMany(Donations, { foreignKey: "donationId" });
+// Donations.belongsToMany(User, { through: "user_donations" });
+// User.hasMany(Donations, { foreignKey: "donationId" });
 
 //Favorites -N-M
 
