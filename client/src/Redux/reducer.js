@@ -37,6 +37,7 @@ loading: false,
   error: null,
 
   users :[],
+
   requestAdoption : []
 
 };
@@ -93,14 +94,19 @@ const reducer = (state = initialState, action) => {
               adoptionRequest: action.payload,
               error: null,
             };
+
+            case APLICATION_REQUEST:
+           return{
+           ...state,
+           requestAdoption : action.payload
+           }
             
           case GET_PRODUCTS:
             return {
               ...state,
               products: action.payload
             };
-
-              
+  
           case GET_USERS:
               return{
               ...state,
@@ -116,12 +122,7 @@ const reducer = (state = initialState, action) => {
             favorites: action.payload,
            };
            
-           case APLICATION_REQUEST:
-           return{
-           ...state,
-           requestAdoption : action.payload
-           }
-    
+           
           default: {
             return {
               ...state,

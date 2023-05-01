@@ -64,11 +64,11 @@ function FormHistory() {
     }
 
     //validation history
-    if (!history.hist) {
+   {/* if (!history.hist) {
       errors.hist = "Please enter your story";
-    } else if (!/^[a-zA-Z0-9\s\p{P}]{1,300}$/.test(history.hist)) {
-      errors.hist = "Please enter a story with a maximum of 300 characters.";
-    }
+    } else if (!/^[a-zA-Z0-9\s\p{P}]{1,500}$/.test(history.hist)) {
+      errors.hist = "Please enter a story with a maximum of 500 characters.";
+    } */}
 
     //validation image
     if (!history.image){
