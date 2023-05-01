@@ -33,7 +33,8 @@ success: null,
 error: null,
 
 products: [],
-
+loading: false,
+  error: null,
 
   users :[]
 

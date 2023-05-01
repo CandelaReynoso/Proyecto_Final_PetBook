@@ -8,6 +8,9 @@ import loadingGif from "../../../public/dog.loading2.gif";
 import { useState } from 'react';
 import Loading from "../LOADING/Loading";
 
+
+
+
 export default function Shop() {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products.products);

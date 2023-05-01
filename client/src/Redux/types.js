@@ -16,3 +16,5 @@ export const SEND_ADOPTION_REQUEST ="SEND_ADOPTION_REQUEST";
 export const GET_FAVORITES = "GET_FAVORITES";
 // actiones del STORE
 export const GET_PRODUCTS ='GET_PRODUCTS';
+//FILTROS del STORE
+
