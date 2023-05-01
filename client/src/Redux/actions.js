@@ -276,8 +276,17 @@ export const aplicationRequest = () => {
 export const searchAplicationRequest = (name) => {
   return async function (dispatch) {
     try {
-    
-    
-    } catch (error) {}
+      let response = await axios.get(`/adoptions?name=${name}`);
+      if (response.data.adoptions.length) {
+        return dispatch({
+        type: SEARCH_APLICATION_REQUEST,
+        payload : response.data.adoptions
+        })
+      } else {
+        return;
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
   };
 };
