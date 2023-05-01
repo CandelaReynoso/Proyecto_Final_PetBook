@@ -115,7 +115,7 @@ function FormHistory() {
     })
 
     if (idFromLocalStorage) {
-      axios.get("http://localhost:3001/userPets/Pets", { params: { idUser: idFromLocalStorage } })
+      axios.get("/userPets/Pets", { params: { idUser: idFromLocalStorage } })
         .then(response => setPets(response.data))
         .catch(error => setStatus(error.response.data));
     }
