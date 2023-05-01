@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getUsers } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import TablaUsers from "./TablaUsers";
-import { FiMenu } from "react-icons/fi";
+
 import axios from "axios";
 
 const Admin = () => {
@@ -16,11 +16,10 @@ const Admin = () => {
   }, [getUsers]);
 
   const deleteLogicUser = async (id) => {
- 
     try {
-      let totalUsers = state.users.users.length;
+      let totalUsers = state?.users?.users?.length;
       await axios.delete(`/users/:${id}`);
-      let currentUsers = state.users.users.length;
+      let currentUsers = state?.users?.users?.length;
       if ((totalUsers = currentUsers)) {
         window.alert("algo salio mal");
       } else {
@@ -28,7 +27,7 @@ const Admin = () => {
         dispatch(getUsers());
       }
     } catch (error) {
-    window.alert(error.message)
+      window.alert(error.message);
     }
   };
 
@@ -130,7 +129,7 @@ const Admin = () => {
                   </a>
                   <ul className="menu dropdown-content p-2 bg-base-100 w-56 rounded-box text group-hover:bg-primary">
                     <li>
-                      <a href="/home"></a>Storys requests{" "}
+                      Storys requests
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 m-auto text-gray-600"
@@ -146,9 +145,7 @@ const Admin = () => {
                         />
                       </svg>
                     </li>
-                    <li>
-                      <a href="/about"></a>adoption applications
-                    </li>
+                    <li>adoption applications</li>
                   </ul>
                 </li>
               </ul>
@@ -181,7 +178,7 @@ const Admin = () => {
         <div className="px-6 pt-6 2xl:container ">
           <div>
             {/* ***************************** */}
-            {/* COLUMNA 1 */}
+            {/* COLUMNA 1 USUARIOS */}
             <div className="md:col-span-2 lg:col-span-1">
               <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
                 <div>
@@ -191,7 +188,10 @@ const Admin = () => {
 
                   <table className="w-full text-gray-600">
                     <tbody>
-                      {state.users.users &&
+                      {/* gif pedorro provisorio */}
+                      {!state.users.users ? (
+                        <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
+                      ) : (
                         state?.users?.users?.map((user, index) => {
                           return (
                             <tr key={index}>
@@ -204,7 +204,8 @@ const Admin = () => {
                               />
                             </tr>
                           );
-                        })}
+                        })
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -213,7 +214,7 @@ const Admin = () => {
 
             {/* ***************************** */}
 
-            {/* COLUMNA 2 */}
+            {/* COLUMNA 2 DONACIONES*/}
             <div>
               <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
                 <h5 className="text-xl text-gray-700">Donaciones</h5>
