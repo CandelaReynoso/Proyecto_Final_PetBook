@@ -15,3 +15,4 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const DELETE_FAVORITE = "DELETE_FAVORITE";
 // actiones del STORE
 export const GET_PRODUCTS ='GET_PRODUCTS';
+
