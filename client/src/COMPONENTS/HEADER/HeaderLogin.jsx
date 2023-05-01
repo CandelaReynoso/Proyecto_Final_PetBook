@@ -80,7 +80,7 @@ export default function HeaderLogin() {
                     </a>
                     <ul className="p-2">
                       <li>
-                        <a>Profile</a>
+                        <Link to='/favorites'><a>Favorites</a></Link>
                       </li>
                       <li>
                         <button onClick={() => userLogout()}>Logout</button>
@@ -151,7 +151,7 @@ export default function HeaderLogin() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">Profile</a>
+                <Link to='/favorites'><a>Favorites</a></Link>
                 </li>
                 {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
                 <li>
