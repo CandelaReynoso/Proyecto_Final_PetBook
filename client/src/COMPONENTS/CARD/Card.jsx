@@ -50,12 +50,13 @@ const Card = (pet) => {
   //     window.alert(error.message);
   //   }
   // };
-
+  
   const handleFavorite = () => {
     try {
       const userId = window.localStorage.getItem("id");
       if (isFavorite) {
         axios.delete(`/favorite?idUser=${userId}&idPet=${pet.id}`); //hay un bug, no se elimina correctamente! 
+        
       } else {
         axios.post("/favorite", {
           image: pet.image,
@@ -122,8 +123,11 @@ const Card = (pet) => {
                 More about {pet.name}
               </label>
             </button>
-            <div className="flex row-auto">
+            
+            {isLoggedIn && (
 
+  
+            <div className="flex row-auto">
             <Link to={`/FormAdoption/${selectedPet?.id}`}>
                       <div className="card-actions m-1">
                         <button  onClick={handleSelectMascota} className="btn btn-xs btn-accent"> adopt </button>
@@ -137,8 +141,21 @@ const Card = (pet) => {
                       <button className="btn btn-xs btn-accent">Sponsor</button>
                     </div>
             </div>
+)}
 
-          </div>
+{!isLoggedIn && (
+  
+  <div className="flex row-auto">           
+                      <div className="card-actions m-1">
+                      <button onClick={() => alert("Please log in to adopt this pet.")} className="btn btn-xs btn-accent"> adopt </button>                        
+                      </div> 
+                    <div className="card-actions m-1">
+                      <button className="btn btn-xs btn-accent">Sponsor</button>
+                    </div>
+                    </div>
+                   
+)}
+          
         </div>
       </div>
 
@@ -183,6 +200,7 @@ const Card = (pet) => {
         </div>
       )}
     </div>
+    /</div>
   );
 };
 

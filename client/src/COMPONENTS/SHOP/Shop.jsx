@@ -10,8 +10,6 @@ import Loading from "../LOADING/Loading";
 import FilterProducts from './FilterProducts';
 
 
-
-
 export default function Shop() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -97,6 +95,7 @@ export default function Shop() {
         <div className="h-full w-screen">
           <div>
           <h1 className="titleLeft">SHOP ONLINE</h1>
+          <p className='text p-4'>All proceeds from the purchase of these products go towards funding the NGO, and by buying these products, you are contributing to maintaining the health and well-being of the animals in the shelter.</p>
              {/* VÍDEO DE CARGA */}
         {isLoading && (
  <div class="flex justify-center items-center mt-9">
