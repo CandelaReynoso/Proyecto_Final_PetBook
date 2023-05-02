@@ -59,7 +59,7 @@ export default function Shop() {
                         <h2 className="card-title text-black font-['candara']">{product.name}</h2>
                         <h5 className="text bg-primary w-fit rounded-full">${Math.ceil(product.price)}</h5>
                         <form action="http://localhost:3001/checkout" method="GET">
-                            <input type="hidden" name="id" value={id} />
+                            {/*<input type="hidden" name="id" value={id} />*/}
                             <input type="hidden" name="title" value="Puppy Size Donation"/>
                             <input type="hidden" name="price" value="1000"/>
                             <div className="card-actions justify-end"> <input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
