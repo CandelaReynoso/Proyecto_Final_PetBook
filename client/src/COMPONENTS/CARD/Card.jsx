@@ -92,10 +92,10 @@ const Card = (pet) => {
 
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
+      <div className="card card-side bg-base-100 shadow-xl p-3 m-2">
         <figure>
           <img
-            className="w-[7rem] rounded-3xl"
+            className="w-4/5 rounded-3xl"
             src={pet?.image}
             alt={pet?.name}
           />
@@ -116,12 +116,28 @@ const Card = (pet) => {
             age: {pet?.age}
             <br />
           </p>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-center">
             <button onClick={handleShowDetail}>
               <label htmlFor="my-modal-3" className="btn btn-xs btn-primary">
                 More about {pet.name}
               </label>
             </button>
+            <div className="flex row-auto">
+
+            <Link to={`/FormAdoption/${selectedPet?.id}`}>
+                      <div className="card-actions m-1">
+                        <button  onClick={handleSelectMascota} className="btn btn-xs btn-accent"> adopt </button>
+                        {selectedMascota && (
+                          <AdoptionForm pet={pet} userEmail={userEmail} />
+                        )}{" "}   {/* pass selected pet's data as prop */}
+                      </div>
+                    </Link>
+
+                    <div className="card-actions m-1">
+                      <button className="btn btn-xs btn-accent">Sponsor</button>
+                    </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -159,26 +175,7 @@ const Card = (pet) => {
                     </div>
                   </ul>
 
-                  <div className="">
-                    <Link to={`/FormAdoption/${selectedPet?.id}`}>
-                      <div className="card-actions justify-center m-1">
-                        <button
-                          onClick={handleSelectMascota}
-                          className="btn btn-xs btn-accent"
-                        >
-                          adopt
-                        </button>
-                        {selectedMascota && (
-                          <AdoptionForm pet={pet} userEmail={userEmail} />
-                        )}{" "}
-                        {/* pass selected pet's data as prop */}
-                      </div>
-                    </Link>
 
-                    <div className="card-actions  justify-center m-1">
-                      <button className="btn btn-xs btn-accent">Sponsor</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
