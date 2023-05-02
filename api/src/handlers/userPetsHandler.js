@@ -1,4 +1,4 @@
-const {getPetsUserController, getHistoryUserPet, getacceptStories} = require("../controllers/getUserPetsController");
+const {getPetsUserController, getHistoryUserPet, getacceptStories, getHistoryNotifications} = require("../controllers/getUserPetsController");
 const { postUserPetsController, postAdoptUserPetsController, postShowController } = require("../controllers/postUserPetsController");
 
 const handlergetUserpets = async (req, res) => {
@@ -76,11 +76,24 @@ const hanldePostShow = async (req, res) => {
     }
 }
 
+const handleGetHistoryNotifications = async (req, res) => {
+    try {
+        const data = await getHistoryNotifications();
+
+        if(data.error) throw new Error(data.error);
+
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
 module.exports = {
     handlergetUserpets,
     handlerPostUserPets,
     handlerPostAdopted,
     handlerGetShowHistory,
     hanldeGetacceptStories,
-    hanldePostShow
+    hanldePostShow,
+    handleGetHistoryNotifications
 }
