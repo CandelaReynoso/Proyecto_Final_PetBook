@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from "../HEADER/Header";
-import HeaderLogin from "../HEADER/HeaderLogin";
-import Footer from "../FOOTER/Footer";
+import Header from '../HEADER/Header';
+import HeaderLogin from '../HEADER/HeaderLogin';
+import Footer from '../FOOTER/Footer';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function FormHistory() {
   const [history, setHistory] = useState({
-    idUser: "",
-    name: "",
-    hist: "",
-    idPet: "",
-    image: ""
+    idUser: '',
+    name: '',
+    hist: '',
+    idPet: '',
+    image: '',
   });
   const [pets, setPets] = useState([]);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
+  const [formSubmit, setFormSubmit] = useState(false);
+  const navigate = useNavigate();
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -39,8 +43,8 @@ function FormHistory() {
 
       setHistory({
         ...history,
-        [event.target.name]: base64
-      })
+        [event.target.name]: base64,
+      });
       return;
     }
   };
@@ -48,8 +52,8 @@ function FormHistory() {
   const handleOnChange = (e) => {
     setHistory({
       ...history,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
 
   const validateForm = () => {
@@ -57,27 +61,28 @@ function FormHistory() {
 
     //validation for the name
     if (!history.name) {
-      errors.name = "Please enter your name!";
+      errors.name = 'Please enter your name!';
     } else if (!/^[a-zA-Z0-9\s]{2,16}$/.test(history.name)) {
       // 2 to 16 digits accept uppercase and lowercase letters, accents, and spaces.
-      errors.name = "Name can only contain letters, numbers and spaces.";
+      errors.name = 'Name can only contain letters, numbers and spaces.';
     }
 
     //validation history
-   {/* if (!history.hist) {
-      errors.hist = "Please enter your story";
-    } else if (!/^[a-zA-Z0-9\s\p{P}]{1,500}$/.test(history.hist)) {
-      errors.hist = "Please enter a story with a maximum of 500 characters.";
-    } */}
+    if (!history.hist) {
+      errors.hist = 'Please, enter your message!';
+    } else if (history.hist.length > 150) {
+      errors.hist = 'Please enter a message with a maximum of 150 characters!';
+    }
+    
 
     //validation image
-    if (!history.image){
-      errors.image = "Image is required";
+    if (!history.image) {
+      errors.image = 'Image is required';
     }
 
     //validation mascosta
-    if (!history.idPet){
-      errors.idPet = "Pet is required";
+    if (!history.idPet) {
+      errors.idPet = 'Pet is required';
     }
 
     return errors;
@@ -85,27 +90,64 @@ function FormHistory() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Loading");
+    setStatus('Loading');
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       // if there are any errors, set them in the state and return early
       setErrors(errors);
-      setStatus("Error");
+      setStatus('Error');
       return;
     }
+
+    setFormSubmit(true);
     try {
-      const response = (await axios.post("/userPets/update", {
+      const response = await axios.post('/userPets/update', {
         idUser: history.idUser,
         idPet: history.idPet,
         history: history.hist,
-        image: history.image
-      })).data;
+        image: history.image,
+      });
 
-      setStatus(response);
+      setStatus(response.data);
+      Swal.fire({
+        title: 'HELP A PET!',
+        text: 'Donate ❤ ',
+        imageUrl: 'https://media.tenor.com/O7tk8A-EoIgAAAAj/puppy.gif',
+        imageWidth: 300,
+        imageHeight: 300,
+        imageAlt: 'Custom image',
+        showCancelButton: true,
+        confirmButtonText: 'Yes!',
+        cancelButtonText: 'Not Now!',
+        confirmButtonColor: '#1B2021',
+        ccancelButtonColor: 'transparent',
+        cancelButtonBorder: 'none',
+        cancelButtonColor:'#C0F8D1',
+        background: '#C0F8D1',
+        color: '#1B2021',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/donate");
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          navigate("/home");
+        }
+      });
+      setFormSubmit(true);
+      sendEmail(values.name, values.lastname, values.email, values.message)
+        .then(() => {
+          console.log('Form was sent!');
+          setTimeout(() => setFormSubmit(false), 4000);
+          resetForm();
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          setTimeout(() => setFormSubmit(false), 4000);
+        });
     } catch (error) {
       setStatus(error.response.data);
     }
   }
+  
 
   useEffect(() => {
     const idFromLocalStorage = localStorage.getItem("id");
@@ -115,12 +157,14 @@ function FormHistory() {
     })
 
     if (idFromLocalStorage) {
-      axios.get("/userPets/Pets", { params: { idUser: idFromLocalStorage } })
+      axios.get("http://localhost:3001/userPets/Pets", { params: { idUser: idFromLocalStorage } })
         .then(response => setPets(response.data))
         .catch(error => setStatus(error.response.data));
     }
 
   }, []);
+
+  
 
   return (
 
