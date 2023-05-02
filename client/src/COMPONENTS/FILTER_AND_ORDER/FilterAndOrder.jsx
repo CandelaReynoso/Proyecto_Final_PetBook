@@ -110,7 +110,7 @@ const FilterAndOrder = () => {
         className="btn btn-primary btn-xs h-max-1 h-min-1"
         onClick={handlerFilter}
       >
-        Filter & Order
+        Filter
       </button>
             </div>
           </div>

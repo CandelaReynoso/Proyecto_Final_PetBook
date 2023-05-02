@@ -31,15 +31,15 @@ const Favorites = () => {
   return (
     <div>
 
-      <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv]">
+      <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
 
                       <div>
                       {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
                       </div>
 
                       <h1 className="titleCenter">My favorites</h1>
-        <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 h-screen">
+        <div className="flex justify-center h-screen w-screen">
+              <div className="grid grid-cols-1 h-fit">
                 {state.favorites && (
                   <CardsFavorites
                     favorites={state?.favorites}
@@ -50,7 +50,7 @@ const Favorites = () => {
         </div>
      </div>
 
-     <div><Footer /></div>
+     <div className="mt-[12rem]"><Footer /></div>
     </div>
   );
 };

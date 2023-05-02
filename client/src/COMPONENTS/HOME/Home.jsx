@@ -73,7 +73,7 @@ const Home = () => {
         </div>
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
-          <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral">
+          <div className="grid flex-grow h-32 lg:h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral">
             Everybody needs a home.
             <br />
             Every home needs love.
@@ -81,7 +81,7 @@ const Home = () => {
 
           <div className="grid flex-grow card  rounded-box place-items-center justify-center ">
             <img
-              className="mask mask-squircle  bg-primary h-[30vh] lg:h-[85vh]"
+              className="mask mask-squircle  bg-primary h-[40vh] lg:h-[85vh]"
               src="perritoOreja.png"
             />
           </div>

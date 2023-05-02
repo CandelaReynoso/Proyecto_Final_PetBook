@@ -21,6 +21,11 @@ const Card = (pet) => {
   const userEmail = localStorage.getItem("email");
   const [selectedMascota, setSelectedMascota] = useState(null); // create state variable
 
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -28,23 +33,47 @@ const Card = (pet) => {
     }
   }, []);
 
+  // const handleFavorite = () => {                  //HANDLE LUCAS
+  //   try {
+  //     const userId = window.localStorage.getItem("id");
+  //     axios.post("/favorite", {
+  //       image: pet.image,
+  //       name: pet.name,
+  //       size: pet.size,
+  //       weight: pet.weight,
+  //       age: pet.age,
+  //       gender: pet.gender,
+  //       specie: pet.specie,
+  //       idUser: userId,
+  //     });
+  //   } catch (error) {
+  //     window.alert(error.message);
+  //   }
+  // };
+
   const handleFavorite = () => {
     try {
       const userId = window.localStorage.getItem("id");
-      axios.post("/favorite", {
-        image: pet.image,
-        name: pet.name,
-        size: pet.size,
-        weight: pet.weight,
-        age: pet.age,
-        gender: pet.gender,
-        specie: pet.specie,
-        idUser: userId,
-      });
+      if (isFavorite) {
+        axios.delete(`/favorite?idUser=${userId}&idPet=${pet.id}`); //hay un bug, no se elimina correctamente! 
+      } else {
+        axios.post("/favorite", {
+          image: pet.image,
+          name: pet.name,
+          size: pet.size,
+          weight: pet.weight,
+          age: pet.age,
+          gender: pet.gender,
+          specie: pet.specie,
+          idUser: userId,
+        });
+      }
+      setIsFavorite(!isFavorite);
     } catch (error) {
       window.alert(error.message);
     }
   };
+  
 
   const handleSelectMascota = (e) => {
     e.preventDefault();
@@ -72,7 +101,7 @@ const Card = (pet) => {
           />
           <div>
             {localStorage.getItem("token") && (
-              <button  onClick={handleFavorite}>🤍</button>
+              <button onClick={handleFavorite}>{isFavorite ? '❤️' : '🤍'}</button>
             )}
 
          
