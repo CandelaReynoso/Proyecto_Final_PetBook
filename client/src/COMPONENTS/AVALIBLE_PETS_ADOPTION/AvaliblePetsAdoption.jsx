@@ -67,7 +67,7 @@ const AvaliblePetsAdoption = () => {
         <div className="navbar border-black">
           <div className="">
             <FilterAndOrder />
-            <button className="btn btn-xs" onClick={onclickRefresh}>
+            <button className="text btn btn-xs" onClick={onclickRefresh}>
             <BiRefresh />
             </button>
           </div>
