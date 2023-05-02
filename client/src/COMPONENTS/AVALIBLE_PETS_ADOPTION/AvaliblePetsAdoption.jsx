@@ -9,8 +9,10 @@ import SearchBar from "../SEARCH/SearchBar";
 import Pagination from "../PAGINATION/Pagination";
 import FilterAndOrder from "../FILTER_AND_ORDER/FilterAndOrder";
 import SearchResultsList from "../SEARCH/SearchResultList";
-import { Link, createSearchParams } from "react-router-dom";
-import loadingGif from "../../../public/dog.loading2.gif";
+import { createSearchParams } from "react-router-dom";
+// import loadingGif from "../../../public/dog.loading2.gif";
+import Loading from "../LOADING/Loading";
+import { BiRefresh } from "react-icons/bi";
 
 const AvaliblePetsAdoption = () => {
   const state = useSelector((state) => state);
@@ -45,8 +47,8 @@ const AvaliblePetsAdoption = () => {
   
 
   const onclickRefresh = () => {
-    setIsLoading(true);
-    dispatch(getPets()).then(() => setIsLoading(false));
+    
+    dispatch(getPets())
   };
 
   return (
@@ -65,8 +67,8 @@ const AvaliblePetsAdoption = () => {
         <div className="navbar border-black">
           <div className="">
             <FilterAndOrder />
-            <button className="btn btn-xs mx-6" onClick={onclickRefresh}>
-              Refresh
+            <button className="btn btn-xs" onClick={onclickRefresh}>
+            <BiRefresh />
             </button>
           </div>
 
@@ -83,22 +85,21 @@ const AvaliblePetsAdoption = () => {
               {state?.namePets?.length > 0 && <SearchResultsList />}
             </div>
           </div>
-          <Link to={"/favorites"}>
-            <button>Favorites</button>
-          </Link>
         </div>
 
         {/* VÍDEO DE CARGA */}
         {!state.pets.data && (
-          <div class="flex justify-center items-center h-screen">
-            <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
-              <img
+          <div className="flex justify-center items-center mt-9">
+            {/* <div className="card card-side bg-base-100 shadow-xl p-2 m-3"> */}
+              {/* <img
                 src={loadingGif}
                 alt="Loading..."
                 className="w-[15rem] rounded-3xl"
-              />
-            </div>
-            <h1 className="text-4xl font-bold ml-4">LOADING...</h1>
+              /> */}
+              {/* <h1 className="text-2xl font-bold ml-4 text">LOADING...</h1> */}
+              <Loading />
+            {/* </div> */}
+            
           </div>
         )}
         {/* CARTAS DE MASCOTAS */}

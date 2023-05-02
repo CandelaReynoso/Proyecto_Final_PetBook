@@ -5,7 +5,7 @@ import CardFavorite from './CardFavorite'
 
 const CardsFavorites = ({favorites,handlerDelete}) => {
   return (
-    <div>
+    <div className="grid grid-cols-1 lg:grid-cols-2">
     {favorites && favorites.map((favs,index)=>{
     return(
     <CardFavorite

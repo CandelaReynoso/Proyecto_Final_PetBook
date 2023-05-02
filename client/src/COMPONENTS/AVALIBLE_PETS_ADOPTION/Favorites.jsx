@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavorites } from "../../Redux/actions";
 import CardsFavorites from "./CardsFavorites";
 import axios from "axios";
+import Header from "../HEADER/Header";
+import HeaderLogin from "../HEADER/HeaderLogin";
+import Footer from "../FOOTER/Footer";
 
 //componente contenedor de todo lo que se vaya a renderizar aca
 const Favorites = () => {
@@ -27,12 +30,27 @@ const Favorites = () => {
 
   return (
     <div>
-      {state.favorites && (
-        <CardsFavorites
-          favorites={state?.favorites}
-          handlerDelete={handlerDelete}
-        />
-      )}
+
+      <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
+
+                      <div>
+                      {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
+                      </div>
+
+                      <h1 className="titleCenter">My favorites</h1>
+        <div className="flex justify-center h-screen w-screen">
+              <div className="grid grid-cols-1 h-fit">
+                {state.favorites && (
+                  <CardsFavorites
+                    favorites={state?.favorites}
+                    handlerDelete={handlerDelete}
+                  />
+                )}
+              </div>
+        </div>
+     </div>
+
+     <div className="mt-[12rem]"><Footer /></div>
     </div>
   );
 };

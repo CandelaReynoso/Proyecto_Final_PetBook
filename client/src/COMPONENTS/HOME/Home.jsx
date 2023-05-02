@@ -18,42 +18,35 @@ const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [hora, setHora] = useState();
-  const [imagen, setImage] = useState();
+  const [saludo, setSaludo] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     dispatch(getPetsRandom());
+    
   }, [dispatch]);
 
   // const itemsToShow = pets?.rows?.slice(0, 2);
 
   function mostrarSaludo() {
     let fecha = new Date();
-
-    let hs = fecha.getHours();
-
-    if (hs >= 6 && hs < 12) {
-      setHora("Have a god day");
-      setImage("/buendia.jpg");
-    }
-
-    if (hs >= 12 && hs < 18) {
-      setHora("Good afternoon");
-      setImage("/buenastardes.jpg");
-      
-    }
-
-    if (hora >= 18 && hs < 6) {
-      setHora("Good Night");
-      setImage("/buenasnoches.jpg");
+    let hora = fecha.getHours();
+    
+    if (hora >= 6 && hora < 12) {
+      setSaludo("Have a good day");
+      setImage("/sol.png");
+    } else if (hora >= 12 && hora < 18) {
+      setSaludo("Good afternoon");
+      setImage("/sol.png");
+    } else {
+      setSaludo("Good evening");
+      setImage("/luna.png");
     }
   }
 
   useEffect(() => {
     mostrarSaludo();
   }, []);
-
-  
 
   return (
     <div>
@@ -66,17 +59,21 @@ const Home = () => {
           )}
         </div>
 
-        <div>
-          <h2>
-            welcome {window.localStorage.getItem("nickname")?window.localStorage.getItem("nickname"):"Strange"},{hora}
+        <div className="flex row-span-1">
+          <h2 className="text uppercase text-sm p-3 ml-6">
+            welcome{" "}
+            {window.localStorage.getItem("nickname")
+              ? window.localStorage.getItem("nickname")
+              : "Stranger"}
+            ,{" " + saludo}
           </h2>
           <div className="w-10 rounded-full">
-            <img src={imagen} alt="logoClima" />
+            <img src={image} alt="logoClima" />
           </div>
         </div>
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
-          <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral">
+          <div className="grid flex-grow h-32 lg:h-32 card rounded-box place-items-center font-[candara] italic text-3xl lg:text-2xl text-neutral">
             Everybody needs a home.
             <br />
             Every home needs love.
@@ -84,7 +81,7 @@ const Home = () => {
 
           <div className="grid flex-grow card  rounded-box place-items-center justify-center ">
             <img
-              className="mask mask-squircle  bg-primary h-[30vh] lg:h-[85vh]"
+              className="mask mask-squircle  bg-primary h-[40vh] lg:h-[85vh]"
               src="perritoOreja.png"
             />
           </div>
@@ -95,9 +92,9 @@ const Home = () => {
       <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full abosulte">
         {/* CARRUSEL */}
 
-        <div className="flex flex-col w-full lg:flex-row justify-center items-center">
+        <div className="flex flex-col w-full justify-center items-center mt-8 px-6">
           <div>
-            <h2 className="titleRight">adoption stories</h2>
+            <h2 className="titleCenter px-4">adoption stories</h2>
           </div>
 
           <div>
@@ -109,7 +106,7 @@ const Home = () => {
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
           <img
-            src="../../public/perritoabout.png"
+            src="/perritoabout.png"
             className="hidden lg:block place-items-center h-[90vh]"
           />
 

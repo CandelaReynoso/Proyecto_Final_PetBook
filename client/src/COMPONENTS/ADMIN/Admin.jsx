@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getUsers } from "../../Redux/actions";
+import { aplicationRequest, getUsers } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import TablaUsers from "./TablaUsers";
-import { FiMenu } from "react-icons/fi";
+import { FaBell, FaBellSlash } from "react-icons/fa";
+
 import axios from "axios";
 
 const Admin = () => {
@@ -15,12 +16,20 @@ const Admin = () => {
     dispatch(getUsers());
   }, [getUsers]);
 
+  useEffect(() => {
+    dispatch(aplicationRequest());
+    console.log(state?.requestAdoption.length);
+  }, []);
+
   const deleteLogicUser = async (id) => {
- 
     try {
-      let totalUsers = state.users.users.length;
-      await axios.delete(`/users/:${id}`);
-      let currentUsers = state.users.users.length;
+      const token = localStorage.getItem('token');
+      let totalUsers = state?.users?.users?.length;
+      await axios.delete(`/users/${id}`,{
+        headers: { 'Content-Type': 'application/json',
+          "x-token": token }
+      });
+      let currentUsers = state?.users?.users?.length;
       if ((totalUsers = currentUsers)) {
         window.alert("algo salio mal");
       } else {
@@ -28,7 +37,7 @@ const Admin = () => {
         dispatch(getUsers());
       }
     } catch (error) {
-    window.alert(error.message)
+      window.alert(error.message);
     }
   };
 
@@ -70,9 +79,11 @@ const Admin = () => {
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
-                <span className="group-hover:text-gray-700">
-                  Historias de Adopcion
-                </span>
+                <Link to={"/acceptStories"}>
+                  <span className="group-hover:text-gray-700">
+                    Historias de Adopcion
+                  </span>
+                </Link>
               </a>
             </li>
             <li>
@@ -91,6 +102,20 @@ const Admin = () => {
               <Link to={"/FormCreatePet"}>
                 <span className="group-hover:text-gray-700">
                   Publicar Mascota
+                </span>
+              </Link>
+            </li>
+            <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+              <Link to={"/CategoryForm"}>
+                <span className="group-hover:text-gray-700">
+                  Crear Categoría
+                </span>
+              </Link>
+            </li>
+            <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+              <Link to={"/ProductForm"}>
+                <span className="group-hover:text-gray-700">
+                  Crear Producto
                 </span>
               </Link>
             </li>
@@ -118,36 +143,24 @@ const Admin = () => {
             <div className="navbar- dropdown ">
               <ul className="menu menu-horizontal px-1 ">
                 <li tabIndex={0}>
-                  <a>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 m-auto text-gray-600"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                    </svg>
-                  </a>
+                  {state.requestAdoption.length ? (
+                    <a>
+                      <FaBell />
+                    </a>
+                  ) : (
+                    <a>
+                      <FaBellSlash />
+                    </a>
+                  )}
+
                   <ul className="menu dropdown-content p-2 bg-base-100 w-56 rounded-box text group-hover:bg-primary">
-                    <li>
-                      <a href="/home"></a>Storys requests{" "}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 m-auto text-gray-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                        />
-                      </svg>
-                    </li>
-                    <li>
-                      <a href="/about"></a>adoption applications
+                    <li>Storys requests</li>
+                    <li className="text-1xl text-gray-600 font-medium lg:block">
+                    <Link to={"/AplicationRequest"}>
+                    adoption applications{" "}
+                      {" " + state?.requestAdoption.length}
+                    </Link>
+                    
                     </li>
                   </ul>
                 </li>
@@ -181,7 +194,7 @@ const Admin = () => {
         <div className="px-6 pt-6 2xl:container ">
           <div>
             {/* ***************************** */}
-            {/* COLUMNA 1 */}
+            {/* COLUMNA 1 USUARIOS */}
             <div className="md:col-span-2 lg:col-span-1">
               <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
                 <div>
@@ -191,7 +204,10 @@ const Admin = () => {
 
                   <table className="w-full text-gray-600">
                     <tbody>
-                      {state.users.users &&
+                      {/* gif pedorro provisorio */}
+                      {!state.users.users ? (
+                        <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
+                      ) : (
                         state?.users?.users?.map((user, index) => {
                           return (
                             <tr key={index}>
@@ -204,7 +220,8 @@ const Admin = () => {
                               />
                             </tr>
                           );
-                        })}
+                        })
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -213,7 +230,7 @@ const Admin = () => {
 
             {/* ***************************** */}
 
-            {/* COLUMNA 2 */}
+            {/* COLUMNA 2 DONACIONES*/}
             <div>
               <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
                 <h5 className="text-xl text-gray-700">Donaciones</h5>

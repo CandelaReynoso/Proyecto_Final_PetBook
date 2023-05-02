@@ -65,6 +65,9 @@ export default function HeaderLogin() {
                   <li>
                     <a href="/FormContact">Contact us</a>
                   </li>
+                  <li>
+                    <a href="/FormHistory">Create your story</a>
+                  </li>
                   <li tabIndex={0} className="menu dropdown-bottom">
                     <a className="justify-between">
                       My Account
@@ -80,7 +83,7 @@ export default function HeaderLogin() {
                     </a>
                     <ul className="p-2">
                       <li>
-                        <a>Profile</a>
+                        <a href="/favorites">Favorites</a>
                       </li>
                       <li>
                         <button onClick={() => userLogout()}>Logout</button>
@@ -131,6 +134,9 @@ export default function HeaderLogin() {
             <a href="/AvaliblePetsAdoption" className="textoheader">
               adopt
             </a>
+            <a href="/FormHistory" className="textoheader">
+              create your story
+            </a>
             <a href="/FormContact" className="textoheader">
               {" "}
               contact us
@@ -151,7 +157,7 @@ export default function HeaderLogin() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">Profile</a>
+                <a href="/favorites">Favorites</a>
                 </li>
                 {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
                 <li>
