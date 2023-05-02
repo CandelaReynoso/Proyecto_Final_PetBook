@@ -168,42 +168,42 @@ function FormHistory() {
 
   return (
 
-    <>
+<div className="h-full">
         <div> {localStorage.getItem('token') ? <HeaderLogin className='mb-4' />  : <Header className="mb-4" />} </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
 
           <div  className='flex flex-col justify-center'> 
             <div >
-              <h1 className="subtitle">WRITE YOUR STORY</h1>
+              <h1 className="subtitle">SHARE YOUR STORY</h1>
             </div>
 
             
    
             <form className='max-w-[400px] w-full mx-auto rounded-lg bg-white  p-4' onSubmit={handleSubmit} >
 
-<label className='inputs'>Your Name:</label>
-<input className='textareas' type="text" name="name" value={history.name} onChange={handleOnChange} placeholder=' Write your name...' />
+{/* <label className='inputs'>Your Name:</label> */}
+<input className='inputs' type="text" name="name" value={history.name} onChange={handleOnChange} placeholder='Name:' />
 {errors.name && ( // si esta  mi estado error.name--> seteame un p con ese error
   <p className="text-error">{errors.name}</p>
                 )}
 
 
-<label className='inputs'>Story:</label>
-
-<textarea className='textareas' name="hist" value={history.hist} onChange={handleOnChange} placeholder='Write your story...' cols="50" rows="10" />
+{/* <label className='inputs'>Story:</label> */}
+<div className='mt-5'></div>
+<textarea className='textareas' name="hist" value={history.hist} onChange={handleOnChange} placeholder='Write here your story...' cols="50" rows="10" />
 {errors.hist && ( // si esta  mi estado error.name--> seteame un p con ese error
   <p className="text-error">{errors.hist}</p>
                 )}
 
 
-<label className='inputs'>Image:</label>
-<input className='textareas' type="file" name="image" onChange={uploadImage} />
+<label className='text'>Image:</label>
+<input className='' type="file" name="image" onChange={uploadImage} />
 {errors.image && ( // si esta  mi estado error.name--> seteame un p con ese error
   <p className="text-error">{errors.image}</p>
 )}
 
 
-<label className='inputs'>Your pets:</label>
+<label className='inputs'> Select your pet:</label>
 <select className='seleccion' name="idPet" value={history.pet} onChange={handleOnChange}>
   <option>Choose a pet</option>
   {
@@ -235,10 +235,10 @@ status === "Loading" ? <h6 className="text-green-300 font-bold">Loading...</h6> 
             </div>
         </div>
 
-        <div>
+        <div className='mt-40'>
           <Footer />
         </div>
-        </>
+</div>
 
 
   )
