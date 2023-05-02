@@ -106,7 +106,7 @@ const Home = () => {
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
           <img
-            src="../../public/perritoabout.png"
+            src="/perritoabout.png"
             className="hidden lg:block place-items-center h-[90vh]"
           />
 
