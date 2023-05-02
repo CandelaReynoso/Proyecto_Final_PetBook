@@ -5,7 +5,6 @@ const userRoutes = require('./userRoutes.js');
 const authRoutes = require("./authRoutes.js");
 const categoriesRoutes = require("./categoriesRoutes.js");
 const subscriptionRoute = require('./subscriptionRoute.js')
-
 const userPetsRoutes = require("./userPetsRouter.js");
 const mercadopagoRoute = require('./mercadopagoRoute.js');
 const contactRoutes = require("./contactRoutes.js");
@@ -15,7 +14,9 @@ const filteredProductsRoutes = require('./filteredProductsRoutes.js');
 const donationsRoutes = require('./donationsRoutes.js');
 const favoriteRoutes = require("./favoriteRoutes.js")
 
+
 const router = Router()
+
 
 router.use("/pets", petsRoutes)
 router.use("/products", productsRoutes)
