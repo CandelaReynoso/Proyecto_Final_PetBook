@@ -19,6 +19,13 @@ const Donations = (sequelize) => {
                 allowNull: false,
                 defaultValue: true
             },
+            userID:{
+                type: DataTypes.UUID,
+            },
+            type:{
+                type: DataTypes.ENUM("donation", "product", "subscription"),
+                allowNull: false
+            }
             }
         
     )
