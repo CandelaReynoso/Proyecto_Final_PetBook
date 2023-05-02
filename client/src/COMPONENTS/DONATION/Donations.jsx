@@ -31,7 +31,7 @@ export default function Donations(){
 <div className="flex justify-center">
 
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
 
 
 
@@ -119,7 +119,7 @@ export default function Donations(){
                     <label className="italic">select here the amount to donate: </label>
                     <input type="number" min="100" max="10000" placeholder=" $..." onChange={handleChange}/>
                     <input type="hidden" name="price" value={donation}/>
-                    <br />
+                    <br/>
                     {
                         error
                         ? (<>

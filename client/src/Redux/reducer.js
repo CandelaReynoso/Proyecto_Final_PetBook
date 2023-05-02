@@ -1,6 +1,6 @@
 
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS,ADD_FAVORITE,DELETE_FAVORITE, GET_USERS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST} from './types';
 
 
 
@@ -12,7 +12,7 @@ const initialState = {
   petsRandomHome :[],
   pet:{},
   namePets : [],
-  myFavorites: [],
+  favorites: [],
   pets:[],
 
 
@@ -33,9 +33,12 @@ success: null,
 error: null,
 
 products: [],
+loading: false,
+  error: null,
 
+  users :[],
 
-  users :[]
+  requestAdoption : []
 
 };
 
@@ -91,39 +94,40 @@ const reducer = (state = initialState, action) => {
               adoptionRequest: action.payload,
               error: null,
             };
-            case GET_PRODUCTS:
+
+            case APLICATION_REQUEST:
+           return{
+           ...state,
+           requestAdoption : action.payload
+           }
+            
+          case GET_PRODUCTS:
             return {
               ...state,
               products: action.payload
             };
-
-              
-              case GET_USERS:
+  
+          case GET_USERS:
               return{
               ...state,
               users : action.payload
               }
 
+             
 
-            case ADD_FAVORITE:
-              return {
-                  ...state,
 
-                  myFavorites:[...state.myFavorites, action.payload],
-                 /*  pets: [...state.pets.data, action.payload] */
+         case GET_FAVORITES:
+          return {
+         ...state,
+            favorites: action.payload,
+           };
+           
+           
+          default: {
+            return {
+              ...state,
+            };
 
-              }   
-              
-          case DELETE_FAVORITE:
-              console.log(action.payload +  "estoy en delete")
-              return {
-                  ...state,
-                  myFavorites: state.myFavorites.filter(pet => pet.id!== action.payload)
-              }     
-    default: {
-      return {
-        ...state,
-      };
     }
   }
 };

@@ -24,6 +24,7 @@ import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsReque
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
 import Show from "./COMPONENTS/SHOW_IN_COROUSEL/Show";
 import { useNavigate } from "react-router-dom";
+import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
 
 
 //Instancia de axios para Railway.
@@ -37,7 +38,7 @@ axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
+ 
 
   const [admin, setAdmin] = useState("");
   
@@ -94,7 +95,8 @@ function App() {
         <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
         <Route path='/error' element={<ErrorPage />} />
-        
+        <Route path="/favorites" element={<Favorites/>} />
+         
         
         {JSON.parse(verify) === true && <Route path='/acceptStories' element={<Show />} />}
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}

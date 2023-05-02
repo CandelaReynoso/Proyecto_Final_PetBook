@@ -8,10 +8,14 @@ import Footer from "../FOOTER/Footer";
 
 
 const adoptionSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
+  name: Yup.string()
+  .matches(/^[A-Za-z]+$/, 'Name must only contain letters')
+  .required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   address: Yup.string().required('Address is required'),
-  postalCode: Yup.string().required('Postal Code is required'),
+  postalCode: Yup.string()
+  .matches(/^\d+$/, 'Postal code must only contain numbers')
+  .required('Postal code is required'),
   age: Yup.number().required('Age is required'),
   facebook: Yup.string(),
   instagram: Yup.string(),
@@ -89,7 +93,7 @@ const AdoptionForm = (props) => {
           
         />
         {formik.touched.name && formik.errors.name ? (
-          <div>{formik.errors.name}</div>
+          <div className='text-error'>{formik.errors.name}</div>
         ) : null}
       </div>
 
@@ -106,7 +110,7 @@ const AdoptionForm = (props) => {
 
         />
         {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
+          <div className='text-error'>{formik.errors.email}</div>
         ) : null}
       </div>
 
@@ -122,7 +126,7 @@ const AdoptionForm = (props) => {
           className='inputs'
         />
         {formik.touched.address && formik.errors.address ? (
-          <div>{formik.errors.address}</div>
+          <div className='text-error'>{formik.errors.address}</div>
         ) : null}
       </div>
 
@@ -138,7 +142,7 @@ const AdoptionForm = (props) => {
           className='inputs'
         />
         {formik.touched.postalCode && formik.errors.postalCode ? (
-          <div>{formik.errors.postalCode}</div>
+          <div className='text-error'>{formik.errors.postalCode}</div>
         ) : null}
       </div>
 
@@ -167,7 +171,7 @@ const AdoptionForm = (props) => {
     className='inputs'
   />
   {formik.touched.facebook && formik.errors.facebook ? (
-    <div>{formik.errors.facebook}</div>
+    <div className='text-error'>{formik.errors.facebook}</div>
   ) : null}
 </div>
 
@@ -183,7 +187,7 @@ const AdoptionForm = (props) => {
     className='inputs'
   />
   {formik.touched.instagram && formik.errors.instagram ? (
-    <div>{formik.errors.instagram}</div>
+    <div className='text-error'>{formik.errors.instagram}</div>
   ) : null}
 </div>
 
@@ -199,7 +203,7 @@ const AdoptionForm = (props) => {
     />
   </label>
   {formik.touched.acceptAgreement && formik.errors.acceptAgreement ? (
-    <div>{formik.errors.acceptAgreement}</div>
+    <div className='text-error'>{formik.errors.acceptAgreement}</div>
   ) : null}
 </div>
 <div className="buttonSubtmit text-center ">
