@@ -25,7 +25,7 @@ const authHandlerPost = async (req, res) => {
         }
 
         // generate json web token JWT
-        const token = await generateJWT( user.id );
+        const token = await generateJWT( user.id, user.role );
 
 
         res.json({
