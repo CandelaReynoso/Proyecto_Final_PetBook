@@ -92,9 +92,9 @@ const Home = () => {
       <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full abosulte">
         {/* CARRUSEL */}
 
-        <div className="flex flex-col w-full lg:flex-row justify-center items-center">
+        <div className="flex flex-col w-full justify-center items-center mt-8 px-6">
           <div>
-            <h2 className="titleRight">adoption stories</h2>
+            <h2 className="titleCenter px-4">adoption stories</h2>
           </div>
 
           <div>

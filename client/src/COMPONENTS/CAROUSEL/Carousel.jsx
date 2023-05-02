@@ -82,8 +82,8 @@ const Carousel = () => {
   return (
     <div>
       {petData.length > 0 ? (
-        <div className="mx-auto mt-20">
-          <div className="carousel carousel-end rounded-box w-4/5 h-4/5 mx-auto my-auto p-3 justify-evenly">
+        <div className="mx-auto ">
+          <div className="carousel carousel-end rounded-box h-[8rem] w-screen lg:h-[13rem] mx-auto my-auto  justify-evenly px-12">
             {currentMascotas.map((pet, index) => (
               <div
                 key={index}
@@ -123,10 +123,10 @@ const Carousel = () => {
           
 
           </div>
-          <div className="absoulte flex transform  p-8 items-center ml-80">
-            <a onClick={handlePrevClick} className="btn btn-circle btn-accent ml-80">
+          <div className="absoulte flex transform p-2 items-center justify-center">
+            <a onClick={handlePrevClick} className="btn btn-xs btn-circle btn-accent">
  ❮</a> 
-            <a onClick={handleNextClick} className="btn btn-circle btn-accent">❯</a>
+            <a onClick={handleNextClick} className="btn btn-xs btn-circle btn-accent">❯</a>
           </div>
         </div>
       ) : (
