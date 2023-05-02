@@ -5,7 +5,7 @@ const uploadImage = require("../utils/cloudinary");
 
 const postUserPetsController = async (idUser, idPet, history, image) => {
     try {
-        if(!idUser || !idPet || !history || !image) throw new Error("information is missing");
+        if (!idUser || !idPet || !history || !image) throw new Error("information is missing");
 
         const userPet = await User_pet.findOne({
             where: {
@@ -17,11 +17,12 @@ const postUserPetsController = async (idUser, idPet, history, image) => {
 
         if (!userPet) throw new Error(`No relationship was found between idUser: ${idUser} and idPet: ${idPet}`);
 
+
         const imageC = await uploadImage(image);
         await userPet.update({
             history: history,
             statusHistory: true,
-            image: imageC
+            image: imageC,
         })
 
         return "Updated story";
@@ -33,12 +34,12 @@ const postUserPetsController = async (idUser, idPet, history, image) => {
 
 const postAdoptUserPetsController = async (idUser, idPet) => {
     try {
-        
+
         const user = await User.findByPk(idUser);
         const pet = await Pet.findByPk(idPet);
         const findPet = await User_pet.findOne({ where: { petId: idPet } });
-        
-        if(!user || !pet) throw new Error("There is no user or pet");
+
+        if (!user || !pet) throw new Error("There is no user or pet");
         if (findPet) throw new Error("You can't adopt this pet");
 
         await user.addPet(pet);
@@ -50,6 +51,30 @@ const postAdoptUserPetsController = async (idUser, idPet) => {
     }
 }
 
+const postShowController = async (post, idUser, idPet) => {
+    try {
+
+        const userPet = await User_pet.findOne({
+            where: {
+                userId: idUser,
+                petId: idPet
+
+            }
+        });
+
+        if (!userPet) throw new Error(`No relationship was found between idUser: ${idUser} and idPet: ${idPet}`);
+
+        await userPet.update({
+            show: post
+        })
+
+        return "updated";
+
+    } catch (error) {
+        return { error: error }
+    }
+}
 
 
-module.exports = { postUserPetsController, postAdoptUserPetsController };
+
+module.exports = { postUserPetsController, postAdoptUserPetsController, postShowController };

@@ -75,9 +75,11 @@ const Admin = () => {
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
-                <span className="group-hover:text-gray-700">
-                  Historias de Adopcion
-                </span>
+                <Link to={"/acceptStories"}>
+                  <span className="group-hover:text-gray-700">
+                    Historias de Adopcion
+                  </span>
+                </Link>
               </a>
             </li>
             <li>

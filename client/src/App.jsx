@@ -22,6 +22,8 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+import Show from "./COMPONENTS/SHOW_IN_COROUSEL/Show";
+import { useNavigate } from "react-router-dom";
 import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
 
 
@@ -96,6 +98,7 @@ function App() {
         <Route path="/favorites" element={<Favorites/>} />
          
         
+        {JSON.parse(verify) === true && <Route path='/acceptStories' element={<Show />} />}
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
         {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
         {JSON.parse(verify) === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}

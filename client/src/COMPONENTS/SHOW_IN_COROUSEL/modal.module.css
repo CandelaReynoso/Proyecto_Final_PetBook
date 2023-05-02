@@ -1,0 +1,145 @@
+.principal h1 {
+    font-size: larger;
+}
+
+.principal h2 {
+    font-size: xx-large;
+}
+
+.principal img {
+    border-radius: 10px;
+    width: 50%;
+}
+
+.principal p {
+    font-size: larger;
+}
+
+.mostrar {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ocultar {
+    background-color: #ADD8E6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* .published button {
+    background-color: #ADD8E6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+} */
+
+.mostrar:hover {
+    background-color: #0000ffa4;
+}
+
+
+
+.published p {
+    color: #0000ffa4;
+}
+
+
+
+.encavezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabla {
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
+    margin-top: 20px;
+}
+
+.superior {
+    display: flex;
+    flex: 1;
+    height: 200px;
+}
+
+.izquierda {
+    flex: 1;
+    border-right: 3px solid rgb(211, 211, 211);
+}
+
+.information {
+    display: flex;
+    gap: 4rem;
+    margin-top: 20px;
+}
+
+
+
+.derecha {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.inferior {
+    height: 30%;
+    border-top: 3px solid rgb(211, 211, 211);
+}
+
+.published {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+}
+
+.botones {
+    display: flex;
+    gap: 1rem
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* estilos tabla */
+
+table {
+    border-collapse: collapse;
+    width: 97%;
+}
+
+th {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
