@@ -1,5 +1,5 @@
-const {getPetsUserController, getHistoryUserPet} = require("../controllers/getUserPetsController");
-const { postUserPetsController, postAdoptUserPetsController } = require("../controllers/postUserPetsController");
+const {getPetsUserController, getHistoryUserPet, getacceptStories} = require("../controllers/getUserPetsController");
+const { postUserPetsController, postAdoptUserPetsController, postShowController } = require("../controllers/postUserPetsController");
 
 const handlergetUserpets = async (req, res) => {
     const { idUser } = req.query;
@@ -52,11 +52,35 @@ const handlerGetShowHistory = async (req, res) => {
     }
 }
 
+const hanldeGetacceptStories = async (req, res) => {
+    try {
+        const data = await getacceptStories();
 
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+const hanldePostShow = async (req, res) => {
+    const {post, idUser, idPet} = req.body;
+    
+    try {
+        const data = await postShowController(post, idUser, idPet);
+
+        if(data.error) throw new Error(data.error);
+
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
 
 module.exports = {
     handlergetUserpets,
     handlerPostUserPets,
     handlerPostAdopted,
-    handlerGetShowHistory
+    handlerGetShowHistory,
+    hanldeGetacceptStories,
+    hanldePostShow
 }

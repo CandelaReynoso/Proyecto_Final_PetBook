@@ -19,4 +19,3 @@ console.log(newFav.__proto__);
 module.exports = addFavoritesPets
 
 
-

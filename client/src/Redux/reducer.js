@@ -1,6 +1,6 @@
 
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS,ADD_FAVORITE,DELETE_FAVORITE, GET_FAVORITES, GET_USERS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST} from './types';
 
 
 
@@ -33,9 +33,12 @@ success: null,
 error: null,
 
 products: [],
+loading: false,
+  error: null,
 
+  users :[],
 
-  users :[]
+  requestAdoption : []
 
 };
 
@@ -91,60 +94,40 @@ const reducer = (state = initialState, action) => {
               adoptionRequest: action.payload,
               error: null,
             };
+
+            case APLICATION_REQUEST:
+           return{
+           ...state,
+           requestAdoption : action.payload
+           }
             
           case GET_PRODUCTS:
             return {
               ...state,
               products: action.payload
             };
-
-              
+  
           case GET_USERS:
               return{
               ...state,
               users : action.payload
               }
 
-              case ADD_FAVORITE:
-                const newFavorite = {
-                  id: action.payload.id,
-                  image: action.payload.image,
-                  name: action.payload.name,
-                  specie: action.payload.specie,
-                  gender: action.payload.gender,
-                  size: action.payload.size,
-                  weight: action.payload.weight,
-                  age: action.payload.age,
-                  idUser: action.payload.idUser 
-                };
-                return {
-                  ...state,
-                  favorites: [...state.favorites, JSON.stringify(newFavorite)]
-                };
-              
-                
-           case DELETE_FAVORITE:
-                  const { idPet, idUser } = action.payload;
-                  const updatedFavorites = state.favorites.filter(favorite => {
-                    const parsedFavorite = JSON.parse(favorite);
-                    return parsedFavorite.id !== idPet || 
-                           parsedFavorite.users[0].id !== idUser;
-                  });
-                  return { 
-                    ...state, 
-                    favorites: updatedFavorites 
-                  };
+             
+
 
          case GET_FAVORITES:
           return {
          ...state,
             favorites: action.payload,
            };
-    
+           
+           
           default: {
             return {
               ...state,
             };
+
     }
   }
 };
