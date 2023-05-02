@@ -102,7 +102,7 @@ const Card = (pet) => {
           />
           <div>
             {localStorage.getItem("token") && (
-              <button onClick={handleFavorite}>{isFavorite ? '❤️' : '🤍'}</button>
+              <button onClick={handleFavorite}>{isFavorite ? '💚' : '🤍'}</button>
             )}
 
          
