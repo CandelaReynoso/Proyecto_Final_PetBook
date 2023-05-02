@@ -3,6 +3,9 @@ const searchProductByNameController = require("../controllers/searchProductByNam
 const searchAllProductsController = require("../controllers/searchAllProductsController");
 const postProductController = require('../controllers/postProductController');
 const filterProductsController = require('../controllers/filterProductsController');
+const uploadImage = require("../utils/cloudinary.js");
+
+
 
 const getHandlerProducts = async (req, res) => {
   try {
@@ -86,7 +89,9 @@ const postProductHandler = async (req, res) => {
       ...body,
       name: body.name.toUpperCase(),
       userId: req.user.id,
+      image : await uploadImage(body.image)
     }
+    console.log(data);
     const product = await Product.create(data);
     res.status(201).json(product);
 

@@ -8,7 +8,7 @@ async function loadPets(){
                 {
                     "name": "Mittens",
                     "image": "https://res.cloudinary.com/dasosdw8d/image/upload/v1681417452/Animals_PF/Siames_hi7pp7.avif",
-                    "adopted": "true",
+                    "adopted": "false",
                     "size": "Large",
                     "weight": 4,
                     "age": 3,
@@ -33,7 +33,7 @@ async function loadPets(){
                 {
                 "name": "Thumper",
                 "image": "https://res.cloudinary.com/dasosdw8d/image/upload/v1681417452/Animals_PF/Rabbit_cokzf7.avif",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Medium",
                 "weight": 2,
                 "age": 6,
@@ -64,7 +64,7 @@ async function loadPets(){
                 await Pet.create(
                 {"name": "Bugs",
                 "image": "https://res.cloudinary.com/dasosdw8d/image/upload/v1681417451/Animals_PF/Cobayo_uc24nn.avif",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Small",
                 "weight": 1,
                 "age": 2,
@@ -84,7 +84,7 @@ async function loadPets(){
                 await Pet.create(
                 {"name": "Maxime",
                 "image": "https://res.cloudinary.com/dasosdw8d/image/upload/v1681417452/Animals_PF/German_wmbdjq.avif",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Large",
                 "weight": 45,
                 "age": 6,
@@ -214,7 +214,7 @@ async function loadPets(){
             await Pet.create(
                 {"name": "Ziggy",
                 "image": "https://res.cloudinary.com/dhj72mkbp/image/upload/v1682121337/t170itdcaap2izjoa8y3.webp",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Small",
                 "weight": 9,
                 "age": 6,
@@ -226,7 +226,7 @@ async function loadPets(){
             await Pet.create(
                 {"name": "Sophie",
                 "image": "https://res.cloudinary.com/dhj72mkbp/image/upload/v1682121434/yhma76nwhbncnfa7lmch.jpg",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Small",
                 "weight": 6,
                 "age": 8,
@@ -286,7 +286,7 @@ async function loadPets(){
             await Pet.create(
                 {"name": "Rusty",
                 "image": "https://res.cloudinary.com/dhj72mkbp/image/upload/v1682122833/czluepv5wwtodnk2kfwv.webp",
-                "adopted": "true",
+                "adopted": "false",
                 "size": "Small",
                 "weight": 3,
                 "age": 3,
