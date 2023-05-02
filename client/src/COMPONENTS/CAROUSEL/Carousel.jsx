@@ -124,9 +124,9 @@ const Carousel = () => {
 
           </div>
           <div className="absoulte flex transform p-2 items-center justify-center">
-            <a onClick={handlePrevClick} className="btn btn-xs btn-circle btn-accent">
+            <a onClick={handlePrevClick} className="btn btn-sm btn-circle btn-accent">
  ❮</a> 
-            <a onClick={handleNextClick} className="btn btn-xs btn-circle btn-accent">❯</a>
+            <a onClick={handleNextClick} className="btn btn-sm btn-circle btn-accent">❯</a>
           </div>
         </div>
       ) : (

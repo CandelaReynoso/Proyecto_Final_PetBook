@@ -15,7 +15,8 @@ export default {
   plugins: [
     // require('@tailwindcss/forms')
     // require ("@tailwindcss/typography"),
-    require("daisyui")
+    require("daisyui"),
+    // require('postcss-apply'),
   ],
   daisyui: {  //configuracion de daisy-tailwind
     // styled: false,

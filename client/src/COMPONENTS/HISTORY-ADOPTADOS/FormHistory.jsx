@@ -190,7 +190,7 @@ function FormHistory() {
 
 {/* <label className='inputs'>Story:</label> */}
 <div className='mt-5'></div>
-<textarea className='textareas' name="hist" value={history.hist} onChange={handleOnChange} placeholder='Write here your story...' cols="50" rows="10" />
+<textarea className='textareas text' name="hist" value={history.hist} onChange={handleOnChange} placeholder='Write here your story...' cols="50" rows="10" />
 {errors.hist && ( // si esta  mi estado error.name--> seteame un p con ese error
   <p className="text-error">{errors.hist}</p>
                 )}
