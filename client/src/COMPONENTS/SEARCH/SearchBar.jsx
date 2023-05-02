@@ -65,9 +65,9 @@ export default function SearchBar() {
         name="name"
         value={name}
         autoComplete="off"
-        placeholder=" Look for name..."
+        placeholder=" Look for by name..."
         onChange={(e) => handleInputChange(e)} onKeyDown={(e) => handleKeyDown(e)}
-        className="rounded-full input-xs"
+        className="rounded-full input-xs text"
 
         
       />

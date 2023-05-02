@@ -34,13 +34,13 @@ const Home = () => {
     
     if (hora >= 6 && hora < 12) {
       setSaludo("Have a good day");
-      setImage("/buendia.jpg");
+      setImage("/sol.png");
     } else if (hora >= 12 && hora < 18) {
       setSaludo("Good afternoon");
-      setImage("/buenastardes.jpg");
+      setImage("/sol.png");
     } else {
       setSaludo("Good evening");
-      setImage("/lunaEstrellas.jpg");
+      setImage("/luna.png");
     }
   }
 
@@ -60,20 +60,20 @@ const Home = () => {
         </div>
 
         <div className="flex row-span-1">
-          <h2 className="text uppercase p-3 m-2">
+          <h2 className="text uppercase text-sm p-3 ml-6">
             welcome{" "}
             {window.localStorage.getItem("nickname")
               ? window.localStorage.getItem("nickname")
               : "Stranger"}
-            ,{saludo}
+            ,{" " + saludo}
           </h2>
-          <div className=" mt-3 w-10 rounded-full">
+          <div className="w-10 rounded-full">
             <img src={image} alt="logoClima" />
           </div>
         </div>
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
-          <div className="grid flex-grow h-32 card rounded-box place-items-center font-[candara] italic text-2xl text-neutral">
+          <div className="grid flex-grow h-32 lg:h-32 card rounded-box place-items-center font-[candara] italic text-3xl lg:text-2xl text-neutral">
             Everybody needs a home.
             <br />
             Every home needs love.
@@ -81,7 +81,7 @@ const Home = () => {
 
           <div className="grid flex-grow card  rounded-box place-items-center justify-center ">
             <img
-              className="mask mask-squircle  bg-primary h-[30vh] lg:h-[85vh]"
+              className="mask mask-squircle  bg-primary h-[40vh] lg:h-[85vh]"
               src="perritoOreja.png"
             />
           </div>
@@ -92,9 +92,9 @@ const Home = () => {
       <div className="bg-[url('/backadopt.png')] bg-no-repeat w-full abosulte">
         {/* CARRUSEL */}
 
-        <div className="flex flex-col w-full lg:flex-row justify-center items-center">
+        <div className="flex flex-col w-full justify-center items-center mt-8 px-6">
           <div>
-            <h2 className="titleRight">adoption stories</h2>
+            <h2 className="titleCenter px-4">adoption stories</h2>
           </div>
 
           <div>
@@ -106,7 +106,7 @@ const Home = () => {
 
         <div className="flex flex-col w-full lg:flex-row justify-center items-center">
           <img
-            src="../../public/perritoabout.png"
+            src="/perritoabout.png"
             className="hidden lg:block place-items-center h-[90vh]"
           />
 

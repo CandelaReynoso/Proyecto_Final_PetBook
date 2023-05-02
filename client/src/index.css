@@ -51,11 +51,11 @@
 }
 
 .textColorPink{
- @apply font-sans font-serif font-semibold text-secondary 
+ @apply font-sans font-semibold text-secondary 
 }
 
 .textColorGreen{
- @apply font-sans font-serif font-semibold text-accent 
+ @apply font-sans  font-semibold text-accent 
 }
 
 .textItalic{

@@ -10,7 +10,7 @@ const CardFavorite = (props) => {
   return (
     
     
-    <div className="card card-side bg-base-100 shadow-xl p-2 m-3"  key={props?.index}>
+    <div className="card card-side bg-base-100 shadow-xl p-2 m-3 h-fit"  key={props?.index}>
     
       <div className="flex items-center justify-center">       
        <figure> <img  className="w-[7rem] mx-2 rounded-3xl" src={props?.image} alt="pets" /> </figure>

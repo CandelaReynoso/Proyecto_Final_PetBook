@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 // import styles from "../CARD/Card.module.css";
 import AdoptionForm from "../FORMS/FormAdoption";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Card = (pet) => {
   // const [isFav, setIsFav] = useState();
@@ -21,6 +22,7 @@ const Card = (pet) => {
   const userEmail = localStorage.getItem("email");
   const [selectedMascota, setSelectedMascota] = useState(null); // create state variable
 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -28,7 +30,7 @@ const Card = (pet) => {
     }
   }, []);
 
-  const handleFavorite = () => {
+  const handleFavorite = () => {                  //HANDLE LUCAS
     try {
       const userId = window.localStorage.getItem("id");
       axios.post("/favorite", {
@@ -41,15 +43,24 @@ const Card = (pet) => {
         specie: pet.specie,
         idUser: userId,
       });
+      event.target.classList.add("btn-disabled"); //ESTA LINEA ES LA QUE DESHABILITA EL BOTON, PERO PASA LO MISMO Q CON EL CAMBIO DE COLOR.
     } catch (error) {
       window.alert(error.message);
     }
   };
-
-  const handleSelectMascota = (e) => {
-    e.preventDefault();
-    setSelectedMascota(pet); // update state variable with pet's data
+  
+  const navigate = useNavigate()  //SELECT NIKI
+  const handleSelectMascota = (pet, userEmail) => {    
+    setSelectedMascota(pet);
+    navigate(`/FormAdoption/${pet?.id}`, { pet, userEmail });
   };
+  
+  
+
+  // const handleSelectMascota = (e) => { //SELECT ANTES
+  //   e.preventDefault();
+  //   setSelectedMascota(pet); // update state variable with pet's data
+  // };
 
   const handleShowDetail = () => {
     setSelectedPet(pet); // guardamos los datos de la mascota seleccionada en el estado selectedPet
@@ -63,19 +74,17 @@ const Card = (pet) => {
 
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
+      <div className="card min-h-[18rem] max-h-[18em] max-w-screen card-side bg-base-100 shadow-xl p-3 mx-2">
         <figure>
           <img
-            className="w-[7rem] rounded-3xl"
+            className="w-[70%] rounded-3xl"
             src={pet?.image}
             alt={pet?.name}
           />
           <div>
             {localStorage.getItem("token") && (
-              <button  onClick={handleFavorite}>🤍</button>
-            )}
-
-         
+              <button onClick={handleFavorite}>🤍</button>
+            )}         
           </div>
          
         </figure>
@@ -87,13 +96,46 @@ const Card = (pet) => {
             age: {pet?.age}
             <br />
           </p>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-center">
             <button onClick={handleShowDetail}>
               <label htmlFor="my-modal-3" className="btn btn-xs btn-primary">
                 More about {pet.name}
               </label>
             </button>
-          </div>
+            
+            {isLoggedIn && (
+
+  
+            <div className="flex row-auto">
+            {/* <Link to={`/FormAdoption/${selectedPet?.id}`}> */}
+                      <div className="card-actions m-1">
+                        <button  onClick={handleSelectMascota} className="btn btn-xs btn-accent"> adopt </button>
+                        {/* {selectedMascota && (
+                          <AdoptionForm pet={pet} userEmail={userEmail} />
+                        )}{" "}    */}
+                        {/* pass selected pet's data as prop */}
+                      </div>
+                    {/* </Link> */}
+
+                    <div className="card-actions m-1">
+                      <button className="btn btn-xs btn-accent">Sponsor</button>
+                    </div>
+            </div>
+)}
+
+            {!isLoggedIn && (
+              
+              <div className="flex row-auto">           
+                                  <div className="card-actions m-1">
+                                  <button onClick={() => alert("Please log in to adopt this pet.")} className="btn btn-xs btn-accent"> adopt </button>                        
+                                  </div> 
+                                <div className="card-actions m-1">
+                                  <button className="btn btn-xs btn-accent">Sponsor</button>
+                                </div>
+                                </div>
+                              
+            )}
+          
         </div>
       </div>
 
@@ -130,26 +172,7 @@ const Card = (pet) => {
                     </div>
                   </ul>
 
-                  <div className="">
-                    <Link to={`/FormAdoption/${selectedPet?.id}`}>
-                      <div className="card-actions justify-center m-1">
-                        <button
-                          onClick={handleSelectMascota}
-                          className="btn btn-xs btn-accent"
-                        >
-                          adopt
-                        </button>
-                        {selectedMascota && (
-                          <AdoptionForm pet={pet} userEmail={userEmail} />
-                        )}{" "}
-                        {/* pass selected pet's data as prop */}
-                      </div>
-                    </Link>
 
-                    <div className="card-actions  justify-center m-1">
-                      <button className="btn btn-xs btn-accent">Sponsor</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -157,6 +180,7 @@ const Card = (pet) => {
         </div>
       )}
     </div>
+    /</div>
   );
 };
 

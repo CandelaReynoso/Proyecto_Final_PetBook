@@ -5,7 +5,7 @@ const validateJWT = async (req, res, next) => {
     const token = req.header('x-token');
     if ( !token ) {
         return res.status(401).json({
-            msg: 'no token requested'
+            msg: 'no token requested, access is only allowed with token'
         })
     }
    // console.log(token);
