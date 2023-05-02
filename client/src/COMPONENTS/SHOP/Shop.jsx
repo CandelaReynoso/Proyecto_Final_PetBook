@@ -14,7 +14,8 @@ import FilterProducts from './FilterProducts';
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.products.products);
+  const state = useSelector(state => state);
+
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
@@ -27,55 +28,55 @@ export default function Shop() {
 
   
 
-  console.log(products)
+  
 
    //Paginado
- const indexOfLastProduct = currentPage * productsPerPage;
- const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
- const currentProducts = Array.isArray(products) && products.slice(indexOfFirstProduct, indexOfLastProduct);
+//  const indexOfLastProduct = currentPage * productsPerPage;
+//  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+//  const currentProducts = Array.isArray(products) && products.slice(indexOfFirstProduct, indexOfLastProduct);
 
- const pageNumbers = [];
- for (let i = 1; i <= Math.ceil(Array.isArray(products) && products.length / productsPerPage); i++) {
-   pageNumbers.push(i);
- }
+//  const pageNumbers = [];
+//  for (let i = 1; i <= Math.ceil(Array.isArray(products) && products.length / productsPerPage); i++) {
+//    pageNumbers.push(i);
+//  }
 
- const handlePageClick = (event) => {
-   setCurrentPage(Number(event.target.id));
- }
+//  const handlePageClick = (event) => {
+//    setCurrentPage(Number(event.target.id));
+//  }
 
- const goToNextPage = () => {
-   setCurrentPage(currentPage + 1);
- }
+//  const goToNextPage = () => {
+//    setCurrentPage(currentPage + 1);
+//  }
 
- const goToPrevPage = () => {
-   setCurrentPage(currentPage - 1);
- }
+//  const goToPrevPage = () => {
+//    setCurrentPage(currentPage - 1);
+//  }
 
- const renderPageNumbers = pageNumbers.map(number => {
-   if (number === currentPage) {
-     return (
-       <div
-         key={number}
-         id={number}
-         onClick={handlePageClick}
-         className="btn btn-primary text-white text-lg font-bold mt-[0.18rem]">
-         {number}
-       </div>
-     )
-   } else if (number > currentPage - 1 && number < currentPage + 1) {
-     return (
-       <div
-         key={number}
-         id={number}
-         onClick={handlePageClick}
-         className="btn btn-ghost text-neutral text-lg font-bold mt-[0.18rem]">
-         {number}
-       </div>
-     )
-   } else {
-     return null;
-   }
- })
+//  const renderPageNumbers = pageNumbers.map(number => {
+//    if (number === currentPage) {
+//      return (
+//        <div
+//          key={number}
+//          id={number}
+//          onClick={handlePageClick}
+//          className="btn btn-primary text-white text-lg font-bold mt-[0.18rem]">
+//          {number}
+//        </div>
+//      )
+//    } else if (number > currentPage - 1 && number < currentPage + 1) {
+//      return (
+//        <div
+//          key={number}
+//          id={number}
+//          onClick={handlePageClick}
+//          className="btn btn-ghost text-neutral text-lg font-bold mt-[0.18rem]">
+//          {number}
+//        </div>
+//      )
+//    } else {
+//      return null;
+//    }
+//  })
  
   return (
     <div>
@@ -110,12 +111,26 @@ export default function Shop() {
  {/* </div> */}
  
 </div>
-)}
+)} 
           </div>
           <div className="container mx-auto">
             {/* <h2 className="text-3xl font-bold mb-4">Choose a product! </h2> */}
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                {Array.isArray(products) && products.map((product) => (
+                {state.products.products? state.products.products.map((product) => (
+                  <div key={product.id} className="border p-4">
+                    <img src={product.image} alt={product.name} className="mb-2 w-32" />
+                    <h3 className="text-lg font-bold text">{product.name}</h3>
+                    <p className='text text-xs'>{product.description}</p>
+                    <p className="font-bold mt-2 text">${Math.ceil(product.price)}</p>
+                    <form action="http://localhost:3001/checkout" method="GET">
+                      <input type="hidden" name="title" value={product.name}/>
+                      <input type="hidden" name="price" value={Math.ceil(product.price)}/>
+                      <div className="card-actions justify-end"> 
+                      <input type="submit" value="BUY" className="btn btn-primary btn-sm"/> 
+                      </div>
+                  </form>
+                  </div>
+                )) : state.products.map((product) => (
                   <div key={product.id} className="border p-4">
                     <img src={product.image} alt={product.name} className="mb-2 w-32" />
                     <h3 className="text-lg font-bold text">{product.name}</h3>

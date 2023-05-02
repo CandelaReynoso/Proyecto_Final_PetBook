@@ -14,6 +14,7 @@ import {
   APLICATION_REQUEST,
   SEARCH_APLICATION_REQUEST,
   GET_FAVORITES,
+  FILTER_PRODUCTS
 
 } from "./types";
 
@@ -260,6 +261,25 @@ export const getAllProducts =
       console.error(err);
     }
   };
+  
+  
+  export const filterProducts = (querys) =>{
+   return async function(dispatch){
+    try {
+    console.log(querys);
+      let response = await axios.get(`/filteredProducts${querys}`)
+      if (response.data){
+      console.log(response.data);
+       return dispatch({
+       type:FILTER_PRODUCTS,
+       payload: response.data
+       })
+      }
+    } catch (error) {
+      
+    }
+   }
+  }
 
 
 export const aplicationRequest = () => {
