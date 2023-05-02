@@ -1,6 +1,6 @@
 
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST,FILTER_PRODUCTS} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST,FILTER_PRODUCTS, SEARCH_APLICATION_REQUEST} from './types';
 
 
 
@@ -128,6 +128,12 @@ const reducer = (state = initialState, action) => {
          ...state,
             favorites: action.payload,
            };
+           
+           case SEARCH_APLICATION_REQUEST:
+           return{
+           ...state,
+           requestAdoption :action.payload
+           }
            
            
           default: {
