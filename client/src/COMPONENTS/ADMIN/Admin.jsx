@@ -23,8 +23,12 @@ const Admin = () => {
 
   const deleteLogicUser = async (id) => {
     try {
+      const token = localStorage.getItem('token');
       let totalUsers = state?.users?.users?.length;
-      await axios.delete(`/users/:${id}`);
+      await axios.delete(`/users/${id}`,{
+        headers: { 'Content-Type': 'application/json',
+          "x-token": token }
+      });
       let currentUsers = state?.users?.users?.length;
       if ((totalUsers = currentUsers)) {
         window.alert("algo salio mal");
