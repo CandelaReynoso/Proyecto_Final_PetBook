@@ -5,6 +5,7 @@ import { aplicationRequest, getUsers } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import TablaUsers from "./TablaUsers";
 import { FaBell, FaBellSlash } from "react-icons/fa";
+import { BiMessageDetail } from "react-icons/bi";
 
 import axios from "axios";
 
@@ -43,7 +44,7 @@ const Admin = () => {
 
   return (
     <div>
-      <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+      <aside className="ml-[-100%] fixed overflow-scroll z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         <div>
           <div className="-mx-6 px-6 py-4">
             <a href="/home" title="home">
@@ -70,7 +71,7 @@ const Admin = () => {
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
                 <span className="group-hover:text-gray-700">
-                  publicar productos
+                  Publicar productos
                 </span>
               </a>
             </li>
@@ -171,8 +172,8 @@ const Admin = () => {
               {/* BOTON DE MENSAJES */}
               <button
                 aria-label="chat"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
-              >
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200" >
+              {/*  <BiMessageDetail className="10"/> */}
                 {/* <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                     </svg> */}
@@ -199,7 +200,7 @@ const Admin = () => {
               <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
                 <div>
                   <h5 className="text-xl text-gray-600 text-center">
-                    usuarios registrados
+                    Usuarios Registrados
                   </h5>
 
                   <table className="w-full text-gray-600">

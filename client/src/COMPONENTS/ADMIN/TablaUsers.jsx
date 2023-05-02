@@ -9,9 +9,9 @@ const TablaUsers = ({ user, email, index,id,deleteLogicUser}) => {
   return (
     <>
     
-      <td className="py-2">{user}</td>
+      <td className="py-2 ">{user}</td>
       <td className="text-gray-500">{email}</td>
-      <button onClick={()=>deleteLogicUser(id)}>X</button>
+      <button className="btn btn-ghost btn-sm items-center" onClick={()=>deleteLogicUser(id)}>X</button>
     </>
   );
 };
