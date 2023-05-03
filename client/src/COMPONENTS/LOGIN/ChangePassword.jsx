@@ -38,16 +38,15 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="w-1/2 ml-15">
-    <div className="textarea"> 
-    <div className="text-center">
-        <h2 >Modify Account Settings:</h2>
-    </div>
+    <div className='mx-auto max-w-lg p-4 bg-white rounded-lg border-black border-2'>
+    
+        <h2 className="titleLeft text-center text-3xl lg:text-2xl mb-4">Modify Account Settings:</h2>
+    
     <form onSubmit={handleSubmit}>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <div className="textarea">
-        <label className="ml-4" htmlFor="oldPassword">Old Password:</label>
-        <input
+      <div>
+        <label className="text" htmlFor="oldPassword">Old Password:</label>
+        <input className='inputs'
           type="password"
           id="oldPassword"
           value={oldPassword}
@@ -56,8 +55,8 @@ const ChangePassword = () => {
         />
       </div>
       <div>
-        <label htmlFor="newPassword">New Password:</label>
-        <input
+        <label className="text" htmlFor="newPassword">New Password:</label>
+        <input className='inputs'
           type="password"
           id="newPassword"
           value={newPassword}
@@ -66,8 +65,8 @@ const ChangePassword = () => {
         />
       </div>
       <div>
-        <label htmlFor="confirmNewPassword">Confirm New Password:</label>
-        <input
+        <label className="text" htmlFor="confirmNewPassword">Confirm New Password:</label>
+        <input className='inputs'
           type="password"
           id="confirmNewPassword"
           value={confirmNewPassword}
@@ -75,10 +74,11 @@ const ChangePassword = () => {
           required
         />
       </div>
-      <button type="submit">Change Password</button>
+      <button className='buttonSubtmit text-center '
+      type="submit">Change Password</button>
     </form>
     </div>
-    </div>
+   
   );
 };
 
