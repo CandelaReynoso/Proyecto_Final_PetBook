@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const CategoryForm = () => {
   const [formData, setFormData] = useState({ name: "" });
@@ -46,6 +47,10 @@ const CategoryForm = () => {
         />
       </label>
       <button type="submit">Submit</button>
+      
+      <Link to={"/Admin"}>
+          <button className="bg-blue-500 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
+        </Link>
     </form>
   );
 };

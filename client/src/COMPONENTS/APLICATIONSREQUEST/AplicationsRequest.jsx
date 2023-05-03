@@ -39,7 +39,7 @@ const AplicationsRequest = () => {
   return (
     <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
       <Link to={"/admin"}>
-        <button>back</button>
+        <button className="bg-blue-500 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none">back</button>
       </Link>
       <div>
         <h1>search</h1>
