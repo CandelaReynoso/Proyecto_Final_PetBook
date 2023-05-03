@@ -9,10 +9,26 @@ const ChangePassword = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (newPassword !== confirmNewPassword) {
-      setErrorMessage('New password and confirm new password do not match');
+    if (!oldPassword) {
+      setErrorMessage('Please enter your old password');
       return;
     }
+  
+    if (!newPassword) {
+      setErrorMessage('Please enter a new password');
+      return;
+    }
+  
+    if (!confirmNewPassword) {
+      setErrorMessage('Please confirm your new password');
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      setErrorMessage('New password and confirm new password do not match!');
+      return;
+    }
+    
 
     try {
         const token = localStorage.getItem('token');
@@ -51,6 +67,8 @@ const ChangePassword = () => {
           id="oldPassword"
           value={oldPassword}
           onChange={(event) => setOldPassword(event.target.value)}
+          minLength={5}
+          maxLength={15}
           required
         />
       </div>
@@ -61,6 +79,8 @@ const ChangePassword = () => {
           id="newPassword"
           value={newPassword}
           onChange={(event) => setNewPassword(event.target.value)}
+          minLength={5}
+          maxLength={15}
           required
         />
       </div>
@@ -71,6 +91,8 @@ const ChangePassword = () => {
           id="confirmNewPassword"
           value={confirmNewPassword}
           onChange={(event) => setConfirmNewPassword(event.target.value)}
+          minLength={5}
+          maxLength={15}
           required
         />
       </div>
