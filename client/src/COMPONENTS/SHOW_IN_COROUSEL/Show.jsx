@@ -3,6 +3,7 @@ import axios from "axios";
 import ModalHistory from "./Modal";
 import Modal from "react-modal";
 import styles from "./show.module.css";
+import { Link } from "react-router-dom";
 
 
 Modal.setAppElement('#root');
@@ -69,6 +70,11 @@ function Show() {
                 </table>
 
             </div>
+            <br />
+            <Link to={"/Admin"}>
+          <button className="bg-blue-500 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
+        </Link>
+            
 
         </div>
 

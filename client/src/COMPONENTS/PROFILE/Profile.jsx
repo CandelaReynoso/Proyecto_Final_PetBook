@@ -35,48 +35,44 @@ const Profile = () => {
   
 
   return (
-    <div className="h-full" >
-      <div >
-        {localStorage.getItem("token") ? (
-          <HeaderLogin className="mb-4" />
-        ) : (
-          <Header className="mb-4" />
-        )}
-      </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 h-full w-full'>
-          <div  className='flex flex-col justify-center'> 
-      <div className="subtitle">
-        <h1> MY PROFILE</h1>
-      </div>
-      <br />
-      <div className="divForminput">
-        <div className="flex h-full">
-  <div className="w-1/2">
-    <h2 className="subtitle">Your Donations:</h2>
-    <ul className="textColorPink">
-
-                  {donations.map((donation) => (
-                    <li key={donation.id}>
-                      Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
-                    </li>
-                  ))}
-                </ul>
-                <h2 className="text-center-right ml-10">
-                  Total Donations: ${totalDonations}
-                </h2>
-  </div>
-
-  <ChangePassword />
+    <div>
   
-</div>
-</div>
-</div>
-</div>
-      <br></br>
-      <div  className="fixed bottom-0 left-0 w-full" >
-        <Footer className="mt-8" />
+      <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen h-screen">
+        <div>
+          <div className="card-actions justify-start ">
+            <a href="/home" className="btn btn-primary m-8">BACK HOME</a>
+          </div>
+          <div className="justify-center flex">
+            <h1 className="titleCenter text-sky-950">My Profile</h1>
+          </div>
+          
+          <div className='grid grid-cols-1 sm:grid-cols-2 w-screen h-fit'>
+            
+                <div className=' mx-auto max-w-lg p-4 bg rounded-lg mt-2'>
+                  <h2 className="titleRight text-center text-3xl lg:text-2xl mb-4">Donations:</h2>
+                  <ul className="text ">
+                    {donations.map((donation) => (
+                      <li key={donation.id}>
+                        Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
+                      </li>
+                    ))}
+                  </ul>
+                  <h2 className="textColorPink text-2xl mt-10">
+                    Total Donations: ${totalDonations}
+                  </h2>
+                </div>
+              
+              <div className="flex flex-col p-2 h-fit">
+                <ChangePassword />
+                </div>
+            </div>
+        </div>
       </div>
+
+      {/* <div> <Footer /></div> */}
     </div>
+
+
   );
 };
 

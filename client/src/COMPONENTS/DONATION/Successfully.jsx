@@ -34,7 +34,7 @@ export default function Successfully(){
                 <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
                    
                     <div className='flex flex-col justify-center'>
-                        <h1 className="titleCenter ">THANKS FOR YOUR DONATION!!!</h1>
+                        <h1 className="titleCenter ">THANKS FOR YOUR CONTRIBUTION!</h1>
                         <h3 className="subtitle">Go back home and continue watching our litle furrriends</h3>
                         <br>
                         </br>
