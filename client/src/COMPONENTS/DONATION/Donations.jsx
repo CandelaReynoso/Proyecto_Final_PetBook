@@ -31,7 +31,7 @@ export default function Donations(){
 <div className="flex justify-center">
 
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
 
 
 
@@ -39,12 +39,8 @@ export default function Donations(){
                     <div className="card-body"> 
                         <h2 className="card-title text-black font-['candara']">Puppy Size Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full"> AR$ 1.000</h5>
-<<<<<<< HEAD
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
-=======
                         <form action="http://localhost:3001/checkout" method="GET">
                             <input type="hidden" name="id" value={id} />
->>>>>>> 575b4f4bb8ce1aa5b4cea4db16a9164dc1cf0d72
                             <input type="hidden" name="title" value="Puppy Size Donation"/>
                             <input type="hidden" name="price" value="1000"/>
                             <div className="card-actions justify-end"> <input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
@@ -60,12 +56,8 @@ export default function Donations(){
                     <div className="card-body">
                         <h2 className="card-title text-black font-['candara']">Adventurous Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full"> AR$ 2.500</h5>
-<<<<<<< HEAD
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
-=======
                         <form action="http://localhost:3001/checkout" method="GET">
                             <input type="hidden" name="id" value={id} />
->>>>>>> 575b4f4bb8ce1aa5b4cea4db16a9164dc1cf0d72
                             <input type="hidden" name="title" value="Adventurous Hearts Donation"/>
                             <input type="hidden" name="price" value="2500"/>
                             <div className="card-actions justify-end"><input type="submit" value="DONATE NOW" className="btn btn-primary"/></div>
@@ -77,12 +69,8 @@ export default function Donations(){
                     <div className="card-body">
                         <h2 className="card-title text-black font-['candara']">Large Love Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full">AR$ 5.000</h5>
-<<<<<<< HEAD
-                        <form action="https://proyectofinalpetbook-production.up.railway.app/checkout" method="GET">
-=======
                         <form action="http://localhost:3001/checkout" method="GET">
                             <input type="hidden" name="id" value={id} />
->>>>>>> 575b4f4bb8ce1aa5b4cea4db16a9164dc1cf0d72
                             <input type="hidden" name="title" value="Large Love Donation"/>
                             <input type="hidden" name="price" value="5000"/>
                             <div className="card-actions justify-end"><input type="submit" value="DONATE NOW" className="btn btn-primary"/> </div>
