@@ -167,7 +167,7 @@ export const sendEmail = (name, lastname, email, message) => {
 export const getUsers = () => {
   return async function (dispatch) {
     try {
-      const response = await axios("http://localhost:3001/users");
+      const response = await axios("/users");
       return dispatch({
         type: GET_USERS,
         payload: response.data,

@@ -23,9 +23,9 @@ app.get('/', (req, res) =>{
         },
         ],
         back_urls: {
-            success: `http://127.0.0.1:5173/thanks?id=${req.query.id}&amount=${req.query.price}&type=${req.query.type}&target=${req.query.target}`,
-            failure: "http://127.0.0.1:5173/failure",
-            pending: "http://127.0.0.1:5173/pending"
+            success: `https://proyecto-final-pet-book-zgni.vercel.app/thanks?id=${req.query.id}&amount=${req.query.price}&type=${req.query.type}&target=${req.query.target}`,
+            failure: "https://proyecto-final-pet-book-zgni.vercel.app/failure",
+            pending: "https://proyecto-final-pet-book-zgni.vercel.app/pending"
         },
         auto_return: "approved",
     };

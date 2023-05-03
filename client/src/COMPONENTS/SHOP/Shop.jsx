@@ -95,7 +95,7 @@ export default function Shop() {
                     <h3 className="text-lg font-bold text">{product.name}</h3>
                     <p className='text text-xs'>{product.description}</p>
                     <p className="font-bold mt-2 text">${Math.ceil(product.price)}</p>
-                    <form action="http://localhost:3001/checkout" method="GET">
+                    <form action="https://petbook-server.onrender.com/checkout" method="GET">
                       <input type="hidden" name="title" value={product.name}/>
                       <input type="hidden" name="price" value={Math.ceil(product.price)}/>
                       <div className="card-actions justify-end"> 
@@ -109,7 +109,7 @@ export default function Shop() {
                     <h3 className="text-lg font-bold text">{product.name}</h3>
                     <p className='text text-xs'>{product.description}</p>
                     <p className="font-bold mt-2 text">${Math.ceil(product.price)}</p>
-                    <form action="http://localhost:3001/checkout" method="GET">
+                    <form action="https://petbook-server.onrender.com/checkout" method="GET">
                       <input type="hidden" name="title" value={product.name}/>
                       <input type="hidden" name="price" value={Math.ceil(product.price)}/>
                       <div className="card-actions justify-end"> 
