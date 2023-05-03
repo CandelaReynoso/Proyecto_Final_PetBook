@@ -34,11 +34,11 @@ export default function Shop() {
  const currentProducts = Array.isArray(state.products.products) && state.products.products.slice(indexOfFirstProduct, indexOfLastProduct);
 
 
- const pageNumbers = [];
+ const pageNumbers = []; 
  for (let i = 1; i <= Math.ceil(Array.isArray(state.products.products) && state.products.products.length / productsPerPage); i++) {
    pageNumbers.push(i);
  }
-
+ 
  const handlePageClick = (event) => {
    setCurrentPage(Number(event.target.id));
  }
