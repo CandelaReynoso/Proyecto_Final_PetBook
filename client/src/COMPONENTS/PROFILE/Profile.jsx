@@ -35,44 +35,43 @@ const Profile = () => {
   
 
   return (
-    <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
-   
-      <div >
-        {localStorage.getItem("token") ? (
-          <HeaderLogin className="mb-4" />
-        ) : (
-          <Header className="mb-4" />
-        )}
-     </div>
-      <h1 className="titleCenter">My Profile</h1>
-      <div className="flex justify-center h-screen w-screen">
-        <div className="flex flex-row w-full lg:w-3/4 mx-4">
-
-        <div className='mx-auto max-w-200 p-4 bg-white rounded-lg border-black border-2'>
-            <h2 className="titleRight text-center text-3xl lg:text-2xl mb-4">Your Donations:</h2>
-            <ul className="text ">
-              {donations.map((donation) => (
-                <li key={donation.id}>
-                  Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
-                </li>
-              ))}
-            </ul>
-            <h2 className="textColorPink text-2xl mt-10">
-              Total Donations: ${totalDonations}
-            </h2>
+    <div>
+  
+      <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen h-screen">
+        <div>
+          <div className="card-actions justify-start ">
+            <a href="/home" className="btn btn-primary m-8">BACK HOME</a>
           </div>
-          <div className="w-1/2 lg:w-2/5 px-2">
-            <ChangePassword />
+          <div className="justify-center flex">
+            <h1 className="titleCenter text-sky-950">My Profile</h1>
           </div>
+          
+          <div className='grid grid-cols-1 sm:grid-cols-2 w-screen h-fit'>
+            
+                <div className=' mx-auto max-w-lg p-4 bg rounded-lg mt-2'>
+                  <h2 className="titleRight text-center text-3xl lg:text-2xl mb-4">Donations:</h2>
+                  <ul className="text ">
+                    {donations.map((donation) => (
+                      <li key={donation.id}>
+                        Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
+                      </li>
+                    ))}
+                  </ul>
+                  <h2 className="textColorPink text-2xl mt-10">
+                    Total Donations: ${totalDonations}
+                  </h2>
+                </div>
+              
+              <div className="flex flex-col p-2 h-fit">
+                <ChangePassword />
+                </div>
+            </div>
         </div>
       </div>
 
+      {/* <div> <Footer /></div> */}
+    </div>
 
-      
-      <div  className="fixed bottom-0 left-0 w-full" >
-        <Footer className="mt-8" />
-      </div>
-      </div>
 
   );
 };

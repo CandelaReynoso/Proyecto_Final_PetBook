@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const CategoryForm = () => {
   const [formData, setFormData] = useState({ name: "" });
@@ -33,20 +34,36 @@ const CategoryForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <div>
+    <form onSubmit={handleSubmit} className="m-8">
+      <label className="text">
         Name of Category: 
         <input
           type="text"
           name="name"
-          placeholder="Type the category..."
+          placeholder="..."
           ref={nameInputRef}
           value={formData.name}
           onChange={handleChange}
+          className="inputs"
         />
       </label>
-      <button type="submit">Submit</button>
+      <div>
+      <button  
+      type="submit"
+      className="btn btn-accent btn-sm mt-3">Create Category
+      </button>
+      </div>
+
+
+
     </form>
+    <div>
+        <Link to={"/Admin"}>
+          <button className="btn btn-primary m-8 "> Back</button>
+        </Link>
+      </div>
+    </div>
   );
 };
 

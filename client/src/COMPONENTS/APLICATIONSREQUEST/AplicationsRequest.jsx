@@ -38,11 +38,9 @@ const AplicationsRequest = () => {
 
   return (
     <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
-      <Link to={"/admin"}>
-        <button>back</button>
-      </Link>
+
       <div>
-        <h1>search</h1>
+        <h1 className="subtitle">SEARCH APPLICANT</h1>
       </div>
 
       <input
@@ -51,6 +49,7 @@ const AplicationsRequest = () => {
         value={input}
         autoComplete="off"
         onChange={(e) => handleInputChange(e)}
+        className="border"
       />
  <div className="overflow-x-auto">
       <table className="table table-compact w-full">
@@ -87,7 +86,9 @@ const AplicationsRequest = () => {
       <div>    
     
 </div>
-
+      <Link to={"/admin"}>
+        <button className="btn btn-primary">back</button>
+      </Link>
 
  </div>
   );

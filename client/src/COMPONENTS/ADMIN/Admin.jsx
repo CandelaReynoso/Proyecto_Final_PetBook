@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import {
@@ -18,12 +18,23 @@ import axios from "axios";
 const Admin = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+
+  const [donaciones, setDonaciones] = useState("");
+
+  useEffect(() => {
+    dispatch(getApprovedHistory());
+    dispatch(getDeclinedHistory());
+  }, []);
+
+  useEffect(() => {
+    async function donaciones() {
+      let response = await axios.get("/donations");
+      setDonaciones(response.data);
+    }
+    donaciones();
+  }, []);
   
- useEffect(()=>{
- dispatch(getApprovedHistory())
- dispatch(getDeclinedHistory())
- },[])
-  
+  console.log(donaciones);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -37,17 +48,13 @@ const Admin = () => {
   const deleteLogicUser = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      let totalUsers = state.users.users.length;
+
       await axios.delete(`/users/${id}`, {
         headers: { "Content-Type": "application/json", "x-token": token },
       });
-      let currentUsers = state.users.users.length;
-      if ((totalUsers = currentUsers)) {
-        window.alert("algo salio mal");
-      } else {
-        window.alert("usuario eliminado con exito");
-        dispatch(getUsers());
-      }
+
+      window.alert("usuario eliminado con exito");
+      dispatch(getUsers());
     } catch (error) {
       window.alert(error.message);
     }
@@ -69,14 +76,14 @@ const Admin = () => {
               alt=""
               className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             />
-            <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-              pepito
+            <h5 className=" mt-4 text-xl font-semibold text lg:block">
+              Mario Pérez
             </h5>
-            <span className="hidden text-gray-400 lg:block">Admin</span>
+            <span className=" text lg:block">Admin</span>
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            <li>
+            {/* <li>
               <a
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
@@ -85,7 +92,7 @@ const Admin = () => {
                   Publicar productos
                 </span>
               </a>
-            </li>
+            </li> */}
             <li>
               <a
                 href="#"
@@ -93,7 +100,7 @@ const Admin = () => {
               >
                 <Link to={"/acceptStories"}>
                   <span className="group-hover:text-gray-700">
-                    Historias de Adopcion
+                    Adoption Stories
                   </span>
                 </Link>
               </a>
@@ -105,7 +112,7 @@ const Admin = () => {
               >
                 <Link to={"/AplicationRequest"}>
                   <span className="group-hover:text-gray-700">
-                    Solicitudes de Adopcion
+                  Adoption Requests
                   </span>
                 </Link>
               </a>
@@ -113,21 +120,21 @@ const Admin = () => {
             <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
               <Link to={"/FormCreatePet"}>
                 <span className="group-hover:text-gray-700">
-                  Publicar Mascota
+                Post Pet
                 </span>
               </Link>
             </li>
             <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
               <Link to={"/CategoryForm"}>
                 <span className="group-hover:text-gray-700">
-                  Crear Categoría
+                Create Category
                 </span>
               </Link>
             </li>
             <li className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
               <Link to={"/ProductForm"}>
                 <span className="group-hover:text-gray-700">
-                  Crear Producto
+                Create Product
                 </span>
               </Link>
             </li>
@@ -137,7 +144,7 @@ const Admin = () => {
         {/* LOGOUT */}
         <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
           <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-            <span className="group-hover:text-gray-700">Logout</span>
+            <a href='/home' className="group-hover:text-gray-700">Home</a>
           </button>
         </div>
       </aside>
@@ -147,9 +154,9 @@ const Admin = () => {
         <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
           <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
             <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
-              DashBoard
+              ADMIN DASHBOARD
             </h5>
-
+                   
             {/* dropDown */}
 
             <div className="navbar- dropdown ">
@@ -185,36 +192,23 @@ const Admin = () => {
               </ul>
             </div>
 
-            <div className="flex space-x-4">
-              {/* BOTON DE MENSAJES */}
-             
-
-              {/* CAMPANA DE NOTIFICACIONES */}
-              <button
-                aria-label="notification"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
-              >
-                {/* <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                    </svg> */}
-              </button>
-            </div>
+            <div className="flex space-x-4"></div>
           </div>
         </div>
-
+        <p className="italic m-4 text-red-800">For a better experience, remember to use this page from your computer</p>
         <div className="px-6 pt-6 2xl:container ">
           <div>
             {/* ***************************** */}
             {/* COLUMNA 1 USUARIOS */}
-            <div className="md:col-span-2 lg:col-span-1">
+            <div className="md:col-span-2 lg:col-span-1 m-2">
               <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
                 <div>
-                  <h5 className="text-xl text-gray-600 text-center">
-                    Usuarios Registrados
+                  <h5 className="text-xl text uppercase text-center">
+                  Registered Users
                   </h5>
 
-                  <table className="w-full text-gray-600">
-                    <tbody>
+                  <table className="w-full text">
+                    <tbody className="text">
                       {/* gif pedorro provisorio */}
                       {!state.users.users ? (
                         <img src="https://media.tenor.com/1qrYT711uEoAAAAC/cargando.gif" />
@@ -243,12 +237,12 @@ const Admin = () => {
 
             {/* COLUMNA 2 DONACIONES*/}
             <div>
-              <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-                <h5 className="text-xl text-gray-700">Donaciones</h5>
+              <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white m-2">
+                <h5 className="text-xl text uppercase text-center">Current Donations</h5>
                 <div className="my-8">
-                  <h1 className="text-5xl font-bold text-gray-800">64,5%</h1>
+                  <h1 className="text-5xl font-bold text-gray-800">$ { donaciones}</h1>
                   <span className="text-gray-500">
-                    Compared to last week $13,988
+                  Total amount of donations
                   </span>
                 </div>
               </div>
@@ -257,49 +251,49 @@ const Admin = () => {
 
             {/* COLUMNA 3 */}
             <div>
-              <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-              <h5 className="text-xl text-gray-600 text-center">
-                    historial de soicitudes de adopcion
-                  </h5>
+              <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white m-2">
+                <h5 className="text-xl text uppercase text-center">
+                  Adoption Applications History
+                </h5>
 
                 <div className="overflow-x-auto">
                   <table className="table table-compact w-full">
                     <thead>
-                      <tr>
-                       
-                      </tr>
+                      <tr></tr>
                     </thead>
-                    <tbody>
-                    <h2>aprobadas</h2>
-                    {state?.requesAdoptionHistorialApproved?.adoptions?.map((request,index)=>{
-                    return(
-                     <tr>
-                     <th>{index+1}</th>
-                     <td>name</td>
-                     <td>{request.name}</td>
-                     <td>email</td>
-                     <td>{request.email}</td>
-                     <td>status</td>
-                     <td>{request.status}</td>
-                   </tr>
-                    )
-                    })}
-                     <h2>desaprobadas</h2>
-                    {state?.requesAdoptionHistorialDeclined?.adoptions?.map((request,index)=>{
-                    return(
-                     <tr>
-                     <th>{index+1}</th>
-                     <td>name</td>
-                     <td>{request.name}</td>
-                     <td>email</td>
-                     <td>{request.email}</td>
-                     <td>status</td>
-                     <td>{request.status}</td>
-                   </tr>
-                    )
-                    })}
-                    
-                     
+                    <tbody className="text">
+                      <h2 className="text">APPROVED</h2>
+                      {state?.requesAdoptionHistorialApproved?.adoptions?.map(
+                        (request, index) => {
+                          return (
+                            <tr>
+                              <th>{index + 1}</th>
+                              <td>name</td>
+                              <td>{request.name}</td>
+                              <td>email</td>
+                              <td>{request.email}</td>
+                              <td>status</td>
+                              <td>{request.status}</td>
+                            </tr>
+                          );
+                        }
+                      )}
+                      <h2 className="text mt-2">DECLINED</h2>
+                      {state?.requesAdoptionHistorialDeclined?.adoptions?.map(
+                        (request, index) => {
+                          return (
+                            <tr className="text">
+                              <th>{index + 1}</th>
+                              <td>name</td>
+                              <td>{request.name}</td>
+                              <td>email</td>
+                              <td>{request.email}</td>
+                              <td>status</td>
+                              <td>{request.status}</td>
+                            </tr>
+                          );
+                        }
+                      )}
                     </tbody>
                   </table>
                 </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import ModalHistory from "./Modal";
 import Modal from "react-modal";
 import styles from "./show.module.css";
+import { Link } from "react-router-dom";
 
 
 Modal.setAppElement('#root');
@@ -27,13 +28,13 @@ function Show() {
     return (
         <div className={styles.principal} >
 
-            <h1>Post stories</h1>
+            <h1 className="subtitle">Post stories</h1>
 
             <div className={styles.contTable}>
 
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="text"> 
                             <th>Name</th>
                             <th>Email</th>
                             <th>Pet</th>
@@ -48,7 +49,7 @@ function Show() {
                                 ?
                                 history.map((item, index) => {
                                     return (
-                                        <tr key={index}>
+                                        <tr className="text" key={index}>
                                             <td>{item.user.nickname}</td>
                                             <td>{item.user.email}</td>
                                             <td>{item.pet.name}</td>
@@ -69,6 +70,11 @@ function Show() {
                 </table>
 
             </div>
+            <br />
+            <Link to={"/Admin"}>
+          <button className="btn btn-primary m-4"> Back</button>
+        </Link>
+            
 
         </div>
 
