@@ -173,13 +173,13 @@ const FormCreatePet = () => {
           <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
               <div className="flex items-center space-x-5">
-                <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
-                  i
+                <div className="h-14 w-14 bg-primary rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
+                  pet
                 </div>
                 <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
                   <h2 className="leading-relaxed">Create a Pet</h2>
                   <p className="text-sm text-gray-500 font-normal leading-relaxed">
-                    create and share a shelter pet story.
+                    create and share a shelter pet.
                   </p>
                 </div>
               </div>
@@ -324,14 +324,14 @@ const FormCreatePet = () => {
                   </button>
                   <button
                     onClick={uploadSingleImage}
-                    className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                    className="btn-primary flex justify-center items-center w-full px-4 py-3 rounded-md focus:outline-none"
                   >
                     Create
                   </button>
                 </div>
                 <br />
                 <Link to={"/Admin"}>
-          <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
+          <button className= "btn-accent flex justify-center items-center w-full px-4 py-3 rounded-md focus:outline-none"> Back</button>
         </Link>
                 
               </div>

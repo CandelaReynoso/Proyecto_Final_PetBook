@@ -174,7 +174,7 @@ export default function HeaderLogin() {
                   <button className='text' onClick={() => userLogout()}>Logout</button>
                 </li>
 
-                {admin === true ? <a href="/admin">admin</a> : ""}
+                {admin === true ? <a href="/admin" className='text uppercase m-3 bg-primary rounded-full text-center'>admin</a> : ""}
               </ul>
             </div>
           </div>
