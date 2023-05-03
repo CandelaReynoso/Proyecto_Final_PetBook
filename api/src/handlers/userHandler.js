@@ -85,6 +85,118 @@ const userHandlerPost = async (req, res) => {
     }
 };
 
+const userHandlerResetPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+        
+        // check if the user with the given email exists in the database
+        const user = await User.findOne({ where: { email } });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        // generate a new password
+        const newPassword = Math.random().toString(36).slice(-8);  
+        
+        // update the user's password in the database
+        const salt = bcryptjs.genSaltSync();
+        const hashedPassword = bcryptjs.hashSync(newPassword, salt);
+        await User.update({ password: hashedPassword }, { where: { id: user.id } });
+        
+        // create nodemailer transporter
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'petbook5173@gmail.com',
+                pass: process.env.PASSWORD // gmail app password
+            }
+        });
+        
+        // set up email options
+        const mailOptions = {
+            from: 'petbook5173@gmail.com',
+            to: email,
+            subject: 'Password reset request',
+            text: `Your new password is: ${newPassword}. Please use this password to log in and change it immediately.`
+        };
+        
+        // send email
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+        
+        res.status(200).json({ message: 'Password reset email sent' });
+        
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+const userHandlerChangePassword = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { oldPassword, newPassword, ...rest } = req.body;
+
+        // Get user from database
+        const user = await User.findOne({ where: { id } });
+
+        // Validate old password
+        const isOldPasswordValid = await bcryptjs.compare(oldPassword, user.password);
+
+        if (!isOldPasswordValid) {
+          return res.status(400).json({ message: "Old password is incorrect" });
+        }
+
+        // Hash new password
+        const salt = bcryptjs.genSaltSync(); // 10 rounds by default - bcryptjs method
+        const hashedPassword = bcryptjs.hashSync(newPassword, salt); // bcryptjs method to encrypt
+
+        // Send password reset email
+        const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'petbook5173@gmail.com',
+          pass: process.env.PASSWORD // gmail app password
+        }
+        });
+  
+        const mailOptions = {
+            from: 'petbook5173@gmail.com',
+            to: user.email,
+            subject: 'Password changed',
+            text: `Your new password is: ${newPassword}. Please use this password to log in, do not share it.`
+        };
+  
+        transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+        // Update user in database
+        const updatedUser = await User.update(
+          { ...rest, password: hashedPassword },
+          {
+            where: { id },
+            returning: true,
+            plain: true,
+          }
+        );
+
+        res.status(200).json({ updatedUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "internal server error" });
+    }
+};
+
+
 const userHandlerPut = async (req, res) => {
     try {
         const id = req.params.id;
@@ -149,5 +261,7 @@ module.exports = {
     userHandlerPost,
     userHandlerPut,
     userHandlerDelete,
-    userHandlerVerifyAdminRole
+    userHandlerVerifyAdminRole,
+    userHandlerResetPassword,
+    userHandlerChangePassword
 }

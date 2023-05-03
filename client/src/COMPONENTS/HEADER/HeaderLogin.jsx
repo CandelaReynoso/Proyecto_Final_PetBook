@@ -159,6 +159,7 @@ export default function HeaderLogin() {
                 <li>
                 <a href="/favorites">Favorites</a>
                 </li>
+                <Link to='/changepassword'>Change Password</Link>
                 {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
                 <li>
                   <button onClick={() => userLogout()}>Logout</button>
