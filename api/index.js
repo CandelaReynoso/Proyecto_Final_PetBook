@@ -6,7 +6,7 @@ const { PORT } = process.env;
 const loadPets = require('./src/database/scriptPets.js')
 const {uploadProductos} = require("./src/controllers/uploadProductsCotroller.js");
 
-const tuApi = "a64846de-029f-4aef-8e63-c14a6782510b";
+const tuApi = "3af97e9f-2137-4387-9986-7b47bebfbab9";
 
 
 
