@@ -27,6 +27,9 @@ const Favorites = () => {
       window.alert(error.message);
     }
   };
+  
+  const uniqueFavs = Array.from(new Map(state.favorites.map(fav => [fav.petId, fav])).values()); // la magia para q no se agreguen repetidos
+  
 
   return (
     <div>
@@ -40,9 +43,9 @@ const Favorites = () => {
                       <h1 className="titleCenter">My favorites</h1>
         <div className="flex justify-center h-screen w-screen">
               <div className="grid grid-cols-1 h-fit">
-                {state.favorites && (
+                {uniqueFavs && (
                   <CardsFavorites
-                    favorites={state?.favorites}
+                    favorites={uniqueFavs}
                     handlerDelete={handlerDelete}
                   />
                 )}
