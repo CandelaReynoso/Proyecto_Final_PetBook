@@ -132,7 +132,7 @@ const Card = (pet) => {
             )}
 
             </div>
-)}
+
 
             {!isLoggedIn && (
               <div className="flex row-auto">
@@ -193,7 +193,7 @@ const Card = (pet) => {
         )}
       </div>
       
-    </div>
+
   );
 };
 
