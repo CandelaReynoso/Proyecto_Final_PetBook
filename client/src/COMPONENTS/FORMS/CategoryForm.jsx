@@ -34,24 +34,36 @@ const CategoryForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <div>
+    <form onSubmit={handleSubmit} className="m-8">
+      <label className="text">
         Name of Category: 
         <input
           type="text"
           name="name"
-          placeholder="Type the category..."
+          placeholder="..."
           ref={nameInputRef}
           value={formData.name}
           onChange={handleChange}
+          className="inputs"
         />
       </label>
-      <button type="submit">Submit</button>
-      
-      <Link to={"/Admin"}>
-          <button className="bg-blue-500 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
-        </Link>
+      <div>
+      <button  
+      type="submit"
+      className="btn btn-accent btn-sm mt-3">Create Category
+      </button>
+      </div>
+
+
+
     </form>
+    <div>
+        <Link to={"/Admin"}>
+          <button className="btn btn-primary m-8 "> Back</button>
+        </Link>
+      </div>
+    </div>
   );
 };
 

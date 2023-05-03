@@ -28,13 +28,13 @@ function Show() {
     return (
         <div className={styles.principal} >
 
-            <h1>Post stories</h1>
+            <h1 className="subtitle">Post stories</h1>
 
             <div className={styles.contTable}>
 
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="text"> 
                             <th>Name</th>
                             <th>Email</th>
                             <th>Pet</th>
@@ -49,7 +49,7 @@ function Show() {
                                 ?
                                 history.map((item, index) => {
                                     return (
-                                        <tr key={index}>
+                                        <tr className="text" key={index}>
                                             <td>{item.user.nickname}</td>
                                             <td>{item.user.email}</td>
                                             <td>{item.pet.name}</td>
@@ -72,7 +72,7 @@ function Show() {
             </div>
             <br />
             <Link to={"/Admin"}>
-          <button className="bg-blue-500 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
+          <button className="btn btn-primary m-4"> Back</button>
         </Link>
             
 
