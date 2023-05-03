@@ -86,10 +86,10 @@ export default function HeaderLogin() {
                     </a>
                     <ul className="p-2">
                     <li>
-                  <a className='text' href="/profile">Profile</a>
+                  <a className='text' href="/profile">My Profile</a>
                     </li>
                       <li>
-                        <a className='text' href="/favorites">Favorites</a>
+                        <a className='text' href="/favorites">My Favorites</a>
                       </li>
                       <li>
                         <button className='text' onClick={() => userLogout()}>Logout</button>
@@ -163,11 +163,13 @@ export default function HeaderLogin() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                  <li>
-                  <a className='text' href="/profile">Profile</a>
+                  <a className='text' href="/profile"> My Profile</a>
                     </li>
                 <li>
+
                 <a className='text' href="/favorites">Favorites</a>
                 
+
                   <button className='text' onClick={() => userLogout()}>Logout</button>
                 </li>
 
