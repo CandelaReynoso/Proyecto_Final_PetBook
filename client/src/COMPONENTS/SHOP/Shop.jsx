@@ -31,11 +31,11 @@ export default function Shop() {
    //Paginado
  const indexOfLastProduct = currentPage * productsPerPage;
  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
- const currentProducts = Array.isArray(state.products.products) && state.products.products.slice(indexOfFirstProduct, indexOfLastProduct);
+ const currentProducts = Array.isArray(state.products.products) && state.products.products.slice(indexOfFirstProduct, indexOfLastProduct) || state.products && state.products.slice(indexOfFirstProduct, indexOfLastProduct);
 
 
  const pageNumbers = [];
- for (let i = 1; i <= Math.ceil(Array.isArray(state.products.products) && state.products.products.length / productsPerPage); i++) {
+ for (let i = 1; i <= Math.ceil(Array.isArray(state.products.products) && state.products.products.length / productsPerPage || state.products && state.products.length / productsPerPage); i++) {
    pageNumbers.push(i);
  }
 
@@ -103,7 +103,7 @@ export default function Shop() {
                       </div>
                   </form>
                   </div>
-                )) : state.products.map((product) => (
+                )) : currentProducts.map((product) => (
                   <div key={product.id} className="border p-4">
                     <img src={product.image} alt={product.name} className="mb-2 w-32" />
                     <h3 className="text-lg font-bold text">{product.name}</h3>
