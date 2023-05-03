@@ -88,9 +88,6 @@ export default function HeaderLogin() {
                       <li>
                         <button onClick={() => userLogout()}>Logout</button>
                       </li>
-                      <li>
-                        {admin === true ? <a className="text" href="/admin">Admin</a> : ""}
-                      </li> 
                     </ul>
                   </li>
                 </ul>
@@ -160,16 +157,14 @@ export default function HeaderLogin() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                <a className="text" href="/favorites">Favorites</a>
+                <a href="/favorites">Favorites</a>
                 </li>
                 {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
                 <li>
-                  <button className="text" onClick={() => userLogout()}>Logout</button>
+                  <button onClick={() => userLogout()}>Logout</button>
                 </li>
 
-                <li>
-                {admin === true ? <a className="text" href="/admin">Admin</a> : ""}
-                </li> 
+                {admin === true ? <a href="/admin">admin</a> : ""}
               </ul>
             </div>
           </div>
