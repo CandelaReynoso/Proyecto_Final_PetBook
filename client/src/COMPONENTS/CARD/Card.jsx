@@ -109,7 +109,8 @@ const Card = (pet) => {
                 {/* <Link to={`/FormAdoption/${selectedPet?.id}`}> */}
                 <div className="card-actions m-1">
                   <button
-                    onClick={handleSelectMascota}
+                    // onClick={handleSelectMascota}
+                    onClick={()=>handleSelectMascota(pet,userEmail)} //DEJAR ESTE ON CLICKKKKKKK - NO LO COMENTEN
                     className="btn btn-xs btn-accent"
                   >
                     {" "}
