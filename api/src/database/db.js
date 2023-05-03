@@ -4,8 +4,9 @@ const fs = require("fs");
 const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
-
+/* 
 // DB local
+
   //   const sequelize = new Sequelize(
   //    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   //    {
@@ -13,17 +14,22 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
   //      native: false,
   //    }
   //  ); 
+
+
    
 //Render
 const sequelize = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
+
   dialectOptions: {
     ssl: {
       require: true,
     },
   },
 });
+
+  
 
 //Railway
 // const sequelize = new Sequelize(

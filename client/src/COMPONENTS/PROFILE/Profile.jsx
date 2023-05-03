@@ -35,48 +35,47 @@ const Profile = () => {
   
 
   return (
-    <div className="h-full" >
+    <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
+   
       <div >
         {localStorage.getItem("token") ? (
           <HeaderLogin className="mb-4" />
         ) : (
           <Header className="mb-4" />
         )}
-      </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 h-full w-full'>
-          <div  className='flex flex-col justify-center'> 
-      <div className="subtitle">
-        <h1> MY PROFILE</h1>
-      </div>
-      <br />
-      <div className="divForminput">
-        <div className="flex h-full">
-  <div className="w-1/2">
-    <h2 className="subtitle">Your Donations:</h2>
-    <ul className="textColorPink">
+     </div>
+      <h1 className="titleCenter">My Profile</h1>
+      <div className="flex justify-center h-screen w-screen">
+        <div className="flex flex-row w-full lg:w-3/4 mx-4">
 
-                  {donations.map((donation) => (
-                    <li key={donation.id}>
-                      Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
-                    </li>
-                  ))}
-                </ul>
-                <h2 className="text-center-right ml-10">
-                  Total Donations: ${totalDonations}
-                </h2>
-  </div>
+        <div className="max-w-screen-xl mx-auto">
+        <div className="mx-auto max-w-4xl h-96 p-8 bg-white rounded-lg border-black border-2 text-center">
+            <h2 className="titleRight  text-3xl lg:text-2xl mb-4">Your Donations:</h2>
+            <ul className="text text-1xl">
+              {donations.map((donation) => (
+                <li key={donation.id} className="pl-4 mb-3">
+                  Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
+                </li>
+              ))}
+            </ul>
+            <h2 className="textColorPink text-2xl mt-10">
+              Total Donations: ${totalDonations}
+            </h2>
+          </div>
+          </div>
+          <div className="w-1/2 lg:w-2/5 px-2">
+            <ChangePassword />
+          </div>
+        </div>
+      </div>
 
-  <ChangePassword />
-  
-</div>
-</div>
-</div>
-</div>
-      <br></br>
+
+      
       <div  className="fixed bottom-0 left-0 w-full" >
         <Footer className="mt-8" />
       </div>
-    </div>
+      </div>
+
   );
 };
 
