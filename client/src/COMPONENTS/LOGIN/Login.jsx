@@ -153,7 +153,9 @@ function handleCredentialResponse(response){
     	</div>
 
       <div>
-      <p className='flex items-center text-gray-400 text-sm py-2 mt-[-1rem] font-extralight italic'>forgot my password</p>
+      <p className='flex items-center text-gray-400 text-sm py-2 mt-[-1rem] font-extralight italic'>
+        <Link to='/resetpassword' className='underline'>forgot my password</Link>
+      </p>
       {/* cambiarle la fuente */}
 
       </div>
