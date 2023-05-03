@@ -8,7 +8,7 @@ export default function Donations(){
 
     const [error, setError] = useState('Enter your donation');
     const [donation, setDonation] = useState(0);
-    const id = localStorage.getItem('id');
+    const id = localStorage.getItem('id') || "anonymous";
 
     function handleChange(event){
         const amount = event.target.value;
@@ -39,7 +39,7 @@ export default function Donations(){
                     <div className="card-body"> 
                         <h2 className="card-title text-black font-['candara']">Puppy Size Donation</h2>
                         <h5 className="text bg-primary w-fit rounded-full"> AR$ 1.000</h5>
-                        <form action="http://localhost:3001/checkout" method="GET">
+                        <form action={`http://localhost:3001/checkout`} method="GET">
                             <input type="hidden" name="id" value={id} />
                             <input type="hidden" name="title" value="Puppy Size Donation"/>
                             <input type="hidden" name="price" value="1000"/>

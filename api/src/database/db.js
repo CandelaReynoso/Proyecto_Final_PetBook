@@ -6,20 +6,24 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 //DB local
-// const sequelize = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, { logging: false, native: false })
-
-
+    const sequelize = new Sequelize(
+     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+     {
+        logging: false,
+       native: false,
+     }
+   ); 
+   
 //Render
-const sequelize = new Sequelize(DB_DEPLOY, {
-  logging: false,
-  native: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-    },
-  },
-});
+// const sequelize = new Sequelize(DB_DEPLOY, {
+//   logging: false,
+//   native: false,
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//     },
+//   },
+// });
 
 //Railway
 
@@ -121,9 +125,7 @@ Product.belongsTo(Pet, { foreignKey: "petId" });
 Shelter.hasMany(Pet, { foreignKey: "shelterId" });
 Pet.belongsTo(Shelter, { foreignKey: "shelterId" });
 
-//Donations - User --- 1:N
-// Donations.belongsToMany(User, { through: "user_donations" });
-// User.hasMany(Donations, { foreignKey: "donationId" });
+
 
 //Favorites -N-M
 
