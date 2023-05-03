@@ -38,10 +38,15 @@ const ChangePassword = () => {
   };
 
   return (
+    <div className="w-1/2 ml-15">
+    <div className="textarea"> 
+    <div className="text-center">
+        <h2 >Modify Account Settings:</h2>
+    </div>
     <form onSubmit={handleSubmit}>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <div>
-        <label htmlFor="oldPassword">Old Password:</label>
+      <div className="textarea">
+        <label className="ml-4" htmlFor="oldPassword">Old Password:</label>
         <input
           type="password"
           id="oldPassword"
@@ -72,6 +77,8 @@ const ChangePassword = () => {
       </div>
       <button type="submit">Change Password</button>
     </form>
+    </div>
+    </div>
   );
 };
 
