@@ -101,9 +101,9 @@ const Card = (pet) => {
           </p>
           <div className="card-actions justify-center">
             <button onClick={handleShowDetail}>
-              <label htmlFor="my-modal-3" className="btn btn-xs btn-primary">
-                More about {pet.name}
-              </label>
+            <label htmlFor="my-modal-3" className="btn btn-xs btn-primary w-full truncate">
+              More about {pet.name}
+            </label>
             </button>
 
             {isLoggedIn && (
@@ -124,11 +124,15 @@ const Card = (pet) => {
                 </div>
                 {/* </Link> */}
 
+
                 <div className="card-actions m-1">
                   <button className="btn btn-xs btn-accent">Sponsor</button>
                 </div>
               </div>
             )}
+
+            </div>
+)}
 
             {!isLoggedIn && (
               <div className="flex row-auto">
