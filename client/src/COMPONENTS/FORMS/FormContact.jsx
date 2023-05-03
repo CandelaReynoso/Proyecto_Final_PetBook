@@ -206,11 +206,7 @@ const FormContact = () => {
         <div>
           <Footer />
         </div>
-
         </div>
-
-
-
     )
 }
 

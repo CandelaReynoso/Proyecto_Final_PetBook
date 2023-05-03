@@ -29,7 +29,7 @@ import CategoryForm from "./COMPONENTS/FORMS/CategoryForm";
 import ProductForm from "./COMPONENTS/FORMS/ProductForm";
 
 import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
-
+import Profile from "../src/COMPONENTS/PROFILE/Profile";
 
 
 //Instancia de axios para Railway.
@@ -101,7 +101,7 @@ function App() {
         <Route path="/chat" element={<Chatbot />} />
         <Route path='/error' element={<ErrorPage />} />
         <Route path="/favorites" element={<Favorites/>} />
-         
+        <Route path="/profile" element={<Profile/>} />
         
         {JSON.parse(verify) === true && <Route path='/acceptStories' element={<Show />} />}
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}

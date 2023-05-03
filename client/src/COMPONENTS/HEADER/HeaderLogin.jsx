@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
+
+
+
 export default function HeaderLogin() {
   const Menu = (e) => {
     const menu = document.querySelector(".mobile-links");
@@ -144,7 +147,7 @@ export default function HeaderLogin() {
               {" "}
               contact us
             </a>
-
+           
             {/*                USUARIO LOGUEADO               */}
 
             <div className="dropdown dropdown-end">
@@ -159,6 +162,10 @@ export default function HeaderLogin() {
                 tabIndex={0}
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
+            <li>
+                  <a className='text' href="/profile">Profile</a>
+                </li>
+                
                 <li>
                 <a className="text" href="/favorites">Favorites</a>
                 </li>
