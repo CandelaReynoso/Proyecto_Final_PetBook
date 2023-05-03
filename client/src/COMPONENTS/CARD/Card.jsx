@@ -68,6 +68,7 @@ const Card = (pet) => {
           />
           <div>
             {localStorage.getItem("token") && (
+
               <button
                 onClick={handleFavorite}
                 className="btn btn-xs btn-accent"
@@ -86,6 +87,7 @@ const Card = (pet) => {
                   />
                 </svg>
               </button>
+
             )}
           </div>
         </figure>
@@ -109,8 +111,10 @@ const Card = (pet) => {
                 {/* <Link to={`/FormAdoption/${selectedPet?.id}`}> */}
                 <div className="card-actions m-1">
                   <button
+
                     // onClick={handleSelectMascota}
                     onClick={()=>handleSelectMascota(pet,userEmail)} //DEJAR ESTE ON CLICKKKKKKK - NO LO COMENTEN
+
                     className="btn btn-xs btn-accent"
                   >
                     {" "}

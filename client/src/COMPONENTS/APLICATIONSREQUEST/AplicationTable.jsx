@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { aplicationRequest } from "../../Redux/actions";
 
 const AplicationTable = ({
+  index,
   id,
   userId,
   name,
@@ -19,9 +20,8 @@ const AplicationTable = ({
   petImage,
   petAge,
   key,
- 
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const approvedRequest = async () => {
     try {
@@ -39,7 +39,7 @@ const AplicationTable = ({
       if (!response.data) {
         window.alert("solicitud aprobada");
       }
-      dispatch(aplicationRequest())
+      dispatch(aplicationRequest());
     } catch (error) {
       window.alert(error.message);
     }
@@ -53,7 +53,7 @@ const AplicationTable = ({
         headers: { "Content-Type": "application/json", "x-token": token },
         role: "admin_role",
       });
-     dispatch(aplicationRequest())
+      dispatch(aplicationRequest());
       console.log(response.data);
     } catch (error) {
       window.alert(error.message);
@@ -61,71 +61,99 @@ const AplicationTable = ({
   };
 
   return (
-    <>
-      {/* aca acomodalo como quieras niki usa tu creatividad para agregar los textos que veas necesarios
+    <div key={key}>
+      <table className="table table-compact w-full">
+        {/* aca acomodalo como quieras niki usa tu creatividad para agregar los textos que veas necesarios
        los h2 son de ejemplo nomas */}
 
-      <h2>Postulante {name}</h2>
-      <h2>candidato {petName}</h2>
-      <tbody key={key}>
-        <tr>
-          <td className="py-2">user name</td>
-          <td className="text-gray-500">{name}</td>
+        <thead>
+          <tr>
+            <th>{index + 1}</th>
+            <th></th>
+            <th className="text-xl text-gray-700">Postulante {name}</th>
+            <th className="text-xl text-gray-700">candidato {petName}</th>
+            <th></th>
+          </tr>
+        </thead>
 
-          <td>name pet</td>
-          <td>{petName}</td>
-          <img
-            className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
-            src={petImage}
-            alt=""
-          />
-        </tr>
+        <tbody>
+          <tr>
+            <th></th>
+            <td>name</td>
+            <td>{name}</td>
+            <td>petName</td>
+            <td>{petName}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">email</td>
-          <td className="text-gray-500">{email}</td>
-          <td>specie</td>
-          <td>{petSpecie}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>email</td>
+            <td>{email}</td>
+            <td>petSpecie</td>
+            <td>{petSpecie}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">address</td>
-          <td className="text-gray-500">{address}</td>
-          <td>age</td>
-          <td>{petAge}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>address</td>
+            <td>{address}</td>
+            <td>petAge</td>
+            <td>{petAge}</td>
+          </tr>
+        
 
-        <tr>
-          <td className="py-2">postalCode</td>
-          <td className="text-gray-500">{postalCode}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>age</td>
+            <td>{age}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">age</td>
-          <td className="text-gray-500">{age}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>postalCode</td>
+            <td>{postalCode}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">facebook</td>
-          <td className="text-gray-500">{facebook}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>Facebook</td>
+            <td>{facebook}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">instagram</td>
-          <td className="text-gray-500">{instagram}</td>
-        </tr>
+          <tr>
+            <th></th>
+            <td>Instagram</td>
+            <td>{instagram}</td>
+          </tr>
 
-        <tr>
-          <td className="py-2">name</td>
-          <td className="text-gray-500">{name}</td>
-        </tr>
-      </tbody>
+          <tr>
+            <th></th>
+            <td></td>
+            <td></td>
+            <img
+              className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
+              src={petImage}
+              alt=""
+            />
+          </tr>
+          <tr>
+            <td>
+              <button onClick={() => approvedRequest()}>aceptar</button>
+            </td>
 
-      <button onClick={() => approvedRequest()}>aceptar</button>
+            <td>
+              {" "}
+              <button onClick={() => declinedRequest()}> rechazar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <br />
-      <button onClick={() => declinedRequest()}> rechazar</button>
-    </>
+    </div>
   );
 };
 
 export default AplicationTable;
+
+

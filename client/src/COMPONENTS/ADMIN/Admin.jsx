@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { aplicationRequest, getUsers } from "../../Redux/actions";
+import {
+  aplicationRequest,
+  getApprovedHistory,
+  getDeclinedHistory,
+  getUsers,
+  historysRequest,
+} from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import TablaUsers from "./TablaUsers";
 import { FaBell, FaBellSlash } from "react-icons/fa";
@@ -12,6 +18,12 @@ import axios from "axios";
 const Admin = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  
+ useEffect(()=>{
+ dispatch(getApprovedHistory())
+ dispatch(getDeclinedHistory())
+ },[])
+  
 
   useEffect(() => {
     dispatch(getUsers());
@@ -19,18 +31,17 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(aplicationRequest());
-    console.log(state?.requestAdoption.length);
+    dispatch(historysRequest());
   }, []);
 
   const deleteLogicUser = async (id) => {
     try {
-      const token = localStorage.getItem('token');
-      let totalUsers = state?.users?.users?.length;
-      await axios.delete(`/users/${id}`,{
-        headers: { 'Content-Type': 'application/json',
-          "x-token": token }
+      const token = localStorage.getItem("token");
+      let totalUsers = state.users.users.length;
+      await axios.delete(`/users/${id}`, {
+        headers: { "Content-Type": "application/json", "x-token": token },
       });
-      let currentUsers = state?.users?.users?.length;
+      let currentUsers = state.users.users.length;
       if ((totalUsers = currentUsers)) {
         window.alert("algo salio mal");
       } else {
@@ -144,7 +155,8 @@ const Admin = () => {
             <div className="navbar- dropdown ">
               <ul className="menu menu-horizontal px-1 ">
                 <li tabIndex={0}>
-                  {state.requestAdoption.length ? (
+                  {state.requestAdoption.length ||
+                  state.historysRequest.length ? (
                     <a>
                       <FaBell />
                     </a>
@@ -155,13 +167,18 @@ const Admin = () => {
                   )}
 
                   <ul className="menu dropdown-content p-2 bg-base-100 w-56 rounded-box text group-hover:bg-primary">
-                    <li>Storys requests</li>
                     <li className="text-1xl text-gray-600 font-medium lg:block">
-                    <Link to={"/AplicationRequest"}>
-                    adoption applications{" "}
-                      {" " + state?.requestAdoption.length}
-                    </Link>
-                    
+                      <Link to={"/acceptStories"}>
+                        Storys requests{" "}
+                        {" " + ":" + " " + state?.historysRequest.length}
+                      </Link>
+                    </li>
+
+                    <li className="text-1xl text-gray-600 font-medium lg:block">
+                      <Link to={"/AplicationRequest"}>
+                        adoption applications{" "}
+                        {" " + ":" + " " + state?.requestAdoption.length}
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -170,14 +187,7 @@ const Admin = () => {
 
             <div className="flex space-x-4">
               {/* BOTON DE MENSAJES */}
-              <button
-                aria-label="chat"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200" >
-              {/*  <BiMessageDetail className="10"/> */}
-                {/* <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg> */}
-              </button>
+             
 
               {/* CAMPANA DE NOTIFICACIONES */}
               <button
@@ -248,7 +258,51 @@ const Admin = () => {
             {/* COLUMNA 3 */}
             <div>
               <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-                <h5 className="text-xl text-gray-700">otro dato</h5>
+              <h5 className="text-xl text-gray-600 text-center">
+                    historial de soicitudes de adopcion
+                  </h5>
+
+                <div className="overflow-x-auto">
+                  <table className="table table-compact w-full">
+                    <thead>
+                      <tr>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <h2>aprobadas</h2>
+                    {state?.requesAdoptionHistorialApproved?.adoptions?.map((request,index)=>{
+                    return(
+                     <tr>
+                     <th>{index+1}</th>
+                     <td>name</td>
+                     <td>{request.name}</td>
+                     <td>email</td>
+                     <td>{request.email}</td>
+                     <td>status</td>
+                     <td>{request.status}</td>
+                   </tr>
+                    )
+                    })}
+                     <h2>desaprobadas</h2>
+                    {state?.requesAdoptionHistorialDeclined?.adoptions?.map((request,index)=>{
+                    return(
+                     <tr>
+                     <th>{index+1}</th>
+                     <td>name</td>
+                     <td>{request.name}</td>
+                     <td>email</td>
+                     <td>{request.email}</td>
+                     <td>status</td>
+                     <td>{request.status}</td>
+                   </tr>
+                    )
+                    })}
+                    
+                     
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             {/* ***************************** */}
