@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { validateData } from "../FORMS/validations.js"
+import { Link } from "react-router-dom";
 
 
 const FormCreatePet = () => {
@@ -328,11 +329,18 @@ const FormCreatePet = () => {
                     Create
                   </button>
                 </div>
+                <br />
+                <Link to={"/Admin"}>
+          <button className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"> Back</button>
+        </Link>
+                
               </div>
             </div>
           </div>
         </div>
       )}
+      
+     
     </div>
   );
 };
