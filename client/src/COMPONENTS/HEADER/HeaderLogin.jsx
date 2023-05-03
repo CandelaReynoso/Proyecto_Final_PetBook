@@ -166,11 +166,10 @@ export default function HeaderLogin() {
                   <a className='text' href="/profile"> My Profile</a>
                     </li>
                 <li>
-                <a className='text' href="/favorites">My Favorites</a>
-                </li>
-                {/* <Link to='/changepassword'>Change Password</Link> */}
-                {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
-                <li>
+
+                <a className='text' href="/favorites">Favorites</a>
+                
+
                   <button className='text' onClick={() => userLogout()}>Logout</button>
                 </li>
 
