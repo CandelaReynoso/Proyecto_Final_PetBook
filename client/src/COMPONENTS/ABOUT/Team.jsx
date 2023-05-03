@@ -82,7 +82,7 @@ export default function Team (){
                           <p className="text-sm font-medium uppercase tracking-widest  text-pink-500"> Front-End team</p>
                           
                             <p className="text-sm text-white">
-                              Cande is a full stack developer, inclined for front-end. Always committed to delivering top-quality work.
+                              Cande is a full stack developer, inclined for front-end. Always committed to delivering top-quality work. Consistently exceeds expectations and impresses clients and colleagues alike. 
                             </p>
                             <br />
                             <p className="text-sm text-white">
@@ -188,7 +188,7 @@ export default function Team (){
           {/* CAMILO */}
           <div class="p-4">
           <a className="group relative bg-black lg:h-full flex justify-center items-center">
-                      <img alt="Camilo-foto" src="/.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+                      <img alt="Camilo-foto" src="camilo-tom.jpg" className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
   
                       <div className="relative p-2 sm:p-6 lg:p-4">  
                         <div className="mt-20 sm:mt-20 lg:mt-20">
@@ -202,7 +202,7 @@ export default function Team (){
                             </p>
                             <br />
                             <p className="text-sm text-white">
-                            {/* resumen de la mascota */}
+                            Tom is an incredibly adorable and playful cat who loves nothing more than curling up for a long nap or chowing down on some delicious chicken. 
                             </p>
                             <Link><button><img src="/git.png" alt="" className='w-8 h-8'/></button></Link>
                             <Link><button><img src="/linkedin.png" alt="" className='w-8 h-8'/></button></Link>

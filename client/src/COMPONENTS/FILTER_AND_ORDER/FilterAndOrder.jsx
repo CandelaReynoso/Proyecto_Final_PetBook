@@ -16,17 +16,22 @@ const FilterAndOrder = () => {
   };
 
   useEffect(() => {
-   
+    
     if (state.pets.params !== undefined) {
       window.localStorage.setItem(
-        "LastQuerysParams",
+        "lastQuerys",
         JSON.stringify(state.pets.params)
       );
+      // window.localStorage.setItem(
+      //   "LastQuerysParams",
+      //   JSON.stringify(state.pets.params)
+      // );
     }
   }, [checked, state.pets.params]);
 
   useEffect(() => {
-    let query = window.localStorage.getItem("LastQuerysParams")
+    let query = window.localStorage.getItem("lastQuerys")
+    // let query = window.localStorage.getItem("LastQuerysParams")
     if (!state.pets.params && query) {
      let parse = JSON.parse(query)
      dispatch(getPets(`?${createSearchParams(parse)}`))
@@ -44,7 +49,7 @@ const FilterAndOrder = () => {
 <div >
           <div className="navbar lg:hidden">
 
-            <div className="navbar-start dropdown">
+            <div className="navbar-start dropdown text">
               <ul className="menu menu-horizontal px-1 ">
 
                 <li tabIndex={0}>
@@ -52,39 +57,39 @@ const FilterAndOrder = () => {
                     < BsFilterLeft />
                   </a>
                     <ul className="menu dropdown-content p-2 bg-base-100 w-56 rounded-box text group-hover:bg-primary">
-                    <li><select className="m-2" name="specie" onChange={(e) => handleClick(e)}>
-                    <option value="Default">specie</option>
-                          <option value="Cat">Cat</option>
-                          <option value="Dog">Dog</option>
-                          <option value="Rabbit">Rabbit</option>
-                          <option value="Guinea Pig">Guinea Pig</option>
-                          <option value="Parrot">Parrot</option>
+                    <li><select className="m-2 text" name="specie" onChange={(e) => handleClick(e)}>
+                    <option className="text" value="Default">specie</option>
+                          <option className="text" value="Cat">Cat</option>
+                          <option className="text" value="Dog">Dog</option>
+                          <option className="text" value="Rabbit">Rabbit</option>
+                          <option className="text" value="Guinea Pig">Guinea Pig</option>
+                          <option className="text" value="Parrot">Parrot</option>
                     </select></li>
 
-                      <li><select className="m-2" onChange={(e) => handleClick(e)} name="gender">
+                      <li><select className="text m-2" onChange={(e) => handleClick(e)} name="gender">
                           <option className="text" value="Default">
                             gender
                           </option>
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
+                          <option className="text" value="Male">Male</option>
+                          <option className="text" value="Female">Female</option>
                         </select></li>
 
 
                       <li>
-                      <select className="m-2" onChange={(e) => handleClick(e)} name="size">
-                          <option value="Default">size</option>
-                          <option value="Small">Small</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Large">Large</option>
+                      <select className="text m-2" onChange={(e) => handleClick(e)} name="size">
+                          <option className="text" value="Default">size</option>
+                          <option className="text" value="Small">Small</option>
+                          <option className="text" value="Medium">Medium</option>
+                          <option className="text" value="Large">Large</option>
                         </select>
                       </li>
 
                         <li>
-                        <select className="m-2" onChange={(e) => handleClick(e)} name="typeOrder">
-                          <option value="Default">sort by</option>
-                          <option value="name">name</option>
-                          <option value="age">age</option>
-                          <option value="weight">weight</option>
+                        <select className="text m-2" onChange={(e) => handleClick(e)} name="typeOrder">
+                          <option className="text" value="Default">sort by</option>
+                          <option className="text" value="name">name</option>
+                          <option className="text" value="age">age</option>
+                          <option className="text" value="weight">weight</option>
                         </select>
                         </li>
 
@@ -105,7 +110,7 @@ const FilterAndOrder = () => {
         className="btn btn-primary btn-xs h-max-1 h-min-1"
         onClick={handlerFilter}
       >
-        Filter & Order
+        Filter
       </button>
             </div>
           </div>
@@ -113,41 +118,41 @@ const FilterAndOrder = () => {
 
 {/* FILTROS NORMALES */}
     <div className= "hidden lg:navbar m-2">
-      <select className="m-2" name="specie" onChange={(e) => handleClick(e)}>
-        <option value="Default">specie</option>
-        <option value="Cat">Cat</option>
-        <option value="Dog">Dog</option>
-        <option value="Rabbit">Rabbit</option>
-        <option value="Guinea Pig">Guinea Pig</option>
-        <option value="Parrot">Parrot</option>
+      <select className="text m-2" name="specie" onChange={(e) => handleClick(e)}>
+        <option className="text" value="Default">specie</option>
+        <option className="text" value="Cat">Cat</option>
+        <option className="text" value="Dog">Dog</option>
+        <option className="text" value="Rabbit">Rabbit</option>
+        <option  className="text" value="Guinea Pig">Guinea Pig</option>
+        <option className="text" value="Parrot">Parrot</option>
       </select>
 
-      <select className="m-2" onChange={(e) => handleClick(e)} name="gender">
+      <select className="text m-2" onChange={(e) => handleClick(e)} name="gender">
         <option className="text" value="Default">
           gender
         </option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
+        <option className="text" value="Male">Male</option>
+        <option className="text" value="Female">Female</option>
       </select>
 
-      <select className="m-2" onChange={(e) => handleClick(e)} name="size">
-        <option value="Default">size</option>
-        <option value="Small">Small</option>
-        <option value="Medium">Medium</option>
-        <option value="Large">Large</option>
+      <select className="text m-2" onChange={(e) => handleClick(e)} name="size">
+        <option className="text" value="Default">size</option>
+        <option className="text" value="Small">Small</option>
+        <option className="text" value="Medium">Medium</option>
+        <option className="text" value="Large">Large</option>
       </select>
 
-      <select className="m-2" onChange={(e) => handleClick(e)} name="typeOrder">
-        <option value="Default">sort by</option>
-        <option value="name">name</option>
-        <option value="age">age</option>
-        <option value="weight">weight</option>
+      <select className="text m-2" onChange={(e) => handleClick(e)} name="typeOrder">
+        <option className="text" value="Default">sort by</option>
+        <option className="text" value="name">name</option>
+        <option className="text" value="age">age</option>
+        <option className="text" value="weight">weight</option>
       </select>
 
-      <select className="m-2" onChange={(e) => handleClick(e)} name="sort">
-        <option value="Default">asc -desc</option>
-        <option value="ASC">ASC</option>
-        <option value="DESC">DESC</option>
+      <select className=" text m-2" onChange={(e) => handleClick(e)} name="sort">
+        <option className="text" value="Default">asc -desc</option>
+        <option className="text" value="ASC">ASC</option>
+        <option className="text" value="DESC">DESC</option>
       </select>
 
       <button

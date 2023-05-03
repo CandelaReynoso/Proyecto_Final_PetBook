@@ -10,7 +10,7 @@ export default function ErrorPage () {
     return (
         <div>
             
-            <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-[100hv] h-[100hv]">
+            <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-fit h-fit">
 
                 <div>
                 {localStorage.getItem('token') ? <HeaderLogin className='mb-4' /> : <Header className="mb-4" /> }    
@@ -28,7 +28,7 @@ export default function ErrorPage () {
                     </div>
 
                     <div className='hidden sm:flex flex-col justify-center'>
-                         <div className="flex justify-center items-center"> <img src="./cat404.png" alt="" width='500px'/> </div>
+                         <div className="flex justify-center items-center"> <img src="./cat404.png" alt="" width='400px'/> </div>
                     </div>
 
 

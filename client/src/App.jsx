@@ -22,7 +22,18 @@ import FormHistory from "./COMPONENTS/HISTORY-ADOPTADOS/FormHistory";
 import Admin from "./COMPONENTS/ADMIN/Admin";
 import AplicationsRequest from "./COMPONENTS/APLICATIONSREQUEST/AplicationsRequest";
 import ErrorPage from "./COMPONENTS/UTILS/ErrorPage";
+import Show from "./COMPONENTS/SHOW_IN_COROUSEL/Show";
 import { useNavigate } from "react-router-dom";
+
+import CategoryForm from "./COMPONENTS/FORMS/CategoryForm";
+import ProductForm from "./COMPONENTS/FORMS/ProductForm";
+
+import Favorites from "./COMPONENTS/AVALIBLE_PETS_ADOPTION/Favorites";
+import ResetPassword from "./COMPONENTS/LOGIN/ResetPassword";
+import ChangePassword from "./COMPONENTS/LOGIN/ChangePassword";
+
+import Profile from "../src/COMPONENTS/PROFILE/Profile";
+
 
 
 //Instancia de axios para Railway.
@@ -36,7 +47,7 @@ axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
+ 
 
   const [admin, setAdmin] = useState("");
   
@@ -93,11 +104,21 @@ function App() {
         <Route path="/store" element={<Shop />} />
         <Route path="/chat" element={<Chatbot />} />
         <Route path='/error' element={<ErrorPage />} />
+        <Route path="/favorites" element={<Favorites/>} />
+
+        <Route path="/profile" element={<Profile/>} />
+
+        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/changepassword" element={<ChangePassword />} />
+
+         
         
-        
+        {JSON.parse(verify) === true && <Route path='/acceptStories' element={<Show />} />}
         {JSON.parse(verify) === true &&   <Route path="/FormCreatePet" element={<FormCreatePet />} />}
         {JSON.parse(verify) === true &&   <Route path="/admin" element={<Admin />} />}
         {JSON.parse(verify) === true && <Route path="/AplicationRequest" element={<AplicationsRequest/>}></Route>}
+        {JSON.parse(verify) === true && <Route path="/CategoryForm" element={<CategoryForm />} />}
+        {JSON.parse(verify) === true && <Route path="/ProductForm" element={<ProductForm />} />}
         <Route path="*" element={<Navigate to={"/error"} />} />
        
       </Routes>

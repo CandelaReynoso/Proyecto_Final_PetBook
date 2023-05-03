@@ -4,15 +4,23 @@ import Footer from "../FOOTER/Footer";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import queryString from 'query-string';
+import { useDispatch } from "react-redux";
+import { loadDonation } from "../../Redux/actions";
 
 
 export default function Successfully(){
 
+    const dispatch = useDispatch();
     const params = queryString.parse(location.search);
-    const id = params.id;
+    const userId = params.id;
     const amount = params.amount;
+
+
+    useEffect(() => {
+        dispatch(loadDonation(userId, amount));
+      }, [dispatch]);
 
     return (
         <div>

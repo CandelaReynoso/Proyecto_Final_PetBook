@@ -32,7 +32,7 @@ const getHistoryUserPet = async () => {
     try {
         const data = await User_pet.findAll({
             where: {
-                show: false,
+                show: true,
                 statusHistory: true
             },
             include: [
@@ -51,9 +51,50 @@ const getHistoryUserPet = async () => {
 
         return data;
     } catch (error) {
-        console.log(error)
         return { error }
     }
 }
 
-module.exports = { getPetsUserController, getHistoryUserPet };
+const getacceptStories = async () => {
+    try {
+        const data = await User_pet.findAll({
+            where: {
+                statusHistory: true
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['nickname', 'email', 'role']
+                },
+                {
+                    model: Pet,
+                    attributes: ['name', 'image', 'specie', 'gender', 'size', 'weight']
+                }
+            ],
+            attributes: ['history', 'image', 'show', 'userId', 'petId']
+        });
+
+        return data
+    } catch (error) {
+        return { error: error }
+    }
+}
+
+const getHistoryNotifications = async () => {
+    try {
+        const data = await User_pet.findAll({
+            where: {
+                statusHistory: true,
+                show: false
+            }
+        });
+
+        if (!data) throw new Error("no notifications");
+
+        return data;
+    } catch (error) {
+        return { error: error }
+    }
+}
+
+module.exports = { getPetsUserController, getHistoryUserPet, getacceptStories, getHistoryNotifications };

@@ -1,69 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { useDispatch, useSelector} from 'react-redux';
-import { getPets } from '../../Redux/actions';
-import styles from '../CARD/Card.module.css';
-import AdoptionForm from '../FORMS/FormAdoption';
-import {addFavorite, deleteFavorite } from '../../Redux/actions';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Card = (pet,{weight}) => {
-  const [isFav, setIsFav] = useState();
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
-
+const Card = (pet) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const myFavorites = useSelector(state => state.favorites);  
-  const pets = useSelector((state) => state.pets);
+
   const [showDetail, setShowDetail] = useState(false);
   let [selectedPet, setSelectedPet] = useState(null);
-  const userEmail = localStorage.getItem('email');
+  const userEmail = localStorage.getItem("email");
   const [selectedMascota, setSelectedMascota] = useState(null); // create state variable
-  const user = useSelector(state => state.user);
-
-
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
     }
-
   }, []);
 
-const idUser = localStorage.getItem('id');
-const idPet = pet.id
-console.log('ID USUARIO: ' + idUser);
-console.log('ID PET :' + pet.id);
+  const handleFavorite = async () => {
+    //HANDLE LUCAS
 
+    const userId = window.localStorage.getItem("id");
 
-  const handleFavorite = () => {
-    if(isFav) {
-       setIsFav(false);
-       dispatch(deleteFavorite(pet.id, idUser))
-    }
-    else {
-       setIsFav(true);
-       dispatch(addFavorite({
-        id: pet.id,
+    try {
+      axios.post("/favorite", {
         image: pet.image,
         name: pet.name,
-        specie: pet.specie,
-        gender: pet.gender,
         size: pet.size,
         weight: pet.weight,
         age: pet.age,
-        idUser: idUser 
-      }));
+        gender: pet.gender,
+        specie: pet.specie,
+        idUser: userId,
+        petId: pet.id,
+      });
+    } catch (error) {
+      window.alert(error.message);
     }
-  }
-  
-  console.log('Mis fav:'+ JSON.stringify(myFavorites));
-console.log(pet.weight)
-
-  const handleSelectMascota = (e) => {
-    e.preventDefault();
-    setSelectedMascota(pet); // update state variable with pet's data
   };
+
+  const navigate = useNavigate(); //SELECT NIKI
+  const handleSelectMascota = (pet, userEmail) => {
+    setSelectedMascota(pet);
+    navigate(`/FormAdoption/${pet?.id}`, { pet, userEmail });
+  };
+
 
 
   const handleShowDetail = () => {
@@ -73,107 +54,146 @@ console.log(pet.weight)
 
   const handleCloseDetail = () => {
     setShowDetail(false);
-    selectedPet = null
+    selectedPet = null;
   };
 
-
   return (
-
-
     <div>
-      
-           <div className="card card-side bg-base-100 shadow-xl p-2 m-3">
-            <figure> 
-              <img className='w-[7rem] rounded-3xl' src={pet?.image} alt={pet?.name} />
-              <div>
-  { localStorage.getItem('token') && 
-    (isFav ? (
-      <button onClick={handleFavorite}>💚</button>
-    ) : (
-      <button onClick={handleFavorite}>🤍</button>
-    ))
-  } 
-              </div>    
-             {/*  <div onClick={handleFavoriteClick}>
-        {isLoggedIn ? (
-          <p
-            className={`text-gray-500 text-sm absolute top-0 right-0 z-10 ${
-              favorite ? "text-green-500" : ""
-            }`}
-          >
-            &#x1F90D;
-          </p>
-        ) : (
-          <p></p>
-        )}
-
-    </div> */}
-             </figure>
-            <div className="card-body">
-              <h2 className="card-title subtitle">{pet?.name?.toUpperCase()}</h2>
-              <p className='text'> 
-              gender: {pet?.gender}
-              <br />
-              age: {pet?.age} 
-              <br />
-
-              </p>
-              <div className="card-actions justify-end">
-              <button onClick={handleShowDetail}><label htmlFor="my-modal-3" className="btn btn-xs btn-primary">More about {pet.name}</label></button>
-              </div>
-            </div>
+      <div className="card min-h-[18rem] max-h-[18em] max-w-screen card-side bg-base-100 shadow-xl p-3 mx-2">
+        <figure>
+          <img
+            className="w-[70%] rounded-3xl"
+            src={pet?.image}
+            alt={pet?.name}
+          />
+          <div>
+            {localStorage.getItem("token") && (
+              <button
+                onClick={handleFavorite}
+                className="btn btn-xs btn-accent"
+              ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
-              
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title subtitle">{pet?.name?.toUpperCase()}</h2>
+          <p className="text">
+            gender: {pet?.gender}
+            <br />
+            age: {pet?.age}
+            <br />
+          </p>
+          <div className="card-actions justify-center">
+            <button onClick={handleShowDetail}>
+            <label htmlFor="my-modal-3" className="btn btn-xs btn-primary w-full truncate">
+              More about {pet.name}
+            </label>
+            </button>
 
-
-          {showDetail && (
-              <div>
-                <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-                <div className="modal">
-                  <div className="modal-box relative max-w-[18rem] sm:max-w-[32rem]">
-                    <label htmlFor="my-modal-3" onClick={handleCloseDetail} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    
-                    <div className="">pu
-
-            {/* <figure className="w-2/3"><img className="card-body" src={pet.image} alt={pet.name} /></figure> */}
-            <div >
-              <h2 className="titleCenter">{pet.name}</h2>
-              <ul className="text bg-primary w-fit rounded-full max-w-lg mx-auto">
-                <div className="text-center">
-                  <h2>{selectedPet?.name}</h2>
-                  <li>Specie: {selectedPet?.specie}</li>
-                  <li>Gender: {selectedPet?.gender}</li>
-                  <li>Size: {selectedPet?.size}</li>
-                  <li>Weight: {selectedPet?.weight} kg</li>
-                  <li>Age: {selectedPet?.age} years</li>
-                  <li>{selectedPet?.adopted ? 'Is already adopted' : 'Is still waitng for a home'}</li>
+            {isLoggedIn && (
+              <div className="flex row-auto">
+                {/* <Link to={`/FormAdoption/${selectedPet?.id}`}> */}
+                <div className="card-actions m-1">
+                  <button
+                    // onClick={handleSelectMascota}
+                    onClick={()=>handleSelectMascota(pet,userEmail)} //DEJAR ESTE ON CLICKKKKKKK - NO LO COMENTEN
+                    className="btn btn-xs btn-accent"
+                  >
+                    {" "}
+                    adopt{" "}
+                  </button>
+                  {/* {selectedMascota && (
+                          <AdoptionForm pet={pet} userEmail={userEmail} />
+                        )}{" "}    */}
+                  {/* pass selected pet's data as prop */}
                 </div>
-              </ul>
+                {/* </Link> */}
 
-              <div className=''>
-                <Link to = {`/FormAdoption/${selectedPet?.id}`}>
-                  <div className="card-actions justify-center m-1">
-                    <button onClick={handleSelectMascota} className="btn btn-xs btn-accent">adopt</button>
-                  {selectedMascota && <AdoptionForm pet={pet} userEmail={userEmail} />} {/* pass selected pet's data as prop */} 
-                  </div>
-                </Link>
-              
-              <div className="card-actions  justify-center m-1">
-                <button className="btn btn-xs btn-accent">Sponsor</button>
-              </div>
-              </div>
-              
-            </div>
-                    </div>
-                    
-                </div>
+
+                <div className="card-actions m-1">
+                  <button className="btn btn-xs btn-accent">Sponsor</button>
                 </div>
               </div>
             )}
-    </div>
-     
-    
+
+            </div>
+
+
+            {!isLoggedIn && (
+              <div className="flex row-auto">
+                <div className="card-actions m-1">
+                  <button
+                    onClick={() => alert("Please log in to adopt this pet.")}
+                    className="btn btn-xs btn-accent"
+                  >
+                    {" "}
+                    adopt{" "}
+                  </button>
+                </div>
+                <div className="card-actions m-1">
+                  <button className="btn btn-xs btn-accent">Sponsor</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {showDetail && (
+          <div>
+            <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box relative max-w-[18rem] sm:max-w-[32rem]">
+                <label
+                  htmlFor="my-modal-3"
+                  onClick={handleCloseDetail}
+                  className="btn btn-sm btn-circle absolute right-2 top-2"
+                >
+                  ✕
+                </label>
+
+                <div className="">
+                  {/* <figure className="w-2/3"><img className="card-body" src={pet.image} alt={pet.name} /></figure> */}
+                  <div>
+                    <h2 className="titleCenter">{pet.name}</h2>
+                    <ul className="text bg-primary w-fit rounded-full max-w-lg mx-auto">
+                      <div className="text-center">
+                        <h2>{selectedPet?.name}</h2>
+                        <li>Specie: {selectedPet?.specie}</li>
+                        <li>Gender: {selectedPet?.gender}</li>
+                        <li>Size: {selectedPet?.size}</li>
+                        <li>Weight: {selectedPet?.weight} kg</li>
+                        <li>Age: {selectedPet?.age} years</li>
+                        <li>
+                          {selectedPet?.adopted
+                            ? "Is already adopted"
+                            : "Is still waitng for a home"}
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      
+
   );
 };
- 
-export default Card;
+
+export default Card;

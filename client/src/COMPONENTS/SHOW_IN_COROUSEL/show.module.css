@@ -1,0 +1,16 @@
+.principal {
+    display: flex;
+    flex-direction: column;
+}
+
+.principal h1 {
+    font-size: x-large;
+    position: relative;
+    left: 20px;
+}
+
+.contTable {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

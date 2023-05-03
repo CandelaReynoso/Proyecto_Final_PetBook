@@ -10,9 +10,11 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
   GET_USERS,
-  ADD_FAVORITE,
-  DELETE_FAVORITE,
-  GET_FAVORITES
+
+  APLICATION_REQUEST,
+  SEARCH_APLICATION_REQUEST,
+  GET_FAVORITES,
+  FILTER_PRODUCTS
 
 } from "./types";
 
@@ -161,8 +163,6 @@ export const sendEmail = (name, lastname, email, message) => {
 //     }
 //   };
 
-
-
 export const getUsers = () => {
   return async function (dispatch) {
     try {
@@ -172,11 +172,10 @@ export const getUsers = () => {
         payload: response.data,
       });
     } catch (error) {
-     window.alert(error.message)
+      window.alert(error.message);
     }
   };
 };
-
 
 export const sendAdoptionRequest =
   (userEmail, petName, message) => async (dispatch) => {
@@ -195,93 +194,144 @@ export const sendAdoptionRequest =
     }
   };
 
+// ------------------------- FAVORITOS ----------------------------//
 
-  // ------------------------- FAVORITOS ----------------------------//
-
-  export const addFavorite = (petData) => async (dispatch) => {
-    try {
-      const response = await axios.post('/favorite', petData);
-      console.log('ADD FAVORITE: ' + petData.id);
-      console.log('PET DATA  ' + petData);
-      const addedFavorite = response.data;
-      dispatch({ type: ADD_FAVORITE, payload: addedFavorite });
-    } catch (error) {
-      console.log(error);
-    }
+export const getFavorites = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorite?userId=${userId}`);
+    dispatch({ type: GET_FAVORITES, payload: response.data });
+  } catch (error) {
+    console.log(error);
   }
-    
-  export const deleteFavorite = (idPet, idUser) => async (dispatch) => {
-    try {
-      const response = await axios.delete(`/favorite?idPet=${idPet}&idUser=${idUser}`);
-      dispatch({ type: DELETE_FAVORITE, payload: JSON.parse(response.data) });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  export const getFavorites = (userId) => async (dispatch) => {
-    try {
-      const response = await axios.get(`/favorite?userId=${userId}`);
-      dispatch({ type: GET_FAVORITES, payload: response.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+};
 
 //----------------------------------PRODUCTOS-----------------------------//
 
-
- export const getAllProducts = (
-  id,
-  name,
-  status,
-  userId,
-  image,
-  quantity,
-  available,
-  price,
-  category,
-  description,
-  weight,
-  size,
-  specie,
-  consumption_age,
-  discount,
-  categoryId,
-  petId,
-  user,
-  productCategory,) => async (dispatch) => {
-  try { 
-    const res = await axios.get('/products', {
-      id,
-      name,
-      status,
-      userId,
-      image,
-      quantity,
-      available,
-      price,
-      category,
-      description,
-      weight,
-      size,
-      specie,
-      consumption_age,
-      discount,
-      categoryId,
-      petId,
-      user,
-      productCategory,
+export const getAllProducts =
+  (
+    id,
+    name,
+    status,
+    userId,
+    image,
+    quantity,
+    available,
+    price,
+    category,
+    description,
+    weight,
+    size,
+    specie,
+    consumption_age,
+    discount,
+    categoryId,
+    petId,
+    user,
+    productCategory
+  ) =>
+  async (dispatch) => {
+    try {
+      const res = await axios.get("/products", {
+        id,
+        name,
+        status,
+        userId,
+        image,
+        quantity,
+        available,
+        price,
+        category,
+        description,
+        weight,
+        size,
+        specie,
+        consumption_age,
+        discount,
+        categoryId,
+        petId,
+        user,
+        productCategory,
       });
-    
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.error(err);
+
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  
+  export const filterProducts = (querys) =>{
+   return async function(dispatch){
+    try {
+    console.log(querys);
+      let response = await axios.get(`/filteredProducts${querys}`)
+      if (response.data){
+      console.log(response.data);
+       return dispatch({
+       type:FILTER_PRODUCTS,
+       payload: response.data
+       })
+      }
+    } catch (error) {
+      
+    }
+   }
   }
-}; 
+
+
+export const aplicationRequest = () => {
+  return async function (dispatch) {
+    try {
+      let request = await axios(`/adoptions`);
+      return dispatch({
+        type: APLICATION_REQUEST,
+        payload: request?.data?.adoptions,
+      });
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
+
+export const searchAplicationRequest = (name) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`/adoptions?name=${name}`);
+      if (response.data.adoptions.length) {
+        return dispatch({
+        type: SEARCH_APLICATION_REQUEST,
+        payload : response.data.adoptions
+        })
+      } else {
+        return;
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
+
+export const loadDonation = (id, amount) => async () =>  {
+  
+  try {
+    const response = await axios.post(`/donations?id=${id}&amount=${amount}`);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+
+
+
+
+
+
 
 

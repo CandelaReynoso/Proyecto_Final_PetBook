@@ -3,9 +3,11 @@ const findFavsUser = require("../controllers/findFavsUser");
 const deleteFavorite = require("../controllers/deleteFavorite");
 
 const postFavoritesHandler = async (req, res) => {
-  const {image,name,specie,gender,size,weight,age,idUser} = req.body;
+  const {id, image,name,specie,gender,size,weight,age,idUser,petId} = req.body;
+  console.log(petId);
+  
   try {
-    const result = await addFavoritesPets(image,name,specie,gender,size,weight,age,idUser);
+    const result = await addFavoritesPets(id, image,name,specie,gender,size,weight,age,idUser,petId);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
