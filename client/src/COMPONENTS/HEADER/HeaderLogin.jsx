@@ -167,10 +167,6 @@ export default function HeaderLogin() {
                     </li>
                 <li>
                 <a className='text' href="/favorites">Favorites</a>
-                </li>
-                <Link to='/changepassword'>Change Password</Link>
-                {/* <li><a>Settings <span className="badge">New</span> </a></li> */}
-                <li>
                   <button className='text' onClick={() => userLogout()}>Logout</button>
                 </li>
 
