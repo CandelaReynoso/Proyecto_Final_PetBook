@@ -10,12 +10,13 @@ import {
   SEND_ADOPTION_REQUEST,
   GET_PRODUCTS,
   GET_USERS,
-
   APLICATION_REQUEST,
   SEARCH_APLICATION_REQUEST,
   GET_FAVORITES,
-  FILTER_PRODUCTS
-
+  FILTER_PRODUCTS,
+  HISTORYS_REQUEST,
+  GET_HISTORY_APPROVED,
+  GET_HISTORY_DECLINED,
 } from "./types";
 
 export const getPets = (params, page) => async (dispatch) => {
@@ -261,26 +262,22 @@ export const getAllProducts =
       console.error(err);
     }
   };
-  
-  
-  export const filterProducts = (querys) =>{
-   return async function(dispatch){
-    try {
-    console.log(querys);
-      let response = await axios.get(`/filteredProducts${querys}`)
-      if (response.data){
-      console.log(response.data);
-       return dispatch({
-       type:FILTER_PRODUCTS,
-       payload: response.data
-       })
-      }
-    } catch (error) {
-      
-    }
-   }
-  }
 
+export const filterProducts = (querys) => {
+  return async function (dispatch) {
+    try {
+      console.log(querys);
+      let response = await axios.get(`/filteredProducts${querys}`);
+      if (response.data) {
+        console.log(response.data);
+        return dispatch({
+          type: FILTER_PRODUCTS,
+          payload: response.data,
+        });
+      }
+    } catch (error) {}
+  };
+};
 
 export const aplicationRequest = () => {
   return async function (dispatch) {
@@ -302,9 +299,9 @@ export const searchAplicationRequest = (name) => {
       let response = await axios.get(`/adoptions?name=${name}`);
       if (response.data.adoptions.length) {
         return dispatch({
-        type: SEARCH_APLICATION_REQUEST,
-        payload : response.data.adoptions
-        })
+          type: SEARCH_APLICATION_REQUEST,
+          payload: response.data.adoptions,
+        });
       } else {
         return;
       }
@@ -314,8 +311,53 @@ export const searchAplicationRequest = (name) => {
   };
 };
 
-export const loadDonation = (id, amount) => async (dispatch) =>  {
+
+export const historysRequest = () => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get("/userPets/historyNotifications");
+      return dispatch({
+        type: HISTORYS_REQUEST,
+        payload: response.data,
+      });
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
+
+export const getApprovedHistory = () => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get("/adoptions?otherstatus=approved");
+      return dispatch({
+        type: GET_HISTORY_APPROVED,
+        payload: response.data,
+      });
+    } catch (error) {
+      return window.alert(error.message);
+    }
+  };
+};
+
+export const getDeclinedHistory = () => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get("/adoptions?otherstatus=declined");
+      return dispatch({
+        type: GET_HISTORY_DECLINED,
+        payload: response.data,
+      });
+    } catch (error) {
+      return window.alert(error.message);
+    }
+  };
+};
+
+
+export const loadDonation = (id, amount) => async () =>  {
   
+
   try {
     const response = await axios.post(`/donations?id=${id}&amount=${amount}`);
 
@@ -323,15 +365,4 @@ export const loadDonation = (id, amount) => async (dispatch) =>  {
   } catch (error) {
     console.log(error);
   }
-}
-
-
-
-
-
-
-
-
-
-
-
+};

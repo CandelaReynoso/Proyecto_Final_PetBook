@@ -1,6 +1,6 @@
 
 
-import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST,FILTER_PRODUCTS, SEARCH_APLICATION_REQUEST} from './types';
+import { GET_PETS,FETCH_PET_DETAIL_SUCCESS,GET_PETS_RAMDON_HOME,SEND_EMAIL,SEND_ADOPTION_REQUEST,GET_PET_NAME, SET_PET_NAME,GET_PRODUCTS, GET_FAVORITES, GET_USERS, APLICATION_REQUEST,FILTER_PRODUCTS, SEARCH_APLICATION_REQUEST,HISTORYS_REQUEST,GET_HISTORY_DECLINED,GET_HISTORY_APPROVED} from './types';
 
 
 
@@ -38,7 +38,10 @@ loading: false,
 
   users :[],
 
-  requestAdoption : []
+  requestAdoption : [],
+  historysRequest: [],
+  requesAdoptionHistorialApproved : [],
+  requesAdoptionHistorialDeclined : []
 
 };
 
@@ -134,6 +137,24 @@ const reducer = (state = initialState, action) => {
            ...state,
            requestAdoption :action.payload
            }
+           
+           case HISTORYS_REQUEST:
+           return{
+           ...state,
+           historysRequest : action.payload
+           }
+           
+           case GET_HISTORY_APPROVED:
+           return{
+           ...state,
+           requesAdoptionHistorialApproved : action.payload
+           }
+           
+           case GET_HISTORY_DECLINED:
+            return{
+            ...state,
+            requesAdoptionHistorialDeclined : action.payload
+            }
            
            
           default: {

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { userHandlerGet, userHandlerPost, userHandlerPut, userHandlerDelete,userHandlerVerifyAdminRole } = require('../handlers/userHandler');
+const { userHandlerGet, userHandlerPost, userHandlerPut, userHandlerDelete,userHandlerVerifyAdminRole, userHandlerResetPassword, userHandlerChangePassword } = require('../handlers/userHandler');
 const { check } = require('express-validator');
 const { validateAttributes } = require('../middlewares/validateAttributes');
 const { isRoleValid, isEmailValid, userByIdExists } = require('../helpers/dbValidators');
@@ -23,6 +23,23 @@ userRoutes.post('/', [
     check('role').custom(isRoleValid), // validate role
     validateAttributes  // middleware that validates attributes before passing to the handler
 ],userHandlerPost );
+
+userRoutes.post('/resetpassword', [
+    //check('nickname', 'nickname is required').not().isEmpty(),
+    //check('password', 'password >= 6 characters is required').isLength({min: 6}),
+    //check('email', 'email not valid').isEmail(),
+    //check('email').custom(isEmailValid), // validate email
+    //check('role', 'role not valid').isIn(['admin_role','user_role']),
+    //check('role').custom(isRoleValid), // validate role
+    validateAttributes  // middleware that validates attributes before passing to the handler
+],userHandlerResetPassword );
+
+userRoutes.put('/changepassword/:id', [
+    check('id', 'Not a valid ID').isUUID(),
+    check('id').custom( userByIdExists ),
+    //check('role').custom(isRoleValid), // validate role
+    validateAttributes
+], userHandlerChangePassword );
 
 userRoutes.put('/:id', [
     check('id', 'Not a valid ID').isUUID(),
