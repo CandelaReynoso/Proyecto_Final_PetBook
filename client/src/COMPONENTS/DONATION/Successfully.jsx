@@ -14,11 +14,12 @@ export default function Successfully(){
 
     const dispatch = useDispatch();
     const params = queryString.parse(location.search);
-    const id = params.id;
+    const userId = params.id;
     const amount = params.amount;
 
+
     useEffect(() => {
-        dispatch(loadDonation(id, amount));
+        dispatch(loadDonation(userId, amount));
       }, [dispatch]);
 
     return (
