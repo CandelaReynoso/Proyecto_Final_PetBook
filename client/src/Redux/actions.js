@@ -311,6 +311,7 @@ export const searchAplicationRequest = (name) => {
   };
 };
 
+
 export const historysRequest = () => {
   return async function (dispatch) {
     try {
@@ -353,7 +354,10 @@ export const getDeclinedHistory = () => {
   };
 };
 
-export const loadDonation = (id, amount) => async (dispatch) => {
+
+export const loadDonation = (id, amount) => async () =>  {
+  
+
   try {
     const response = await axios.post(`/donations?id=${id}&amount=${amount}`);
 
