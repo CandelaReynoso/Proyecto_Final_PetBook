@@ -14,17 +14,8 @@ const Donations = (sequelize) => {
                 type: DataTypes.FLOAT,
                 allowNull: false,
             },
-            anonymous:{
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-                defaultValue: true
-            },
             userID:{
-                type: DataTypes.UUID,
-            },
-            type:{
-                type: DataTypes.ENUM("donation", "product", "subscription"),
-                allowNull: false
+                type: DataTypes.STRING,
             }
             }
         
