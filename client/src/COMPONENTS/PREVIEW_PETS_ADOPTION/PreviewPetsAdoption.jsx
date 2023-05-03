@@ -14,10 +14,10 @@ const PreviewPetsAdoption = ({ previewPets }) => {
           <div className="card-body">
             
             <div>
-              <h2 className="card-title font-[candara]">Name: <a className="">{pet.name}</a></h2>
-              <p className=""> <a className="italic"> Specie:</a> {pet.specie}</p>
-              <p className=""><a className="italic"> Gender:</a> {pet.gender}</p>
-              <p className=""><a className="italic"> Size:</a> {pet.size}</p>
+              <h2 className="card-title text font-[candara]">Name: <a className="">{pet.name}</a></h2>
+              <p className="text"> <a className="italic"> Specie:</a> {pet.specie}</p>
+              <p className="text"><a className="italic"> Gender:</a> {pet.gender}</p>
+              <p className="text"><a className="italic"> Size:</a> {pet.size}</p>
             </div>
           </div>
         </div>

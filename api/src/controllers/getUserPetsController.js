@@ -76,9 +76,25 @@ const getacceptStories = async () => {
 
         return data
     } catch (error) {
-        console.log(error)
         return { error: error }
     }
 }
 
-module.exports = { getPetsUserController, getHistoryUserPet, getacceptStories };
+const getHistoryNotifications = async () => {
+    try {
+        const data = await User_pet.findAll({
+            where: {
+                statusHistory: true,
+                show: false
+            }
+        });
+
+        if (!data) throw new Error("no notifications");
+
+        return data;
+    } catch (error) {
+        return { error: error }
+    }
+}
+
+module.exports = { getPetsUserController, getHistoryUserPet, getacceptStories, getHistoryNotifications };

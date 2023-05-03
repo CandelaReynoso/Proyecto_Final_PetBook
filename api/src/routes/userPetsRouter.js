@@ -6,7 +6,8 @@ const {
     handlerPostAdopted,
     handlerGetShowHistory,
     hanldeGetacceptStories,
-    hanldePostShow
+    hanldePostShow,
+    handleGetHistoryNotifications
 } = require("../handlers/userPetsHandler");
 
 const userPetsRoutes = Router();
@@ -16,6 +17,8 @@ userPetsRoutes.get('/Pets', handlergetUserpets);
 userPetsRoutes.post('/adopt', handlerPostAdopted);
 userPetsRoutes.post('/update', handlerPostUserPets);
 userPetsRoutes.get('/acceptStories', hanldeGetacceptStories);
-userPetsRoutes.post('/updateShow', hanldePostShow)
+userPetsRoutes.post('/updateShow', hanldePostShow);
+userPetsRoutes.get('/historyNotifications', handleGetHistoryNotifications);
+
 module.exports = userPetsRoutes;
 

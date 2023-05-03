@@ -1,9 +1,10 @@
 const {Favorite,User} = require("../database/db.js")
 
-const addFavoritesPets = async (id, image,name,specie,gender,size,weight,age,idUser) =>{
+const addFavoritesPets = async (id, image,name,specie,gender,size,weight,age,idUser,petId) =>{
 
-const newFav = await Favorite.create({id,image,name,specie,gender,size,weight,age, idUser})
+const newFav = await Favorite.create({id,image,name,specie,gender,size,weight,age, idUser,petId})
 
+console.log(newFav);
 let findUser = await User.findByPk(idUser)
 
 console.log(newFav.__proto__);

@@ -186,14 +186,9 @@ const Home = () => {
             </h2>
             <br />
             <div className="flex flex-col w-full sm:flex-row justify-center items-center">
-              <Link to="/">
-                <button className="btn btn-accent btn-sm shadow uppercase inline-block my-2 sm:mx-3 rounded">
-                  SPONSOR A PET
-                </button>
-              </Link>
               <Link to="/donate">
                 <button className="btn btn-accent btn-sm  uppercase inline-block my-2 rounded">
-                  ONE-TIME DONATION
+                  DONATE NOW!
                 </button>
               </Link>
             </div>
