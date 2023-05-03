@@ -40,6 +40,9 @@ const ChangePassword = () => {
         body: JSON.stringify({ oldPassword, newPassword }),
       });
       console.log(response);
+      if(response.ok){
+        alert ('Your password was succesfully changed')
+      }
       if (!response.ok) {
         throw new Error('Error changing password');
       }
@@ -54,14 +57,14 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className='mx-auto max-w-lg p-4 bg-white rounded-lg border-black border-2'>
+    <div className='mx-auto max-w-lg p-4 bg-white rounded-lg'>
     
-        <h2 className="titleLeft text-center text-3xl lg:text-2xl mb-4">Modify Account Settings:</h2>
+        <h2 className="titleLeft text-center text-3xl lg:text-2xl mb-4 ">Settings:</h2>
     
-    <form onSubmit={handleSubmit}>
+    <form className='h-fit' onSubmit={handleSubmit}>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div>
-        <label className="text" htmlFor="oldPassword">Old Password:</label>
+        {/* <label className="text" htmlFor="oldPassword">Old Password:</label> */}
         <input className='inputs'
           type="password"
           id="oldPassword"
@@ -69,11 +72,12 @@ const ChangePassword = () => {
           onChange={(event) => setOldPassword(event.target.value)}
           minLength={5}
           maxLength={15}
-          required
+          
+          placeholder='Current Password'
         />
       </div>
       <div>
-        <label className="text" htmlFor="newPassword">New Password:</label>
+        {/* <label className="text" htmlFor="newPassword">New Password:</label> */}
         <input className='inputs'
           type="password"
           id="newPassword"
@@ -81,11 +85,12 @@ const ChangePassword = () => {
           onChange={(event) => setNewPassword(event.target.value)}
           minLength={5}
           maxLength={15}
-          required
+          
+          placeholder='New Password'
         />
       </div>
       <div>
-        <label className="text" htmlFor="confirmNewPassword">Confirm New Password:</label>
+        {/* <label className="text" htmlFor="confirmNewPassword">Confirm New Password:</label> */}
         <input className='inputs'
           type="password"
           id="confirmNewPassword"
@@ -93,11 +98,12 @@ const ChangePassword = () => {
           onChange={(event) => setConfirmNewPassword(event.target.value)}
           minLength={5}
           maxLength={15}
-          required
+          
+          placeholder='Confirm new Password'
         />
       </div>
       <button className='buttonSubtmit text-center '
-      type="submit">Change Password</button>
+      type="submit">Change My Password</button>
     </form>
     </div>
    
