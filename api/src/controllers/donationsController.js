@@ -14,7 +14,14 @@ const getAllDonations = async (id)=>{
         }
         
     }
-    return allDonations;  
+
+    let total = 0;
+
+    for(let j = 0; j< allDonations.length; j++){
+        total+= allDonations[j].amount;
+    }
+
+    return total;  
     } else {
         const userDonations = await Donations.findAll({
             where: {
@@ -30,6 +37,7 @@ const getAllDonations = async (id)=>{
         }
         
     }
+
     return allUserDonations;  
 }
 }
