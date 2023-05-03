@@ -64,7 +64,7 @@ export default function Shop() {
 </div>
 
 <div>
-  <FilterProducts />
+  <FilterProducts currentPage={currentPage} setCurrentPage={setCurrentPage}/>
 </div>
 
         <div className="h-full w-screen">
