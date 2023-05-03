@@ -48,11 +48,12 @@ const Profile = () => {
       <div className="flex justify-center h-screen w-screen">
         <div className="flex flex-row w-full lg:w-3/4 mx-4">
 
-        <div className='mx-auto max-w-200 p-4 bg-white rounded-lg border-black border-2'>
-            <h2 className="titleRight text-center text-3xl lg:text-2xl mb-4">Your Donations:</h2>
-            <ul className="text ">
+        <div className="max-w-screen-xl mx-auto">
+        <div className="mx-auto max-w-4xl h-96 p-8 bg-white rounded-lg border-black border-2 text-center">
+            <h2 className="titleRight  text-3xl lg:text-2xl mb-4">Your Donations:</h2>
+            <ul className="text text-1xl">
               {donations.map((donation) => (
-                <li key={donation.id}>
+                <li key={donation.id} className="pl-4 mb-3">
                   Amount: ${donation.amount}, Date: {new Date(donation.createdAt).toLocaleDateString()}
                 </li>
               ))}
@@ -60,6 +61,7 @@ const Profile = () => {
             <h2 className="textColorPink text-2xl mt-10">
               Total Donations: ${totalDonations}
             </h2>
+          </div>
           </div>
           <div className="w-1/2 lg:w-2/5 px-2">
             <ChangePassword />
