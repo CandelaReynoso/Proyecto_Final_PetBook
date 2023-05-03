@@ -6,9 +6,10 @@ import { useDispatch } from 'react-redux';
 import { BsFilterLeft } from 'react-icons/bs';
 import { BiRefresh } from "react-icons/bi"
 
-function FilterProducts() {
+function FilterProducts({setCurrentPage}) {
   const dispatch = useDispatch()
   const [products, setProducts] = useState([]);
+ 
   
 
 const [querys, setQuerys] = useState()
@@ -19,6 +20,8 @@ const handlerSelect = (e) =>{
   if (e.target.value === "Default") return;
   
   setQuerys({...querys,[e.target.name]:e.target.value})
+  
+ 
 }
 
 console.log(querys);
@@ -29,6 +32,7 @@ console.log(querys);
     
     
     dispatch(filterProducts(searchQuerys))
+    setCurrentPage(1)
 
     // axios.get(`/filteredProducts${searchQuerys}`)
     // .then(response => {
@@ -37,7 +41,8 @@ console.log(querys);
     // .catch(error => {
     //   console.error(error);
     // });
-  };
+
+    };
 
   const handleClick = () =>{
     dispatch (getAllProducts())
