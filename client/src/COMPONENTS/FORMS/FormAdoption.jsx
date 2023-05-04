@@ -54,7 +54,7 @@ const AdoptionForm = (props) => {
             petId: id,
           }),
         };
-        const response = await fetch('/adoptions', requestOptions);
+        const response = await fetch('https://petbook-server.onrender.com/adoptions', requestOptions);
         const data = await response.json();
         console.log(data);
         resetForm();
