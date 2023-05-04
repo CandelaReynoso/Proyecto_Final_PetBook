@@ -8,7 +8,7 @@
     margin-top: .5rem;
     max-height: 150px;
     overflow-y: auto;
-   
+    z-index: 999;
     position: absolute!important;
     
     cursor: pointer;
