@@ -32,7 +32,8 @@ function handleCredentialResponse(response){
     .then( resp => resp.json())
     .then( data => {
       console.log(data)
-      localStorage.setItem('email', data.user.email)
+      localStorage.setItem('email', data.user.email);
+      localStorage.setItem('nickname', data.user.nickname);
       navigate('/home');
     })
     .catch(error => console.error(error))
