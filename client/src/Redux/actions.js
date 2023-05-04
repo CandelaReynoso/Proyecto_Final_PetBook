@@ -26,10 +26,7 @@ export const getPets = (params, page) => async (dispatch) => {
     if (params) {
       const res = await axios.get(`/pets${params}`);
       if (res.data.data.length === 0) {
-        window.alert(`no search results pleace try another search/filter,
-if you try to sort in ascending or descending direction
-you need to specify that you want to 
-"sort by" and "order in away" and vice versa`);
+        window.alert(`There is no result for your search`);
         return;
       }
       return dispatch({
