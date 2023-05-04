@@ -42,7 +42,7 @@ const Favorites = () => {
             )}
       {!uniqueFavs.length ? (
         // <img className="mx-auto max-w-full h-auto block w-1/2" src="/perritoFavVacio.jpg" alt="perritoFav" />
-        <Loading />
+        <div className="h-screen"> <Loading /> </div>
       ) : (
         <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
           <div>
