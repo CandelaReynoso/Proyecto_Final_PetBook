@@ -6,6 +6,7 @@ import axios from "axios";
 import Header from "../HEADER/Header";
 import HeaderLogin from "../HEADER/HeaderLogin";
 import Footer from "../FOOTER/Footer";
+import Loading from "../LOADING/Loading";
 
 //componente contenedor de todo lo que se vaya a renderizar aca
 const Favorites = () => {
@@ -40,7 +41,8 @@ const Favorites = () => {
               <Header className="mb-4" />
             )}
       {!uniqueFavs.length ? (
-        <img className="mx-auto max-w-full h-auto block w-1/2" src="/perritoFavVacio.jpg" alt="perritoFav" />
+        // <img className="mx-auto max-w-full h-auto block w-1/2" src="/perritoFavVacio.jpg" alt="perritoFav" />
+        <Loading />
       ) : (
         <div className="bg-[url('/backdonations1.png')] bg-no-repeat w-screen">
           <div>
