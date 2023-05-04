@@ -11,7 +11,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/users/resetpassword', { email });
+      const response = await axios.post('/users/resetpassword', { email });
       setMessage(response.data.message);
       alert("If your email is found, a new password will be sent to you.") 
     } catch (error) {

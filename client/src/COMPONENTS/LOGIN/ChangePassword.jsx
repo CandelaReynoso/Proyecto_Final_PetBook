@@ -33,7 +33,7 @@ const ChangePassword = () => {
     try {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
-        const response = await fetch(`http://localhost:3001/users/changepassword/${id}`, {
+        const response = await fetch(`/users/changepassword/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json',
         "x-token": token },
