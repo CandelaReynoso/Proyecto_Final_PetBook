@@ -12,7 +12,7 @@ export default function SearchBar() {
   const searchNamesResults = async (value) => {
     try {
       let response = await axios.get(
-        `http://localhost:3001/pets/name?name=${value}`
+        `/pets/name?name=${value}`
       );
       if (response.data.length) {
         dispatch(getNamePets(response.data));
