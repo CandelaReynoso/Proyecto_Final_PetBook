@@ -128,9 +128,9 @@ const Card = (pet) => {
                 {/* </Link> */}
 
 
-                <div className="card-actions m-1">
+                {/* <div className="card-actions m-1">
                   <button className="btn btn-xs btn-accent">Sponsor</button>
-                </div>
+                </div> */}
               </div>
             )}
 
