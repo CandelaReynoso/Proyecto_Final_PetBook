@@ -22,7 +22,7 @@ function validateForm() {
 function handleCredentialResponse(response){
     console.log('id_token',  response.credential) // google token
     const body = {id_token: response.credential}
-    fetch('http://localhost:3001/auth/google', {
+    fetch('https://petbook-server.onrender.com/auth/google', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ function handleCredentialResponse(response){
     setErrors(errors);
 
 
-   const response = await fetch(`http://localhost:3001/auth/login/`, {  
+   const response = await fetch(`https://petbook-server.onrender.com/auth/login/`, {  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
