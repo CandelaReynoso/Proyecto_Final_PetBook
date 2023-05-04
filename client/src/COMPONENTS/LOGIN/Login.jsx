@@ -34,6 +34,8 @@ function handleCredentialResponse(response){
       console.log(data)
       localStorage.setItem('email', data.user.email);
       localStorage.setItem('nickname', data.user.nickname);
+      localStorage.setItem('id', data.user.id);
+      localStorage.setItem('token', data.token);
       navigate('/home');
     })
     .catch(error => console.error(error))
